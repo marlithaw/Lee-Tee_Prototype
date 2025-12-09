@@ -3004,73 +3004,93 @@ Finally, Step 4: Restate your position..."
         // Create utterance
         const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.rate = 0.9;
+        utterance.pitch = 1;
 
         let currentWordIdx = 0;
         let boundaryFired = false;
+        let fallbackTimer = null;
+        let startTime = null;
 
-        // Try to use word boundaries
-        utterance.onboundary = (event) => {
-            if (event.name === 'word') {
-                boundaryFired = true;
-
-                // Remove previous highlights
-                wordSpans.forEach(span => {
-                    span.classList.remove('active-word');
-                });
-
-                // Highlight current word
-                if (currentWordIdx < wordSpans.length) {
-                    const currentWord = wordSpans[currentWordIdx];
-                    currentWord.classList.add('active-word');
-
-                    // Scroll into view
-                    currentWord.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center',
-                        inline: 'nearest'
-                    });
-                }
-
-                currentWordIdx++;
-            }
-        };
-
-        // Fallback: If word boundaries don't work, use timing-based highlighting
-        let fallbackTimer;
-        const avgWordDuration = 60000 / (0.9 * 150); // ~444ms per word at 0.9 rate, 150 WPM
-
-        utterance.onstart = () => {
-            if (!boundaryFired) {
-                // Start fallback after short delay
-                setTimeout(() => {
-                    if (!boundaryFired) {
-                        console.log('Using fallback word highlighting');
-                        highlightWordByTiming();
-                    }
-                }, 500);
-            }
-        };
-
-        function highlightWordByTiming() {
-            if (currentWordIdx >= wordSpans.length || !speechSynthesis.speaking) {
-                return;
-            }
-
+        // Helper function to highlight a word
+        function highlightWord(index) {
             // Remove previous highlights
-            wordSpans.forEach(span => span.classList.remove('active-word'));
+            wordSpans.forEach(span => {
+                span.classList.remove('active-word');
+            });
 
             // Highlight current word
-            if (wordSpans[currentWordIdx]) {
-                wordSpans[currentWordIdx].classList.add('active-word');
-                wordSpans[currentWordIdx].scrollIntoView({
+            if (index < wordSpans.length) {
+                const currentWord = wordSpans[index];
+                currentWord.classList.add('active-word');
+
+                // Scroll into view
+                currentWord.scrollIntoView({
                     behavior: 'smooth',
                     block: 'center',
                     inline: 'nearest'
                 });
             }
+        }
+
+        // Try to use word boundaries (most accurate)
+        utterance.onboundary = (event) => {
+            if (event.name === 'word') {
+                boundaryFired = true;
+
+                // Cancel fallback if word boundaries are working
+                if (fallbackTimer) {
+                    clearTimeout(fallbackTimer);
+                    fallbackTimer = null;
+                }
+
+                highlightWord(currentWordIdx);
+                currentWordIdx++;
+            }
+        };
+
+        // Fallback: Dynamic timing-based highlighting
+        utterance.onstart = () => {
+            startTime = Date.now();
+
+            // Wait to see if word boundaries fire
+            setTimeout(() => {
+                if (!boundaryFired && speechSynthesis.speaking) {
+                    console.log('Word boundaries not supported, using dynamic timing fallback');
+                    currentWordIdx = 0;
+                    highlightNextWord();
+                }
+            }, 100);
+        };
+
+        function highlightNextWord() {
+            if (currentWordIdx >= wordSpans.length || !speechSynthesis.speaking) {
+                return;
+            }
+
+            highlightWord(currentWordIdx);
+
+            // Calculate dynamic delay based on word length and speech rate
+            const word = wordSpans[currentWordIdx].textContent;
+            const wordLength = word.length;
+
+            // Base duration calculation
+            // Average: 150 WPM = 400ms per word at rate 1.0
+            // Adjusted for current rate (0.9)
+            const baseWordDuration = 60000 / (utterance.rate * 150); // ~444ms
+
+            // Adjust based on word length (longer words take more time)
+            // Average English word is ~5 characters
+            const lengthFactor = wordLength / 5;
+            const adjustedDuration = baseWordDuration * (0.7 + (lengthFactor * 0.3));
+
+            // Add slight pause for punctuation
+            const hasPunctuation = /[.,!?;:]/.test(word);
+            const punctuationPause = hasPunctuation ? 150 : 0;
+
+            const totalDuration = adjustedDuration + punctuationPause;
 
             currentWordIdx++;
-            fallbackTimer = setTimeout(highlightWordByTiming, avgWordDuration);
+            fallbackTimer = setTimeout(highlightNextWord, totalDuration);
         }
 
         utterance.onend = () => {
