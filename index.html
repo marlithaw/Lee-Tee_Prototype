@@ -2936,74 +2936,105 @@ Finally, Step 4: Restate your position..."
     function startWordPlayback(sectionId, btn) {
         const section = document.getElementById(sectionId);
         if (!section) return;
-        
+
         const storyText = section.querySelector('.story-text');
         if (!storyText) return;
-        
+
         // Save original state
         if (!storyText.dataset.original) {
             storyText.dataset.original = storyText.innerHTML;
         }
-        
-        // Create a copy for word highlighting
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = storyText.innerHTML;
-        
-        // Remove unwanted elements
-        tempDiv.querySelectorAll('.speech-bubble p:first-child, .quiz-option, button, .media-container, .vocab-word').forEach(el => el.remove());
-        
-        // Get clean text
-        const cleanText = tempDiv.textContent || tempDiv.innerText;
-        
+
+        // Wrap words in spans for highlighting
+        const paragraphs = storyText.querySelectorAll('p');
+        const allWords = [];
+
+        paragraphs.forEach(p => {
+            // Skip character names in speech bubbles
+            if (p.classList.contains('font-bold') && p.parentElement.classList.contains('speech-bubble')) {
+                return;
+            }
+
+            // Save original HTML
+            const originalHTML = p.innerHTML;
+
+            // Split text into words while preserving HTML tags
+            const textContent = p.textContent;
+            const words = textContent.split(/\s+/).filter(w => w.trim().length > 0);
+
+            // Wrap each word in a span
+            let wordIndex = 0;
+            let newHTML = p.innerHTML;
+
+            words.forEach((word, idx) => {
+                // Find the word in the HTML and wrap it
+                const cleanWord = word.replace(/[^\w\s'-]/g, '');
+                if (cleanWord.length > 0) {
+                    const spanWord = `<span class="word-highlight" data-word-index="${allWords.length}">${word}</span>`;
+                    allWords.push({ element: null, text: word, paragraph: p });
+
+                    // Replace first occurrence of the word
+                    const regex = new RegExp(`(?<![<>])\\b${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b(?![<>])`, 'i');
+                    newHTML = newHTML.replace(regex, spanWord);
+                }
+            });
+
+            p.innerHTML = newHTML;
+        });
+
+        // Get all word span elements
+        const wordSpans = storyText.querySelectorAll('.word-highlight');
+        wordSpans.forEach((span, idx) => {
+            if (allWords[idx]) {
+                allWords[idx].element = span;
+            }
+        });
+
+        // Create clean text for speech
+        const cleanText = storyText.textContent.trim();
+
         // Create utterance
         const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.rate = 0.85;
-        
-        // Word highlighting logic
-        const words = cleanText.split(/(\s+)/);
-        let currentWordIndex = 0;
-        let charCount = 0;
-        
+
+        let currentWordIdx = 0;
+        let charPosition = 0;
+
         utterance.onboundary = (event) => {
             if (event.name === 'word') {
-                // Find which word we're on
-                let wordStart = charCount;
-                let wordText = '';
-                
-                while (currentWordIndex < words.length) {
-                    const word = words[currentWordIndex];
-                    if (word.trim().length > 0) {
-                        wordText = word;
-                        break;
-                    }
-                    currentWordIndex++;
-                    charCount += word.length;
-                }
-                
-                if (wordText && event.charIndex >= charCount) {
-                    // Highlight logic (simplified - this is where we'd need more complex DOM manipulation)
-                    // For now, we'll highlight the entire current paragraph
-                    const paragraphs = storyText.querySelectorAll('p');
-                    paragraphs.forEach(p => {
-                        if (p.textContent.includes(wordText)) {
-                            p.classList.add('active-sentence');
-                            p.style.backgroundColor = 'rgba(253, 230, 138, 0.7)';
-                            p.style.transition = 'all 0.3s ease';
-                            
-                            // Scroll into view
-                            p.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
-                            });
-                        }
+                // Remove previous highlights
+                wordSpans.forEach(span => {
+                    span.classList.remove('active-word');
+                    span.style.backgroundColor = '';
+                    span.style.color = '';
+                    span.style.fontWeight = '';
+                    span.style.boxShadow = '';
+                });
+
+                // Highlight current word
+                if (currentWordIdx < allWords.length && allWords[currentWordIdx].element) {
+                    const currentWord = allWords[currentWordIdx].element;
+                    currentWord.classList.add('active-word');
+                    currentWord.style.backgroundColor = '#FDE68A';
+                    currentWord.style.color = '#000';
+                    currentWord.style.fontWeight = '600';
+                    currentWord.style.boxShadow = '0 0 0 2px #F59E0B';
+                    currentWord.style.borderRadius = '2px';
+                    currentWord.style.padding = '2px 1px';
+                    currentWord.style.display = 'inline-block';
+
+                    // Scroll into view
+                    currentWord.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                        inline: 'nearest'
                     });
-                    
-                    currentWordIndex++;
-                    charCount += wordText.length;
                 }
+
+                currentWordIdx++;
             }
         };
-        
+
         utterance.onend = () => {
             btn.classList.remove('btn-playing');
             btn.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
@@ -3013,7 +3044,7 @@ Finally, Step 4: Restate your position..."
                 delete storyText.dataset.original;
             }
         };
-        
+
         utterance.onerror = () => {
             btn.classList.remove('btn-playing');
             btn.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
@@ -3023,7 +3054,7 @@ Finally, Step 4: Restate your position..."
                 delete storyText.dataset.original;
             }
         };
-        
+
         speechSynthesis.speak(utterance);
     }
     
