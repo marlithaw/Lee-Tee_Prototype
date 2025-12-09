@@ -1,0 +1,3469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lee & Tee Episode 1: The Recess Battle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&family=OpenDyslexic:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #FFF8F0;
+      --bg-secondary: #FEF3E2;
+      --accent-purple: #7C3AED;
+      --accent-amber: #F59E0B;
+      --accent-teal: #0D9488;
+      --accent-rose: #E11D48;
+      --text-primary: #1C1917;
+      --text-secondary: #57534E;
+      --success: #16A34A;
+      --border-light: #E7E5E4;
+    }
+    
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    
+    body.dyslexia-mode {
+      font-family: 'OpenDyslexic', sans-serif;
+      letter-spacing: 0.05em;
+      word-spacing: 0.1em;
+      line-height: 2;
+    }
+    
+    body.high-contrast {
+      --bg-primary: #000000;
+      --bg-secondary: #1a1a1a;
+      --text-primary: #FFFFFF;
+      --text-secondary: #E5E5E5;
+      --border-light: #404040;
+    }
+    
+    .font-display { font-family: 'Fredoka', sans-serif; }
+    
+    /* Animated gradient header */
+    .hero-gradient {
+      background: linear-gradient(135deg, #7C3AED 0%, #2563EB 50%, #0D9488 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 8s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Enhanced highlighting styles */
+.word-highlight {
+    transition: all 0.3s ease;
+    padding: 2px 1px;
+    border-radius: 2px;
+    display: inline;
+    position: relative;
+}
+
+.word-highlight.active-word {
+    background-color: #FDE68A !important;
+    color: #000 !important;
+    font-weight: 600;
+    box-shadow: 0 0 0 2px #F59E0B;
+    position: relative;
+    z-index: 5;
+    animation: wordPulse 0.3s ease;
+}
+
+.sentence-highlight.active-sentence {
+    background-color: rgba(253, 230, 138, 0.5) !important;
+    padding: 8px 12px !important;
+    margin: 8px 0 !important;
+    border-radius: 4px !important;
+    border-left: 3px solid #7C3AED !important;
+    border-right: 3px solid #7C3AED !important;
+    transition: all 0.3s ease !important;
+}
+
+/* For speech bubbles specifically */
+.speech-bubble p.sentence-highlight.active-sentence {
+    background-color: rgba(253, 230, 138, 0.7) !important;
+    border-left: 3px solid #F59E0B !important;
+    border-right: 3px solid #F59E0B !important;
+}
+
+@keyframes wordPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+    /* Story section styling */
+    .story-text {
+      font-size: 1.125rem;
+      max-width: 65ch;
+    }
+    body.dyslexia-mode .story-text {
+      font-size: 1.25rem;
+      max-width: 55ch;
+    }
+    
+    /* Progress tracking */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--border-light);
+      z-index: 1000;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-teal));
+      transition: width 0.3s ease;
+    }
+    
+    /* Gamification - Points display */
+    .points-display {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border-radius: 2rem;
+      padding: 0.75rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .points-number {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent-purple);
+    }
+    .badge-earned {
+      animation: badgePop 0.5s ease;
+    }
+    @keyframes badgePop {
+      0% { transform: scale(0) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+    
+    /* Celebration overlay */
+    .celebration-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+    }
+    .celebration-overlay.show {
+      display: flex;
+      animation: fadeIn 0.3s;
+    }
+    .celebration-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      max-width: 400px;
+      animation: slideUp 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* Confetti effect */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--accent-amber);
+      position: absolute;
+      animation: confettiFall 3s linear;
+    }
+    @keyframes confettiFall {
+      to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    /* Vocabulary - Predictive style */
+    .vocab-predict {
+      display: inline-block;
+      position: relative;
+    }
+    .vocab-blank {
+      display: inline-block;
+      min-width: 100px;
+      border-bottom: 2px solid var(--accent-purple);
+      padding: 0 0.5rem;
+      margin: 0 0.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .vocab-blank:hover {
+      background: #F3E8FF;
+    }
+    .vocab-choices {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 0.5rem;
+      z-index: 10;
+      min-width: 150px;
+    }
+    .vocab-choices.show {
+      display: block;
+    }
+    .vocab-choice-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .vocab-choice-btn:hover {
+      background: #F3E8FF;
+    }
+    .vocab-choice-btn.correct {
+      background: #DCFCE7;
+      font-weight: bold;
+    }
+    .vocab-choice-btn.incorrect {
+      background: #FEE2E2;
+    }
+    
+    /* Vocabulary highlight */
+    .vocab-word {
+      background: linear-gradient(to bottom, transparent 60%, #FDE68A 60%);
+      cursor: help;
+      font-weight: 500;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .vocab-word:hover {
+      background: linear-gradient(to bottom, transparent 40%, #FDE68A 40%);
+    }
+    
+    /* ===== ENHANCED READ-ALONG HIGHLIGHTING ===== */
+.read-along-container {
+  position: relative;
+  line-height: 1.8;
+}
+
+.word-highlight {
+  transition: all 0.3s ease;
+  padding: 1px 2px;
+  border-radius: 2px;
+  display: inline;
+  position: relative;
+}
+
+.sentence-highlight {
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline;
+}
+
+/* Word highlighting (for "Read Aloud" mode) */
+.word-highlight.active-word {
+  background-color: #FDE68A !important;
+  color: #000 !important;
+  font-weight: 600;
+  box-shadow: 0 0 0 1px #F59E0B;
+  z-index: 5;
+  animation: wordPulse 0.3s ease;
+}
+
+/* Sentence highlighting (for "Listen" mode) */
+.sentence-highlight.active-sentence {
+  background-color: rgba(253, 230, 138, 0.4) !important;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border-left: 3px solid #7C3AED;
+  border-right: 3px solid #7C3AED;
+  margin: 0 2px;
+}
+
+/* NEW: Direct paragraph highlighting - much simpler! */
+p.active-sentence {
+  background-color: #FDE68A !important;
+  outline: 3px solid #F59E0B !important;
+  outline-offset: 2px;
+  padding: 8px !important;
+  margin: 8px 0 !important;
+  transition: all 0.3s ease !important;
+  border-radius: 4px;
+}
+
+@keyframes wordPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Current word indicator */
+.current-word-marker {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #7C3AED;
+  border-radius: 50%;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: markerPulse 1s infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Button states */
+.btn-playing {
+  background: #EF4444 !important;
+  color: white !important;
+}
+
+.btn-listening {
+  background: #0D9488 !important;
+  color: white !important;
+}
+
+/* ===== SIOP SPECIFIC STYLES ===== */
+    /* SIOP Strategy Tags - NEW */
+    .siop-strategy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: #EFF6FF;
+      border: 2px solid #DBEAFE;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin: 0.25rem;
+      color: #1E40AF;
+    }
+    
+    /* Language Objectives Box - NEW */
+    .language-objective {
+      background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%);
+      border-left: 4px solid #16A34A;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+    
+    /* Content Objectives Box - NEW */
+    .content-objective {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-left: 4px solid #D97706;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+    
+    /* Word Bank for ELL Support - NEW */
+    .word-bank {
+      background: #F3E8FF;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    
+    /* Sentence Frames - NEW */
+    .sentence-frame {
+      background: #F0F9FF;
+      border: 2px dashed #7DD3FC;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      font-style: italic;
+    }
+    
+    /* Visual Glossary - NEW */
+    .visual-glossary-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem;
+      background: white;
+      border-radius: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    
+    /* ===== UDL/SIOP STYLES ===== */
+    /* Voice-to-text button styles */
+    .speech-btn {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .speech-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+    
+    .speech-btn.listening {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    /* Progress tracker styles */
+    .progress-check {
+      font-size: 16px;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .progress-check.completed {
+      animation: checkPop 0.3s ease;
+    }
+    
+    @keyframes checkPop {
+      0% { transform: scale(0.5); }
+      70% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Vocabulary image container */
+    .vocab-image {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+      border-radius: 12px;
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+    
+    /* Character speech bubbles */
+    .speech-bubble {
+      position: relative;
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin: 1rem 0;
+    }
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 24px;
+      border-width: 10px;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+    }
+    .speech-bubble.right::before {
+      left: auto;
+      right: 24px;
+    }
+    
+    /* Character helper buttons */
+    .helper-btn {
+      position: fixed;
+      bottom: 20px;
+      z-index: 90;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .helper-btn:hover { transform: scale(1.1); }
+    .helper-btn img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      object-fit: cover;
+      object-position: top center;
+    }
+    .helper-btn .label {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    #helper-lee { left: 20px; }
+    #helper-tee { left: 100px; }
+    
+    /* Helper modals */
+    .helper-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 150;
+      padding: 1rem;
+    }
+    .helper-modal.open { display: flex; }
+    .helper-content {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Video with caption */
+    .video-block {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px -5px rgba(0, 0, 0, 0.2);
+      margin: 1.5rem 0;
+    }
+    .video-block video {
+      width: 100%;
+      display: block;
+    }
+    .video-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 2rem 1rem 1rem;
+      font-size: 0.875rem;
+    }
+    
+    /* Media containers */
+    .media-container {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px -5px rgba(0, 0, 0, 0.15);
+      margin: 1.5rem 0;
+    }
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      display: block;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .media-grid.three-col {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .media-grid .wide {
+      grid-column: span 2;
+    }
+    
+    /* Notebook paper effect */
+    .notebook {
+      background: 
+        repeating-linear-gradient(
+          transparent,
+          transparent 31px,
+          #E5E7EB 31px,
+          #E5E7EB 32px
+        ),
+        linear-gradient(to right, #FEFCE8, #FEFCE8);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 
+        inset 0 0 0 1px rgba(0,0,0,0.1),
+        4px 4px 0 rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .notebook::before {
+      content: '';
+      position: absolute;
+      left: 2.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #FCA5A5;
+    }
+    
+    /* Section markers */
+    .section-marker {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+    
+    /* Audio button */
+    .audio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--accent-teal);
+      color: white;
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .audio-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+    }
+    .audio-btn.playing {
+      background: var(--accent-rose);
+    }
+    
+    /* Quiz styling */
+    .quiz-option {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border-light);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
+    .quiz-option:hover {
+      border-color: var(--accent-purple);
+      background: #F3E8FF;
+    }
+    .quiz-option.selected {
+      border-color: var(--accent-purple);
+      background: #F3E8FF;
+    }
+    .quiz-option.correct {
+      border-color: var(--success);
+      background: #DCFCE7;
+    }
+    .quiz-option.incorrect {
+      border-color: var(--accent-rose);
+      background: #FEE2E2;
+    }
+    
+    /* Two-column strategy chart */
+    .strategy-column {
+      background: white;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .strategy-column .header {
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .strategy-column .row {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--border-light);
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Accessibility panel */
+    .a11y-panel {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+    .a11y-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-purple);
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: transform 0.2s;
+    }
+    .a11y-btn:hover { transform: scale(1.1); }
+    .a11y-menu {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      min-width: 200px;
+      display: none;
+    }
+    .a11y-menu.open { display: block; }
+    .a11y-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .a11y-toggle:last-child { border-bottom: none; }
+    
+    /* Toggle switch */
+    .toggle {
+      width: 44px;
+      height: 24px;
+      background: #D6D3D1;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle.on { background: var(--success); }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .toggle.on::after { left: 22px; }
+    
+    /* Ritual markers */
+    .ritual-marker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ritual-stir {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+    .ritual-bake {
+      background: #FCE7F3;
+      color: #9D174D;
+    }
+    .ritual-eat {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+    
+    /* Vocabulary modal */
+    .vocab-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 1rem;
+    }
+    .vocab-modal.open { display: flex; }
+    .vocab-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Choice cards for character selection */
+    .choice-card {
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .choice-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-purple);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .choice-card.selected {
+      border-color: var(--success);
+      background: #DCFCE7;
+    }
+    .choice-card::after {
+      content: '✓';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--success);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .choice-card.selected::after {
+      display: flex;
+    }
+    
+    /* Open-ended response areas */
+    .response-area {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .response-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem;
+      border: 2px solid var(--border-light);
+      border-radius: 0.5rem;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .response-textarea:focus {
+      outline: none;
+      border-color: var(--accent-purple);
+    }
+    
+    /* Rubric checklist */
+    .rubric-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: white;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+      transition: background 0.2s;
+    }
+    .rubric-item:hover {
+      background: #F5F5F4;
+    }
+    .rubric-checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: var(--success);
+    }
+    .rubric-item.checked {
+      background: #DCFCE7;
+    }
+    
+    /* SEL check-in */
+    .emotion-option {
+      text-align: center;
+      padding: 1rem;
+      border-radius: 1rem;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .emotion-option:hover {
+      border-color: var(--accent-purple);
+      transform: scale(1.05);
+    }
+    .emotion-option.selected {
+      border-color: var(--success);
+      background: #DCFCE7;
+    }
+    
+    /* Standard tag for explicit standards */
+    .standard-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #EFF6FF;
+      border: 1px solid #DBEAFE;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    .standard-code {
+      font-weight: 600;
+      color: #1E40AF;
+    }
+    
+    /* Drag and drop styling */
+    .rap-line {
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      background: #F5F5F4;
+      border-left: 4px solid #D6D3D1;
+      border-radius: 0 0.5rem 0.5rem 0;
+      cursor: grab;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .rap-line:hover {
+      background: #FEF3C7;
+      border-left-color: var(--accent-amber);
+      transform: translateX(4px);
+    }
+    .rap-line.dragging {
+      opacity: 0.5;
+      cursor: grabbing;
+    }
+    .rap-line.correct {
+      background: #DCFCE7;
+      border-left-color: var(--success);
+    }
+    .rap-line.incorrect {
+      background: #FEE2E2;
+      border-left-color: var(--accent-rose);
+      animation: shake 0.3s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    
+    .drop-zone {
+      min-height: 60px;
+      border: 2px dashed #D6D3D1;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      background: white;
+      padding: 0.5rem;
+    }
+    .drop-zone.drag-over {
+      border-color: var(--accent-purple);
+      background: #F3E8FF;
+    }
+    .drop-zone.filled {
+      border-style: solid;
+      border-color: var(--success);
+      background: #DCFCE7;
+    }
+    
+    /* ===== WORD HIGHLIGHTING FOR ORAL ADMINISTRATION ===== */
+    .word-highlight {
+      transition: all 0.3s ease;
+      padding: 2px 1px;
+      border-radius: 3px;
+      display: inline-block;
+      white-space: pre-wrap;
+    }
+    
+    .word-highlight.active {
+      background-color: #FDE68A;
+      color: #000;
+      font-weight: 600;
+      box-shadow: 0 0 0 2px #F59E0B;
+      position: relative;
+      z-index: 5;
+    }
+    
+    .word-highlight.active::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #7C3AED;
+      border-radius: 1px;
+    }
+    
+    /* Reading focus mode */
+    .reading-focus {
+      background: linear-gradient(to right, #FEF3C7 0%, transparent 100%);
+      padding: 10px;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    
+    /* ===== STICKY NAVIGATION ===== */
+    .sticky-section-nav {
+      position: sticky;
+      top: 60px;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .points-display {
+        top: 10px;
+        right: 10px;
+        padding: 0.5rem 1rem;
+      }
+      .points-number {
+        font-size: 1.25rem;
+      }
+      .helper-btn {
+        bottom: 10px;
+      }
+      #helper-lee { left: 10px; }
+      #helper-tee { left: 80px; }
+      
+      /* Hide progress tracker on mobile */
+      .fixed.left-4.top-1\/4 {
+        display: none;
+      }
+      
+      /* Voice buttons full width on mobile */
+      .mt-2.flex.gap-2 {
+        flex-direction: column;
+      }
+      
+      .mt-2.flex.gap-2 button {
+        width: 100%;
+      }
+      
+      .sticky-section-nav {
+        top: 50px;
+        padding: 8px 12px;
+      }
+      
+      .sticky-section-nav .flex {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      
+      .sticky-section-nav a {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+      
+      .vocab-image {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        margin-right: 12px;
+      }
+      
+      .speech-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+    }
+    
+    /* Image error fallback */
+    img {
+      background: linear-gradient(135deg, #f3e8ff 0%, #fef3c7 100%);
+    }
+    
+    /* Smooth scroll for sections */
+    html { scroll-behavior: smooth; }
+    
+    /* Print styles */
+    @media print {
+      .a11y-panel, .progress-container, .audio-btn, .helper-btn, .points-display { display: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+  <!-- PROGRESS BAR -->
+  <div class="progress-container">
+    <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+  </div>
+
+  <!-- POINTS DISPLAY -->
+  <div class="points-display">
+    <div>
+      <div class="text-xs text-gray-600">Learning Points</div>
+      <div class="points-number" id="pointsDisplay">0</div>
+    </div>
+    <div id="badgeContainer" class="flex gap-1"></div>
+    <button onclick="resetProgress()" class="text-xs text-gray-400 hover:text-red-600" title="Reset all progress">
+      ↺
+    </button>
+  </div>
+
+  <!-- CELEBRATION OVERLAY -->
+  <div id="celebrationOverlay" class="celebration-overlay">
+    <div class="celebration-card">
+      <div class="text-6xl mb-4" id="celebrationEmoji">🎉</div>
+      <h3 class="font-display text-2xl font-bold mb-2" id="celebrationTitle">Great Job!</h3>
+      <p class="text-gray-600 mb-4" id="celebrationMessage">You earned points!</p>
+      <button onclick="closeCelebration()" class="bg-purple-600 text-white px-6 py-2 rounded-full font-bold hover:bg-purple-700">
+        Continue Learning
+      </button>
+    </div>
+  </div>
+
+  <!-- Character Helper Buttons -->
+  <div id="helper-lee" class="helper-btn" onclick="openHelper('lee')">
+    <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee with notebook">
+    <div class="label text-purple-600">ASK LEE</div>
+  </div>
+  
+  <div id="helper-tee" class="helper-btn" onclick="openHelper('tee')">
+    <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee gesturing">
+    <div class="label text-amber-600">ASK TEE</div>
+  </div>
+
+  <!-- Lee Helper Modal -->
+  <div id="lee-modal" class="helper-modal" onclick="closeHelper(event, 'lee')">
+    <div class="helper-content border-l-8 border-purple-500" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee" class="w-12 h-12 rounded-full object-cover object-top">
+        <h3 class="font-display text-xl font-bold">Lee's Writing Tips</h3>
+      </div>
+      <p class="mb-4 text-gray-600">Stuck on your writing? Try these sentence starters:</p>
+      <ul class="space-y-2 text-gray-700">
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>"Even though some people think..."</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>"The evidence actually shows..."</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>"They claimed X, but they forgot Y."</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>"This matters because..."</span>
+        </li>
+      </ul>
+      <p class="mt-4 text-xs text-gray-400 text-center">(Click outside to close)</p>
+    </div>
+  </div>
+
+  <!-- Tee Helper Modal -->
+  <div id="tee-modal" class="helper-modal" onclick="closeHelper(event, 'tee')">
+    <div class="helper-content border-l-8 border-amber-500" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee" class="w-12 h-12 rounded-full object-cover object-top">
+        <h3 class="font-display text-xl font-bold">Tee's Strategy Check</h3>
+      </div>
+      <p class="mb-4 text-gray-600">Don't just be loud. Be right. Ask yourself:</p>
+      <ol class="space-y-3 text-gray-700">
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+          <span>Did you repeat their claim back?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+          <span>Did you ask for the receipts?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+          <span>Do you have YOUR own facts?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">4</span>
+          <span>Did you land the punchline?</span>
+        </li>
+      </ol>
+      <p class="mt-4 text-xs text-gray-400 text-center">(Click outside to close)</p>
+    </div>
+  </div>
+
+    <!-- Vocabulary Modal -->
+  <div id="vocabModal" class="vocab-modal" onclick="closeVocabModal(event)">
+    <div class="vocab-card" onclick="event.stopPropagation()">
+      <div class="flex items-start gap-4 mb-3">
+        <div class="text-4xl" id="vocabImage">📚</div>
+        <div class="flex-1">
+          <div class="flex justify-between items-start">
+            <h3 class="font-display text-xl font-bold" id="vocabWord">Word</h3>
+            <button class="audio-btn text-sm" onclick="speakWord()">🔊 Hear It</button>
+          </div>
+          <p class="text-lg mb-2 mt-1" id="vocabDef">Definition here</p>
+          <p class="text-sm text-gray-500" id="vocabSpanish">En español: palabra</p>
+        </div>
+      </div>
+      <div class="bg-amber-50 p-3 rounded-lg">
+        <p class="text-sm font-semibold text-amber-800 mb-1">📖 In the Story:</p>
+        <p class="text-sm italic" id="vocabExample">"Example sentence"</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Accessibility Panel -->
+  <div class="a11y-panel">
+    <div class="a11y-menu" id="a11yMenu">
+      <p class="font-semibold mb-3">Reading Settings</p>
+      <div class="a11y-toggle">
+        <span>🔊 Read Aloud</span>
+        <div class="toggle" id="toggleAudio" onclick="toggleSetting('audio')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>📖 Dyslexia Font</span>
+        <div class="toggle" id="toggleDyslexia" onclick="toggleSetting('dyslexia')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>🌙 High Contrast</span>
+        <div class="toggle" id="toggleContrast" onclick="toggleSetting('contrast')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>📝 Show Hints</span>
+        <div class="toggle on" id="toggleHints" onclick="toggleSetting('hints')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>🏫 SIOP Strategies</span>
+        <div class="toggle" id="toggleSiop" onclick="toggleSiopStrategies()"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>🔄 Reset Progress</span>
+        <button class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded" onclick="resetProgress()">Reset</button>
+      </div>
+    </div>
+    <button class="a11y-btn" onclick="toggleA11yMenu()" aria-label="Accessibility settings">
+      ⚙️
+    </button>
+  </div>
+
+  <!-- SIOP Strategies Modal -->
+  <div id="siopModal" class="helper-modal" onclick="closeSiopModal(event)">
+    <div class="helper-content border-l-8 border-teal-500" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="text-3xl text-teal-600">🏫</div>
+        <h3 class="font-display text-xl font-bold">SIOP Strategies Used</h3>
+      </div>
+      <div class="space-y-3">
+        <div class="siop-strategy">
+          <span>📚</span>
+          <span>Vocabulary Pre-teaching</span>
+        </div>
+        <div class="siop-strategy">
+          <span>🗣️</span>
+          <span>Sentence Frames</span>
+        </div>
+        <div class="siop-strategy">
+          <span>👥</span>
+          <span>Cooperative Learning</span>
+        </div>
+        <div class="siop-strategy">
+          <span>🖼️</span>
+          <span>Visual Supports</span>
+        </div>
+        <div class="siop-strategy">
+          <span>🔊</span>
+          <span>Oral Language Practice</span>
+        </div>
+        <div class="siop-strategy">
+          <span>📝</span>
+          <span>Scaffolded Writing</span>
+        </div>
+      </div>
+      <p class="mt-4 text-xs text-gray-400 text-center">SIOP = Sheltered Instruction Observation Protocol</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto">
+    
+    <!-- PROGRESS TRACKER SIDEBAR -->
+    <div class="fixed left-4 top-1/4 bg-white p-4 rounded-xl shadow-lg border border-purple-200 hidden lg:block z-40" 
+         style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.9);">
+      <h4 class="font-bold mb-3 text-purple-700 flex items-center gap-2">
+        <span>📋</span>
+        <span>Lesson Progress</span>
+      </h4>
+      <div class="space-y-2 text-sm">
+        <div class="flex items-center gap-2">
+          <span id="progress-sel" class="progress-check">◻</span>
+          <span>Check-In</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="progress-vocab" class="progress-check">◻</span>
+          <span>Vocabulary</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="progress-section1" class="progress-check">◻</span>
+          <span>Section 1</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="progress-section2" class="progress-check">◻</span>
+          <span>Section 2</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="progress-section3" class="progress-check">◻</span>
+          <span>Section 3</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="progress-drag" class="progress-check">◻</span>
+          <span>Drag & Drop</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="progress-essay" class="progress-check">◻</span>
+          <span>Model Essay</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span id="progress-reflect" class="progress-check">◻</span>
+          <span>Reflection</span>
+        </div>
+      </div>
+      <div class="mt-3 pt-3 border-t border-gray-200 text-xs text-gray-500">
+        <div class="flex justify-between">
+          <span>Completed:</span>
+          <span id="progress-percentage">0%</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SIOP OBJECTIVES BANNER - NEW -->
+    <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-4 border-b border-teal-200">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="font-bold text-teal-800 mb-2 flex items-center gap-2">
+          <span>🏫</span>
+          <span>SIOP Language & Content Objectives</span>
+        </h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="language-objective">
+            <h4 class="font-bold text-green-800 mb-1">Language Objective:</h4>
+            <p>I will use academic vocabulary (claim, evidence, counterclaim) to discuss and write about arguments.</p>
+          </div>
+          <div class="content-objective">
+            <h4 class="font-bold text-amber-800 mb-1">Content Objective:</h4>
+            <p>I will identify and address counterclaims using a 4-step strategy in both discussions and writing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+       <!-- HERO SECTION -->
+    <header class="relative">
+      <img src="header.png" alt="Lee and Tee looking confident" class="w-full">
+      <div class="hero-gradient text-white p-8 md:p-12 text-center">
+        <div class="inline-block bg-white/20 backdrop-blur px-4 py-1 rounded-full text-sm font-semibold mb-4">
+          📚 Episode 1 • ELA: Argumentative Writing
+        </div>
+        <h1 class="font-display text-4xl md:text-5xl font-bold mb-3">The Recess Battle</h1>
+        <p class="text-lg opacity-90 max-w-md mx-auto">
+          How to win an argument without yelling—a story about <em>loudness</em> vs. <em>logic</em>
+        </p>
+        
+        <!-- Intro video -->
+        <div class="mt-6 max-w-sm mx-auto">
+          <div class="video-block">
+            <video controls poster="Gemini_Generated_Image_fk641wfk641wfk64.png">
+              <source src="hip_hop_hook.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="video-caption">
+              <p class="font-semibold">Meet Lee & Tee</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-8 bg-white/10 backdrop-blur rounded-xl p-4 max-w-md mx-auto">
+          <div class="standard-tag bg-white/20 backdrop-blur border-white/30 text-white mb-2">
+            <span class="standard-code">CCSS.ELA.W.5.1</span>
+            <span>Opinion Writing with Reasons</span>
+          </div>
+          <p class="font-semibold mb-2">🎯 Today's Goal:</p>
+          <p class="text-sm">Learn the 4-step structure for addressing counterclaims by watching a rap battle</p>
+        </div>
+      </div>
+    </header>
+    
+    <!-- STICKY SECTION NAVIGATION -->
+    <div class="sticky-section-nav">
+      <div class="max-w-4xl mx-auto flex items-center justify-between px-4 py-3">
+        <div class="text-sm font-medium text-gray-700 hidden md:block">Jump to section:</div>
+        <div class="flex gap-2 overflow-x-auto text-sm">
+          <a href="#section-vocab" class="px-3 py-1 bg-purple-50 text-purple-700 rounded-full hover:bg-purple-100 transition whitespace-nowrap">📚 Vocab</a>
+          <a href="#section-1" class="px-3 py-1 bg-amber-50 text-amber-700 rounded-full hover:bg-amber-100 transition whitespace-nowrap">📖 Setup</a>
+          <a href="#section-2" class="px-3 py-1 bg-teal-50 text-teal-700 rounded-full hover:bg-teal-100 transition whitespace-nowrap">🎤 Battle</a>
+          <a href="#section-3" class="px-3 py-1 bg-rose-50 text-rose-700 rounded-full hover:bg-rose-100 transition whitespace-nowrap">💡 Strategy</a>
+          <a href="#section-essay" class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full hover:bg-blue-100 transition whitespace-nowrap">✍️ Model</a>
+          <a href="#section-reflect" class="px-3 py-1 bg-green-50 text-green-700 rounded-full hover:bg-green-100 transition whitespace-nowrap">🤔 Reflect</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- LEARNING OBJECTIVES -->
+    <section class="bg-white border-b p-6">
+      <div class="flex flex-wrap gap-3 justify-center">
+        <div class="section-marker">
+          <span class="text-purple-600">📖</span>
+          <span>Read: 15 min</span>
+        </div>
+        <div class="section-marker">
+          <span class="text-amber-600">✍️</span>
+          <span>Practice: 15 min</span>
+        </div>
+        <div class="section-marker">
+          <span class="text-teal-600">✅</span>
+          <span>Check: 5 min</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEL CHECK-IN -->
+    <section class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-white">
+      <h2 class="font-display text-2xl font-bold mb-4 text-center">How are you feeling today?</h2>
+      <p class="text-center text-gray-600 mb-6">Choose what describes you best right now:</p>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        <div class="emotion-option bg-white" onclick="selectEmotion(this, 'excited')">
+          <div class="text-4xl mb-2">😄</div>
+          <div class="font-semibold">Excited</div>
+        </div>
+        <div class="emotion-option bg-white" onclick="selectEmotion(this, 'calm')">
+          <div class="text-4xl mb-2">😊</div>
+          <div class="font-semibold">Calm</div>
+        </div>
+        <div class="emotion-option bg-white" onclick="selectEmotion(this, 'nervous')">
+          <div class="text-4xl mb-2">😰</div>
+          <div class="font-semibold">Nervous</div>
+        </div>
+        <div class="emotion-option bg-white" onclick="selectEmotion(this, 'tired')">
+          <div class="text-4xl mb-2">😴</div>
+          <div class="font-semibold">Tired</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARACTER CHOICE -->
+    <section class="p-8 md:p-12 bg-gradient-to-b from-purple-50 to-white">
+      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Choose Your Learning Guide</h2>
+      <p class="text-lg mb-6">Which character do you want to help first? You'll learn from both, but you choose where to start!</p>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div id="chooseLee" class="choice-card bg-white p-6 rounded-xl shadow" onclick="chooseCharacter('lee')">
+          <div class="text-6xl mb-4 text-center">📓</div>
+          <h3 class="font-display text-2xl font-bold mb-2 text-center">Start with Lee</h3>
+          <p class="text-gray-600 text-center">The analytical thinker who loves to write everything down</p>
+        </div>
+        
+        <div id="chooseTee" class="choice-card bg-white p-6 rounded-xl shadow" onclick="chooseCharacter('tee')">
+          <div class="text-6xl mb-4 text-center">🎤</div>
+          <h3 class="font-display text-2xl font-bold mb-2 text-center">Start with Tee</h3>
+          <p class="text-gray-600 text-center">The strategic speaker who thinks on her feet</p>
+        </div>
+      </div>
+      
+      <div id="characterFeedback" class="hidden mt-6 p-4 bg-purple-100 rounded-lg text-center">
+        <p class="font-bold text-purple-800">Great choice! Let's begin the story...</p>
+      </div>
+    </section>
+
+           <!-- VOCABULARY PRE-TEACH (Active Prediction) -->
+    <section class="p-8 md:p-12 bg-amber-50" id="section-vocab">
+      <div class="ritual-marker ritual-stir mb-4">🥄 Stir It — Gather the Ingredients</div>
+      
+      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Words You'll Need</h2>
+      
+      <div class="standard-tag mb-6">
+        <span class="standard-code">CCSS.ELA.L.5.6</span>
+        <span>Acquire and use academic vocabulary</span>
+      </div>
+      
+      <!-- SIOP Strategy Indicator - NEW -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <div class="siop-strategy">📚 Vocabulary Pre-teaching</div>
+        <div class="siop-strategy">🖼️ Visual Supports</div>
+        <div class="siop-strategy">🗣️ Sentence Frames</div>
+      </div>
+      
+      <p class="text-lg mb-6">Let's learn three important words. Can you predict which word fits in each sentence?</p>
+
+      <!-- WORD BANK FOR ELL SUPPORT - NEW -->
+      <div class="word-bank">
+        <p class="font-semibold text-purple-700 mb-2">📖 Word Bank:</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-white px-3 py-1 rounded-full text-sm font-medium border border-purple-200">Claim</span>
+          <span class="bg-white px-3 py-1 rounded-full text-sm font-medium border border-teal-200">Evidence</span>
+          <span class="bg-white px-3 py-1 rounded-full text-sm font-medium border border-amber-200">Counterclaim</span>
+        </div>
+      </div>
+
+<!-- VOCABULARY GALLERY -->
+<div class="grid md:grid-cols-3 gap-4 mb-8">
+  <!-- CLAIM Card -->
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-purple-100 cursor-pointer hover:shadow-md transition group"
+       onclick="showVocab('claim')">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="vocab-image">📢</div>
+      <div>
+        <h4 class="font-bold text-purple-700">Claim</h4>
+        <p class="text-xs text-gray-500">Your main point or argument</p>
+      </div>
+    </div>
+    <p class="text-sm text-gray-700 mb-3">What you're trying to prove in your argument</p>
+    <div class="flex items-center justify-between">
+      <span class="text-xs bg-purple-50 text-purple-700 px-2 py-1 rounded">In story: "Tee never wins..."</span>
+      <span class="text-xs text-gray-400">Tap to learn</span>
+    </div>
+  </div>
+  
+  <!-- EVIDENCE Card -->
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-teal-100 cursor-pointer hover:shadow-md transition group"
+       onclick="showVocab('evidence')">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="vocab-image">📄</div>
+      <div>
+        <h4 class="font-bold text-teal-700">Evidence</h4>
+        <p class="text-xs text-gray-500">Proof or facts ("receipts")</p>
+      </div>
+    </div>
+    <p class="text-sm text-gray-700 mb-3">Concrete proof that supports your claim</p>
+    <div class="flex items-center justify-between">
+      <span class="text-xs bg-teal-50 text-teal-700 px-2 py-1 rounded">In story: Attendance records</span>
+      <span class="text-xs text-gray-400">Tap to learn</span>
+    </div>
+  </div>
+  
+  <!-- COUNTERCLAIM Card -->
+  <div class="bg-white p-4 rounded-xl shadow-sm border border-amber-100 cursor-pointer hover:shadow-md transition group"
+       onclick="showVocab('counterclaim')">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="vocab-image">↔️</div>
+      <div>
+        <h4 class="font-bold text-amber-700">Counterclaim</h4>
+        <p class="text-xs text-gray-500">Opposing view</p>
+      </div>
+    </div>
+    <p class="text-sm text-gray-700 mb-3">The other side's argument you need to address</p>
+    <div class="flex items-center justify-between">
+      <span class="text-xs bg-amber-50 text-amber-700 px-2 py-1 rounded">In story: Jayden's challenge</span>
+      <span class="text-xs text-gray-400">Tap to learn</span>
+    </div>
+  </div>
+</div>
+<!-- END OF VOCABULARY GALLERY -->
+
+<!-- FILL-IN-THE-BLANK ACTIVITY -->
+      <div class="space-y-6">
+        <!-- BLANK 1: CLAIM -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <p class="text-lg mb-4">
+            1. "Tee never wins at anything!" is Jayden's 
+            <span class="vocab-predict">
+              <span class="vocab-blank" id="blank1" onclick="showVocabChoices('blank1', 'claim')">___</span>
+              <div id="choices1" class="vocab-choices">
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank1', 'choices1', 'evidence', false)">evidence</button>
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank1', 'choices1', 'claim', true)">claim</button>
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank1', 'choices1', 'counterclaim', false)">counterclaim</button>
+              </div>
+            </span>
+            — his main point.
+          </p>
+          <div id="feedback1" class="hidden mt-4 p-4 bg-green-100 rounded-lg">
+            <p class="font-bold text-green-800">✓ Correct! A <strong>claim</strong> is your main point or what you're trying to prove.</p>
+            <p class="text-sm mt-2 text-green-700">En español: afirmación</p>
+          </div>
+        </div>
+
+        <!-- BLANK 2: EVIDENCE -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <p class="text-lg mb-4">
+            2. Tee brought 
+            <span class="vocab-predict">
+              <span class="vocab-blank" id="blank2" onclick="showVocabChoices('blank2', 'evidence')">___</span>
+              <div id="choices2" class="vocab-choices">
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank2', 'choices2', 'evidence', true)">evidence</button>
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank2', 'choices2', 'claim', false)">claim</button>
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank2', 'choices2', 'counterclaim', false)">counterclaim</button>
+              </div>
+            </span>
+            when she said "Ms. R checked attendance... I been on-time all quarter."
+          </p>
+          <div id="feedback2" class="hidden mt-4 p-4 bg-green-100 rounded-lg">
+            <p class="font-bold text-green-800">✓ Correct! <strong>Evidence</strong> is proof or facts that support your claim. We also call these "receipts"!</p>
+            <p class="text-sm mt-2 text-green-700">En español: evidencia, prueba</p>
+          </div>
+        </div>
+
+        <!-- BLANK 3: COUNTERCLAIM -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <p class="text-lg mb-4">
+            3. A 
+            <span class="vocab-predict">
+              <span class="vocab-blank" id="blank3" onclick="showVocabChoices('blank3', 'counterclaim')">___</span>
+              <div id="choices3" class="vocab-choices">
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank3', 'choices3', 'evidence', false)">evidence</button>
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank3', 'choices3', 'claim', false)">claim</button>
+                <button class="vocab-choice-btn" onclick="checkVocabChoice('blank3', 'choices3', 'counterclaim', true)">counterclaim</button>
+              </div>
+            </span>
+            is the other side's argument that you need to address.
+          </p>
+          <div id="feedback3" class="hidden mt-4 p-4 bg-green-100 rounded-lg">
+            <p class="font-bold text-green-800">✓ Correct! A <strong>counterclaim</strong> is the opposing view. Addressing it means explaining why that view is weak.</p>
+            <p class="text-sm mt-2 text-green-700">En español: contraargumento</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY SECTION 1: The Setup -->
+<section class="p-8 md:p-12 bg-white" id="section-1">
+  <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 bg-white/60 p-4 rounded-xl">
+    <div class="flex items-center gap-3">
+      <button class="audio-btn" onclick="toggleSectionAudio(this, 'section-1')">
+        🔊 Listen
+      </button>
+      <button class="speech-btn flex items-center gap-2" onclick="readAloudWithWordHighlight(this, 'section-1')">
+        <span>🎙️</span>
+        <span>Read Aloud</span>
+      </button>
+      <span class="text-sm text-gray-500 hidden md:inline">Section 1 of 6</span>
+    </div>
+    
+    <div class="flex items-center gap-3">
+      <button onclick="showSimplifiedText('section-1')" class="text-sm text-gray-600 hover:text-purple-700 px-3 py-1 bg-gray-100 rounded-lg">
+        📝 Simplified View
+      </button>
+      <div class="standard-tag">
+        <span class="standard-code">CCSS.ELA.RL.5.1</span>
+        <span>Quote accurately</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- SENTENCE FRAMES FOR ELL - NEW -->
+  <div class="sentence-frame mb-4">
+    <p class="text-sm font-semibold text-blue-700 mb-1">🗣️ Sentence Frames for This Section:</p>
+    <p class="text-sm">"Ms. Rodriguez explained that we need to ________, ________, and ________ in our essays."</p>
+  </div>
+  
+  <div class="story-text space-y-4">
+    <p>
+      <strong>"Only 3 more minutes to recess,"</strong> Lee anxiously thought. Ms. Rodriguez continued explaining their homework.
+    </p>
+    
+    <div class="speech-bubble">
+      <p class="font-semibold">Ms. Rodriguez:</p>
+      <p>"Your opinion essay is due Friday. You need to state a <span class="vocab-word" onclick="showVocab('claim')">claim</span>, provide <span class="vocab-word" onclick="showVocab('evidence')">evidence</span>, address a <span class="vocab-word" onclick="showVocab('counterclaim')">counterclaim</span>, and draw a conclusion. This is argumentative writing. Use facts, not feelings."</p>
+    </div>
+    
+    <!-- Classroom image -->
+    <div class="media-container">
+      <img src="Gemini_Generated_Image_cuhlvucuhlvucuhl.png" alt="Playground setting with noise and static">
+    </div>
+    
+    <p>
+      Lee had written it all down. She <em>always</em> wrote everything down. She understood claim (say what you believe). She understood evidence (prove it with facts). She understood conclusion (wrap it up).
+    </p>
+    
+    <p class="text-lg font-semibold text-purple-700 bg-purple-50 p-4 rounded-lg">
+      But <em>address a counterclaim</em>? That part felt slippery. Hard to hold.
+    </p>
+    
+    <p>
+      Then, the bell rang. Lee darted from her seat, with her journal in hand, and zoomed out of the room to meet up with Tee. She was nervous and excited at the same time.
+    </p>
+  </div>
+  
+  <!-- Comprehension check -->
+  <div class="mt-8 p-6 bg-teal-50 rounded-xl border border-teal-200">
+    <p class="font-semibold mb-3">🤔 Think About It (DOK 1):</p>
+    <p class="mb-4">What part of argumentative writing does Lee find confusing?</p>
+    <div class="space-y-2">
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp1')">A) Stating a claim</button>
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp1')">B) Providing evidence</button>
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, true, 'comp1')">C) Addressing a counterclaim</button>
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp1')">D) Writing a conclusion</button>
+    </div>
+    <p class="mt-3 text-green-600 font-semibold hidden" id="comp1-feedback">✓ Right! Lee says the counterclaim part feels "slippery" and "hard to hold."</p>
+  </div>
+</section>
+
+    <!-- STORY SECTION 2: The Playground -->
+<section class="p-8 md:p-12 bg-slate-50" id="section-2">
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <button class="audio-btn" onclick="toggleSectionAudio(this, 'section-2')">
+        🔊 Listen
+      </button>
+      <button class="speech-btn flex items-center gap-2" onclick="readAloudWithWordHighlight(this, 'section-2')">
+        <span>🎙️</span>
+        <span>Read Aloud</span>
+      </button>
+      <span class="text-sm text-gray-500">Section 2 of 6</span>
+    </div>
+    <div class="standard-tag">
+      <span class="standard-code">CCSS.ELA.SL.5.3</span>
+      <span>Summarize speaker's claims</span>
+    </div>
+  </div>
+  
+  <div class="story-text space-y-4">
+    <p>
+      Recess had barely started and the fifth grade yard was already loud. Kickball shouts on one side, double-dutch ropes hitting concrete on the other, somebody arguing about who was "it" for tag.
+    </p>
+    
+    <p>
+      Near the benches, the sound shifted. Kids were crowding into a circle.
+    </p>
+    
+    <div class="bg-amber-100 p-4 rounded-lg my-6 border-l-4 border-amber-500">
+      <p class="font-semibold">"That is definitely a battle,"</p>
+      <p class="text-sm text-amber-800 mt-1">— Tee said. He was already walking toward it.</p>
+    </div>
+    
+    <!-- Character comparison images -->
+    <div class="media-grid">
+      <div class="text-center p-4 bg-purple-50 rounded-lg">
+        <div class="text-4xl mb-2">📓</div>
+        <p class="font-semibold">Lee</p>
+        <p class="text-sm text-gray-600">Hangs back, hugs notebook, doesn't like noise</p>
+      </div>
+      <div class="text-center p-4 bg-amber-50 rounded-lg">
+        <div class="text-4xl mb-2">🎤</div>
+        <p class="font-semibold">Tee</p>
+        <p class="text-sm text-gray-600">Walks toward noise, confident, ready</p>
+      </div>
+    </div>
+    
+    <p>
+      Lee followed a few steps behind, notebook hugged to her chest. The noise wrapped around her like static, like the buzzing of a radio. She did not like static.
+    </p>
+    
+    <p class="font-semibold text-purple-700">
+      But Tee walked like the sound belonged to him, so she stayed close.
+    </p>
+  </div>
+  
+  <!-- FIRST ACTIVE LEARNING: Identify the Problem -->
+  <div class="mt-8 p-6 bg-yellow-50 rounded-xl">
+    <h3 class="font-display text-2xl font-bold mb-4">🤔 Think About It (DOK 2)</h3>
+    
+    <p class="text-lg mb-6">Listen to Jayden's argument. What's the problem with it? Choose all that apply:</p>
+    
+    <div class="space-y-3">
+      <label class="flex items-start gap-3 p-4 bg-white rounded-lg cursor-pointer hover:bg-yellow-100 transition">
+        <input type="checkbox" class="mt-1 problem-check" data-correct="false">
+        <span>He's speaking too loudly</span>
+      </label>
+      <label class="flex items-start gap-3 p-4 bg-white rounded-lg cursor-pointer hover:bg-yellow-100 transition">
+        <input type="checkbox" class="problem-check" data-correct="true">
+        <span>He makes claims without evidence</span>
+      </label>
+      <label class="flex items-start gap-3 p-4 bg-white rounded-lg cursor-pointer hover:bg-yellow-100 transition">
+        <input type="checkbox" class="problem-check" data-correct="true">
+        <span>He uses generalizations like "never" and "always"</span>
+      </label>
+      <label class="flex items-start gap-3 p-4 bg-white rounded-lg cursor-pointer hover:bg-yellow-100 transition">
+        <input type="checkbox" class="problem-check" data-correct="false">
+        <span>He's talking during recess</span>
+      </label>
+    </div>
+    
+    <button onclick="checkProblemAnswers()" class="mt-4 bg-teal-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-teal-700 transition w-full">
+      Check My Thinking
+    </button>
+    
+    <div id="problemFeedback" class="hidden mt-4 p-4 bg-green-100 rounded-lg">
+      <p class="font-bold text-green-800 mb-2">✓ Great analysis!</p>
+      <p>Jayden's argument is weak because he makes big claims ("never wins at nothing") without any proof. That's called an <strong>unsupported claim</strong>. Let's see how Tee responds...</p>
+    </div>
+  </div>
+</section>
+
+    <!-- STORY SECTION 3: Jayden's Challenge -->
+<section class="p-8 md:p-12 bg-white" id="section-3">
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <button class="audio-btn" onclick="toggleSectionAudio(this, 'section-3')">
+        🔊 Listen
+      </button>
+      <button class="speech-btn flex items-center gap-2" onclick="readAloudWithWordHighlight(this, 'section-3')">
+        <span>🎙️</span>
+        <span>Read Aloud</span>
+      </button>
+      <span class="text-sm text-gray-500">Section 3 of 6</span>
+    </div>
+    <div class="standard-tag">
+      <span class="standard-code">CCSS.ELA.SL.5.3</span>
+      <span>Summarize speaker's claims</span>
+    </div>
+  </div>
+  
+  <!-- Jayden images -->
+  <div class="media-grid mb-6">
+    <img src="Gemini_Generated_Image_ktkt54ktkt54ktkt.png" alt="Jayden challenging aggressively" class="media-container">
+    <img src="Gemini_Generated_Image_k7tn0nk7tn0nk7tn.png" alt="Battle circle with argument in action" class="media-container">
+  </div>
+  
+  <div class="story-text space-y-4">
+    <p>
+      By the time they reached the circle, <strong>Jayden</strong> was in the middle, chin high, eyes already locked on Tee.
+    </p>
+    
+    <div class="bg-red-50 p-4 rounded-lg my-6 border-l-4 border-red-500">
+      <p class="font-semibold">"There you go. Big talk Tee. Try not to choke."</p>
+      <p class="text-sm text-red-700 mt-1">— Jayden said, loud enough for everyone to hear.</p>
+    </div>
+    
+    <p>A few kids laughed.</p>
+    
+    <p>Tee just folded his arms. <strong>"You sure you want this?"</strong></p>
+    
+    <p>Jayden took one quick step forward and went first:</p>
+  </div>
+  
+  <!-- JAYDEN'S RAP - Interactive Analysis -->
+  <div class="mt-6 bg-slate-900 text-white p-6 rounded-xl">
+    <div class="flex items-center gap-2 mb-4">
+      <span class="text-2xl">🎤</span>
+      <h3 class="font-display text-xl font-bold">Jayden's Verse</h3>
+    </div>
+    
+    <div class="space-y-3 mb-6 font-mono">
+      <p>"You always brag loud like you run this whole school,</p>
+      <p>But you late to first period and you act like that's cool.</p>
+      <p>You talk like you're top, but you never come through,</p>
+      <p>If they needed a leader, it definitely ain't you."</p>
+    </div>
+    
+    <div class="bg-slate-800 p-4 rounded-lg">
+      <p class="text-amber-400 font-semibold mb-2">⚡ The crowd erupted!</p>
+      <p class="text-slate-300 text-sm">Somebody yelled "OHHH!" Hands flew to mouths. Feet stomped.</p>
+    </div>
+  </div>
+  
+  <!-- Tee's Analysis (Think-aloud) -->
+  <div class="mt-6 p-6 bg-purple-50 rounded-xl border-2 border-purple-200">
+    <div class="flex items-start gap-3">
+      <div class="text-3xl">🧠</div>
+      <div>
+        <p class="font-semibold text-purple-800 mb-2">What Tee Noticed:</p>
+        <p class="text-purple-900">He tilted his head toward Lee just enough for her to hear:</p>
+        <p class="mt-2 font-semibold italic">"He made a <span class="vocab-word bg-yellow-200" onclick="showVocab('claim')">claim</span>, but he did not give one piece of proof. No quiz name, no test score, nothing. That is weak."</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Comprehension check -->
+  <div class="mt-6 p-6 bg-teal-50 rounded-xl border border-teal-200">
+    <p class="font-semibold mb-3">🤔 Think About It:</p>
+    <p class="mb-4">What does Tee say is MISSING from Jayden's rap?</p>
+    <div class="space-y-2">
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp2')">A) Rhymes</button>
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, true, 'comp2')">B) Proof / Evidence</button>
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp2')">C) Volume</button>
+      <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp2')">D) Confidence</button>
+    </div>
+    <p class="mt-3 text-green-600 font-semibold hidden" id="comp2-feedback">✓ Exactly! Tee noticed Jayden made claims but gave "zero facts" - no proof at all.</p>
+  </div>
+</section>
+
+    <!-- STORY SECTION 4: Tee's Response -->
+<section class="p-8 md:p-12 bg-gradient-to-b from-purple-50 to-white" id="section-4">
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+      <button class="audio-btn" onclick="toggleSectionAudio(this, 'section-4')">
+        🔊 Listen
+      </button>
+      <button class="speech-btn flex items-center gap-2" onclick="readAloudWithWordHighlight(this, 'section-4')">
+        <span>🎙️</span>
+        <span>Read Aloud</span>
+      </button>
+      <span class="text-sm text-gray-500">Section 4 of 6</span>
+    </div>
+    <div class="standard-tag">
+      <span class="standard-code">CCSS.ELA.W.5.1.B</span>
+      <span>Support with reasons & evidence</span>
+    </div>
+  </div>
+  
+  <!-- Tee preparing video -->
+  <div class="video-block mb-6">
+    <video controls poster="Gemini_Generated_Image_fk641wfk641wfk64.png">
+      <source src="Video_Generation_Tee_Builds_His_Case.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-caption">
+      <p>Tee stays calm. He's thinking, not panicking.</p>
+    </div>
+  </div>
+  
+  <h2 class="font-display text-3xl font-bold mb-6 text-purple-700">Tee's 4-Step Strategy</h2>
+      
+      <!-- SIOP Cooperative Learning Prompt - NEW -->
+      <div class="bg-blue-50 p-4 rounded-lg mb-4">
+        <p class="font-semibold text-blue-800 mb-1">👥 SIOP Strategy: Turn & Talk</p>
+        <p class="text-sm">Before reading, turn to a partner and predict: What 4 steps do you think Tee will use to respond?</p>
+      </div>
+      
+      <div class="story-text space-y-4 mb-8">
+        <p>Tee didn't yell. She didn't even raise her voice. Instead, she pulled out what Ms. Rodriguez called "receipts."</p>
+        
+        <p>"Okay, Jayden. Let's talk about it."</p>
+        
+        <p>Lee watched as Tee broke it down, step by step:</p>
+      </div>
+      
+      <!-- INTERACTIVE STRATEGY SEQUENCE -->
+      <div class="space-y-6">
+        <div class="bg-amber-100 p-6 rounded-xl border-l-4 border-amber-500">
+          <div class="flex items-start gap-4">
+            <div class="bg-amber-500 text-white font-bold w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-xl">1</div>
+            <div>
+              <h4 class="font-bold text-xl mb-2">State what they said</h4>
+              <p class="text-gray-700 mb-3">"You claim I 'never win at nothing' and I'm 'always late.'"</p>
+              <div class="bg-white p-3 rounded-lg text-sm">
+                <strong>Strategy Tip:</strong> Repeat their claim to show you heard it accurately
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal-100 p-6 rounded-xl border-l-4 border-teal-500">
+          <div class="flex items-start gap-4">
+            <div class="bg-teal-500 text-white font-bold w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-xl">2</div>
+            <div>
+              <h4 class="font-bold text-xl mb-2">Show your evidence</h4>
+              <p class="text-gray-700 mb-3">"Ms. R checked attendance. Look at the board — I been on-time all quarter. That's ten weeks straight."</p>
+              <div class="bg-white p-3 rounded-lg text-sm">
+                <strong>Strategy Tip:</strong> Bring specific, verifiable facts
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-purple-100 p-6 rounded-xl border-l-4 border-purple-500">
+          <div class="flex items-start gap-4">
+            <div class="bg-purple-500 text-white font-bold w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-xl">3</div>
+            <div>
+              <h4 class="font-bold text-xl mb-2">Explain why their claim is wrong</h4>
+              <p class="text-gray-700 mb-3">"So your whole argument? It's based on old information. That's not facts, that's assumptions."</p>
+              <div class="bg-white p-3 rounded-lg text-sm">
+                <strong>Strategy Tip:</strong> Connect your evidence to why their claim doesn't hold up
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-rose-100 p-6 rounded-xl border-l-4 border-rose-500">
+          <div class="flex items-start gap-4">
+            <div class="bg-rose-500 text-white font-bold w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-xl">4</div>
+            <div>
+              <h4 class="font-bold text-xl mb-2">Restate your position</h4>
+              <p class="text-gray-700 mb-3">"I show up. I do my work. Period."</p>
+              <div class="bg-white p-3 rounded-lg text-sm">
+                <strong>Strategy Tip:</strong> End strong and clear with your main point
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- DRAG AND DROP PRACTICE -->
+      <div class="mt-8 p-6 bg-gradient-to-b from-purple-50 to-white rounded-xl">
+        <h3 class="font-display text-2xl font-bold mb-4 text-purple-700">Practice: Put the Steps in Order</h3>
+        
+        <p class="text-lg mb-6">Drag each rap line to match Tee's 4-step strategy:</p>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="font-semibold mb-3">Tee's Rap Lines (Drag these):</h4>
+            <div class="space-y-2" id="rapLines">
+              <div class="rap-line" draggable="true" data-step="2">
+                "Got the stats, got the facts, check the attendance pack"
+              </div>
+              <div class="rap-line" draggable="true" data-step="4">
+                "I'm on time, that's my grind, leave your lies behind"
+              </div>
+              <div class="rap-line" draggable="true" data-step="1">
+                "You said I'm always late, that's your whole debate"
+              </div>
+              <div class="rap-line" draggable="true" data-step="3">
+                "Your claim's from last year, but I'm right here"
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-3">Match to These Steps:</h4>
+            <div class="space-y-3">
+              <div class="drop-zone" data-target="1" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">
+                <span class="text-gray-400">Step 1: State what they said</span>
+              </div>
+              <div class="drop-zone" data-target="2" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">
+                <span class="text-gray-400">Step 2: Show your evidence</span>
+              </div>
+              <div class="drop-zone" data-target="3" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">
+                <span class="text-gray-400">Step 3: Explain why they're wrong</span>
+              </div>
+              <div class="drop-zone" data-target="4" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="drop(event)">
+                <span class="text-gray-400">Step 4: Restate your position</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="strategyFeedback" class="hidden mt-6 p-6 bg-green-100 rounded-xl">
+          <p class="font-bold text-green-800 text-lg mb-2">🎉 Perfect! You matched all the steps!</p>
+          <p class="text-green-700">Notice how Tee follows each step in order — that's what makes her argument so strong. Now it's your turn to try!</p>
+        </div>
+      </div>
+      
+      <!-- The result images -->
+      <div class="media-grid mt-6">
+        <img src="Gemini_Generated_Image_upyw6mupyw6mupyw.png" alt="Jayden stunned scratching his head" class="media-container">
+        <img src="Gemini_Generated_Image_jhb8wijhb8wijhb8.png" alt="Tee walking away victoriously" class="media-container">
+      </div>
+      
+      <div class="story-text mt-4">
+        <p>Jayden's mouth opened, then closed. His eyes darted around the circle like he was checking if anyone would rescue him with some evidence.</p>
+        <p class="font-semibold">Nobody did.</p>
+      </div>
+    </section>
+
+    <!-- THE AH-HA MOMENT: Two Column Chart -->
+    <section class="p-8 md:p-12 bg-gradient-to-b from-amber-50 to-white" id="section-aha">
+      <div class="ritual-marker ritual-eat mb-4">🍽️ You Just Ate It — Show What You Know</div>
+      
+      <h2 class="font-display text-3xl font-bold mb-2 text-purple-700">Lee's Discovery</h2>
+      <p class="text-gray-600 mb-6">Lee opened her notebook. The battle itself moved too fast for her to catch every word, but she could capture the structure.</p>
+      
+      <!-- Lee's notebook image -->
+      <div class="media-container mb-6" style="max-width: 500px; margin: 0 auto;">
+        <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee's notebook showing 'Loud is not the same as true'">
+      </div>
+      
+      <!-- Two Column Comparison -->
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div class="strategy-column">
+          <div class="header bg-amber-100 text-amber-900">
+            🎤 What Tee Did (Rap Battle)
+          </div>
+          <div class="row">1. Repeat what they said</div>
+          <div class="row">2. Show what is missing</div>
+          <div class="row">3. Bring real evidence</div>
+          <div class="row">4. Turn it into the punchline</div>
+        </div>
+        
+        <div class="strategy-column">
+          <div class="header bg-purple-100 text-purple-900">
+            📝 What Ms. Rodriguez Wants (Essay)
+          </div>
+          <div class="row">1. Restate the opposing claim</div>
+          <div class="row">2. Identify insufficient evidence</div>
+          <div class="row">3. Provide counter-evidence</div>
+          <div class="row">4. Draw a logical conclusion</div>
+        </div>
+      </div>
+      
+      <!-- Lee's realization -->
+      <div class="bg-purple-100 p-6 rounded-xl border-2 border-purple-300">
+        <div class="flex items-start gap-4">
+          <div class="text-4xl">💡</div>
+          <div>
+            <p class="font-bold text-purple-900 text-lg mb-2">Lee's Ah-Ha Moment:</p>
+            <p class="text-purple-800 italic text-lg">
+              "It's the same! It's the exact same thing. You were addressing Jayden's claim. That's what Ms. Rodriguez called it—a <strong>counterclaim</strong>."
+            </p>
+            <p class="mt-4 text-purple-900">
+              For the first time all day, the homework assignment did not feel slippery anymore. It felt like something she could actually do.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- BONUS: Street Language to School Language Matching -->
+<div class="mt-6 p-4 bg-white rounded-xl border">
+  <p class="font-semibold mb-4 text-purple-700">🧩 Bonus Challenge: Match Street Language to School Language!</p>
+  
+  <div class="space-y-3">
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="bg-amber-100 px-3 py-1 rounded font-semibold text-sm">"Repeat what they said"</span>
+      <span class="text-gray-400">=</span>
+      <select class="border-2 border-purple-200 rounded px-3 py-2" onchange="checkMatch(this, 'restate')">
+        <option value="">Choose...</option>
+        <option value="restate">Restate the opposing claim</option>
+        <option value="identify">Identify insufficient evidence</option>
+        <option value="provide">Provide counter-evidence</option>
+        <option value="draw">Draw a logical conclusion</option>
+      </select>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="bg-amber-100 px-3 py-1 rounded font-semibold text-sm">"Show what is missing"</span>
+      <span class="text-gray-400">=</span>
+      <select class="border-2 border-purple-200 rounded px-3 py-2" onchange="checkMatch(this, 'identify')">
+        <option value="">Choose...</option>
+        <option value="restate">Restate the opposing claim</option>
+        <option value="identify">Identify insufficient evidence</option>
+        <option value="provide">Provide counter-evidence</option>
+        <option value="draw">Draw a logical conclusion</option>
+      </select>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="bg-amber-100 px-3 py-1 rounded font-semibold text-sm">"Bring real evidence"</span>
+      <span class="text-gray-400">=</span>
+      <select class="border-2 border-purple-200 rounded px-3 py-2" onchange="checkMatch(this, 'provide')">
+        <option value="">Choose...</option>
+        <option value="restate">Restate the opposing claim</option>
+        <option value="identify">Identify insufficient evidence</option>
+        <option value="provide">Provide counter-evidence</option>
+        <option value="draw">Draw a logical conclusion</option>
+      </select>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="bg-amber-100 px-3 py-1 rounded font-semibold text-sm">"Turn it into a punchline"</span>
+      <span class="text-gray-400">=</span>
+      <select class="border-2 border-purple-200 rounded px-3 py-2" onchange="checkMatch(this, 'draw')">
+        <option value="">Choose...</option>
+        <option value="restate">Restate the opposing claim</option>
+        <option value="identify">Identify insufficient evidence</option>
+        <option value="provide">Provide counter-evidence</option>
+        <option value="draw">Draw a logical conclusion</option>
+      </select>
+    </div>
+  </div>
+  
+  <p id="matchFeedback" class="mt-4 text-green-600 font-semibold hidden">✓ You matched them all! Street smarts = Book smarts!</p>
+</div>
+    </section>
+
+    <!-- LEE'S MODEL ESSAY -->
+    <section class="p-8 md:p-12 bg-slate-50" id="section-essay">
+      <h2 class="font-display text-3xl font-bold mb-2 text-purple-700">Lee's Essay (Model)</h2>
+      <p class="text-gray-600 mb-6">Using what she learned, Lee wrote her argumentative essay. Notice how she uses the 4-step structure:</p>
+      
+      <!-- Study image -->
+      <div class="media-container mb-6" style="max-width: 400px;">
+        <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee's notebook with essay">
+      </div>
+      
+      <div class="notebook">
+        <div class="pl-8">
+          <h3 class="font-bold text-lg mb-3">Why Rap Battles Can Teach Argumentative Writing</h3>
+          <p class="font-semibold text-sm text-gray-500 mb-4">By Lee</p>
+          
+          <div class="mb-4">
+            <p class="text-sm text-purple-600 font-semibold mb-1">📌 Introduction + Claim:</p>
+            <p>At recess today, I watched my brother Tee win a battle against Jayden, and it made me finally understand what Ms. Rodriguez has been trying to teach us. <strong>Rap battles should be used to help students learn argumentative writing because they use the same exact structure we need in our essays.</strong></p>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-sm text-teal-600 font-semibold mb-1">📌 Body (Evidence):</p>
+            <p>When Tee battled Jayden, he didn't just yell louder or rhyme faster. He actually used the same steps we're supposed to use in our writing. Jayden said Tee "never wins at anything," but he didn't give any real proof. Tee pointed this out when he said, "You shouting loud, but you skipped every receipt you needed." That's evidence—Tee showed that Jayden's argument was weak because it had no facts backing it up.</p>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-sm text-rose-600 font-semibold mb-1">📌 Counterclaim + Response:</p>
+            <p><strong>Some people think rap battles are too loud or inappropriate for school and shouldn't be used to teach writing.</strong> But this argument doesn't explain why something being loud means it can't teach real skills. When Tee answered Jayden, he showed that claims need proof. He repeated what Jayden said, pointed out what was missing, and then gave his own evidence. <strong>If students can learn argument structure from something they already care about, it makes the learning easier, not harder.</strong></p>
+          </div>
+          
+          <div>
+            <p class="text-sm text-green-600 font-semibold mb-1">📌 Conclusion:</p>
+            <p><strong>Rap battles can teach students how to think like strong writers because they show argument structure in action.</strong> When I watched Tee at recess, I finally understood what a counterclaim was and how to address it. If we connect school to real life, everyone learns better.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Essay analysis questions -->
+      <div class="mt-6 p-6 bg-white rounded-xl border">
+        <p class="font-semibold mb-3">🔍 Find It in the Essay (DOK 3):</p>
+        <div class="space-y-3">
+          <div>
+            <p class="text-sm text-gray-600 mb-1">Where does Lee address the counterclaim?</p>
+            <button class="quiz-option text-sm w-full text-left" onclick="this.classList.add('correct')">Third paragraph - "Some people think rap battles are too loud..."</button>
+          </div>
+          <div>
+            <p class="text-sm text-gray-600 mb-1 mt-4">What evidence does Lee use?</p>
+            <button class="quiz-option text-sm w-full text-left" onclick="this.classList.add('correct')">The actual rap battle conversation between Tee and Jayden</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN-ENDED RESPONSE WITH RUBRIC (DOK 3) -->
+    <section class="p-8 md:p-12 bg-white">
+      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Your Turn: Write a Response</h2>
+      
+      <div class="standard-tag mb-6">
+        <span class="standard-code">CCSS.ELA.W.5.1</span>
+        <span>Write opinion pieces with structured arguments</span>
+      </div>
+      
+      <!-- SIOP Writing Scaffold - NEW -->
+      <div class="word-bank mb-4">
+        <p class="font-semibold text-purple-700 mb-2">📝 Writing Word Bank:</p>
+        <div class="flex flex-wrap gap-1">
+          <span class="bg-white px-2 py-1 rounded text-xs border">claim</span>
+          <span class="bg-white px-2 py-1 rounded text-xs border">evidence</span>
+          <span class="bg-white px-2 py-1 rounded text-xs border">counterclaim</span>
+          <span class="bg-white px-2 py-1 rounded text-xs border">prove</span>
+          <span class="bg-white px-2 py-1 rounded text-xs border">support</span>
+          <span class="bg-white px-2 py-1 rounded text-xs border">explain</span>
+          <span class="bg-white px-2 py-1 rounded text-xs border">therefore</span>
+          <span class="bg-white px-2 py-1 rounded text-xs border">conclusion</span>
+        </div>
+      </div>
+      
+      <div class="bg-gradient-to-r from-amber-50 to-purple-50 p-6 rounded-xl mb-6">
+        <h4 class="font-bold text-xl mb-3">Scenario:</h4>
+        <p class="text-lg mb-4">Someone says: <strong>"Video games are just a waste of time. Kids who play them don't learn anything useful."</strong></p>
+        <p class="text-lg">Use Tee's 4-step strategy to address this counterclaim. Defend video games (or choose your own position)!</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2">
+          <div class="response-area">
+            <label class="block font-semibold mb-2">Write your response:</label>
+            <textarea 
+              id="studentResponse" 
+              class="response-textarea" 
+              placeholder="Start with Step 1: State what they said...
+
+Then Step 2: Show your evidence...
+
+Step 3: Explain why they're wrong...
+
+Finally, Step 4: Restate your position..."
+              oninput="updateRubric()"
+            ></textarea>
+            
+            <div class="flex gap-3 mt-4">
+              <button onclick="saveResponse()" class="flex-1 bg-purple-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-purple-700 transition">
+                💾 Save My Work
+              </button>
+              <button onclick="shareResponse()" class="flex-1 bg-teal-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-teal-700 transition">
+                👥 Share with Partner
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="bg-blue-50 p-4 rounded-xl">
+            <h4 class="font-bold mb-3">Self-Check Rubric:</h4>
+            <div class="space-y-2">
+              <div class="rubric-item" id="rubric1">
+                <input type="checkbox" class="rubric-checkbox" onchange="toggleRubricItem('rubric1')">
+                <span class="text-sm">I stated what they said</span>
+              </div>
+              <div class="rubric-item" id="rubric2">
+                <input type="checkbox" class="rubric-checkbox" onchange="toggleRubricItem('rubric2')">
+                <span class="text-sm">I provided evidence</span>
+              </div>
+              <div class="rubric-item" id="rubric3">
+                <input type="checkbox" class="rubric-checkbox" onchange="toggleRubricItem('rubric3')">
+                <span class="text-sm">I explained why they're wrong</span>
+              </div>
+              <div class="rubric-item" id="rubric4">
+                <input type="checkbox" class="rubric-checkbox" onchange="toggleRubricItem('rubric4')">
+                <span class="text-sm">I restated my position</span>
+              </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-white rounded-lg text-sm">
+              <strong>Tip:</strong> Check off each item as you include it in your response!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLECTION & SEL INTEGRATION -->
+    <section class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-purple-50">
+      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Reflect on Your Learning</h2>
+      
+      <div class="space-y-6">
+        <div class="bg-white p-6 rounded-xl">
+          <h4 class="font-semibold mb-3">When have YOU had to address a counterclaim in real life?</h4>
+          <textarea 
+            class="w-full p-4 border-2 border-gray-200 rounded-lg resize-none" 
+            rows="3"
+            placeholder="Maybe with a friend, family member, or teacher..."
+          ></textarea>
+        <div class="mt-2 flex gap-2">
+        <button type="button" onclick="startDictation(this)" 
+                class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm hover:bg-blue-200 transition">
+          🎤 Speak Answer
+        </button>
+        <button type="button" onclick="this.previousElementSibling.value=''"
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200 transition">
+          🗑️ Clear
+        </button>
+      </div>
+        
+        <div class="bg-white p-6 rounded-xl">
+          <h4 class="font-semibold mb-3">What's the difference between arguing with facts vs. arguing with volume?</h4>
+          <textarea 
+            class="w-full p-4 border-2 border-gray-200 rounded-lg resize-none" 
+            rows="3"
+            placeholder="Think about Tee's calm approach compared to how Jayden started..."
+          ></textarea>
+        <div class="mt-2 flex gap-2">
+        <button type="button" onclick="startDictation(this)" 
+                class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm hover:bg-blue-200 transition">
+          🎤 Speak Answer
+        </button>
+        <button type="button" onclick="this.previousElementSibling.value=''"
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200 transition">
+          🗑️ Clear
+        </button>
+      </div>
+        
+        <div class="bg-white p-6 rounded-xl">
+          <h4 class="font-semibold mb-3">How are you feeling now after this lesson?</h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <button class="emotion-option" onclick="selectFinalEmotion(this, 'confident')">
+              <div class="text-3xl">💪</div>
+              <div class="text-sm font-semibold">Confident</div>
+            </button>
+            <button class="emotion-option" onclick="selectFinalEmotion(this, 'curious')">
+              <div class="text-3xl">🤔</div>
+              <div class="text-sm font-semibold">Curious</div>
+            </button>
+            <button class="emotion-option" onclick="selectFinalEmotion(this, 'ready')">
+              <div class="text-3xl">🚀</div>
+              <div class="text-sm font-semibold">Ready!</div>
+            </button>
+            <button class="emotion-option" onclick="selectFinalEmotion(this, 'unsure')">
+              <div class="text-3xl">😕</div>
+              <div class="text-sm font-semibold">Still Unsure</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LESSON COMPLETE -->
+    <section class="p-8 md:p-12 text-center bg-gradient-to-b from-purple-600 to-purple-800 text-white">
+      <div class="media-container mb-6" style="max-width: 300px; margin: 0 auto;">
+        <img src="Gemini_Generated_Image_jhb8wijhb8wijhb8.png" alt="Tee walking away victoriously">
+      </div>
+      
+      <div class="text-6xl mb-4">🎉</div>
+      <h2 class="font-display text-3xl font-bold mb-3">Lesson Complete!</h2>
+      <p class="text-purple-200 text-lg mb-6">You learned how to address a counterclaim using Tee's 4-step strategy.</p>
+      
+      <div class="bg-white/10 backdrop-blur rounded-xl p-6 max-w-md mx-auto mb-8">
+        <p class="font-semibold text-amber-300 mb-2">🔑 Key Takeaway:</p>
+        <p class="text-xl font-display">"Loud is not the same as true."</p>
+        <p class="text-purple-200 text-sm mt-2">— From Lee's notebook</p>
+      </div>
+      
+      <div id="finalScore" class="bg-white/20 backdrop-blur rounded-xl p-6 max-w-md mx-auto mb-8">
+        <p class="text-2xl font-bold mb-2">Your Learning Points: <span id="finalPoints">0</span></p>
+        <p class="text-purple-200 text-sm">Great work today!</p>
+      </div>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <button onclick="window.location.reload()" class="bg-white text-purple-700 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition">
+          📖 Try Again
+        </button>
+        <button class="bg-amber-400 text-amber-900 font-bold py-3 px-6 rounded-full hover:bg-amber-300 transition">
+          ➡️ Next Episode
+        </button>
+      </div>
+    </section>
+  </main>
+
+ <script>
+    // ===== FIXED: LEARNING PROGRESS TRACKING =====
+    let learningState = {
+      points: 0,
+      badges: [],
+      completedActivities: [],
+      emotion: null,
+      characterChoice: null,
+      savedResponses: {}
+    };
+    
+    let currentNarration = null;
+    let isPlaying = false;
+    let currentPlayback = null;
+    let siopStrategiesVisible = false;
+
+    // FIXED: Load saved progress - but reset if empty
+    function loadProgress() {
+      const saved = localStorage.getItem('leeTeeLessonProgress');
+      if (saved) {
+        try {
+          learningState = JSON.parse(saved);
+          // Ensure we don't have prefilled progress
+          if (learningState.completedActivities.length > 0) {
+            // Keep only emotional and character choices if user wants
+            learningState.completedActivities = learningState.completedActivities.filter(
+              activity => activity === 'sel' || activity === 'character'
+            );
+          }
+        } catch (e) {
+          console.error('Error loading progress:', e);
+          resetProgress();
+        }
+      } else {
+        // Initialize fresh state
+        learningState = {
+          points: 0,
+          badges: [],
+          completedActivities: [],
+          emotion: null,
+          characterChoice: null,
+          savedResponses: {}
+        };
+      }
+      
+      document.getElementById('pointsDisplay').textContent = learningState.points;
+      document.getElementById('finalPoints').textContent = learningState.points;
+      updateBadges();
+      
+      // FIXED: Only restore checkmarks for SEL and character choice
+      learningState.completedActivities.forEach(activity => {
+        const element = document.getElementById(`progress-${activity}`);
+        if (element) {
+          element.textContent = '✅';
+          element.classList.add('completed');
+        }
+      });
+      
+      updateProgressPercentage();
+    }
+
+    // NEW FUNCTION: Reset all progress
+    function resetProgress() {
+      if (confirm('Are you sure you want to reset all progress? This will clear all points and completed activities.')) {
+        localStorage.removeItem('leeTeeLessonProgress');
+        learningState = {
+          points: 0,
+          badges: [],
+          completedActivities: [],
+          emotion: null,
+          characterChoice: null,
+          savedResponses: {}
+        };
+        
+        // Reset UI
+        document.getElementById('pointsDisplay').textContent = '0';
+        document.getElementById('finalPoints').textContent = '0';
+        
+        // Reset all progress checkmarks
+        document.querySelectorAll('.progress-check').forEach(el => {
+          el.textContent = '◻';
+          el.classList.remove('completed');
+        });
+        
+        // Reset badges
+        document.getElementById('badgeContainer').innerHTML = '';
+        
+        updateProgressPercentage();
+        alert('Progress reset! Starting fresh.');
+      }
+    }
+
+    // Update the percentage display
+    function updateProgressPercentage() {
+      const totalChecks = document.querySelectorAll('.progress-check').length;
+      const completed = document.querySelectorAll('.progress-check.completed').length;
+      const percentage = Math.round((completed / totalChecks) * 100);
+      document.getElementById('progress-percentage').textContent = `${percentage}%`;
+    }
+
+    // Save progress
+    function saveProgress() {
+      localStorage.setItem('leeTeeLessonProgress', JSON.stringify(learningState));
+    }
+
+    // ===== GAMIFICATION SYSTEM =====
+    function addPoints(amount, reason) {
+      learningState.points += amount;
+      document.getElementById('pointsDisplay').textContent = learningState.points;
+      document.getElementById('finalPoints').textContent = learningState.points;
+      saveProgress();
+      
+      // Show celebration
+      celebrate(amount, reason);
+      
+      // Create confetti
+      createConfetti();
+    }
+
+    function celebrate(points, reason) {
+      const overlay = document.getElementById('celebrationOverlay');
+      document.getElementById('celebrationEmoji').textContent = points >= 25 ? '🎉' : '⭐';
+      document.getElementById('celebrationTitle').textContent = reason;
+      document.getElementById('celebrationMessage').textContent = `+${points} points!`;
+      overlay.classList.add('show');
+      
+      setTimeout(() => {
+        overlay.classList.remove('show');
+      }, 3000);
+    }
+
+    function closeCelebration() {
+      document.getElementById('celebrationOverlay').classList.remove('show');
+    }
+
+    function createConfetti() {
+      const colors = ['#7C3AED', '#F59E0B', '#0D9488', '#E11D48'];
+      for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
+
+    function awardBadge(badge) {
+      if (!learningState.badges.includes(badge)) {
+        learningState.badges.push(badge);
+        updateBadges();
+        saveProgress();
+      }
+    }
+
+    function updateBadges() {
+      const container = document.getElementById('badgeContainer');
+      container.innerHTML = '';
+      learningState.badges.forEach(badge => {
+        const badgeEl = document.createElement('div');
+        badgeEl.className = 'text-2xl badge-earned';
+        badgeEl.textContent = badge;
+        badgeEl.title = getBadgeName(badge);
+        container.appendChild(badgeEl);
+      });
+    }
+
+    function getBadgeName(emoji) {
+      const badges = {
+        '🎯': 'Vocab Master',
+        '🧠': 'Critical Thinker',
+        '✍️': 'Response Writer',
+        '🎤': 'Strategy Expert',
+        '🏆': 'Lesson Complete'
+      };
+      return badges[emoji] || 'Badge Earned';
+    }
+
+    // ===== SEL CHECK-IN =====
+    function selectEmotion(element, emotion) {
+      document.querySelectorAll('.emotion-option').forEach(el => {
+        el.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      learningState.emotion = emotion;
+      saveProgress();
+      
+      // Mark progress
+      const progressElement = document.getElementById('progress-sel');
+      if (progressElement && !progressElement.classList.contains('completed')) {
+        progressElement.textContent = '✅';
+        progressElement.classList.add('completed');
+        learningState.completedActivities.push('sel');
+        saveProgress();
+        updateProgressPercentage();
+      }
+    }
+
+    function selectFinalEmotion(element, emotion) {
+      document.querySelectorAll('.emotion-option').forEach(el => {
+        el.classList.remove('selected');
+      });
+      element.classList.add('selected');
+    }
+
+    // ===== CHARACTER CHOICE =====
+    function chooseCharacter(character) {
+      document.querySelectorAll('.choice-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      
+      const selectedCard = document.getElementById('choose' + character.charAt(0).toUpperCase() + character.slice(1));
+      selectedCard.classList.add('selected');
+      
+      learningState.characterChoice = character;
+      learningState.completedActivities.push('character');
+      saveProgress();
+      
+      document.getElementById('characterFeedback').classList.remove('hidden');
+      addPoints(5, 'Great choice!');
+    }
+
+    // ===== VOCABULARY DATA ====
+    const vocabData = {
+      claim: {
+        word: 'Claim',
+        def: 'What you believe or what you are trying to prove. It\'s your main point.',
+        example: 'Jayden made a claim that Tee "never wins at anything."',
+        spanish: 'En español: afirmación',
+        image: '📢'
+      },
+      evidence: {
+        word: 'Evidence',
+        def: 'Proof or facts that support your claim. Also called "receipts."',
+        example: 'Tee brought evidence: "Ms. R checked attendance... I been on-time all quarter."',
+        spanish: 'En español: evidencia, prueba',
+        image: '📄'
+      },
+      counterclaim: {
+        word: 'Counterclaim',
+        def: 'The other side\'s argument. Addressing a counterclaim means explaining why the opposing view is weak.',
+        example: 'Lee learned to address a counterclaim by watching Tee respond to Jayden\'s argument.',
+        spanish: 'En español: contraargumento',
+        image: '↔'
+      }
+    };
+
+    // ===== VOCABULARY ACTIVITIES =====
+    function showVocab(word) {
+      // STOP any current narration
+      if (currentNarration) {
+        speechSynthesis.cancel();
+        currentNarration = null;
+        isPlaying = false;
+      }
+      
+      const data = vocabData[word];
+      document.getElementById('vocabWord').textContent = data.word;
+      document.getElementById('vocabDef').textContent = data.def;
+      document.getElementById('vocabExample').textContent = data.example;
+      document.getElementById('vocabSpanish').textContent = data.spanish;
+      document.getElementById('vocabImage').textContent = data.image;
+      document.getElementById('vocabModal').classList.add('open');
+    }
+
+    function closeVocabModal(e) {
+      if (e.target.classList.contains('vocab-modal')) {
+        document.getElementById('vocabModal').classList.remove('open');
+        
+        // STOP any current narration
+        if (currentNarration) {
+          speechSynthesis.cancel();
+          currentNarration = null;
+          isPlaying = false;
+        }
+      }
+    }
+
+    function speakWord() {
+      // Stop any existing narration
+      if (currentNarration) {
+        speechSynthesis.cancel();
+      }
+      
+      const word = document.getElementById('vocabWord').textContent;
+      const def = document.getElementById('vocabDef').textContent;
+      const example = document.getElementById('vocabExample').textContent;
+      const utterance = new SpeechSynthesisUtterance(`${word}. ${def}. Example: ${example}`);
+      utterance.rate = 0.9;
+      
+      // Store the current narration
+      currentNarration = utterance;
+      
+      // Clear narration when done
+      utterance.onend = () => {
+        currentNarration = null;
+        isPlaying = false;
+      };
+      
+      utterance.onerror = () => {
+        currentNarration = null;
+        isPlaying = false;
+      };
+      
+      speechSynthesis.speak(utterance);
+    }
+
+    function showVocabChoices(blankId, correctWord) {
+      // Close all other choice menus
+      document.querySelectorAll('.vocab-choices').forEach(menu => {
+        menu.classList.remove('show');
+      });
+      
+      // Show this one
+      const choicesId = blankId.replace('blank', 'choices');
+      document.getElementById(choicesId).classList.add('show');
+    }
+
+    function checkVocabChoice(blankId, choicesId, selectedWord, isCorrect) {
+      const choices = document.getElementById(choicesId);
+      const blank = document.getElementById(blankId);
+      const feedbackId = blankId.replace('blank', 'feedback');
+      
+      // Hide choices
+      choices.classList.remove('show');
+      
+      if (isCorrect) {
+        blank.textContent = selectedWord;
+        blank.classList.add('text-green-700', 'font-bold');
+        document.getElementById(feedbackId).classList.remove('hidden');
+        
+        // Award points
+        if (!learningState.completedActivities.includes(blankId)) {
+          learningState.completedActivities.push(blankId);
+          addPoints(10, 'Vocab correct!');
+          
+          // Check if all vocab done (all 3 blanks)
+          const vocabCompleted = ['blank1', 'blank2', 'blank3'].every(id => 
+            learningState.completedActivities.includes(id)
+          );
+          
+          if (vocabCompleted) {
+            // Mark progress tracker
+            const progressElement = document.getElementById('progress-vocab');
+            if (progressElement && !progressElement.classList.contains('completed')) {
+              progressElement.textContent = '✅';
+              progressElement.classList.add('completed');
+              learningState.completedActivities.push('vocab');
+              updateProgressPercentage();
+            }
+            awardBadge('🎯');
+          }
+        }
+      } else {
+        // Incorrect feedback
+        blank.style.background = '#FEE2E2';
+        setTimeout(() => {
+          blank.style.background = '';
+        }, 500);
+      }
+      
+      saveProgress();
+    }
+
+    // ===== SIMPLE BUT EFFECTIVE HIGHLIGHTING SYSTEM =====
+    
+    // 1. LISTEN MODE - Highlight sentences
+    function toggleSectionAudio(btn, sectionId) {
+        if (btn.classList.contains('playing')) {
+            // Stop playback
+            speechSynthesis.cancel();
+            btn.classList.remove('playing');
+            btn.textContent = '🔊 Listen';
+            removeAllHighlights();
+        } else {
+            // Stop any existing playback
+            speechSynthesis.cancel();
+            document.querySelectorAll('.playing').forEach(b => {
+                b.classList.remove('playing');
+                b.textContent = '🔊 Listen';
+            });
+            
+            // Start playback
+            btn.classList.add('playing');
+            btn.textContent = '⏹️ Stop';
+            startSentencePlayback(sectionId, btn);
+        }
+    }
+    
+    // 2. READ ALOUD MODE - Highlight words
+    function readAloudWithWordHighlight(btn, sectionId) {
+        if (btn.classList.contains('btn-playing')) {
+            // Stop playback
+            speechSynthesis.cancel();
+            btn.classList.remove('btn-playing');
+            btn.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
+            removeAllHighlights();
+        } else {
+            // Stop any existing playback
+            speechSynthesis.cancel();
+            document.querySelectorAll('.btn-playing').forEach(b => {
+                b.classList.remove('btn-playing');
+                b.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
+            });
+            
+            // Start playback
+            btn.classList.add('btn-playing');
+            btn.innerHTML = '<span>⏹️</span><span>Stop</span>';
+            startWordPlayback(sectionId, btn);
+        }
+    }
+    
+    // 3. SENTENCE PLAYBACK
+    function startSentencePlayback(sectionId, btn) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+        
+        const storyText = section.querySelector('.story-text');
+        if (!storyText) return;
+        
+        // Save original state
+        if (!storyText.dataset.original) {
+            storyText.dataset.original = storyText.innerHTML;
+        }
+        
+        // Get paragraphs and speech bubbles
+        const paragraphs = storyText.querySelectorAll('p');
+        const speechBubbles = storyText.querySelectorAll('.speech-bubble p:not(:first-child)');
+        
+        let allSentences = [];
+        paragraphs.forEach(p => {
+            if (!p.parentElement.classList.contains('speech-bubble') || 
+                (p.parentElement.classList.contains('speech-bubble') && !p.previousElementSibling)) {
+                allSentences.push(p);
+            }
+        });
+        speechBubbles.forEach(p => allSentences.push(p));
+        
+        // Create combined text
+        let fullText = '';
+        allSentences.forEach((p, i) => {
+            p.dataset.sentenceIndex = i;
+            fullText += p.textContent + ' ';
+        });
+        
+        // Create utterance
+        const utterance = new SpeechSynthesisUtterance(fullText);
+        utterance.rate = 0.85;
+        
+        utterance.onboundary = (event) => {
+            if (event.name === 'sentence' || event.name === 'word') {
+                // Find current sentence based on character index
+                let charCount = 0;
+                let currentSentence = null;
+                
+                for (let i = 0; i < allSentences.length; i++) {
+                    const sentence = allSentences[i];
+                    const textLength = sentence.textContent.length;
+                    
+                    if (event.charIndex >= charCount && event.charIndex < charCount + textLength) {
+                        currentSentence = sentence;
+                        break;
+                    }
+                    charCount += textLength + 1; // +1 for space
+                }
+                
+                if (currentSentence) {
+                    // Remove previous highlights
+                    allSentences.forEach(s => {
+                        s.classList.remove('active-sentence');
+                        s.style.backgroundColor = '';
+                    });
+                    
+                    // Add highlight
+                    currentSentence.classList.add('active-sentence');
+                    currentSentence.style.backgroundColor = 'rgba(253, 230, 138, 0.5)';
+                    currentSentence.style.padding = '8px 12px';
+                    currentSentence.style.margin = '8px 0';
+                    currentSentence.style.borderRadius = '4px';
+                    currentSentence.style.borderLeft = '3px solid #7C3AED';
+                    currentSentence.style.borderRight = '3px solid #7C3AED';
+                    
+                    // Scroll into view
+                    currentSentence.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            }
+        };
+        
+        utterance.onend = () => {
+            btn.classList.remove('playing');
+            btn.textContent = '🔊 Listen';
+            removeAllHighlights();
+            if (storyText.dataset.original) {
+                storyText.innerHTML = storyText.dataset.original;
+                delete storyText.dataset.original;
+            }
+        };
+        
+        utterance.onerror = () => {
+            btn.classList.remove('playing');
+            btn.textContent = '🔊 Listen';
+            removeAllHighlights();
+            if (storyText.dataset.original) {
+                storyText.innerHTML = storyText.dataset.original;
+                delete storyText.dataset.original;
+            }
+        };
+        
+        speechSynthesis.speak(utterance);
+    }
+    
+    // 4. WORD PLAYBACK
+    function startWordPlayback(sectionId, btn) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+        
+        const storyText = section.querySelector('.story-text');
+        if (!storyText) return;
+        
+        // Save original state
+        if (!storyText.dataset.original) {
+            storyText.dataset.original = storyText.innerHTML;
+        }
+        
+        // Create a copy for word highlighting
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = storyText.innerHTML;
+        
+        // Remove unwanted elements
+        tempDiv.querySelectorAll('.speech-bubble p:first-child, .quiz-option, button, .media-container, .vocab-word').forEach(el => el.remove());
+        
+        // Get clean text
+        const cleanText = tempDiv.textContent || tempDiv.innerText;
+        
+        // Create utterance
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.rate = 0.85;
+        
+        // Word highlighting logic
+        const words = cleanText.split(/(\s+)/);
+        let currentWordIndex = 0;
+        let charCount = 0;
+        
+        utterance.onboundary = (event) => {
+            if (event.name === 'word') {
+                // Find which word we're on
+                let wordStart = charCount;
+                let wordText = '';
+                
+                while (currentWordIndex < words.length) {
+                    const word = words[currentWordIndex];
+                    if (word.trim().length > 0) {
+                        wordText = word;
+                        break;
+                    }
+                    currentWordIndex++;
+                    charCount += word.length;
+                }
+                
+                if (wordText && event.charIndex >= charCount) {
+                    // Highlight logic (simplified - this is where we'd need more complex DOM manipulation)
+                    // For now, we'll highlight the entire current paragraph
+                    const paragraphs = storyText.querySelectorAll('p');
+                    paragraphs.forEach(p => {
+                        if (p.textContent.includes(wordText)) {
+                            p.classList.add('active-sentence');
+                            p.style.backgroundColor = 'rgba(253, 230, 138, 0.7)';
+                            p.style.transition = 'all 0.3s ease';
+                            
+                            // Scroll into view
+                            p.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }
+                    });
+                    
+                    currentWordIndex++;
+                    charCount += wordText.length;
+                }
+            }
+        };
+        
+        utterance.onend = () => {
+            btn.classList.remove('btn-playing');
+            btn.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
+            removeAllHighlights();
+            if (storyText.dataset.original) {
+                storyText.innerHTML = storyText.dataset.original;
+                delete storyText.dataset.original;
+            }
+        };
+        
+        utterance.onerror = () => {
+            btn.classList.remove('btn-playing');
+            btn.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
+            removeAllHighlights();
+            if (storyText.dataset.original) {
+                storyText.innerHTML = storyText.dataset.original;
+                delete storyText.dataset.original;
+            }
+        };
+        
+        speechSynthesis.speak(utterance);
+    }
+    
+    // 5. REMOVE ALL HIGHLIGHTS
+    function removeAllHighlights() {
+        document.querySelectorAll('.active-sentence, .active-word').forEach(el => {
+            el.classList.remove('active-sentence', 'active-word');
+            el.style.backgroundColor = '';
+            el.style.padding = '';
+            el.style.margin = '';
+            el.style.borderRadius = '';
+            el.style.borderLeft = '';
+            el.style.borderRight = '';
+        });
+    }
+
+    // ===== PROBLEM ANALYSIS =====
+    function checkProblemAnswers() {
+      const checkboxes = document.querySelectorAll('.problem-check');
+      let allCorrect = true;
+      
+      checkboxes.forEach(checkbox => {
+        const isCorrect = checkbox.dataset.correct === 'true';
+        const isChecked = checkbox.checked;
+        
+        if ((isCorrect && !isChecked) || (!isCorrect && isChecked)) {
+          allCorrect = false;
+        }
+      });
+      
+      if (allCorrect) {
+        document.getElementById('problemFeedback').classList.remove('hidden');
+        if (!learningState.completedActivities.includes('problemAnalysis')) {
+          learningState.completedActivities.push('problemAnalysis');
+          addPoints(15, 'Critical thinking!');
+          awardBadge('🧠');
+        }
+      } else {
+        alert('Not quite! Remember: we\'re looking for what makes the ARGUMENT weak, not just behavior issues.');
+      }
+      
+      saveProgress();
+    }
+
+    // ===== QUIZ/CHECK FUNCTIONS ====
+    function checkAnswer(btn, correct, id) {
+      const container = btn.parentElement;
+      container.querySelectorAll('.quiz-option').forEach(b => {
+        b.classList.remove('selected', 'correct', 'incorrect');
+      });
+      
+      if (correct) {
+        btn.classList.add('correct');
+        document.getElementById(id + '-feedback').classList.remove('hidden');
+        
+        // Mark section progress based on which quiz
+        if (id === 'comp1') {
+          const progressElement = document.getElementById('progress-section1');
+          if (progressElement && !progressElement.classList.contains('completed')) {
+            progressElement.textContent = '✅';
+            progressElement.classList.add('completed');
+            learningState.completedActivities.push('section1');
+            updateProgressPercentage();
+          }
+        } else if (id === 'comp2') {
+          const progressElement = document.getElementById('progress-section2');
+          if (progressElement && !progressElement.classList.contains('completed')) {
+            progressElement.textContent = '✅';
+            progressElement.classList.add('completed');
+            learningState.completedActivities.push('section2');
+            updateProgressPercentage();
+          }
+        }
+      } else {
+        btn.classList.add('incorrect');
+      }
+    }
+
+    // ===== DRAG AND DROP =====
+    let draggedItem = null;
+    let correctPlacements = 0;
+
+    // Add drag listeners on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const rapLines = document.querySelectorAll('.rap-line');
+      rapLines.forEach(line => {
+        line.addEventListener('dragstart', dragStart);
+        line.addEventListener('dragend', dragEnd);
+      });
+      
+      // Initialize progress
+      loadProgress();
+    });
+
+    function dragStart(e) {
+      draggedItem = e.target;
+      e.target.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', e.target.dataset.step);
+    }
+
+    function dragEnd(e) {
+      e.target.classList.remove('dragging');
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('drag-over');
+    }
+
+    function dragLeave(e) {
+      e.currentTarget.classList.remove('drag-over');
+    }
+
+    function drop(e) {
+      e.preventDefault();
+      const dropZone = e.currentTarget;
+      dropZone.classList.remove('drag-over');
+      
+      const targetStep = dropZone.dataset.target;
+      const itemStep = draggedItem.dataset.step;
+      
+      if (targetStep === itemStep) {
+        // Correct!
+        dropZone.innerHTML = '';
+        const clone = draggedItem.cloneNode(true);
+        clone.classList.add('correct');
+        clone.draggable = false;
+        dropZone.appendChild(clone);
+        dropZone.classList.add('filled');
+        
+        draggedItem.style.display = 'none';
+        correctPlacements++;
+        
+        if (correctPlacements >= 4) {
+          document.getElementById('strategyFeedback').classList.remove('hidden');
+          if (!learningState.completedActivities.includes('dragDrop')) {
+            learningState.completedActivities.push('dragDrop');
+            addPoints(25, 'Strategy mastered!');
+            awardBadge('🎤');
+            
+            // Mark progress tracker
+            const progressElement = document.getElementById('progress-drag');
+            if (progressElement && !progressElement.classList.contains('completed')) {
+              progressElement.textContent = '✅';
+              progressElement.classList.add('completed');
+              learningState.completedActivities.push('drag');
+              updateProgressPercentage();
+            }
+          }
+        }
+      } else {
+        // Incorrect - shake animation
+        draggedItem.classList.add('incorrect');
+        setTimeout(() => draggedItem.classList.remove('incorrect'), 300);
+      }
+      
+      saveProgress();
+    }
+
+    // ===== OPEN-ENDED RESPONSE =====
+    function toggleRubricItem(itemId) {
+      const item = document.getElementById(itemId);
+      const checkbox = item.querySelector('input');
+      if (checkbox.checked) {
+        item.classList.add('checked');
+      } else {
+        item.classList.remove('checked');
+      }
+    }
+
+    function updateRubric() {
+      // Auto-check rubric based on text content (simplified)
+      const text = document.getElementById('studentResponse').value.toLowerCase();
+      const rubricItems = document.querySelectorAll('.rubric-item');
+      
+      rubricItems.forEach((item, index) => {
+        const checkbox = item.querySelector('input');
+        let isIncluded = false;
+        
+        if (index === 0 && (text.includes('they said') || text.includes('you claim') || text.includes('argument is'))) {
+          isIncluded = true;
+        } else if (index === 1 && (text.includes('evidence') || text.includes('proof') || text.includes('facts') || text.includes('research') || text.includes('study'))) {
+          isIncluded = true;
+        } else if (index === 2 && (text.includes('wrong') || text.includes('incorrect') || text.includes('mistaken') || text.includes('however') || text.includes('but'))) {
+          isIncluded = true;
+        } else if (index === 3 && (text.includes('conclusion') || text.includes('therefore') || text.includes('position') || text.includes('believe') || text.includes('think'))) {
+          isIncluded = true;
+        }
+        
+        checkbox.checked = isIncluded;
+        toggleRubricItem(item.id);
+      });
+    }
+
+    function saveResponse() {
+      const response = document.getElementById('studentResponse').value;
+      if (response.trim().length < 50) {
+        alert('Try writing a bit more! Use all 4 steps of Tee\'s strategy.');
+        return;
+      }
+      
+      learningState.savedResponses.videoGames = response;
+      saveProgress();
+      
+      if (!learningState.completedActivities.includes('openResponse')) {
+        learningState.completedActivities.push('openResponse');
+        addPoints(30, 'Response written!');
+        awardBadge('✍️');
+        
+        // Mark progress tracker
+        const progressElement = document.getElementById('progress-essay');
+        if (progressElement && !progressElement.classList.contains('completed')) {
+          progressElement.textContent = '✅';
+          progressElement.classList.add('completed');
+          learningState.completedActivities.push('essay');
+          updateProgressPercentage();
+        }
+      }
+      
+      alert('💾 Your response has been saved!');
+    }
+
+    function shareResponse() {
+      const response = document.getElementById('studentResponse').value;
+      if (response.trim().length < 50) {
+        alert('Write your response first, then you can share with a partner!');
+        return;
+      }
+      
+      alert('🤝 Great! Now share your screen or read your response to your partner. Ask them:\n\n1. Did I use all 4 steps?\n2. Was my evidence strong?\n3. What could make it better?');
+    }
+
+    // ===== HELPER MODALS ====
+    function openHelper(character) {
+      document.getElementById(character + '-modal').classList.add('open');
+    }
+
+    function closeHelper(e, character) {
+      if (e.target.classList.contains('helper-modal')) {
+        document.getElementById(character + '-modal').classList.remove('open');
+      }
+    }
+
+    // ===== ACCESSIBILITY SETTINGS =====
+    function toggleA11yMenu() {
+      document.getElementById('a11yMenu').classList.toggle('open');
+    }
+
+    function toggleSetting(setting) {
+      const toggle = document.getElementById('toggle' + setting.charAt(0).toUpperCase() + setting.slice(1));
+      toggle.classList.toggle('on');
+      
+      if (setting === 'dyslexia') {
+        document.body.classList.toggle('dyslexia-mode');
+      } else if (setting === 'contrast') {
+        document.body.classList.toggle('high-contrast');
+      } else if (setting === 'hints') {
+        document.querySelectorAll('.hint-text').forEach(el => {
+          el.style.display = toggle.classList.contains('on') ? 'block' : 'none';
+        });
+      }
+    }
+
+    // ===== SIOP STRATEGIES =====
+    function toggleSiopStrategies() {
+      const toggle = document.getElementById('toggleSiop');
+      toggle.classList.toggle('on');
+      siopStrategiesVisible = toggle.classList.contains('on');
+      
+      // Show/hide SIOP strategy indicators
+      document.querySelectorAll('.siop-strategy').forEach(el => {
+        if (siopStrategiesVisible) {
+          el.style.display = 'inline-flex';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleSiopModal() {
+      document.getElementById('siopModal').classList.toggle('open');
+    }
+
+    function closeSiopModal(e) {
+      if (e.target.classList.contains('helper-modal')) {
+        document.getElementById('siopModal').classList.remove('open');
+      }
+    }
+
+    // ===== PROGRESS BAR =====
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+      
+      // Award completion badge at end
+      if (progress > 95 && !learningState.badges.includes('🏆')) {
+        awardBadge('🏆');
+      }
+    });
+
+    // ===== VOICE-TO-TEXT FUNCTION =====
+    function startDictation(button) {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert('Voice typing requires Chrome browser. Please use Chrome for this feature.');
+        return;
+      }
+      
+      const textarea = button.parentElement.previousElementSibling;
+      const recognition = new webkitSpeechRecognition();
+      
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+      
+      recognition.onstart = function() {
+        button.textContent = '🎤 Listening...';
+        button.classList.add('bg-red-100', 'text-red-700');
+      };
+      
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        textarea.value += (textarea.value ? ' ' : '') + transcript;
+        
+        // Track reflection progress
+        if (textarea.value.trim().length > 10) {
+          const progressElement = document.getElementById('progress-reflect');
+          if (progressElement && !progressElement.classList.contains('completed')) {
+            progressElement.textContent = '✅';
+            progressElement.classList.add('completed');
+            learningState.completedActivities.push('reflect');
+            saveProgress();
+            updateProgressPercentage();
+          }
+        }
+      };
+      
+      recognition.onend = function() {
+        button.textContent = '🎤 Speak Answer';
+        button.classList.remove('bg-red-100', 'text-red-700');
+      };
+      
+      recognition.onerror = function(event) {
+        console.error('Speech recognition error', event.error);
+        button.textContent = '🎤 Speak Answer';
+        button.classList.remove('bg-red-100', 'text-red-700');
+      };
+      
+      recognition.start();
+    }
+
+    // ===== BONUS MATCHING ACTIVITY =====
+    let matchCount = 0;
+    function checkMatch(select, correctValue) {
+      if (select.value === correctValue) {
+        select.style.background = '#DCFCE7';
+        select.style.borderColor = '#16A34A';
+        matchCount++;
+        if (matchCount >= 4) {
+          document.getElementById('matchFeedback').classList.remove('hidden');
+          if (!learningState.completedActivities.includes('matching')) {
+            learningState.completedActivities.push('matching');
+            addPoints(15, 'Perfect match!');
+          }
+        }
+      } else if (select.value !== '') {
+        select.style.background = '#FEE2E2';
+        select.style.borderColor = '#E11D48';
+      }
+      saveProgress();
+    }
+
+    // ===== SIMPLIFIED TEXT VIEW =====
+    function showSimplifiedText(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      
+      const storyText = section.querySelector('.story-text');
+      if (!storyText) return;
+      
+      // Toggle between original and simplified
+      if (storyText.dataset.original) {
+        storyText.innerHTML = storyText.dataset.original;
+        delete storyText.dataset.original;
+      } else {
+        // Save original and create simplified version
+        storyText.dataset.original = storyText.innerHTML;
+        
+        // Simple text simplification
+        let simplified = storyText.innerHTML
+          .replace(/<strong>(.*?)<\/strong>/g, '<strong class="text-purple-700">$1</strong>')
+          .replace(/<em>(.*?)<\/em>/g, '<em class="font-bold text-amber-700">$1</em>')
+          .replace(/\.\s/g, '.<br><br>')
+          .replace(/\,\s/g, ',<br>');
+        
+        storyText.innerHTML = simplified;
+      }
+    }
+    
+    // Auto-mark section progress when scrolling
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          let progressId = '';
+          
+          // Map section IDs to progress IDs
+          switch(sectionId) {
+            case 'section-1': progressId = 'section1'; break;
+            case 'section-2': progressId = 'section2'; break;
+            case 'section-3': progressId = 'section3'; break;
+            case 'section-aha': progressId = 'drag'; break;
+            case 'section-essay': progressId = 'essay'; break;
+            default: return;
+          }
+          
+          const progressElement = document.getElementById(`progress-${progressId}`);
+          if (progressElement && !progressElement.classList.contains('completed')) {
+            progressElement.textContent = '✅';
+            progressElement.classList.add('completed');
+            learningState.completedActivities.push(progressId);
+            saveProgress();
+            updateProgressPercentage();
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    // Observe sections
+    document.addEventListener('DOMContentLoaded', () => {
+      ['section-1', 'section-2', 'section-3', 'section-aha', 'section-essay'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) sectionObserver.observe(element);
+      });
+      
+      // Initialize
+      loadProgress();
+    });
+</script>
+</body>
+</html>
