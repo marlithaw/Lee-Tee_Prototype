@@ -3604,33 +3604,58 @@ Finally, Step 4: Restate your position..."
 
     // ===== CONTEXTUAL HELPER SYSTEM =====
     let helperTimers = {};
+    let helperShown = {}; // Track which helpers have been shown
 
     // Show helper when student struggles with drag-and-drop
     function monitorDragDropStruggle() {
+      // Clear any existing timer
+      if (helperTimers.dragDrop) {
+        clearTimeout(helperTimers.dragDrop);
+      }
+
+      // Don't show if already shown or completed
+      if (helperShown.dragDrop || learningState.completedActivities.includes('dragDrop')) {
+        return;
+      }
+
       helperTimers.dragDrop = setTimeout(() => {
-        if (correctPlacements < 2 && !learningState.completedActivities.includes('dragDrop')) {
+        // Check if student is struggling (less than 2 placements after 30 seconds)
+        if (correctPlacements < 2) {
           showContextualHelper('tee',
             "Taking your time? That's smart!",
             "Think about the order: First you say what they claimed, then you bring your proof. Want me to show you?",
             'dragDropHelp'
           );
+          helperShown.dragDrop = true;
         }
-      }, 45000); // After 45 seconds
+      }, 30000); // Reduced to 30 seconds for better responsiveness
     }
 
     // Show helper when student struggles with open response
     function monitorOpenResponseStruggle() {
+      // Clear any existing timer
+      if (helperTimers.openResponse) {
+        clearTimeout(helperTimers.openResponse);
+      }
+
+      // Don't show if already shown or completed
+      if (helperShown.openResponse || learningState.completedActivities.includes('essay')) {
+        return;
+      }
+
       const textarea = document.getElementById('studentResponse');
       if (textarea) {
-        setTimeout(() => {
+        helperTimers.openResponse = setTimeout(() => {
+          // Check if student hasn't written much after focusing
           if (textarea.value.trim().length < 20) {
             showContextualHelper('lee',
               "Need help getting started?",
               "Remember to start with Step 1: State what they said. I can show you some sentence starters!",
               'openResponseHelp'
             );
+            helperShown.openResponse = true;
           }
-        }, 30000); // After 30 seconds
+        }, 20000); // Reduced to 20 seconds
       }
     }
 
@@ -3666,12 +3691,20 @@ Finally, Step 4: Restate your position..."
     }
 
     function dismissContextHelper() {
-      document.getElementById('contextHelper').classList.add('hidden');
+      const helper = document.getElementById('contextHelper');
+      helper.classList.add('hidden');
+
+      // Clear timers when dismissed
+      Object.keys(helperTimers).forEach(key => {
+        if (helperTimers[key]) {
+          clearTimeout(helperTimers[key]);
+        }
+      });
     }
 
-    // Call these monitoring functions when entering those sections
+    // Initialize monitoring when DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
-      // Monitor for drag-and-drop section
+      // Monitor for drag-and-drop section with IntersectionObserver
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -3681,18 +3714,22 @@ Finally, Step 4: Restate your position..."
             }
           }
         });
+      }, {
+        threshold: 0.3, // Trigger when 30% of section is visible
+        rootMargin: '0px'
       });
 
       const section4 = document.getElementById('section-4');
       if (section4) observer.observe(section4);
-    });
 
-    // Monitor for open response section
-    if (document.getElementById('studentResponse')) {
-      document.getElementById('studentResponse').addEventListener('focus', () => {
-        monitorOpenResponseStruggle();
-      });
-    }
+      // Monitor for open response section
+      const studentResponse = document.getElementById('studentResponse');
+      if (studentResponse) {
+        studentResponse.addEventListener('focus', () => {
+          monitorOpenResponseStruggle();
+        }, { once: false }); // Allow multiple focuses
+      }
+    });
 
     // ===== ACCESSIBILITY SETTINGS =====
     function toggleA11yMenu() {
