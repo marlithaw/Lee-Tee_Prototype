@@ -2851,37 +2851,41 @@ Finally, Step 4: Restate your position..."
         updateProgressPercentage();
       }
 
-      // NEW: Adapt experience based on emotion
-      if (emotion === 'tired') {
-        // Auto-enable audio features
-        const audioToggle = document.getElementById('toggleAudio');
-        if (audioToggle && !audioToggle.classList.contains('on')) {
-          audioToggle.classList.add('on');
+      // NEW: Adapt experience based on emotion (wrapped in try-catch for safety)
+      try {
+        if (emotion === 'tired') {
+          // Auto-enable audio features
+          const audioToggle = document.getElementById('toggleAudio');
+          if (audioToggle && !audioToggle.classList.contains('on')) {
+            audioToggle.classList.add('on');
+          }
+
+          // Show encouraging message
+          showAdaptiveMessage('💙 Got it! I\'ll make sure the audio features are ready to help you follow along.');
+
+        } else if (emotion === 'nervous') {
+          // Auto-show hints (call toggleSetting to ensure it works properly)
+          const hintsToggle = document.getElementById('toggleHints');
+          if (hintsToggle && !hintsToggle.classList.contains('on')) {
+            toggleSetting('hints');
+          }
+
+          // Auto-show SIOP supports
+          const siopToggle = document.getElementById('toggleSiop');
+          if (siopToggle && !siopToggle.classList.contains('on')) {
+            toggleSiopStrategies();
+          }
+
+          showAdaptiveMessage('💜 No worries! I turned on extra help features. You\'ve got this!');
+
+        } else if (emotion === 'excited') {
+          showAdaptiveMessage('🎉 Love the energy! Let\'s dive in!');
+
+        } else if (emotion === 'calm') {
+          showAdaptiveMessage('🌟 Perfect mindset for learning. Let\'s get started!');
         }
-
-        // Show encouraging message
-        showAdaptiveMessage('💙 Got it! I\'ll make sure the audio features are ready to help you follow along.');
-
-      } else if (emotion === 'nervous') {
-        // Auto-show hints (call toggleSetting to ensure it works properly)
-        const hintsToggle = document.getElementById('toggleHints');
-        if (hintsToggle && !hintsToggle.classList.contains('on')) {
-          toggleSetting('hints');
-        }
-
-        // Auto-show SIOP supports
-        const siopToggle = document.getElementById('toggleSiop');
-        if (siopToggle && !siopToggle.classList.contains('on')) {
-          toggleSiopStrategies();
-        }
-
-        showAdaptiveMessage('💜 No worries! I turned on extra help features. You\'ve got this!');
-
-      } else if (emotion === 'excited') {
-        showAdaptiveMessage('🎉 Love the energy! Let\'s dive in!');
-
-      } else if (emotion === 'calm') {
-        showAdaptiveMessage('🌟 Perfect mindset for learning. Let\'s get started!');
+      } catch (error) {
+        console.log('SEL adaptation error:', error);
       }
     }
 
