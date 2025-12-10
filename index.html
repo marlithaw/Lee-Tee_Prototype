@@ -1165,6 +1165,27 @@ p.active-sentence {
     <div class="label text-amber-600">ASK TEE</div>
   </div>
 
+  <!-- Contextual Helper Popup -->
+  <div id="contextHelper" class="fixed bottom-24 right-6 hidden z-50 animate-bounce">
+    <div class="bg-white rounded-xl shadow-2xl p-4 max-w-xs border-4 border-purple-500">
+      <div class="flex items-start gap-3">
+        <img id="contextHelperAvatar" src="" alt="" class="w-12 h-12 rounded-full">
+        <div>
+          <p class="font-bold text-purple-700 mb-1" id="contextHelperName"></p>
+          <p class="text-sm" id="contextHelperMessage"></p>
+        </div>
+      </div>
+      <div class="flex gap-2 mt-3">
+        <button onclick="showContextHelp()" class="flex-1 bg-purple-600 text-white px-3 py-2 rounded-lg text-sm font-bold hover:bg-purple-700">
+          Show Me How
+        </button>
+        <button onclick="dismissContextHelper()" class="px-3 py-2 bg-gray-200 rounded-lg text-sm">
+          Not Now
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Lee Helper Modal -->
   <div id="lee-modal" class="helper-modal" onclick="closeHelper(event, 'lee')">
     <div class="helper-content border-l-8 border-purple-500" onclick="event.stopPropagation()">
@@ -3579,6 +3600,98 @@ Finally, Step 4: Restate your position..."
       if (e.target.classList.contains('helper-modal')) {
         document.getElementById(character + '-modal').classList.remove('open');
       }
+    }
+
+    // ===== CONTEXTUAL HELPER SYSTEM =====
+    let helperTimers = {};
+
+    // Show helper when student struggles with drag-and-drop
+    function monitorDragDropStruggle() {
+      helperTimers.dragDrop = setTimeout(() => {
+        if (correctPlacements < 2 && !learningState.completedActivities.includes('dragDrop')) {
+          showContextualHelper('tee',
+            "Taking your time? That's smart!",
+            "Think about the order: First you say what they claimed, then you bring your proof. Want me to show you?",
+            'dragDropHelp'
+          );
+        }
+      }, 45000); // After 45 seconds
+    }
+
+    // Show helper when student struggles with open response
+    function monitorOpenResponseStruggle() {
+      const textarea = document.getElementById('studentResponse');
+      if (textarea) {
+        setTimeout(() => {
+          if (textarea.value.trim().length < 20) {
+            showContextualHelper('lee',
+              "Need help getting started?",
+              "Remember to start with Step 1: State what they said. I can show you some sentence starters!",
+              'openResponseHelp'
+            );
+          }
+        }, 30000); // After 30 seconds
+      }
+    }
+
+    function showContextualHelper(character, name, message, helpType) {
+      const helper = document.getElementById('contextHelper');
+      const avatar = document.getElementById('contextHelperAvatar');
+      const helperName = document.getElementById('contextHelperName');
+      const helperMessage = document.getElementById('contextHelperMessage');
+
+      if (character === 'lee') {
+        avatar.src = 'Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png';
+        helperName.textContent = '📓 Lee says:';
+      } else {
+        avatar.src = 'Gemini_Generated_Image_bvzywpbvzywpbvzy.png';
+        helperName.textContent = '🎤 Tee says:';
+      }
+
+      helperMessage.textContent = message;
+      helper.dataset.helpType = helpType;
+      helper.classList.remove('hidden');
+    }
+
+    function showContextHelp() {
+      const helpType = document.getElementById('contextHelper').dataset.helpType;
+
+      if (helpType === 'dragDropHelp') {
+        openHelper('tee');
+      } else if (helpType === 'openResponseHelp') {
+        openHelper('lee');
+      }
+
+      dismissContextHelper();
+    }
+
+    function dismissContextHelper() {
+      document.getElementById('contextHelper').classList.add('hidden');
+    }
+
+    // Call these monitoring functions when entering those sections
+    document.addEventListener('DOMContentLoaded', () => {
+      // Monitor for drag-and-drop section
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            if (sectionId === 'section-4') {
+              monitorDragDropStruggle();
+            }
+          }
+        });
+      });
+
+      const section4 = document.getElementById('section-4');
+      if (section4) observer.observe(section4);
+    });
+
+    // Monitor for open response section
+    if (document.getElementById('studentResponse')) {
+      document.getElementById('studentResponse').addEventListener('focus', () => {
+        monitorOpenResponseStruggle();
+      });
     }
 
     // ===== ACCESSIBILITY SETTINGS =====
