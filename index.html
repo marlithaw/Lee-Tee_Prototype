@@ -2863,13 +2863,10 @@ Finally, Step 4: Restate your position..."
         showAdaptiveMessage('💙 Got it! I'll make sure the audio features are ready to help you follow along.');
 
       } else if (emotion === 'nervous') {
-        // Auto-show hints
+        // Auto-show hints (call toggleSetting to ensure it works properly)
         const hintsToggle = document.getElementById('toggleHints');
         if (hintsToggle && !hintsToggle.classList.contains('on')) {
-          hintsToggle.classList.add('on');
-          document.querySelectorAll('.hint-text').forEach(el => {
-            el.style.display = 'block';
-          });
+          toggleSetting('hints');
         }
 
         // Auto-show SIOP supports
@@ -2891,13 +2888,14 @@ Finally, Step 4: Restate your position..."
     // NEW FUNCTION: Show adaptive message
     function showAdaptiveMessage(message) {
       const messageDiv = document.createElement('div');
-      messageDiv.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg z-50 animate-bounce';
+      messageDiv.style.cssText = 'position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background-color: #7C3AED; color: white; padding: 12px 24px; border-radius: 9999px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 9999; font-weight: 600; animation: bounce 1s ease-in-out 3;';
       messageDiv.textContent = message;
       document.body.appendChild(messageDiv);
 
       setTimeout(() => {
-        messageDiv.classList.remove('animate-bounce');
-        messageDiv.classList.add('opacity-0', 'transition-opacity');
+        messageDiv.style.animation = 'none';
+        messageDiv.style.transition = 'opacity 0.5s';
+        messageDiv.style.opacity = '0';
         setTimeout(() => messageDiv.remove(), 500);
       }, 3000);
     }
