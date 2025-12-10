@@ -2887,17 +2887,32 @@ Finally, Step 4: Restate your position..."
 
     // NEW FUNCTION: Show adaptive message
     function showAdaptiveMessage(message) {
+      // Remove any existing message first
+      const existingMsg = document.getElementById('adaptiveMessage');
+      if (existingMsg) {
+        existingMsg.remove();
+      }
+
       const messageDiv = document.createElement('div');
-      messageDiv.style.cssText = 'position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background-color: #7C3AED; color: white; padding: 12px 24px; border-radius: 9999px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 9999; font-weight: 600; animation: bounce 1s ease-in-out 3;';
+      messageDiv.id = 'adaptiveMessage';
+      messageDiv.style.cssText = 'position: fixed; top: 100px; left: 50%; transform: translateX(-50%); background-color: #7C3AED; color: white; padding: 16px 32px; border-radius: 50px; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4); z-index: 99999; font-weight: 600; font-size: 16px; text-align: center; max-width: 90%; opacity: 0; transition: opacity 0.3s ease-in-out;';
       messageDiv.textContent = message;
       document.body.appendChild(messageDiv);
 
+      // Fade in
       setTimeout(() => {
-        messageDiv.style.animation = 'none';
-        messageDiv.style.transition = 'opacity 0.5s';
+        messageDiv.style.opacity = '1';
+      }, 10);
+
+      // Fade out and remove
+      setTimeout(() => {
         messageDiv.style.opacity = '0';
-        setTimeout(() => messageDiv.remove(), 500);
-      }, 3000);
+        setTimeout(() => {
+          if (messageDiv.parentNode) {
+            messageDiv.remove();
+          }
+        }, 300);
+      }, 4000);
     }
 
     function selectFinalEmotion(element, emotion) {
