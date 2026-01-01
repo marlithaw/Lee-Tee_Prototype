@@ -1044,7 +1044,7 @@ p.active-sentence {
     .sticky-section-nav {
       position: sticky;
       top: 60px;
-      z-index: 100;
+      z-index: 50;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-light);
@@ -1055,13 +1055,13 @@ p.active-sentence {
       position: fixed;
       bottom: 80px;
       right: 20px;
-      z-index: 999;
+      z-index: 200;
       background: #DC2626;
       color: white;
-      padding: 16px 24px;
+      padding: 14px 20px;
       border-radius: 50px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
       box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
       cursor: pointer;
       display: none;
@@ -1111,9 +1111,8 @@ p.active-sentence {
       }
       
       .sticky-section-nav {
-        top: 0;
+        top: 50px;
         padding: 8px 12px;
-        z-index: 999;
       }
 
       .sticky-section-nav .flex {
@@ -1128,17 +1127,11 @@ p.active-sentence {
       }
 
       .floating-stop-btn {
-        bottom: 20px;
+        bottom: 100px;
         right: 50%;
         transform: translateX(50%);
         font-size: 16px;
         padding: 14px 20px;
-      }
-
-      /* Prevent page floating on mobile */
-      body {
-        overflow-x: hidden;
-        position: relative;
       }
       
       .vocab-image {
