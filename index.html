@@ -1044,10 +1044,40 @@ p.active-sentence {
     .sticky-section-nav {
       position: sticky;
       top: 60px;
-      z-index: 40;
+      z-index: 100;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-light);
+    }
+
+    /* Floating Stop Button (appears during read-aloud) */
+    .floating-stop-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 999;
+      background: #DC2626;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4);
+      cursor: pointer;
+      display: none;
+      animation: pulse 2s infinite;
+      border: 3px solid white;
+    }
+
+    .floating-stop-btn.active {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     
     /* Mobile responsiveness */
@@ -1081,19 +1111,34 @@ p.active-sentence {
       }
       
       .sticky-section-nav {
-        top: 50px;
+        top: 0;
         padding: 8px 12px;
+        z-index: 999;
       }
-      
+
       .sticky-section-nav .flex {
         flex-wrap: nowrap;
         overflow-x: auto;
         padding-bottom: 4px;
       }
-      
+
       .sticky-section-nav a {
         font-size: 12px;
         padding: 6px 10px;
+      }
+
+      .floating-stop-btn {
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 16px;
+        padding: 14px 20px;
+      }
+
+      /* Prevent page floating on mobile */
+      body {
+        overflow-x: hidden;
+        position: relative;
       }
       
       .vocab-image {
@@ -1141,6 +1186,12 @@ p.active-sentence {
       ↺
     </button>
   </div>
+
+  <!-- FLOATING STOP BUTTON (Mobile Read-Aloud Control) -->
+  <button id="floatingStopBtn" class="floating-stop-btn" onclick="stopAllNarration()">
+    <span>⏹️</span>
+    <span>STOP</span>
+  </button>
 
   <!-- CELEBRATION OVERLAY -->
   <div id="celebrationOverlay" class="celebration-overlay">
@@ -3066,12 +3117,17 @@ Finally, Step 4: Restate your position..."
     
     // 1. LISTEN MODE - Highlight sentences
     function toggleSectionAudio(btn, sectionId) {
+        const floatingBtn = document.getElementById('floatingStopBtn');
+
         if (btn.classList.contains('playing')) {
             // Stop playback
             speechSynthesis.cancel();
             btn.classList.remove('playing');
             btn.textContent = '🔊 Listen';
             removeAllHighlights();
+
+            // Hide floating stop button
+            if (floatingBtn) floatingBtn.classList.remove('active');
         } else {
             // Stop any existing playback
             speechSynthesis.cancel();
@@ -3079,22 +3135,31 @@ Finally, Step 4: Restate your position..."
                 b.classList.remove('playing');
                 b.textContent = '🔊 Listen';
             });
-            
+
             // Start playback
             btn.classList.add('playing');
             btn.textContent = '⏹️ Stop';
+
+            // Show floating stop button
+            if (floatingBtn) floatingBtn.classList.add('active');
+
             startSentencePlayback(sectionId, btn);
         }
     }
     
     // 2. READ ALOUD MODE - Highlight words
     function readAloudWithWordHighlight(btn, sectionId) {
+        const floatingBtn = document.getElementById('floatingStopBtn');
+
         if (btn.classList.contains('btn-playing')) {
             // Stop playback
             speechSynthesis.cancel();
             btn.classList.remove('btn-playing');
             btn.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
             removeAllHighlights();
+
+            // Hide floating stop button
+            if (floatingBtn) floatingBtn.classList.remove('active');
         } else {
             // Stop any existing playback
             speechSynthesis.cancel();
@@ -3102,12 +3167,33 @@ Finally, Step 4: Restate your position..."
                 b.classList.remove('btn-playing');
                 b.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
             });
-            
+
             // Start playback
             btn.classList.add('btn-playing');
             btn.innerHTML = '<span>⏹️</span><span>Stop</span>';
+
+            // Show floating stop button
+            if (floatingBtn) floatingBtn.classList.add('active');
+
             startWordPlayback(sectionId, btn);
         }
+    }
+
+    // Stop all narration (called by floating button)
+    function stopAllNarration() {
+        speechSynthesis.cancel();
+        document.querySelectorAll('.btn-playing').forEach(b => {
+            b.classList.remove('btn-playing');
+            b.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
+        });
+        document.querySelectorAll('.playing').forEach(b => {
+            b.classList.remove('playing');
+            b.textContent = '🔊 Listen';
+        });
+        removeAllHighlights();
+
+        const floatingBtn = document.getElementById('floatingStopBtn');
+        if (floatingBtn) floatingBtn.classList.remove('active');
     }
     
     // 3. SENTENCE PLAYBACK
@@ -3179,12 +3265,17 @@ Finally, Step 4: Restate your position..."
                     currentSentence.style.borderRadius = '4px';
                     currentSentence.style.borderLeft = '3px solid #7C3AED';
                     currentSentence.style.borderRight = '3px solid #7C3AED';
-                    
-                    // Scroll into view
-                    currentSentence.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
+
+                    // Gentle scroll - only if sentence is off-screen
+                    const rect = currentSentence.getBoundingClientRect();
+                    const isOffScreen = (rect.bottom < 0 || rect.top > window.innerHeight);
+
+                    if (isOffScreen) {
+                        currentSentence.scrollIntoView({
+                            behavior: 'auto',
+                            block: 'nearest'
+                        });
+                    }
                 }
             }
         };
@@ -3303,17 +3394,21 @@ Finally, Step 4: Restate your position..."
                 const currentWord = wordSpans[index];
                 currentWord.classList.add('active-word');
 
-                // Gentle scroll - only if word is outside viewport
+                // Very gentle scroll - only if word is truly off-screen
+                // Give users more control by only scrolling when necessary
                 const rect = currentWord.getBoundingClientRect();
+                const topBuffer = 150;  // Increased buffer zone
+                const bottomBuffer = 200;  // Larger bottom buffer for mobile keyboards
                 const isVisible = (
-                    rect.top >= 100 &&
-                    rect.bottom <= (window.innerHeight - 100)
+                    rect.top >= topBuffer &&
+                    rect.bottom <= (window.innerHeight - bottomBuffer)
                 );
 
-                if (!isVisible) {
+                // Only scroll if word is completely off-screen
+                if (!isVisible && (rect.bottom < 0 || rect.top > window.innerHeight)) {
                     currentWord.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest',  // Changed from 'center' to 'nearest'
+                        behavior: 'auto',  // Changed from 'smooth' to 'auto' for less interruption
+                        block: 'nearest',
                         inline: 'nearest'
                     });
                 }
