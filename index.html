@@ -494,14 +494,14 @@
         </div>
 
         <!-- EPISODE 3: The Dinner Table -->
-        <div class="episode-card episode-3 locked" onclick="goToEpisode(3)">
+        <div class="episode-card episode-3" onclick="goToEpisode(3)">
           <div class="flex items-start gap-4 mb-4">
             <div class="text-5xl">🌍</div>
             <div class="flex-1">
               <div class="flex items-center gap-2 mb-1">
                 <h3 class="font-display text-2xl font-bold text-teal-700">Episode 3</h3>
-                <span class="status-badge status-locked">
-                  🔒 Locked
+                <span class="status-badge status-progress">
+                  ▶️ Available
                 </span>
               </div>
               <p class="font-semibold text-lg text-gray-800">The Dinner Table</p>
@@ -537,14 +537,14 @@
         </div>
 
         <!-- EPISODE 4: The Nighttime Question -->
-        <div class="episode-card episode-4 locked" onclick="goToEpisode(4)">
+        <div class="episode-card episode-4" onclick="goToEpisode(4)">
           <div class="flex items-start gap-4 mb-4">
             <div class="text-5xl">🔬</div>
             <div class="flex-1">
               <div class="flex items-center gap-2 mb-1">
                 <h3 class="font-display text-2xl font-bold text-blue-600">Episode 4</h3>
-                <span class="status-badge status-locked">
-                  🔒 Locked
+                <span class="status-badge status-progress">
+                  ▶️ Available
                 </span>
               </div>
               <p class="font-semibold text-lg text-gray-800">The Nighttime Question</p>
@@ -824,16 +824,7 @@
     function goToEpisode(episodeNum) {
       const progress = loadProgress();
 
-      // Check if episode is locked
-      const episodeCards = document.querySelectorAll('.episode-card');
-      const card = episodeCards[episodeNum - 1];
-
-      if (card.classList.contains('locked')) {
-        alert('Complete previous episodes to unlock this one!');
-        return;
-      }
-
-      // Navigate to episode
+      // Navigate to episode - all episodes are accessible in any order
       const episodeFiles = {
         1: 'episode1.html',
         2: 'episode2.html',
