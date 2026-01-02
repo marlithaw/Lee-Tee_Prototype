@@ -464,7 +464,7 @@ function closeHelper(event, character) {
  */
 function goToEpisode(episodeNum) {
   const episodeFiles = {
-    1: 'index.html',
+    1: 'episode1.html',
     2: 'episode2.html',
     3: 'episode3.html',
     4: 'episode4.html'
@@ -481,7 +481,7 @@ function goToEpisode(episodeNum) {
  * Return to landing page
  */
 function goToLanding() {
-  window.location.href = 'index_landing.html';
+  window.location.href = 'index.html';
 }
 
 // ===== INITIALIZATION =====
