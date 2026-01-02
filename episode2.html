@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode 2: Grandpa's Kitchen | Lee & Tee Book 1</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- OpenDyslexic Font (for accessibility) -->
+  <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="shared/design-system.css">
+
+  <style>
+    /* Episode 2 Specific Styles */
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: linear-gradient(to bottom, #FFF8F0 0%, #FEF3E2 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      color: #1C1917;
+    }
+
+    /* Episode 2 Amber Theme */
+    :root {
+      --episode-color: #F59E0B;
+      --episode-light: #FEF3C7;
+      --episode-dark: #D97706;
+    }
+
+    .episode-accent {
+      color: var(--episode-color);
+    }
+
+    .episode-bg {
+      background-color: var(--episode-light);
+    }
+
+    /* Header with gradient */
+    .hero-header {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FBBF24 50%, #F59E0B 100%);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: #78350F;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #F59E0B, #FBBF24);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* Math Interactive Containers */
+    .math-tool {
+      background: white;
+      border: 3px solid var(--episode-color);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+
+    .fraction-display {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 1rem 0;
+      color: var(--episode-dark);
+    }
+
+    .fraction-bar {
+      border-top: 4px solid var(--episode-color);
+      margin: 0.5rem auto;
+      width: 80px;
+    }
+
+    /* Visual Grid for Fractions */
+    .fraction-grid {
+      display: grid;
+      gap: 4px;
+      max-width: 300px;
+      margin: 1.5rem auto;
+      border: 2px solid var(--episode-color);
+      padding: 8px;
+      border-radius: 8px;
+      background: #FFF;
+    }
+
+    .grid-cell {
+      aspect-ratio: 1;
+      background: #FEF3C7;
+      border: 1px solid #F59E0B;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .grid-cell.filled {
+      background: #F59E0B;
+    }
+
+    /* Recipe Card Styling */
+    .recipe-card {
+      background: white;
+      border-left: 6px solid var(--episode-color);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .ingredient-line {
+      padding: 0.5rem;
+      border-bottom: 1px solid #FEF3C7;
+      font-size: 1.1rem;
+    }
+
+    .ingredient-line:last-child {
+      border-bottom: none;
+    }
+
+    /* Math Answer Choices */
+    .math-choice {
+      background: white;
+      border: 3px solid #FEF3C7;
+      padding: 1rem 1.5rem;
+      margin: 0.75rem 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .math-choice:hover {
+      border-color: #F59E0B;
+      background: #FEF3C7;
+      transform: translateX(4px);
+    }
+
+    .math-choice.correct {
+      border-color: #16A34A;
+      background: #DCFCE7;
+    }
+
+    .math-choice.incorrect {
+      border-color: #DC2626;
+      background: #FEE2E2;
+    }
+
+    /* Floating Stop Button */
+    .floating-stop-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 200;
+      background: #DC2626;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    .floating-stop-btn.active {
+      display: flex;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Story Text Highlighting */
+    .story-text {
+      font-size: 1.25rem;
+      line-height: 2;
+      margin: 1.5rem 0;
+      color: #292524;
+    }
+
+    .active-word {
+      background: linear-gradient(120deg, #FBBF24 0%, #FEF3C7 100%);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .active-sentence {
+      border-left: 5px solid #F59E0B;
+      padding-left: 1rem;
+      background: rgba(254, 243, 199, 0.3);
+    }
+
+    /* Sticky Navigation */
+    .sticky-section-nav {
+      position: sticky;
+      top: 50px;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 50;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+
+      .hero-header {
+        padding: 2rem 1rem;
+      }
+
+      .story-text {
+        font-size: 1.1rem;
+      }
+
+      .fraction-display {
+        font-size: 2rem;
+      }
+
+      .math-tool {
+        padding: 1rem;
+      }
+    }
+
+    /* Dyslexia Mode */
+    body.dyslexia-mode {
+      font-family: 'OpenDyslexic', sans-serif;
+      letter-spacing: 0.05em;
+      word-spacing: 0.1em;
+      line-height: 2;
+    }
+
+    /* High Contrast Mode */
+    body.high-contrast {
+      background: #000000;
+      color: #FFFFFF;
+    }
+
+    body.high-contrast .math-tool,
+    body.high-contrast .recipe-card {
+      background: #1a1a1a;
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+
+    body.high-contrast .math-choice {
+      background: #1a1a1a;
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body data-episode="2">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-container">
+    <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+  </div>
+
+  <!-- BACK TO HOME BUTTON -->
+  <div style="position: fixed; top: 70px; left: 20px; z-index: 100;">
+    <a href="index_landing.html" class="bg-white border-2 border-amber-200 text-amber-700 px-4 py-2 rounded-full font-semibold hover:bg-amber-50 hover:border-amber-400 transition flex items-center gap-2 shadow-md" style="text-decoration: none; display: inline-flex;">
+      <span>←</span>
+      <span>Back to Home</span>
+    </a>
+  </div>
+
+  <!-- FLOATING STOP BUTTON -->
+  <button id="floatingStopBtn" class="floating-stop-btn" onclick="stopAllNarration()">
+    <span>⏹️</span>
+    <span>STOP</span>
+  </button>
+
+  <!-- HEADER -->
+  <header class="hero-header">
+    <div class="max-w-4xl mx-auto">
+      <!-- PLACEHOLDER: Episode Header Image -->
+      <div class="img-placeholder mb-6" style="max-width: 500px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%);">
+        👨‍🍳 EPISODE 2 HEADER IMAGE<br>
+        <span style="font-size: 0.875rem;">(Grandpa in kitchen with Lee & Tee)</span>
+      </div>
+
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="color: #78350F;">
+        Episode 2: Grandpa's Kitchen
+      </h1>
+      <p class="text-xl md:text-2xl mb-2 font-semibold" style="color: #92400E;">
+        Learning Math Through Cooking
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <span class="bg-white px-4 py-2 rounded-full font-semibold text-amber-800">📐 Mathematics</span>
+        <span class="bg-white px-4 py-2 rounded-full font-semibold text-amber-800">🥘 Ratios & Fractions</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="max-w-4xl mx-auto px-4 pb-20">
+
+    <!-- ACCESSIBILITY CONTROLS -->
+    <div class="sticky-section-nav">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-3 flex-wrap">
+          <button onclick="toggleDyslexia()" class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg font-semibold text-purple-700 transition">
+            👓 Dyslexia Mode
+          </button>
+          <button onclick="toggleHighContrast()" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-semibold text-gray-700 transition">
+            ◐ High Contrast
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-600">Progress:</span>
+          <span id="pointsDisplay" class="font-bold text-amber-600 text-lg">0</span>
+          <span class="text-sm text-gray-600">points</span>
+          <div id="badgeContainer" class="flex gap-1 ml-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: INTRODUCTION -->
+    <section id="section-1" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🏠 Saturday Morning at Grandpa's
+        </h2>
+
+        <!-- PLACEHOLDER: Introduction Scene -->
+        <div class="img-placeholder mb-6" style="height: 250px;">
+          🏠 SCENE IMAGE PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(Lee and Tee arriving at Grandpa's house on Saturday morning)</span>
+        </div>
+
+        <div class="story-text">
+          <p class="mb-4">
+            Lee and Tee push open Grandpa's front door, and immediately the smell of cinnamon and vanilla wraps around them like a warm hug. Grandpa is in the kitchen, flour dusting his apron, a mixing bowl in front of him.
+          </p>
+          <p class="mb-4">
+            "Perfect timing!" Grandpa grins. "I'm making my famous apple crisp for the family reunion tomorrow. But I need to make enough for 30 people instead of my usual 10."
+          </p>
+          <p class="mb-4">
+            Tee's eyes light up. "So we need to triple everything?"
+          </p>
+          <p class="mb-4">
+            "Exactly!" Grandpa says. "This is where cooking becomes math. Every recipe is just ratios and proportions in disguise."
+          </p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-1')" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-intro" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE RECIPE -->
+    <section id="section-2" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          📝 Grandpa's Original Recipe (Serves 10)
+        </h2>
+
+        <!-- PLACEHOLDER: Recipe Card Visual -->
+        <div class="img-placeholder mb-6" style="height: 200px;">
+          📋 RECIPE CARD PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(Vintage recipe card with handwritten ingredients)</span>
+        </div>
+
+        <div class="recipe-card">
+          <h3 class="font-bold text-xl mb-4 episode-accent">🍎 Grandpa's Apple Crisp</h3>
+          <div class="space-y-2">
+            <div class="ingredient-line">🍎 <strong>6 cups</strong> sliced apples</div>
+            <div class="ingredient-line">🍚 <strong>2 cups</strong> oats</div>
+            <div class="ingredient-line">🧈 <strong>1 cup</strong> butter</div>
+            <div class="ingredient-line">🍯 <strong>¾ cup</strong> brown sugar</div>
+            <div class="ingredient-line">🌾 <strong>½ cup</strong> flour</div>
+            <div class="ingredient-line">✨ <strong>2 teaspoons</strong> cinnamon</div>
+          </div>
+        </div>
+
+        <div class="story-text mt-6">
+          <p class="mb-4">
+            Lee pulls out her notebook. "So if this recipe serves 10 people, and we need to serve 30 people, we're multiplying everything by..."
+          </p>
+          <p class="mb-4">
+            "By 3!" Tee jumps in. "Because 30 ÷ 10 = 3."
+          </p>
+          <p class="mb-4">
+            Grandpa nods. "That's called a <strong class="episode-accent">scale factor</strong>. When you know the scale factor, you can adjust any recipe."
+          </p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-2')" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-recipe" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: INTERACTIVE MATH TOOL - SCALE FACTOR -->
+    <section id="section-3" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🔢 Understanding Scale Factors
+        </h2>
+
+        <div class="math-tool">
+          <h3 class="font-bold text-xl mb-4 text-center">Scale Factor Calculator</h3>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="text-center">
+              <p class="text-gray-600 mb-2">Original Servings</p>
+              <input type="number" id="originalServings" value="10" min="1" class="border-3 border-amber-300 rounded-lg px-4 py-2 text-2xl font-bold text-center w-32">
+            </div>
+            <div class="text-center">
+              <p class="text-gray-600 mb-2">New Servings</p>
+              <input type="number" id="newServings" value="30" min="1" class="border-3 border-amber-300 rounded-lg px-4 py-2 text-2xl font-bold text-center w-32">
+            </div>
+          </div>
+
+          <div class="text-center mb-6">
+            <button onclick="calculateScaleFactor()" class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-xl font-bold text-lg transition">
+              Calculate Scale Factor
+            </button>
+          </div>
+
+          <div id="scaleFactorResult" class="hidden">
+            <div class="bg-amber-50 border-3 border-amber-300 rounded-xl p-6 text-center">
+              <p class="text-gray-700 mb-2">Scale Factor:</p>
+              <div class="fraction-display">
+                <div id="scaleFactorNumerator">30</div>
+                <div class="fraction-bar"></div>
+                <div id="scaleFactorDenominator">10</div>
+              </div>
+              <p class="text-2xl font-bold episode-accent mt-4">
+                = <span id="scaleFactorDecimal">3</span>
+              </p>
+              <p class="text-gray-600 mt-4">
+                Multiply each ingredient by <span class="font-bold episode-accent" id="scaleFactorText">3</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-text mt-6">
+          <p class="mb-4">
+            "This is just like what we learned in our rap battle!" Lee realizes. "We're using <strong class="episode-accent">evidence</strong> to support our claim. The original recipe is our evidence, and the scale factor helps us prove how much we need."
+          </p>
+        </div>
+
+        <div id="progress-scalefactor" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MULTIPLYING WITH FRACTIONS -->
+    <section id="section-4" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          ✖️ Multiplying Fractions
+        </h2>
+
+        <!-- PLACEHOLDER: Fraction Multiplication Visual -->
+        <div class="img-placeholder mb-6" style="height: 220px;">
+          ✖️ FRACTION VISUAL PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(Visual diagram showing ¾ cup × 3)</span>
+        </div>
+
+        <div class="story-text">
+          <p class="mb-4">
+            "Okay," Tee says, looking at the recipe. "We need ¾ cup of brown sugar for 10 people. So for 30 people, we need ¾ times 3."
+          </p>
+          <p class="mb-4">
+            Grandpa pulls out a measuring cup. "Let's visualize this. When you multiply a fraction by a whole number, you're really asking: <em>'How many groups of this fraction do I need?'</em>"
+          </p>
+        </div>
+
+        <div class="math-tool">
+          <h3 class="font-bold text-xl mb-4 text-center">Visual Fraction Multiplier</h3>
+
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-4 text-3xl font-bold">
+              <div>
+                <div class="episode-accent">3</div>
+                <div class="fraction-bar" style="width: 50px;"></div>
+                <div class="episode-accent">4</div>
+              </div>
+              <div>×</div>
+              <div class="episode-accent">3</div>
+            </div>
+          </div>
+
+          <!-- Visual Grid showing 3/4 repeated 3 times -->
+          <div class="grid md:grid-cols-3 gap-4 mb-6">
+            <div>
+              <p class="text-center text-sm text-gray-600 mb-2">First ¾ cup</p>
+              <div class="fraction-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-center text-sm text-gray-600 mb-2">Second ¾ cup</p>
+              <div class="fraction-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell"></div>
+              </div>
+            </div>
+            <div>
+              <p class="text-center text-sm text-gray-600 mb-2">Third ¾ cup</p>
+              <div class="fraction-grid" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);">
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell filled"></div>
+                <div class="grid-cell"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 border-3 border-amber-300 rounded-xl p-6 text-center">
+            <p class="text-gray-700 mb-2">Total:</p>
+            <div class="fraction-display">
+              <div>9</div>
+              <div class="fraction-bar"></div>
+              <div>4</div>
+            </div>
+            <p class="text-2xl font-bold episode-accent mt-4">
+              = 2 ¼ cups
+            </p>
+          </div>
+        </div>
+
+        <div class="story-text mt-6">
+          <p class="mb-4">
+            "I get it!" Lee says. "Three groups of ¾ gives us 9/4, which is the same as 2 and 1/4 cups!"
+          </p>
+          <p class="mb-4">
+            Grandpa smiles. "Exactly. In cooking, we usually convert to mixed numbers because it's easier to measure."
+          </p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-4')" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-fractions" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PRACTICE PROBLEM - BUTTER -->
+    <section id="section-5" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🧮 Practice: Scaling the Butter
+        </h2>
+
+        <div class="story-text">
+          <p class="mb-4">
+            "Your turn," Grandpa says to Tee. "The original recipe calls for 1 cup of butter. If we're tripling the recipe, how much butter do we need?"
+          </p>
+        </div>
+
+        <div class="math-tool">
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-4 text-3xl font-bold">
+              <div class="episode-accent">1 cup</div>
+              <div>×</div>
+              <div class="episode-accent">3</div>
+              <div>=</div>
+              <div>?</div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="math-choice" onclick="checkMathAnswer('butter', '2cups', this)">
+              2 cups
+            </div>
+            <div class="math-choice" onclick="checkMathAnswer('butter', '3cups', this)">
+              3 cups ✓
+            </div>
+            <div class="math-choice" onclick="checkMathAnswer('butter', '4cups', this)">
+              4 cups
+            </div>
+            <div class="math-choice" onclick="checkMathAnswer('butter', '1.5cups', this)">
+              1½ cups
+            </div>
+          </div>
+
+          <div id="feedback-butter" class="hidden mt-6"></div>
+        </div>
+
+        <div id="progress-butter" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PRACTICE PROBLEM - CINNAMON -->
+    <section id="section-6" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🧮 Practice: Scaling the Cinnamon
+        </h2>
+
+        <div class="story-text">
+          <p class="mb-4">
+            Lee grabs the cinnamon jar. "The recipe calls for 2 teaspoons. Let me calculate: 2 teaspoons times 3 equals..."
+          </p>
+        </div>
+
+        <div class="math-tool">
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-4 text-3xl font-bold">
+              <div class="episode-accent">2 tsp</div>
+              <div>×</div>
+              <div class="episode-accent">3</div>
+              <div>=</div>
+              <div>?</div>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="math-choice" onclick="checkMathAnswer('cinnamon', '5tsp', this)">
+              5 teaspoons
+            </div>
+            <div class="math-choice" onclick="checkMathAnswer('cinnamon', '6tsp', this)">
+              6 teaspoons ✓
+            </div>
+            <div class="math-choice" onclick="checkMathAnswer('cinnamon', '8tsp', this)">
+              8 teaspoons
+            </div>
+            <div class="math-choice" onclick="checkMathAnswer('cinnamon', '3tsp', this)">
+              3 teaspoons
+            </div>
+          </div>
+
+          <div id="feedback-cinnamon" class="hidden mt-6"></div>
+        </div>
+
+        <div class="story-text mt-6">
+          <p class="mb-4">
+            "Wait!" Grandpa holds up a hand. "6 teaspoons is the same as 2 tablespoons. In cooking, we often convert to make measuring easier."
+          </p>
+          <p class="mb-4">
+            Tee tilts his head. "Why does that matter?"
+          </p>
+          <p class="mb-4">
+            "Because," Grandpa explains, "when you understand the <strong class="episode-accent">relationships between units</strong>, you can work smarter, not harder. Just like in your rap battle—you had to understand the relationship between the claim and the evidence."
+          </p>
+        </div>
+
+        <div id="progress-cinnamon" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: UNIT CONVERSION -->
+    <section id="section-7" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          📏 Unit Conversion: Teaspoons to Tablespoons
+        </h2>
+
+        <!-- PLACEHOLDER: Measurement Conversion Visual -->
+        <div class="img-placeholder mb-6" style="height: 200px;">
+          📏 MEASUREMENT VISUAL PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(Visual showing 3 teaspoons = 1 tablespoon)</span>
+        </div>
+
+        <div class="math-tool">
+          <h3 class="font-bold text-xl mb-4 text-center">Conversion Chart</h3>
+
+          <div class="bg-amber-50 rounded-lg p-6 space-y-4">
+            <div class="flex items-center justify-between border-b-2 border-amber-200 pb-3">
+              <span class="font-bold">3 teaspoons</span>
+              <span>=</span>
+              <span class="font-bold">1 tablespoon</span>
+            </div>
+            <div class="flex items-center justify-between border-b-2 border-amber-200 pb-3">
+              <span class="font-bold">4 tablespoons</span>
+              <span>=</span>
+              <span class="font-bold">¼ cup</span>
+            </div>
+            <div class="flex items-center justify-between border-b-2 border-amber-200 pb-3">
+              <span class="font-bold">8 tablespoons</span>
+              <span>=</span>
+              <span class="font-bold">½ cup</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold">16 tablespoons</span>
+              <span>=</span>
+              <span class="font-bold">1 cup</span>
+            </div>
+          </div>
+
+          <div class="mt-6 text-center">
+            <p class="text-gray-700 mb-2">So 6 teaspoons = ?</p>
+            <div class="text-center">
+              <input type="number" id="tspConversion" placeholder="?" class="border-3 border-amber-300 rounded-lg px-4 py-2 text-2xl font-bold text-center w-24 mr-2">
+              <span class="text-xl">tablespoons</span>
+            </div>
+            <button onclick="checkConversion()" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold mt-4 transition">
+              Check Answer
+            </button>
+            <div id="conversion-feedback" class="mt-4"></div>
+          </div>
+        </div>
+
+        <div id="progress-conversion" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: THE BIG CHALLENGE -->
+    <section id="section-8" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🏆 The Big Challenge: Complete the Scaled Recipe
+        </h2>
+
+        <div class="story-text">
+          <p class="mb-4">
+            Grandpa hands Lee and Tee the recipe card and a pencil. "Alright, master chefs. I need you to calculate the full scaled recipe for all 30 people. Show your work!"
+          </p>
+        </div>
+
+        <div class="recipe-card">
+          <h3 class="font-bold text-xl mb-4 episode-accent">🍎 Scaled Recipe for 30 People</h3>
+          <p class="text-sm text-gray-600 mb-4">Original (10 people) → New (30 people) | Scale Factor: 3</p>
+
+          <div class="space-y-3">
+            <div class="bg-gray-50 rounded p-3">
+              <div class="flex justify-between items-center">
+                <span>🍎 Apples: 6 cups × 3 =</span>
+                <input type="number" id="apples-scaled" class="border-2 border-amber-300 rounded px-3 py-1 w-20 text-center font-bold">
+                <span>cups</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 rounded p-3">
+              <div class="flex justify-between items-center">
+                <span>🍚 Oats: 2 cups × 3 =</span>
+                <input type="number" id="oats-scaled" class="border-2 border-amber-300 rounded px-3 py-1 w-20 text-center font-bold">
+                <span>cups</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 rounded p-3">
+              <div class="flex justify-between items-center">
+                <span>🧈 Butter: 1 cup × 3 =</span>
+                <input type="number" id="butter-scaled" class="border-2 border-amber-300 rounded px-3 py-1 w-20 text-center font-bold">
+                <span>cups</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 rounded p-3">
+              <div class="flex justify-between items-center">
+                <span>🍯 Brown Sugar: ¾ cup × 3 =</span>
+                <input type="text" id="sugar-scaled" placeholder="2.25 or 2 1/4" class="border-2 border-amber-300 rounded px-3 py-1 w-32 text-center font-bold">
+                <span>cups</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 rounded p-3">
+              <div class="flex justify-between items-center">
+                <span>🌾 Flour: ½ cup × 3 =</span>
+                <input type="text" id="flour-scaled" placeholder="1.5 or 1 1/2" class="border-2 border-amber-300 rounded px-3 py-1 w-32 text-center font-bold">
+                <span>cups</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 rounded p-3">
+              <div class="flex justify-between items-center">
+                <span>✨ Cinnamon: 2 tsp × 3 =</span>
+                <input type="number" id="cinnamon-scaled" class="border-2 border-amber-300 rounded px-3 py-1 w-20 text-center font-bold">
+                <span>tsp (or 2 tbsp)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 text-center">
+            <button onclick="checkFullRecipe()" class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition">
+              Check My Recipe!
+            </button>
+          </div>
+
+          <div id="recipe-feedback" class="mt-6"></div>
+        </div>
+
+        <div id="progress-challenge" class="progress-check" data-points="20"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: GRANDPA'S WISDOM -->
+    <section id="section-9" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💡 Grandpa's Wisdom
+        </h2>
+
+        <!-- PLACEHOLDER: Grandpa Teaching Moment -->
+        <div class="img-placeholder mb-6" style="height: 220px;">
+          👨‍🍳 TEACHING MOMENT PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(Grandpa with Lee & Tee in kitchen, showing measuring cups)</span>
+        </div>
+
+        <div class="story-text">
+          <p class="mb-4">
+            As Lee and Tee finish calculating, Grandpa pulls three stools up to the kitchen counter. The scaled recipe sits between them, covered in their pencil marks and calculations.
+          </p>
+          <p class="mb-4">
+            "You know what I love about cooking?" Grandpa asks. "It's <strong class="episode-accent">proof that math isn't just something you do on paper</strong>. Every time you double a recipe or cut one in half, you're using ratios and proportions."
+          </p>
+          <p class="mb-4">
+            Tee nods. "Just like in the rap battle, we had to use evidence to support our argument. Here, we use math to support our cooking!"
+          </p>
+          <p class="mb-4">
+            "Exactly!" Grandpa grins. "And the best part? When you mess up the math in a recipe, you get immediate feedback—it tastes wrong! Math becomes real when you can see it, touch it, and taste it."
+          </p>
+        </div>
+
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+          <p class="font-bold text-lg mb-2 episode-accent">🧠 Key Lesson:</p>
+          <p class="text-gray-800">
+            Math shows up everywhere in real life—not just in textbooks. When you scale a recipe, you're multiplying fractions. When you measure ingredients, you're converting units. The same thinking skills work across all subjects.
+          </p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-9')" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-wisdom" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: REFLECTION -->
+    <section id="section-10" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🤔 Reflection: How Math Connects
+        </h2>
+
+        <div class="story-text">
+          <p class="mb-4">
+            "So let me get this straight," Lee says, reviewing her notes. "In Episode 1, we learned about using evidence to support claims in writing. Now in the kitchen, we're using numbers and calculations as evidence to support our cooking decisions."
+          </p>
+          <p class="mb-4">
+            "That's the pattern!" Grandpa says. "Whether it's a rap battle or a recipe, you always need to back up what you're saying with proof. <strong class="episode-accent">The structure is the same. Just different stuff.</strong>"
+          </p>
+        </div>
+
+        <div class="math-tool">
+          <h3 class="font-bold text-xl mb-4 text-center">Think About It</h3>
+
+          <div class="bg-purple-50 border-2 border-purple-300 rounded-xl p-6 mb-4">
+            <p class="font-semibold mb-3 text-purple-800">
+              Episode 1 (Rap Battle): Claims need evidence
+            </p>
+            <p class="text-gray-700">
+              Tee couldn't just say "I'm the best." He had to prove it with specific examples and reasoning.
+            </p>
+          </div>
+
+          <div class="bg-amber-50 border-2 border-amber-300 rounded-xl p-6">
+            <p class="font-semibold mb-3 episode-accent">
+              Episode 2 (Cooking): Recipes need calculations
+            </p>
+            <p class="text-gray-700">
+              We couldn't just guess the ingredient amounts. We had to prove our scaling with multiplication and unit conversion.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <p class="font-bold mb-3">✍️ Your Turn to Reflect:</p>
+          <textarea id="reflection-input" rows="4" class="w-full border-3 border-amber-300 rounded-lg p-4 text-lg" placeholder="Where else in your life do you use evidence to support your decisions or claims? (Think: sports, video games, family discussions...)"></textarea>
+          <button onclick="saveReflection()" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold mt-3 transition">
+            Save My Reflection
+          </button>
+          <div id="reflection-feedback" class="mt-4"></div>
+        </div>
+
+        <div id="progress-reflection" class="progress-check" data-points="15"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: VOCABULARY RECAP -->
+    <section id="section-11" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          📚 Math Vocabulary Learned
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="border-2 border-amber-200 rounded-lg p-4 hover:border-amber-400 cursor-pointer transition" onclick="showVocab('scaleFactor', mathVocab)">
+            <h3 class="font-bold text-lg episode-accent mb-2">Scale Factor</h3>
+            <p class="text-sm text-gray-600">The number you multiply by to resize a recipe or pattern</p>
+            <p class="text-xs text-amber-600 mt-2">Click to learn more →</p>
+          </div>
+
+          <div class="border-2 border-amber-200 rounded-lg p-4 hover:border-amber-400 cursor-pointer transition" onclick="showVocab('ratio', mathVocab)">
+            <h3 class="font-bold text-lg episode-accent mb-2">Ratio</h3>
+            <p class="text-sm text-gray-600">A comparison between two quantities</p>
+            <p class="text-xs text-amber-600 mt-2">Click to learn more →</p>
+          </div>
+
+          <div class="border-2 border-amber-200 rounded-lg p-4 hover:border-amber-400 cursor-pointer transition" onclick="showVocab('proportion', mathVocab)">
+            <h3 class="font-bold text-lg episode-accent mb-2">Proportion</h3>
+            <p class="text-sm text-gray-600">An equation showing two ratios are equal</p>
+            <p class="text-xs text-amber-600 mt-2">Click to learn more →</p>
+          </div>
+
+          <div class="border-2 border-amber-200 rounded-lg p-4 hover:border-amber-400 cursor-pointer transition" onclick="showVocab('unitConversion', mathVocab)">
+            <h3 class="font-bold text-lg episode-accent mb-2">Unit Conversion</h3>
+            <p class="text-sm text-gray-600">Changing from one unit of measurement to another</p>
+            <p class="text-xs text-amber-600 mt-2">Click to learn more →</p>
+          </div>
+        </div>
+
+        <div id="progress-vocab" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 12: EXTENSION CHALLENGE -->
+    <section id="section-12" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🌟 Extension Challenge: Divide the Recipe
+        </h2>
+
+        <div class="story-text">
+          <p class="mb-4">
+            "What if," Lee wonders, "we wanted to make the recipe smaller instead of bigger? Like, what if we only wanted to serve 5 people instead of 10?"
+          </p>
+          <p class="mb-4">
+            Grandpa's eyes light up. "Now you're thinking like a real chef! That's called <strong class="episode-accent">scaling down</strong>. You'd divide instead of multiply."
+          </p>
+        </div>
+
+        <div class="math-tool">
+          <h3 class="font-bold text-xl mb-4 text-center">Challenge Problem</h3>
+
+          <div class="bg-amber-50 border-2 border-amber-300 rounded-xl p-6 mb-6">
+            <p class="text-center mb-4">
+              <strong>Original Recipe (10 people):</strong> 6 cups of apples
+            </p>
+            <p class="text-center mb-4">
+              <strong>New Recipe (5 people):</strong> How many cups of apples?
+            </p>
+
+            <div class="text-center mb-4">
+              <p class="text-sm text-gray-600 mb-2">Scale Factor: 5 ÷ 10 = ?</p>
+              <input type="text" id="challenge-scalefactor" placeholder="0.5 or 1/2" class="border-3 border-amber-300 rounded-lg px-4 py-2 text-xl font-bold text-center w-40">
+            </div>
+
+            <div class="text-center mb-4">
+              <p class="text-sm text-gray-600 mb-2">Apples needed: 6 cups × scale factor = ?</p>
+              <input type="text" id="challenge-apples" placeholder="3" class="border-3 border-amber-300 rounded-lg px-4 py-2 text-xl font-bold text-center w-32">
+              <span class="text-xl ml-2">cups</span>
+            </div>
+
+            <button onclick="checkExtensionChallenge()" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition">
+              Check Answer
+            </button>
+
+            <div id="extension-feedback" class="mt-4"></div>
+          </div>
+        </div>
+
+        <div id="progress-extension" class="progress-check" data-points="20"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 13: CONCLUSION -->
+    <section id="section-13" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🎉 Apple Crisp Success!
+        </h2>
+
+        <!-- PLACEHOLDER: Final Scene -->
+        <div class="img-placeholder mb-6" style="height: 250px;">
+          🍎 FINAL SCENE PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(Family reunion with apple crisp, everyone enjoying)</span>
+        </div>
+
+        <div class="story-text">
+          <p class="mb-4">
+            The next day at the family reunion, Lee and Tee watch as their scaled-up apple crisp disappears from the dessert table. Aunts, uncles, cousins—everyone wants a second helping.
+          </p>
+          <p class="mb-4">
+            "This is the best batch yet!" Aunt Carol says to Grandpa.
+          </p>
+          <p class="mb-4">
+            Grandpa winks at Lee and Tee. "I had some expert help with the math this time."
+          </p>
+          <p class="mb-4">
+            Tee grins. "Who knew multiplying fractions could taste this good?"
+          </p>
+          <p class="mb-4">
+            Lee pulls out her notebook one more time. "Same structure, different stuff," she writes. "In Episode 1, we learned to support claims with evidence. In Episode 2, we learned to support cooking with calculations. <strong class="episode-accent">The pattern is everywhere.</strong>"
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-r from-amber-100 to-amber-200 rounded-xl p-6 text-center">
+          <p class="text-2xl font-bold episode-accent mb-3">🏆 Episode 2 Complete!</p>
+          <p class="text-lg text-gray-800">
+            You've mastered ratios, proportions, and fraction operations—all through cooking!
+          </p>
+        </div>
+
+        <div class="flex gap-3 mt-6 justify-center">
+          <button onclick="playStorySection('section-13')" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+          <a href="index_landing.html" class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition inline-flex items-center gap-2">
+            <span>🏠</span>
+            <span>Back to Home</span>
+          </a>
+        </div>
+
+        <div id="progress-conclusion" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- EPISODE COMPLETE CELEBRATION -->
+    <div id="episode-complete" class="hidden">
+      <div class="bg-gradient-to-r from-amber-400 to-amber-600 rounded-2xl p-8 text-center text-white shadow-2xl">
+        <p class="text-6xl mb-4">🎉</p>
+        <h2 class="font-display text-4xl font-bold mb-4">Congratulations!</h2>
+        <p class="text-xl mb-6">You've completed Episode 2: Grandpa's Kitchen!</p>
+        <div class="bg-white text-amber-800 rounded-xl p-6 mb-6">
+          <p class="text-2xl font-bold mb-2">Total Points: <span id="final-points">0</span></p>
+          <p class="text-lg">Badges Earned: <span id="final-badges">0</span></p>
+        </div>
+        <a href="index_landing.html" class="bg-white text-amber-600 px-8 py-4 rounded-xl font-bold text-lg inline-block hover:bg-amber-50 transition">
+          Continue Your Learning Journey
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VOCABULARY MODAL -->
+  <div id="vocabModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4" onclick="closeVocabModal(event)" style="display: none;">
+    <div class="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="font-display text-3xl font-bold episode-accent" id="vocabWord">Word</h3>
+        <button onclick="closeVocabModal(event)" class="text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
+      </div>
+
+      <div class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">Definition:</p>
+        <p class="text-lg text-gray-800" id="vocabDefinition">Definition here</p>
+      </div>
+
+      <div class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">Example:</p>
+        <p class="text-lg text-gray-800 italic" id="vocabExample">Example here</p>
+      </div>
+
+      <button id="vocabSpeak" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl font-semibold w-full transition">
+        🔊 Hear It Pronounced
+      </button>
+    </div>
+  </div>
+
+  <!-- CELEBRATION OVERLAY -->
+  <div id="celebrationOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" style="display: none;">
+    <div class="bg-white rounded-2xl p-12 text-center max-w-md shadow-2xl">
+      <div class="text-6xl mb-4" id="celebrationEmoji">🎉</div>
+      <h3 class="font-display text-3xl font-bold mb-4 episode-accent" id="celebrationTitle">Great Work!</h3>
+      <p class="text-xl text-gray-700" id="celebrationMessage">You earned points!</p>
+      <button onclick="closeCelebration()" class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-xl font-semibold mt-6 transition">
+        Continue Learning
+      </button>
+    </div>
+  </div>
+
+  <!-- Shared Components JavaScript -->
+  <script src="shared/shared-components.js"></script>
+
+  <!-- Episode 2 Specific JavaScript -->
+  <script>
+    // Math Vocabulary Data
+    const mathVocab = {
+      scaleFactor: {
+        definition: "A number that you multiply by to increase or decrease the size of something proportionally.",
+        example: "If a recipe serves 10 and you need to serve 30, your scale factor is 3 because 30 ÷ 10 = 3.",
+        pronunciation: "SCALE FAK-tor"
+      },
+      ratio: {
+        definition: "A comparison between two quantities, showing how many times one value contains another.",
+        example: "The ratio of apples to oats in Grandpa's recipe is 6:2, which simplifies to 3:1.",
+        pronunciation: "RAY-shee-oh"
+      },
+      proportion: {
+        definition: "An equation that shows two ratios are equal to each other.",
+        example: "If 10 people need 6 cups of apples, then 30 people need 18 cups: 10/6 = 30/18.",
+        pronunciation: "proh-POR-shun"
+      },
+      unitConversion: {
+        definition: "The process of changing a measurement from one unit to another.",
+        example: "Converting 6 teaspoons to tablespoons: 6 ÷ 3 = 2 tablespoons.",
+        pronunciation: "YOO-nit con-VER-zhun"
+      }
+    };
+
+    // Scale Factor Calculator
+    function calculateScaleFactor() {
+      const original = parseFloat(document.getElementById('originalServings').value);
+      const newServings = parseFloat(document.getElementById('newServings').value);
+
+      if (!original || !newServings || original <= 0 || newServings <= 0) {
+        alert('Please enter valid serving numbers!');
+        return;
+      }
+
+      const scaleFactor = newServings / original;
+
+      document.getElementById('scaleFactorNumerator').textContent = newServings;
+      document.getElementById('scaleFactorDenominator').textContent = original;
+      document.getElementById('scaleFactorDecimal').textContent = scaleFactor;
+      document.getElementById('scaleFactorText').textContent = scaleFactor;
+
+      document.getElementById('scaleFactorResult').classList.remove('hidden');
+
+      // Mark progress
+      markProgressComplete('progress-scalefactor');
+    }
+
+    // Check Math Answer
+    function checkMathAnswer(questionId, correctAnswer, element) {
+      const allChoices = element.parentElement.querySelectorAll('.math-choice');
+      allChoices.forEach(choice => {
+        choice.classList.remove('correct', 'incorrect');
+      });
+
+      const selectedAnswer = correctAnswer;
+      const feedbackEl = document.getElementById(`feedback-${questionId}`);
+
+      if (element.textContent.includes('✓')) {
+        element.classList.add('correct');
+        feedbackEl.classList.remove('hidden');
+        feedbackEl.innerHTML = `
+          <div class="bg-green-100 border-2 border-green-500 rounded-xl p-4">
+            <p class="font-bold text-green-800 text-lg">✓ Correct!</p>
+            <p class="text-green-700">Great job! You got it right.</p>
+          </div>
+        `;
+
+        if (!learningState.completedActivities.includes(questionId)) {
+          learningState.completedActivities.push(questionId);
+          addPoints(10, 'Correct answer!');
+        }
+
+        markProgressComplete(`progress-${questionId}`);
+      } else {
+        element.classList.add('incorrect');
+        feedbackEl.classList.remove('hidden');
+        feedbackEl.innerHTML = `
+          <div class="bg-red-100 border-2 border-red-500 rounded-xl p-4">
+            <p class="font-bold text-red-800 text-lg">✗ Not quite</p>
+            <p class="text-red-700">Try again! Think about multiplying by the scale factor.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Check Unit Conversion
+    function checkConversion() {
+      const answer = parseFloat(document.getElementById('tspConversion').value);
+      const feedback = document.getElementById('conversion-feedback');
+
+      if (answer === 2) {
+        feedback.innerHTML = `
+          <div class="bg-green-100 border-2 border-green-500 rounded-xl p-4">
+            <p class="font-bold text-green-800 text-lg">✓ Correct!</p>
+            <p class="text-green-700">6 teaspoons = 2 tablespoons (because 6 ÷ 3 = 2)</p>
+          </div>
+        `;
+
+        if (!learningState.completedActivities.includes('conversion')) {
+          learningState.completedActivities.push('conversion');
+          addPoints(10, 'Unit conversion mastered!');
+        }
+
+        markProgressComplete('progress-conversion');
+      } else {
+        feedback.innerHTML = `
+          <div class="bg-red-100 border-2 border-red-500 rounded-xl p-4">
+            <p class="font-bold text-red-800 text-lg">✗ Not quite</p>
+            <p class="text-red-700">Remember: 3 teaspoons = 1 tablespoon</p>
+          </div>
+        `;
+      }
+    }
+
+    // Check Full Recipe
+    function checkFullRecipe() {
+      const apples = parseFloat(document.getElementById('apples-scaled').value);
+      const oats = parseFloat(document.getElementById('oats-scaled').value);
+      const butter = parseFloat(document.getElementById('butter-scaled').value);
+      const sugar = document.getElementById('sugar-scaled').value;
+      const flour = document.getElementById('flour-scaled').value;
+      const cinnamon = parseFloat(document.getElementById('cinnamon-scaled').value);
+
+      const feedback = document.getElementById('recipe-feedback');
+
+      const checks = {
+        apples: apples === 18,
+        oats: oats === 6,
+        butter: butter === 3,
+        sugar: sugar === '2.25' || sugar === '2 1/4' || sugar === '2.25',
+        flour: flour === '1.5' || flour === '1 1/2' || flour === '1.5',
+        cinnamon: cinnamon === 6
+      };
+
+      const allCorrect = Object.values(checks).every(v => v);
+
+      if (allCorrect) {
+        feedback.innerHTML = `
+          <div class="bg-green-100 border-2 border-green-500 rounded-xl p-6">
+            <p class="font-bold text-green-800 text-2xl mb-3">🎉 Perfect Recipe!</p>
+            <p class="text-green-700 text-lg">You successfully scaled every ingredient! Grandpa would be proud.</p>
+          </div>
+        `;
+
+        if (!learningState.completedActivities.includes('fullrecipe')) {
+          learningState.completedActivities.push('fullrecipe');
+          addPoints(20, 'Complete recipe scaling!');
+        }
+
+        markProgressComplete('progress-challenge');
+      } else {
+        const errors = [];
+        if (!checks.apples) errors.push('apples (should be 18)');
+        if (!checks.oats) errors.push('oats (should be 6)');
+        if (!checks.butter) errors.push('butter (should be 3)');
+        if (!checks.sugar) errors.push('brown sugar (should be 2.25 or 2 1/4)');
+        if (!checks.flour) errors.push('flour (should be 1.5 or 1 1/2)');
+        if (!checks.cinnamon) errors.push('cinnamon (should be 6)');
+
+        feedback.innerHTML = `
+          <div class="bg-red-100 border-2 border-red-500 rounded-xl p-6">
+            <p class="font-bold text-red-800 text-lg mb-2">Not quite there yet!</p>
+            <p class="text-red-700">Check these ingredients: ${errors.join(', ')}</p>
+          </div>
+        `;
+      }
+    }
+
+    // Save Reflection
+    function saveReflection() {
+      const reflection = document.getElementById('reflection-input').value;
+      const feedback = document.getElementById('reflection-feedback');
+
+      if (reflection.trim().length < 20) {
+        feedback.innerHTML = `
+          <div class="bg-yellow-100 border-2 border-yellow-500 rounded-xl p-4">
+            <p class="text-yellow-800">Please write at least a few sentences for your reflection.</p>
+          </div>
+        `;
+        return;
+      }
+
+      localStorage.setItem('episode2Reflection', reflection);
+
+      feedback.innerHTML = `
+        <div class="bg-green-100 border-2 border-green-500 rounded-xl p-4">
+          <p class="font-bold text-green-800">✓ Reflection Saved!</p>
+          <p class="text-green-700">Great thinking about how evidence shows up in different situations.</p>
+        </div>
+      `;
+
+      if (!learningState.completedActivities.includes('reflection')) {
+        learningState.completedActivities.push('reflection');
+        addPoints(15, 'Thoughtful reflection!');
+      }
+
+      markProgressComplete('progress-reflection');
+    }
+
+    // Check Extension Challenge
+    function checkExtensionChallenge() {
+      const scaleFactor = document.getElementById('challenge-scalefactor').value;
+      const apples = parseFloat(document.getElementById('challenge-apples').value);
+      const feedback = document.getElementById('extension-feedback');
+
+      const scaleCorrect = scaleFactor === '0.5' || scaleFactor === '1/2' || scaleFactor === '.5';
+      const applesCorrect = apples === 3;
+
+      if (scaleCorrect && applesCorrect) {
+        feedback.innerHTML = `
+          <div class="bg-green-100 border-2 border-green-500 rounded-xl p-4">
+            <p class="font-bold text-green-800 text-lg">🌟 Excellent!</p>
+            <p class="text-green-700">You understand both scaling up AND down!</p>
+          </div>
+        `;
+
+        if (!learningState.completedActivities.includes('extension')) {
+          learningState.completedActivities.push('extension');
+          addPoints(20, 'Extension challenge conquered!');
+        }
+
+        markProgressComplete('progress-extension');
+      } else {
+        feedback.innerHTML = `
+          <div class="bg-red-100 border-2 border-red-500 rounded-xl p-4">
+            <p class="font-bold text-red-800">Try again!</p>
+            <p class="text-red-700">Hint: To go from 10 to 5 people, divide by 2 (or multiply by 0.5)</p>
+          </div>
+        `;
+      }
+    }
+
+    // Mark Progress Complete
+    function markProgressComplete(progressId) {
+      const progressEl = document.getElementById(progressId);
+      if (!progressEl) return;
+
+      const points = parseInt(progressEl.getAttribute('data-points')) || 0;
+
+      if (!progressEl.classList.contains('completed')) {
+        progressEl.classList.add('completed');
+        updateProgressBar();
+      }
+    }
+
+    // Update Progress Bar
+    function updateProgressBar() {
+      const totalSections = 13;
+      const completedSections = document.querySelectorAll('.progress-check.completed').length;
+      const percentage = (completedSections / totalSections) * 100;
+
+      document.getElementById('progressBar').style.width = percentage + '%';
+
+      // Check if episode complete
+      if (percentage >= 100) {
+        setTimeout(() => {
+          document.getElementById('episode-complete').classList.remove('hidden');
+          document.getElementById('final-points').textContent = learningState.points;
+          document.getElementById('final-badges').textContent = learningState.badges.length;
+        }, 1000);
+      }
+    }
+
+    // Simplified Text-to-Speech for Episode 2
+    function playStorySection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      stopAllNarration();
+
+      const storyText = section.querySelector('.story-text');
+      if (!storyText) return;
+
+      const text = storyText.textContent;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+
+      utterance.onend = function() {
+        stopAllNarration();
+        markProgressComplete(`progress-${sectionId.split('-')[1]}`);
+      };
+
+      speechSynthesis.speak(utterance);
+
+      const floatingBtn = document.getElementById('floatingStopBtn');
+      if (floatingBtn) floatingBtn.classList.add('active');
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      loadProgress();
+      updateProgressBar();
+
+      // Load saved reflection if exists
+      const savedReflection = localStorage.getItem('episode2Reflection');
+      if (savedReflection) {
+        document.getElementById('reflection-input').value = savedReflection;
+      }
+    });
+  </script>
+
+</body>
+</html>
