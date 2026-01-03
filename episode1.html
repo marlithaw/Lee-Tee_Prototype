@@ -1201,10 +1201,85 @@ p.active-sentence {
     /* Smooth scroll for sections */
     html { scroll-behavior: smooth; }
     
-    /* Print styles */
+  /* Print styles */
     @media print {
       .a11y-panel, .progress-container, .audio-btn, .helper-btn, .points-display { display: none; }
       body { background: white; }
+    }
+
+    /* Lesson navigation bar */
+    #lesson-nav {
+      position: sticky;
+      top: 84px;
+      z-index: 850;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.35);
+      margin: 0 1.5rem 1rem;
+      border-radius: 999px;
+      padding: 0.75rem 1rem;
+    }
+
+    #lesson-nav .lesson-nav__links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #lesson-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #4b5563;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      transition: all 0.2s ease;
+    }
+
+    #lesson-nav a:hover, #lesson-nav a:focus {
+      background: #eef2ff;
+      color: #312e81;
+      border-color: #c7d2fe;
+      outline: none;
+      box-shadow: 0 6px 16px -10px rgba(49, 46, 129, 0.4);
+    }
+
+    #lesson-nav a:focus-visible {
+      box-shadow: 0 0 0 3px rgba(49, 46, 129, 0.4);
+    }
+
+    .anchor-target {
+      scroll-margin-top: 180px;
+      display: block;
+      height: 1px;
+      width: 1px;
+      position: relative;
+      top: -1px;
+    }
+
+    @media (max-width: 768px) {
+      #lesson-nav {
+        margin: 0 0 1rem;
+        border-radius: 1rem;
+        overflow-x: auto;
+        top: 0;
+      }
+      #lesson-nav .lesson-nav__links {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+      }
+      #lesson-nav a {
+        white-space: nowrap;
+      }
+      .anchor-target {
+        scroll-margin-top: 220px;
+      }
     }
 
     /* Left Rail Sidebar */
@@ -4349,4 +4424,5 @@ Finally, Step 4: Restate your position..."
 </script>
 </body>
 </html>
+
 
