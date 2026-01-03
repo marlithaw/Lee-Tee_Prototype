@@ -2906,8 +2906,9 @@ Finally, Step 4: Restate your position..."
           element.classList.add('completed');
         }
       });
-      
+
       updateProgressPercentage();
+      updateProgressChecklist(); // Update left rail checklist
     }
 
     // NEW FUNCTION: Reset all progress
@@ -2946,7 +2947,11 @@ Finally, Step 4: Restate your position..."
       const totalChecks = document.querySelectorAll('.progress-check').length;
       const completed = document.querySelectorAll('.progress-check.completed').length;
       const percentage = Math.round((completed / totalChecks) * 100);
-      document.getElementById('progress-percentage').textContent = `${percentage}%`;
+      const percentEl = document.getElementById('progress-percentage');
+      if (percentEl) percentEl.textContent = `${percentage}%`;
+
+      // Update left rail checklist
+      updateProgressChecklist();
     }
 
     // Save progress
@@ -4254,14 +4259,13 @@ Finally, Step 4: Restate your position..."
       if (!checklist) return;
 
       const items = [
-        { id: 'progress-sel', label: 'Emotional Selection' },
-        { id: 'progress-intro', label: 'Introduction' },
+        { id: 'progress-sel', label: 'Check-In' },
         { id: 'progress-vocab', label: 'Vocabulary' },
-        { id: 'progress-struct', label: 'Argument Structure' },
-        { id: 'progress-breakdown', label: 'Battle Breakdown' },
-        { id: 'progress-counter', label: 'Counterclaims' },
-        { id: 'progress-practice', label: 'Practice Activity' },
-        { id: 'progress-check', label: 'Check Understanding' },
+        { id: 'progress-section1', label: 'Section 1' },
+        { id: 'progress-section2', label: 'Section 2' },
+        { id: 'progress-section3', label: 'Section 3' },
+        { id: 'progress-drag', label: 'Drag & Drop' },
+        { id: 'progress-essay', label: 'Model Essay' },
         { id: 'progress-reflect', label: 'Reflection' }
       ];
 
