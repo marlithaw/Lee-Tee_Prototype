@@ -1332,6 +1332,7 @@ p.active-sentence {
   <script src="shared/learning-dashboard.js"></script>
 </head>
 <body data-episode="1">
+  <div id="top" class="anchor-target" aria-hidden="true"></div>
   <!-- Unified Learning Dashboard Shell -->
   <div id="learningShell" class="learning-shell">
     <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
@@ -1375,9 +1376,22 @@ p.active-sentence {
         </a>
       </div>
     </div>
-  </div>
+    </div>
   <!-- Global Header -->
   <div id="global-header"></div>
+
+  <!-- Lesson navigation bar -->
+  <nav id="lesson-nav" aria-label="Lesson sections">
+    <div class="lesson-nav__links">
+      <a href="#top">⬆️ Start</a>
+      <a href="#words-youll-need">📚 Words You'll Need</a>
+      <a href="#the-story-begins">📖 The Story Begins</a>
+      <a href="#tees-4-step-strategy">🧭 Tee's 4-Step Strategy</a>
+      <a href="#lees-essay-model">✍️ Lee's Essay Model</a>
+      <a href="#your-turn-write">📝 Your Turn to Write</a>
+      <a href="#reflect-on-your-learning">💭 Reflect</a>
+    </div>
+  </nav>
 
   <!-- Mobile Rail Toggle -->
   <button onclick="toggleLeftRail()"
@@ -1749,8 +1763,8 @@ p.active-sentence {
       </div>
     </div>
     
-    <!-- LEARNING OBJECTIVES -->
-    <section class="bg-white border-b p-6">
+    <!-- LEARNING OBJECTIVES -->␊
+    <section class="bg-white border-b p-6">␊
       <div class="flex flex-wrap gap-3 justify-center">
         <div class="section-marker">
           <span class="text-purple-600">📖</span>
@@ -1820,6 +1834,7 @@ p.active-sentence {
     </section>
 
            <!-- VOCABULARY PRE-TEACH (Active Prediction) -->
+    <div id="words-youll-need" class="anchor-target" aria-hidden="true"></div>
     <section class="p-8 md:p-12 bg-amber-50" id="section-vocab">
       <div class="ritual-marker ritual-stir mb-4">🥄 Stir It — Gather the Ingredients</div>
       
@@ -1905,6 +1920,7 @@ p.active-sentence {
 <!-- END OF VOCABULARY GALLERY -->
     </section>
 
+    <div id="the-story-begins" class="anchor-target" aria-hidden="true"></div>
     <!-- STORY SECTION 1: The Setup -->
 <section class="p-8 md:p-12 bg-white" id="section-1">
   <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 bg-white/60 p-4 rounded-xl">
@@ -2248,6 +2264,7 @@ p.active-sentence {
   </div>
 </section>
 
+    <div id="tees-4-step-strategy" class="anchor-target" aria-hidden="true"></div>
     <!-- STORY SECTION 4: Tee's Response -->
 <section class="p-8 md:p-12 bg-gradient-to-b from-purple-50 to-white" id="section-4">
   <div class="flex items-center justify-between mb-6">
@@ -2568,6 +2585,7 @@ p.active-sentence {
 </div>
     </section>
 
+    <div id="lees-essay-model" class="anchor-target" aria-hidden="true"></div>
     <!-- LEE'S MODEL ESSAY - INTERACTIVE -->
     <section class="p-8 md:p-12 bg-slate-50" id="section-essay">
       <h2 class="font-display text-3xl font-bold mb-2 text-purple-700">Lee's Essay (Model)</h2>
@@ -2644,6 +2662,7 @@ p.active-sentence {
       </div>
     </section>
 
+    <div id="your-turn-write" class="anchor-target" aria-hidden="true"></div>
     <!-- OPEN-ENDED RESPONSE WITH RUBRIC (DOK 3) -->
     <section class="p-8 md:p-12 bg-white">
       <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Your Turn: Write a Response</h2>
@@ -2755,6 +2774,7 @@ Finally, Step 4: Restate your position..."
       </div>
     </section>
 
+    <div id="reflect-on-your-learning" class="anchor-target" aria-hidden="true"></div>
     <!-- REFLECTION & SEL INTEGRATION -->
     <section class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-purple-50" id="section-reflect">
       <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Reflect on Your Learning</h2>
@@ -4424,5 +4444,6 @@ Finally, Step 4: Restate your position..."
 </script>
 </body>
 </html>
+
 
 
