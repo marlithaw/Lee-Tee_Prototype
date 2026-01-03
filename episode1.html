@@ -1207,53 +1207,6 @@ p.active-sentence {
       body { background: white; }
     }
 
-    /* Lesson navigation bar */
-    #lesson-nav {
-      position: sticky;
-      top: 84px;
-      z-index: 850;
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.35);
-      margin: 0 1.5rem 1rem;
-      border-radius: 999px;
-      padding: 0.75rem 1rem;
-    }
-
-    #lesson-nav .lesson-nav__links {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #lesson-nav a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.55rem 0.9rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      color: #4b5563;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      transition: all 0.2s ease;
-    }
-
-    #lesson-nav a:hover, #lesson-nav a:focus {
-      background: #eef2ff;
-      color: #312e81;
-      border-color: #c7d2fe;
-      outline: none;
-      box-shadow: 0 6px 16px -10px rgba(49, 46, 129, 0.4);
-    }
-
-    #lesson-nav a:focus-visible {
-      box-shadow: 0 0 0 3px rgba(49, 46, 129, 0.4);
-    }
-
     .anchor-target {
       scroll-margin-top: 180px;
       display: block;
@@ -1264,19 +1217,6 @@ p.active-sentence {
     }
 
     @media (max-width: 768px) {
-      #lesson-nav {
-        margin: 0 0 1rem;
-        border-radius: 1rem;
-        overflow-x: auto;
-        top: 0;
-      }
-      #lesson-nav .lesson-nav__links {
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-      }
-      #lesson-nav a {
-        white-space: nowrap;
-      }
       .anchor-target {
         scroll-margin-top: 220px;
       }
@@ -1332,6 +1272,23 @@ p.active-sentence {
   <script src="shared/learning-dashboard.js"></script>
 </head>
 <body data-episode="1">
+  <!-- Lesson Map Navigation -->
+  <nav id="lessonNav" style="position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 12px 20px; z-index: 10000; border-bottom: 1px solid #4A90E2;">
+      <div style="max-width: 1000px; margin: 0 auto; display: flex; align-items: center; gap: 15px;">
+          <strong style="color: #2c3e50; white-space: nowrap;">Lesson Map:</strong>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="#top" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Start</a>
+              <a href="#words-youll-need" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Vocab</a>
+              <a href="#the-story-begins" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Story</a>
+              <a href="#tees-4-step-strategy" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">4-Step Practice</a>
+              <a href="#lees-essay-model" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Model Essay</a>
+              <a href="#your-turn-write" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Your Turn</a>
+              <a href="#reflect-on-your-learning" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Reflect</a>
+          </div>
+      </div>
+  </nav>
+  <div style="height: 70px;"></div>
+  <div id="top" class="anchor-target" aria-hidden="true"></div>
   <!-- Unified Learning Dashboard Shell -->
   <div id="learningShell" class="learning-shell">
     <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
@@ -1820,6 +1777,7 @@ p.active-sentence {
     </section>
 
            <!-- VOCABULARY PRE-TEACH (Active Prediction) -->
+    <div id="words-youll-need" class="anchor-target" aria-hidden="true"></div>
     <section class="p-8 md:p-12 bg-amber-50" id="section-vocab">
       <div class="ritual-marker ritual-stir mb-4">🥄 Stir It — Gather the Ingredients</div>
       
@@ -1905,6 +1863,7 @@ p.active-sentence {
 <!-- END OF VOCABULARY GALLERY -->
     </section>
 
+    <div id="the-story-begins" class="anchor-target" aria-hidden="true"></div>
     <!-- STORY SECTION 1: The Setup -->
 <section class="p-8 md:p-12 bg-white" id="section-1">
   <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 bg-white/60 p-4 rounded-xl">
@@ -2248,6 +2207,7 @@ p.active-sentence {
   </div>
 </section>
 
+    <div id="tees-4-step-strategy" class="anchor-target" aria-hidden="true"></div>
     <!-- STORY SECTION 4: Tee's Response -->
 <section class="p-8 md:p-12 bg-gradient-to-b from-purple-50 to-white" id="section-4">
   <div class="flex items-center justify-between mb-6">
@@ -2568,6 +2528,7 @@ p.active-sentence {
 </div>
     </section>
 
+    <div id="lees-essay-model" class="anchor-target" aria-hidden="true"></div>
     <!-- LEE'S MODEL ESSAY - INTERACTIVE -->
     <section class="p-8 md:p-12 bg-slate-50" id="section-essay">
       <h2 class="font-display text-3xl font-bold mb-2 text-purple-700">Lee's Essay (Model)</h2>
@@ -2644,6 +2605,7 @@ p.active-sentence {
       </div>
     </section>
 
+    <div id="your-turn-write" class="anchor-target" aria-hidden="true"></div>
     <!-- OPEN-ENDED RESPONSE WITH RUBRIC (DOK 3) -->
     <section class="p-8 md:p-12 bg-white">
       <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Your Turn: Write a Response</h2>
@@ -2755,6 +2717,7 @@ Finally, Step 4: Restate your position..."
       </div>
     </section>
 
+    <div id="reflect-on-your-learning" class="anchor-target" aria-hidden="true"></div>
     <!-- REFLECTION & SEL INTEGRATION -->
     <section class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-purple-50" id="section-reflect">
       <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Reflect on Your Learning</h2>
