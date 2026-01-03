@@ -1332,6 +1332,25 @@ p.active-sentence {
   <script src="shared/learning-dashboard.js"></script>
 </head>
 <body data-episode="1">
+  <!-- ADD THIS RIGHT AFTER THE <body> TAG OR YOUR MAIN HEADER -->
+  <nav id="lessonNav" style="position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 12px 20px; z-index: 10000; border-bottom: 1px solid #4A90E2;">
+      <div style="max-width: 1000px; margin: 0 auto; display: flex; align-items: center; gap: 15px;">
+          <strong style="color: #2c3e50; white-space: nowrap;">Lesson Map:</strong>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="#top" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Start</a>
+              <a href="#words-youll-need" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Vocab</a>
+              <a href="#the-story-begins" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Story</a>
+              <a href="#tees-4-step-strategy" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">4-Step Practice</a>
+              <a href="#lees-essay-model" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Model Essay</a>
+              <a href="#your-turn-write" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Your Turn</a>
+              <a href="#reflect-on-your-learning" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Reflect</a>
+          </div>
+      </div>
+  </nav>
+
+  <!-- ADD A SPACER SO YOUR CONTENT DOESN'T GET HIDDEN BEHIND THE FIXED NAV -->
+  <div style="height: 70px;"></div>
+  <div id="top" class="anchor-target" aria-hidden="true"></div>
   <div id="top" class="anchor-target" aria-hidden="true"></div>
   <!-- Unified Learning Dashboard Shell -->
   <div id="learningShell" class="learning-shell">
@@ -4444,6 +4463,7 @@ Finally, Step 4: Restate your position..."
 </script>
 </body>
 </html>
+
 
 
 
