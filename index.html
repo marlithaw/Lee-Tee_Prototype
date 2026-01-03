@@ -6,6 +6,7 @@
   <title>Lee & Tee Book 1 - Complete Learning Journey</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/learning-dashboard.css">
   <style>
     :root {
       --bg-primary: #FFF8F0;
@@ -273,11 +274,57 @@
   <!-- Load Shared Components -->
   <script src="shared-header.js"></script>
   <script src="shared-skills.js"></script>
+  <script src="shared/learning-dashboard.js"></script>
 </head>
 <body>
 
   <!-- Global Header (shows points, badges, accessibility controls) -->
   <div id="global-header"></div>
+
+  <!-- Unified Learning Dashboard Shell -->
+  <div id="learningShell" class="learning-shell">
+    <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
+      📚 Learning Dashboard
+    </button>
+    <div class="learning-shell__row">
+      <div class="learning-shell__section">
+        <span class="learning-shell__pill">Book 1 Journey</span>
+        <div class="learning-shell__meta-title">Same Structure. Different Stuff.</div>
+        <div class="learning-shell__meta-subtitle">Stay aware of goals and wins across episodes.</div>
+        <div class="learning-shell__label-row">
+          <span id="learningShellBookLabel">Book 1: 0/4 Episodes</span>
+          <span id="learningShellBookPercent">0%</span>
+        </div>
+        <div class="learning-shell__progress" aria-hidden="true">
+          <div id="learningShellBookFill" class="learning-shell__progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="learning-shell__section learning-shell__episode">
+        <div class="learning-shell__label-row">
+          <span class="learning-shell__meta-title" id="learningShellEpisodeTitle">Episode 1</span>
+          <span class="learning-shell__meta-subtitle" id="learningShellEpisodeLabel">0/21 sections</span>
+        </div>
+        <div class="learning-shell__progress" aria-hidden="true">
+          <div id="learningShellEpisodeFill" class="learning-shell__progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="learning-shell__section">
+        <div class="learning-shell__label-row">
+          <span class="learning-shell__meta-title">Recent Badges</span>
+          <span class="learning-shell__meta-subtitle">Motivation at a glance</span>
+        </div>
+        <div id="learningShellBadges" class="learning-shell__badge-row" aria-live="polite"></div>
+      </div>
+
+      <div class="learning-shell__section" style="align-items: flex-end;">
+        <a id="learningShellContinue" class="learning-shell__cta" href="#">
+          ▶ Continue
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO HEADER -->
   <header class="hero-header">
@@ -773,6 +820,11 @@
 
       // Update badge display
       updateBadgeDisplay();
+      
+      // Sync unified dashboard shell
+      if (window.LearningShell && typeof window.LearningShell.refresh === 'function') {
+        window.LearningShell.refresh();
+      }
     }
 
     // Find next episode to continue
