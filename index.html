@@ -269,8 +269,15 @@
       color: #6B7280;
     }
   </style>
+
+  <!-- Load Shared Components -->
+  <script src="shared-header.js"></script>
+  <script src="shared-skills.js"></script>
 </head>
 <body>
+
+  <!-- Global Header (shows points, badges, accessibility controls) -->
+  <div id="global-header"></div>
 
   <!-- HERO HEADER -->
   <header class="hero-header">
@@ -724,43 +731,32 @@
 
   <!-- JAVASCRIPT -->
   <script>
-    // ===== PROGRESS TRACKING =====
-    function loadProgress() {
-      const saved = localStorage.getItem('leeTeeLessonProgress');
-      if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch (e) {
-          return { points: 0, badges: [], completedActivities: [], currentEpisode: 1, currentSection: 1 };
-        }
-      }
-      return { points: 0, badges: [], completedActivities: [], currentEpisode: 1, currentSection: 1 };
-    }
+    // ===== GLOBAL STATE INTEGRATION =====
 
     function updateDashboard() {
-      const progress = loadProgress();
+      // Use global state instead of local storage
+      const state = globalLearningState;
 
       // Update points and badges
-      document.getElementById('totalPoints').textContent = progress.points || 0;
-      document.getElementById('badgeCount').textContent = progress.badges ? progress.badges.length : 0;
+      document.getElementById('totalPoints').textContent = state.totalPoints || 0;
+      document.getElementById('badgeCount').textContent = state.badges ? state.badges.length : 0;
 
-      // Calculate overall progress (based on completed activities out of estimated total)
-      const totalActivities = 32; // 32 active features across all episodes
-      const completed = progress.completedActivities ? progress.completedActivities.length : 0;
-      const percent = Math.round((completed / totalActivities) * 100);
+      // Calculate overall progress based on completed episodes
+      const episodesComplete = Object.values(state.episodes).filter(ep => ep.complete).length;
+      const percent = Math.round((episodesComplete / 4) * 100);
 
       document.getElementById('progressPercent').textContent = percent;
       document.getElementById('overallProgress').style.width = percent + '%';
 
-      // Calculate sections (rough estimate based on completion)
-      const totalSections = 63;
-      const sectionsComplete = Math.floor((percent / 100) * totalSections);
-      document.getElementById('sectionsComplete').textContent = sectionsComplete;
+      // Calculate total sections complete
+      const totalSectionsComplete = Object.values(state.episodes).reduce((sum, ep) => {
+        return sum + ep.sectionsComplete.length;
+      }, 0);
+      const totalSections = 63; // 18 + 15 + 18 + 12
+      document.getElementById('sectionsComplete').textContent = totalSectionsComplete;
 
       // Update continue button
-      const episode = progress.currentEpisode || 1;
-      const section = progress.currentSection || 1;
-
+      const nextEpisode = findNextEpisode();
       const episodeTitles = {
         1: 'Episode 1: The Recess Battle',
         2: 'Episode 2: Grandpa\'s Kitchen',
@@ -768,52 +764,89 @@
         4: 'Episode 4: The Nighttime Question'
       };
 
+      const episodeData = state.episodes[nextEpisode];
       document.getElementById('continueLocation').textContent =
-        `Continue: ${episodeTitles[episode]}, Section ${section}`;
+        `Continue: ${episodeTitles[nextEpisode]}`;
 
       // Update episode card states based on completion
-      updateEpisodeCards(progress);
+      updateEpisodeCards();
 
       // Update badge display
-      updateBadgeDisplay(progress);
+      updateBadgeDisplay();
     }
 
-    function updateEpisodeCards(progress) {
-      const completed = progress.completedActivities || [];
+    // Find next episode to continue
+    function findNextEpisode() {
+      const state = globalLearningState;
 
-      // Episode 1 (indexrecent.html has 8 active features)
-      const ep1Complete = completed.filter(id => id.includes('ep1') || id.includes('vocab') || id.includes('essay')).length;
+      // Find first incomplete episode
+      for (let i = 1; i <= 4; i++) {
+        if (!state.episodes[i].complete) {
+          return i;
+        }
+      }
 
-      // For demo purposes, unlock episodes based on points
-      const points = progress.points || 0;
+      // All complete, return episode 4
+      return 4;
+    }
 
-      // Update Episode 2 card
-      const ep2Card = document.querySelector('.episode-2');
-      if (points >= 50) { // Unlock after earning some points in Ep 1
-        ep2Card.classList.remove('locked');
-        ep2Card.querySelector('.status-badge').className = 'status-badge status-locked';
-        ep2Card.querySelector('.status-badge').innerHTML = '🔓 Unlocked';
+    function updateEpisodeCards() {
+      const state = globalLearningState;
+
+      // Update each episode card
+      for (let i = 1; i <= 4; i++) {
+        const card = document.querySelector(`.episode-${i}`);
+        if (!card) continue;
+
+        const episode = state.episodes[i];
+        const statusBadge = card.querySelector('.status-badge');
+
+        // Check if episode is locked (sequential progression)
+        const isLocked = i > 1 && !state.episodes[i - 1].complete;
+
+        if (isLocked) {
+          card.classList.add('locked');
+          card.classList.remove('completed', 'in-progress');
+          if (statusBadge) {
+            statusBadge.className = 'status-badge status-locked';
+            statusBadge.innerHTML = '🔒 Locked';
+          }
+        } else if (episode.complete) {
+          card.classList.add('completed');
+          card.classList.remove('locked', 'in-progress');
+          if (statusBadge) {
+            statusBadge.className = 'status-badge status-completed';
+            statusBadge.innerHTML = '✅ Complete';
+          }
+        } else {
+          card.classList.add('in-progress');
+          card.classList.remove('locked', 'completed');
+          if (statusBadge) {
+            statusBadge.className = 'status-badge status-in-progress';
+            const totalSections = [0, 18, 15, 18, 12][i]; // Index 0 unused
+            const sectionText = episode.sectionsComplete.length > 0
+              ? `${episode.sectionsComplete.length}/${totalSections} sections`
+              : 'Start';
+            statusBadge.innerHTML = `▶️ ${sectionText}`;
+          }
+        }
       }
     }
 
-    function updateBadgeDisplay(progress) {
-      const badges = progress.badges || [];
+    function updateBadgeDisplay() {
+      const state = globalLearningState;
       const badgeIcons = document.querySelectorAll('.badge-icon');
 
-      // Map badges to icons (simplified)
+      // Badge mapping
       const badgeMap = {
-        '🎯': 0, // First Steps
-        '📚': 1, // Vocab Master
-        '🧠': 2, // Critical Thinker
-        '✍️': 3, // Response Writer
-        '🎤': 4, // Strategy Expert
-        '⭐': 5, // Super Reader
-        '🏆': 6, // Episode Champion
-        '🌟': 7  // Book 1 Complete
+        'first-episode': 0,    // 🎯
+        'two-episodes': 1,     // 📚
+        'hundred-points': 5,   // ⭐
+        'book-complete': 7     // 🌟
       };
 
-      badges.forEach(badge => {
-        const index = badgeMap[badge];
+      state.badges.forEach(badgeId => {
+        const index = badgeMap[badgeId];
         if (index !== undefined && badgeIcons[index]) {
           badgeIcons[index].classList.remove('locked');
         }
@@ -822,9 +855,14 @@
 
     // ===== NAVIGATION =====
     function goToEpisode(episodeNum) {
-      const progress = loadProgress();
+      const state = globalLearningState;
 
-      // Navigate to episode - all episodes are accessible in any order
+      // Check if episode is locked (must complete previous episode first)
+      if (episodeNum > 1 && !state.episodes[episodeNum - 1].complete) {
+        alert(`Please complete Episode ${episodeNum - 1} first to unlock this episode.`);
+        return;
+      }
+
       const episodeFiles = {
         1: 'episode1.html',
         2: 'episode2.html',
@@ -832,24 +870,22 @@
         4: 'episode4.html'
       };
 
-      // Update current episode in progress
-      progress.currentEpisode = episodeNum;
-      progress.currentSection = 1;
-      localStorage.setItem('leeTeeLessonProgress', JSON.stringify(progress));
-
       window.location.href = episodeFiles[episodeNum];
     }
 
     // Continue button
     document.getElementById('continueBtn').addEventListener('click', function(e) {
       e.preventDefault();
-      const progress = loadProgress();
-      const episode = progress.currentEpisode || 1;
-      goToEpisode(episode);
+      const nextEpisode = findNextEpisode();
+      goToEpisode(nextEpisode);
     });
 
     // ===== INITIALIZATION =====
     document.addEventListener('DOMContentLoaded', function() {
+      // Load global state first
+      if (typeof loadGlobalState === 'function') {
+        loadGlobalState();
+      }
       updateDashboard();
     });
   </script>

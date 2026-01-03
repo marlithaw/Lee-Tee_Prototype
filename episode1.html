@@ -1205,33 +1205,98 @@ p.active-sentence {
       .a11y-panel, .progress-container, .audio-btn, .helper-btn, .points-display { display: none; }
       body { background: white; }
     }
+
+    /* Left Rail Sidebar */
+    .left-rail {
+      position: fixed;
+      left: 0;
+      top: 80px;
+      width: 280px;
+      height: calc(100vh - 80px);
+      background: white;
+      border-right: 2px solid var(--border-light);
+      overflow-y: auto;
+      padding: 1.5rem;
+      z-index: 30;
+      transition: transform 0.3s ease;
+    }
+
+    .left-rail.mobile-hidden {
+      transform: translateX(-100%);
+    }
+
+    .main-with-rail {
+      margin-left: 280px;
+      padding-top: 80px;
+    }
+
+    @media (max-width: 1024px) {
+      .left-rail {
+        transform: translateX(-100%);
+      }
+
+      .left-rail.mobile-open {
+        transform: translateX(0);
+      }
+
+      .main-with-rail {
+        margin-left: 0;
+      }
+    }
+
+    .help-box {
+      border-left: 4px solid currentColor;
+      transition: all 0.3s ease;
+    }
   </style>
+
+  <!-- Load Shared Components -->
+  <script src="shared-header.js"></script>
+  <script src="shared-skills.js"></script>
 </head>
-<body>
-  <!-- BACK TO HOME BUTTON -->
-  <div style="position: fixed; top: 70px; left: 20px; z-index: 100;">
-    <a href="index.html" class="bg-white border-2 border-purple-200 text-purple-700 px-4 py-2 rounded-full font-semibold hover:bg-purple-50 hover:border-purple-400 transition flex items-center gap-2 shadow-md" style="text-decoration: none; display: inline-flex;">
-      <span>←</span>
-      <span>Back to Home</span>
-    </a>
-  </div>
+<body data-episode="1">
+  <!-- Global Header -->
+  <div id="global-header"></div>
 
-  <!-- PROGRESS BAR -->
-  <div class="progress-container">
-    <div id="progressBar" class="progress-bar" style="width: 0%"></div>
-  </div>
+  <!-- Mobile Rail Toggle -->
+  <button onclick="toggleLeftRail()"
+          class="lg:hidden fixed bottom-6 left-6 z-40 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg flex items-center justify-center">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
 
-  <!-- POINTS DISPLAY -->
-  <div class="points-display">
-    <div>
-      <div class="text-xs text-gray-600">Learning Points</div>
-      <div class="points-number" id="pointsDisplay">0</div>
+  <!-- Left Rail Sidebar -->
+  <aside id="left-rail" class="left-rail mobile-hidden">
+    <div class="mb-6">
+      <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span class="text-xl">✓</span>
+        Lesson Progress
+      </h3>
+      <div id="progress-checklist" class="space-y-2 text-sm"></div>
     </div>
-    <div id="badgeContainer" class="flex gap-1"></div>
-    <button onclick="resetProgress()" class="text-xs text-gray-400 hover:text-red-600" title="Reset all progress">
-      ↺
-    </button>
-  </div>
+
+    <div class="mb-6">
+      <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span class="text-xl">🔗</span>
+        Quick Jump
+      </h3>
+      <div class="space-y-2 text-sm">
+        <a href="#vocab" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">📚 Vocabulary</a>
+        <a href="#story" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">📖 Story</a>
+        <a href="#practice" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✍️ Practice</a>
+        <a href="#check" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✅ Check</a>
+        <a href="#reflect" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">💭 Reflect</a>
+      </div>
+    </div>
+
+    <div>
+      <button onclick="resetEpisodeProgress()"
+              class="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm text-gray-700 transition-colors">
+        🔄 Reset Progress
+      </button>
+    </div>
+  </aside>
 
   <!-- FLOATING STOP BUTTON (Mobile Read-Aloud Control) -->
   <button id="floatingStopBtn" class="floating-stop-btn" onclick="stopAllNarration()">
@@ -1436,10 +1501,12 @@ p.active-sentence {
   </div>
 
   <!-- Main Content -->
-  <main class="max-w-4xl mx-auto">
-    
-    <!-- PROGRESS TRACKER SIDEBAR -->
-    <div class="fixed left-4 top-1/4 bg-white p-4 rounded-xl shadow-lg border border-purple-200 hidden lg:block z-40" 
+  <main class="main-with-rail max-w-4xl mx-auto min-h-screen pb-20">
+    <div class="px-4 sm:px-6 lg:px-8">
+
+    <!-- OLD PROGRESS TRACKER REMOVED - NOW IN LEFT RAIL -->
+    <!--
+    <div class="fixed left-4 top-1/4 bg-white p-4 rounded-xl shadow-lg border border-purple-200 hidden lg:block z-40"
          style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.9);">
       <h4 class="font-bold mb-3 text-purple-700 flex items-center gap-2">
         <span>📋</span>
@@ -1486,8 +1553,9 @@ p.active-sentence {
         </div>
       </div>
     </div>
-    
-    <!-- SIOP OBJECTIVES BANNER - NEW -->
+    -->
+
+    <!-- SIOP OBJECTIVES BANNER -->
     <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-4 border-b border-teal-200">
       <div class="max-w-4xl mx-auto">
         <h3 class="font-bold text-teal-800 mb-2 flex items-center gap-2">
@@ -2656,11 +2724,18 @@ Finally, Step 4: Restate your position..."
         <button onclick="window.location.reload()" class="bg-white text-purple-700 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition">
           📖 Try Again
         </button>
-        <button class="bg-amber-400 text-amber-900 font-bold py-3 px-6 rounded-full hover:bg-amber-300 transition">
+        <a href="episode2.html" class="bg-amber-400 text-amber-900 font-bold py-3 px-6 rounded-full hover:bg-amber-300 transition inline-block">
           ➡️ Next Episode
-        </button>
+        </a>
       </div>
     </section>
+
+    <!-- Skills Growth Visualizer -->
+    <section class="mb-12">
+      <div id="skills-visualizer"></div>
+    </section>
+
+    </div><!-- Close px wrapper -->
   </main>
 
  <script>
@@ -2882,6 +2957,11 @@ Finally, Step 4: Restate your position..."
     // ===== GAMIFICATION SYSTEM =====
     function addPoints(amount, reason) {
       learningState.points += amount;
+
+      // Also update global state
+      if (typeof addGlobalPoints === 'function') {
+        addGlobalPoints(1, amount, reason);
+      }
       document.getElementById('pointsDisplay').textContent = learningState.points;
       document.getElementById('finalPoints').textContent = learningState.points;
       saveProgress();
@@ -4129,9 +4209,87 @@ Finally, Step 4: Restate your position..."
         const element = document.getElementById(id);
         if (element) sectionObserver.observe(element);
       });
-      
+
       // Initialize
       loadProgress();
+
+      // Initialize skills visualizer
+      if (typeof renderSkillsVisualizer === 'function') {
+        renderSkillsVisualizer(1);
+      }
+
+      // Initialize progress checklist in left rail
+      updateProgressChecklist();
+
+      // Trigger initial learning mode
+      if (typeof globalLearningState !== 'undefined') {
+        const mode = globalLearningState.learningMode;
+        document.dispatchEvent(new CustomEvent('learningModeChanged', { detail: { mode } }));
+      }
+    });
+
+    // ===== GLOBAL STATE INTEGRATION =====
+
+    // Toggle left rail on mobile
+    function toggleLeftRail() {
+      const rail = document.getElementById('left-rail');
+      if (rail) {
+        rail.classList.toggle('mobile-hidden');
+        rail.classList.toggle('mobile-open');
+      }
+    }
+
+    // Reset episode progress
+    function resetEpisodeProgress() {
+      if (confirm('Reset all progress for this episode?')) {
+        localStorage.removeItem('leeTeeLessonProgress');
+        localStorage.removeItem('episode1SkillState');
+        location.reload();
+      }
+    }
+
+    // Update progress checklist in left rail
+    function updateProgressChecklist() {
+      const checklist = document.getElementById('progress-checklist');
+      if (!checklist) return;
+
+      const items = [
+        { id: 'progress-sel', label: 'Emotional Selection' },
+        { id: 'progress-intro', label: 'Introduction' },
+        { id: 'progress-vocab', label: 'Vocabulary' },
+        { id: 'progress-struct', label: 'Argument Structure' },
+        { id: 'progress-breakdown', label: 'Battle Breakdown' },
+        { id: 'progress-counter', label: 'Counterclaims' },
+        { id: 'progress-practice', label: 'Practice Activity' },
+        { id: 'progress-check', label: 'Check Understanding' },
+        { id: 'progress-reflect', label: 'Reflection' }
+      ];
+
+      checklist.innerHTML = items.map(item => {
+        const el = document.getElementById(item.id);
+        const complete = el && el.classList.contains('completed');
+        return `
+          <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
+            <span class="text-lg">${complete ? '✅' : '⬜'}</span>
+            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Hook into vocab learning for skills tracking
+    const originalShowVocabModal = showVocabModal;
+    showVocabModal = function(word) {
+      originalShowVocabModal(word);
+      if (typeof onVocabLearned === 'function') {
+        onVocabLearned(1, word);
+      }
+    };
+
+    // Listen for learning mode changes to update help content
+    document.addEventListener('learningModeChanged', (e) => {
+      // Update help boxes if they exist
+      // (Episode 1 uses helper buttons, future episodes will use help boxes)
     });
 </script>
 </body>

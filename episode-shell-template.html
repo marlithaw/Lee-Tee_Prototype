@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Lee & Tee Episode [N]: [Episode Title]</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #FFF8F0;
+      --bg-secondary: #FEF3E2;
+      --accent-purple: #7C3AED;
+      --accent-amber: #F59E0B;
+      --accent-teal: #0D9488;
+      --accent-blue: #2563EB;
+      --accent-rose: #E11D48;
+      --text-primary: #1C1917;
+      --text-secondary: #57534E;
+      --success: #16A34A;
+      --border-light: #E7E5E4;
+    }
+
+    html {
+      overflow-x: hidden !important;
+      width: 100%;
+      position: relative;
+    }
+
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden !important;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      touch-action: pan-y pinch-zoom;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    section, div, main, article, header, footer, nav {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    img, video, iframe {
+      max-width: 100% !important;
+      height: auto;
+    }
+
+    /* Dyslexia Mode */
+    body.dyslexia-mode {
+      font-family: 'OpenDyslexic', sans-serif;
+      letter-spacing: 0.05em;
+      word-spacing: 0.1em;
+      line-height: 2;
+    }
+
+    /* High Contrast Mode */
+    body.high-contrast {
+      --bg-primary: #000000;
+      --bg-secondary: #1a1a1a;
+      --text-primary: #FFFFFF;
+      --text-secondary: #E5E5E5;
+      --border-light: #404040;
+    }
+
+    .font-display {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Left Rail Sidebar */
+    .left-rail {
+      position: fixed;
+      left: 0;
+      top: 80px; /* Below header */
+      width: 280px;
+      height: calc(100vh - 80px);
+      background: white;
+      border-right: 2px solid var(--border-light);
+      overflow-y: auto;
+      padding: 1.5rem;
+      z-index: 30;
+      transition: transform 0.3s ease;
+    }
+
+    .left-rail.mobile-hidden {
+      transform: translateX(-100%);
+    }
+
+    /* Main content area with left rail offset */
+    .main-with-rail {
+      margin-left: 280px;
+      padding-top: 80px; /* Below header */
+    }
+
+    @media (max-width: 1024px) {
+      .left-rail {
+        transform: translateX(-100%);
+      }
+
+      .left-rail.mobile-open {
+        transform: translateX(0);
+      }
+
+      .main-with-rail {
+        margin-left: 0;
+      }
+    }
+
+    /* Learning Guide Help Box */
+    .help-box {
+      border-left: 4px solid currentColor;
+      transition: all 0.3s ease;
+    }
+
+    /* Progress Check */
+    .progress-check {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body data-episode="[EPISODE_NUMBER]">
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <!-- Mobile Rail Toggle (shows when rail is hidden) -->
+  <button onclick="toggleLeftRail()"
+          class="lg:hidden fixed bottom-6 left-6 z-40 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg flex items-center justify-center">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <!-- Left Rail Sidebar -->
+  <aside id="left-rail" class="left-rail mobile-hidden">
+    <!-- Lesson Progress Checklist -->
+    <div class="mb-6">
+      <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span class="text-xl">✓</span>
+        Lesson Progress
+      </h3>
+      <div id="progress-checklist" class="space-y-2 text-sm">
+        <!-- Dynamically generated progress items -->
+      </div>
+    </div>
+
+    <!-- Jump Links -->
+    <div class="mb-6">
+      <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <span class="text-xl">🔗</span>
+        Quick Jump
+      </h3>
+      <div class="space-y-2 text-sm">
+        <a href="#vocab" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">📚 Vocabulary</a>
+        <a href="#story" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">📖 Story</a>
+        <a href="#practice" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✍️ Practice</a>
+        <a href="#check" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✅ Check</a>
+        <a href="#reflect" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">💭 Reflect</a>
+      </div>
+    </div>
+
+    <!-- Reset Progress -->
+    <div>
+      <button onclick="resetEpisodeProgress()"
+              class="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm text-gray-700 transition-colors">
+        🔄 Reset Progress
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-with-rail min-h-screen pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Episode Header -->
+      <section class="py-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-display font-bold mb-4" style="color: var(--accent-[COLOR])">
+          Episode [N]: [Episode Title]
+        </h1>
+        <p class="text-xl text-gray-600">[Subject] • [Theme]</p>
+      </section>
+
+      <!-- ===== STORY SECTIONS ===== -->
+      <!-- Use consistent rhythm: Story beat → Teach → Do → Check → Reflect -->
+
+      <!-- Section 1: Story Beat -->
+      <section id="story" class="mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">[Section Title]</h2>
+          <div class="story-text prose max-w-none">
+            <!-- Story content here -->
+          </div>
+          <div id="progress-section1" class="progress-check"></div>
+        </div>
+      </section>
+
+      <!-- Section with Vocabulary (Teach) -->
+      <section id="vocab" class="mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">[Section Title]</h2>
+          <div class="story-text prose max-w-none">
+            <!-- Story content with vocab words -->
+            <p>
+              This is a <button onclick="showVocabModal('example')" class="vocab-word">vocabulary word</button>.
+            </p>
+          </div>
+          <div id="progress-section2" class="progress-check"></div>
+        </div>
+      </section>
+
+      <!-- Interactive Activity Section (Do) -->
+      <section id="practice" class="mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">[Activity Title]</h2>
+
+          <!-- Learning Guide Help Box -->
+          <div id="help-activity1" class="help-box p-4 rounded-lg mb-6 bg-purple-50 border-purple-400">
+            <!-- Content swaps based on Lee/Tee mode -->
+            <div class="lee-mode-help">
+              <h3 class="font-bold text-purple-700 mb-2">📝 Lee's Scaffolds</h3>
+              <p class="text-sm text-purple-900">
+                Step-by-step guidance, examples, sentence frames...
+              </p>
+            </div>
+            <div class="tee-mode-help hidden">
+              <h3 class="font-bold text-amber-700 mb-2">🎯 Tee's Strategy Check</h3>
+              <p class="text-sm text-amber-900">
+                Strategic questions, reasoning prompts, big-picture thinking...
+              </p>
+            </div>
+          </div>
+
+          <!-- Activity content -->
+          <div class="activity-content">
+            <!-- Interactive elements here -->
+          </div>
+
+          <div id="progress-section3" class="progress-check"></div>
+        </div>
+      </section>
+
+      <!-- Quiz Section (Check) -->
+      <section id="check" class="mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">✅ Check Your Understanding</h2>
+          <!-- Quiz questions -->
+          <div id="progress-section4" class="progress-check"></div>
+        </div>
+      </section>
+
+      <!-- Reflection Section (Reflect) -->
+      <section id="reflect" class="mb-12">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">💭 Reflection</h2>
+          <!-- Reflection prompts -->
+          <div id="progress-section5" class="progress-check"></div>
+        </div>
+      </section>
+
+      <!-- ===== SKILLS VISUALIZER ===== -->
+      <section class="mb-12">
+        <div id="skills-visualizer"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Vocabulary Modal (reusable) -->
+  <div id="vocab-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+       onclick="closeVocabModal(event)">
+    <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6" onclick="event.stopPropagation()">
+      <div id="vocab-modal-content">
+        <!-- Dynamically filled -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Shared Components -->
+  <script src="shared-header.js"></script>
+  <script src="shared-skills.js"></script>
+
+  <script>
+    // ===== EPISODE-SPECIFIC CONFIGURATION =====
+    const CURRENT_EPISODE = [EPISODE_NUMBER];
+    const TOTAL_SECTIONS = [NUMBER_OF_SECTIONS];
+
+    // Vocabulary data
+    const vocabData = {
+      example: {
+        word: "example",
+        pronunciation: "/ɪɡˈzæmpəl/",
+        definition: "A thing characteristic of its kind or illustrating a general rule.",
+        example: "This is an example sentence.",
+        audio: "example"
+      }
+      // Add more vocab words
+    };
+
+    // ===== PROGRESS TRACKING =====
+    let episodeState = {
+      sectionsComplete: [],
+      activitiesComplete: [],
+      points: 0
+    };
+
+    function loadEpisodeProgress() {
+      const saved = localStorage.getItem(`episode${CURRENT_EPISODE}Progress`);
+      if (saved) {
+        try {
+          episodeState = JSON.parse(saved);
+        } catch (e) {
+          console.error('Failed to load episode progress:', e);
+        }
+      }
+      updateProgressChecklist();
+    }
+
+    function saveEpisodeProgress() {
+      localStorage.setItem(`episode${CURRENT_EPISODE}Progress`, JSON.stringify(episodeState));
+    }
+
+    function markSectionComplete(sectionId) {
+      if (!episodeState.sectionsComplete.includes(sectionId)) {
+        episodeState.sectionsComplete.push(sectionId);
+
+        // Mark in global state
+        markSectionComplete(CURRENT_EPISODE, sectionId);
+
+        // Mark progress check visible
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.style.opacity = '1';
+          el.style.height = 'auto';
+        }
+
+        saveEpisodeProgress();
+        updateProgressChecklist();
+
+        // Check if episode complete
+        if (episodeState.sectionsComplete.length >= TOTAL_SECTIONS) {
+          markEpisodeComplete(CURRENT_EPISODE);
+        }
+      }
+    }
+
+    function addPoints(amount, reason) {
+      episodeState.points += amount;
+      addGlobalPoints(CURRENT_EPISODE, amount, reason);
+      saveEpisodeProgress();
+    }
+
+    function updateProgressChecklist() {
+      const checklist = document.getElementById('progress-checklist');
+      if (!checklist) return;
+
+      const items = [
+        { id: 'progress-section1', label: 'Introduction' },
+        { id: 'progress-section2', label: 'Vocabulary' },
+        { id: 'progress-section3', label: 'Practice Activity' },
+        { id: 'progress-section4', label: 'Quiz' },
+        { id: 'progress-section5', label: 'Reflection' }
+      ];
+
+      checklist.innerHTML = items.map(item => {
+        const complete = episodeState.sectionsComplete.includes(item.id);
+        return `
+          <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
+            <span class="text-lg">${complete ? '✅' : '⬜'}</span>
+            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function resetEpisodeProgress() {
+      if (confirm('Reset all progress for this episode?')) {
+        localStorage.removeItem(`episode${CURRENT_EPISODE}Progress`);
+        localStorage.removeItem(`episode${CURRENT_EPISODE}SkillState`);
+        location.reload();
+      }
+    }
+
+    // ===== LEFT RAIL TOGGLE =====
+    function toggleLeftRail() {
+      const rail = document.getElementById('left-rail');
+      if (rail) {
+        rail.classList.toggle('mobile-hidden');
+        rail.classList.toggle('mobile-open');
+      }
+    }
+
+    // ===== LEARNING MODE HELP CONTENT =====
+    document.addEventListener('learningModeChanged', (e) => {
+      const mode = e.detail.mode;
+
+      // Update all help boxes
+      document.querySelectorAll('.help-box').forEach(box => {
+        const leeHelp = box.querySelector('.lee-mode-help');
+        const teeHelp = box.querySelector('.tee-mode-help');
+
+        if (mode === 'lee') {
+          leeHelp?.classList.remove('hidden');
+          teeHelp?.classList.add('hidden');
+          box.classList.remove('bg-amber-50', 'border-amber-400');
+          box.classList.add('bg-purple-50', 'border-purple-400');
+        } else {
+          leeHelp?.classList.add('hidden');
+          teeHelp?.classList.remove('hidden');
+          box.classList.remove('bg-purple-50', 'border-purple-400');
+          box.classList.add('bg-amber-50', 'border-amber-400');
+        }
+      });
+    });
+
+    // ===== VOCABULARY MODAL =====
+    function showVocabModal(wordId) {
+      const vocab = vocabData[wordId];
+      if (!vocab) return;
+
+      const modal = document.getElementById('vocab-modal');
+      const content = document.getElementById('vocab-modal-content');
+
+      content.innerHTML = `
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-gray-800">${vocab.word}</h3>
+          <p class="text-sm text-gray-500">${vocab.pronunciation}</p>
+        </div>
+        <div class="mb-4">
+          <p class="text-gray-700">${vocab.definition}</p>
+        </div>
+        <div class="bg-blue-50 rounded-lg p-4 mb-4">
+          <p class="text-sm text-blue-900"><strong>Example:</strong> ${vocab.example}</p>
+        </div>
+        <button onclick="closeVocabModal()"
+                class="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+          Got it!
+        </button>
+      `;
+
+      modal.classList.remove('hidden');
+
+      // Track vocab learned
+      onVocabLearned(CURRENT_EPISODE, wordId);
+      addPoints(5, `Learned: ${vocab.word}`);
+    }
+
+    function closeVocabModal(event) {
+      if (event && event.target.id !== 'vocab-modal') return;
+      const modal = document.getElementById('vocab-modal');
+      modal.classList.add('hidden');
+    }
+
+    // ===== INITIALIZATION =====
+    document.addEventListener('DOMContentLoaded', () => {
+      loadEpisodeProgress();
+      renderSkillsVisualizer(CURRENT_EPISODE);
+
+      // Trigger initial learning mode
+      const mode = globalLearningState.learningMode;
+      document.dispatchEvent(new CustomEvent('learningModeChanged', { detail: { mode } }));
+    });
+  </script>
+
+</body>
+</html>
