@@ -793,7 +793,7 @@
     function updateEpisodeCards() {
       const state = globalLearningState;
 
-      // Update each episode card
+      // Update each episode card - ALL EPISODES ACCESSIBLE (no locking)
       for (let i = 1; i <= 4; i++) {
         const card = document.querySelector(`.episode-${i}`);
         if (!card) continue;
@@ -801,33 +801,28 @@
         const episode = state.episodes[i];
         const statusBadge = card.querySelector('.status-badge');
 
-        // Check if episode is locked (sequential progression)
-        const isLocked = i > 1 && !state.episodes[i - 1].complete;
-
-        if (isLocked) {
-          card.classList.add('locked');
-          card.classList.remove('completed', 'in-progress');
-          if (statusBadge) {
-            statusBadge.className = 'status-badge status-locked';
-            statusBadge.innerHTML = '🔒 Locked';
-          }
-        } else if (episode.complete) {
+        // No locking - all episodes always accessible
+        if (episode.complete) {
           card.classList.add('completed');
           card.classList.remove('locked', 'in-progress');
           if (statusBadge) {
             statusBadge.className = 'status-badge status-completed';
             statusBadge.innerHTML = '✅ Complete';
           }
-        } else {
+        } else if (episode.sectionsComplete.length > 0) {
           card.classList.add('in-progress');
           card.classList.remove('locked', 'completed');
           if (statusBadge) {
             statusBadge.className = 'status-badge status-in-progress';
-            const totalSections = [0, 18, 15, 18, 12][i]; // Index 0 unused
-            const sectionText = episode.sectionsComplete.length > 0
-              ? `${episode.sectionsComplete.length}/${totalSections} sections`
-              : 'Start';
-            statusBadge.innerHTML = `▶️ ${sectionText}`;
+            const totalSections = [0, 18, 15, 18, 12][i];
+            statusBadge.innerHTML = `▶️ ${episode.sectionsComplete.length}/${totalSections} sections`;
+          }
+        } else {
+          // Not started
+          card.classList.remove('locked', 'completed', 'in-progress');
+          if (statusBadge) {
+            statusBadge.className = 'status-badge';
+            statusBadge.innerHTML = '▶️ Start';
           }
         }
       }
@@ -855,14 +850,7 @@
 
     // ===== NAVIGATION =====
     function goToEpisode(episodeNum) {
-      const state = globalLearningState;
-
-      // Check if episode is locked (must complete previous episode first)
-      if (episodeNum > 1 && !state.episodes[episodeNum - 1].complete) {
-        alert(`Please complete Episode ${episodeNum - 1} first to unlock this episode.`);
-        return;
-      }
-
+      // All episodes accessible - no locking
       const episodeFiles = {
         1: 'episode1.html',
         2: 'episode2.html',
