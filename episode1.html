@@ -1329,7 +1329,7 @@ p.active-sentence {
  <!-- Load Shared Components -->
   <script src="shared-header.js"></script>
   <script src="shared-skills.js"></script>
-  <script src="shared/learning-dashboard.js"></script>
+  <script src="shared/shared/learning-dashboard.js"></script>
 
   <!-- Load Option 3: Progressive Navigation & Translation System -->
   <link rel="stylesheet" href="shared/progressive-nav.css">
@@ -3037,8 +3037,12 @@ Finally, Step 4: Restate your position..."
         };
       }
       
-      document.getElementById('pointsDisplay').textContent = learningState.points;
-      document.getElementById('finalPoints').textContent = learningState.points;
+      const pointsDisplay = document.getElementById('pointsDisplay');
+      if (pointsDisplay) pointsDisplay.textContent = learningState.points;
+
+      const finalPoints = document.getElementById('finalPoints');
+      if (finalPoints) finalPoints.textContent = learningState.points;
+
       updateBadges();
       
       // FIXED: Only restore checkmarks for SEL and character choice
@@ -4430,13 +4434,15 @@ Finally, Step 4: Restate your position..."
     }
 
     // Hook into vocab learning for skills tracking
-    const originalShowVocabModal = showVocabModal;
-    showVocabModal = function(word) {
-      originalShowVocabModal(word);
-      if (typeof onVocabLearned === 'function') {
-        onVocabLearned(1, word);
-      }
-    };
+    const originalShowVocab = typeof showVocab !== 'undefined' ? showVocab : null;
+    if (originalShowVocab) {
+      window.showVocab = function(word) {
+        originalShowVocab(word);
+        if (typeof onVocabLearned === 'function') {
+          onVocabLearned(1, word);
+        }
+      };
+    }
 
     // Listen for learning mode changes to update help content
     document.addEventListener('learningModeChanged', (e) => {
