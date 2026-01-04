@@ -4702,21 +4702,38 @@ Finally, Step 4: Restate your position..."
 
       // Section 7: Reflect & Celebrate
       const reflectAnchor = document.getElementById('reflect-on-your-learning');
+      const reflectSection = document.getElementById('section-reflect');
 
-      if (reflectAnchor) {
+      if (reflectAnchor && reflectSection) {
         const section7 = document.createElement('div');
         section7.className = 'section-content';
         section7.setAttribute('data-section', '7');
         sectionDisplay.appendChild(section7);
 
-        // Move all remaining content until we hit the main closing tag or script
-        let currentElement = reflectAnchor;
-        const mainElement = document.querySelector('main');
+        // Move the anchor
+        section7.appendChild(reflectAnchor);
 
-        while (currentElement && currentElement.parentNode === mainElement.parentNode) {
+        // Move all content sections until we hit the closing wrapper div or scripts
+        let currentElement = reflectSection;
+        while (currentElement) {
           const nextElement = currentElement.nextElementSibling;
-          if (nextElement && nextElement.tagName === 'SCRIPT') break;
-          section7.appendChild(currentElement);
+
+          // Stop if we hit a script tag
+          if (currentElement.tagName === 'SCRIPT') {
+            break;
+          }
+
+          // Stop if we hit the closing wrapper div (has comment "Close px wrapper")
+          if (currentElement.nodeType === 8 || // Comment node
+              (currentElement.tagName === 'DIV' && !currentElement.id && !currentElement.className)) {
+            break;
+          }
+
+          // Move section elements (reflection, lesson complete, skills visualizer)
+          if (currentElement.tagName === 'SECTION' || currentElement.id === 'skills-visualizer') {
+            section7.appendChild(currentElement);
+          }
+
           currentElement = nextElement;
         }
 
