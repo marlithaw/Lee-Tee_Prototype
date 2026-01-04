@@ -1347,6 +1347,26 @@ p.active-sentence {
     <!-- Will be populated by JavaScript -->
   </nav>
 
+  <style>
+    /* Make section switching VERY obvious for testing */
+    .section-content[data-section="1"] {
+      border: 5px solid #7C3AED !important;
+      background: linear-gradient(to bottom, #F3E8FF, #FFFFFF) !important;
+      padding: 2rem !important;
+      min-height: 400px !important;
+    }
+    .section-content[data-section="2"] {
+      border: 5px solid #F59E0B !important;
+      background: linear-gradient(to bottom, #FEF3C7, #FFFFFF) !important;
+      padding: 2rem !important;
+      min-height: 400px !important;
+    }
+    .section-content {
+      margin: 2rem auto !important;
+      max-width: 1200px !important;
+    }
+  </style>
+
   <div id="top" class="anchor-target" aria-hidden="true"></div>
   <!-- Unified Learning Dashboard Shell -->
   <div id="learningShell" class="learning-shell">
