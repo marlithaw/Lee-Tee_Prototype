@@ -4522,6 +4522,13 @@ Finally, Step 4: Restate your position..."
         // 4. Initialize the navigation
         progressiveNav.init();
 
+        // FORCE Section 1 to show (ignore saved state for now)
+        setTimeout(() => {
+          progressiveNav.currentSection = 1;
+          progressiveNav.showSection(1);
+          console.log('✓ Forced Section 1 to display');
+        }, 100);
+
         // 5. Load translation languages
         await translator.loadLanguage('en');
         await translator.loadLanguage('es');
