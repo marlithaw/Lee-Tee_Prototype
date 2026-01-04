@@ -4476,6 +4476,19 @@ Finally, Step 4: Restate your position..."
         // 3. Wrap existing content sections into progressive nav containers
         wrapSectionsForProgressiveNav();
 
+        // Debug: Check what got wrapped
+        console.log('DEBUG: Checking wrapped sections...');
+        const sectionDisplay = document.getElementById('section-display');
+        if (sectionDisplay) {
+          const wrappedSections = sectionDisplay.querySelectorAll('.section-content');
+          console.log(`Found ${wrappedSections.length} .section-content elements`);
+          wrappedSections.forEach(section => {
+            console.log(`  - Section ${section.getAttribute('data-section')}`);
+          });
+        } else {
+          console.error('section-display container not found!');
+        }
+
         // 4. Initialize the navigation
         progressiveNav.init();
 

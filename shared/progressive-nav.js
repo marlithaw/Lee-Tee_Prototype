@@ -158,7 +158,10 @@ class ProgressiveNav {
     });
 
     // Show target section
+    console.log(`DEBUG: Looking for section ${sectionNum} in container:`, this.sectionContainer);
     const targetSection = this.sectionContainer.querySelector(`[data-section="${sectionNum}"]`);
+    console.log(`DEBUG: Found target section:`, targetSection);
+
     if (targetSection) {
       targetSection.classList.add('active');
       targetSection.style.display = 'block';
@@ -176,9 +179,10 @@ class ProgressiveNav {
       // Update control buttons
       this.updateControlButtons();
 
-      console.log(`Showing section ${sectionNum}`);
+      console.log(`✓ Showing section ${sectionNum}`);
     } else {
-      console.error(`Section ${sectionNum} not found in DOM`);
+      console.error(`❌ Section ${sectionNum} not found in DOM`);
+      console.error(`Available sections:`, this.sectionContainer.querySelectorAll('[data-section]'));
     }
   }
 
