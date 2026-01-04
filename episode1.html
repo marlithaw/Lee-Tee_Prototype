@@ -1361,6 +1361,36 @@ p.active-sentence {
       padding: 2rem !important;
       min-height: 400px !important;
     }
+    .section-content[data-section="3"] {
+      border: 5px solid #0D9488 !important;
+      background: linear-gradient(to bottom, #CCFBF1, #FFFFFF) !important;
+      padding: 2rem !important;
+      min-height: 400px !important;
+    }
+    .section-content[data-section="4"] {
+      border: 5px solid #EC4899 !important;
+      background: linear-gradient(to bottom, #FCE7F3, #FFFFFF) !important;
+      padding: 2rem !important;
+      min-height: 400px !important;
+    }
+    .section-content[data-section="5"] {
+      border: 5px solid #2563EB !important;
+      background: linear-gradient(to bottom, #DBEAFE, #FFFFFF) !important;
+      padding: 2rem !important;
+      min-height: 400px !important;
+    }
+    .section-content[data-section="6"] {
+      border: 5px solid #16A34A !important;
+      background: linear-gradient(to bottom, #DCFCE7, #FFFFFF) !important;
+      padding: 2rem !important;
+      min-height: 400px !important;
+    }
+    .section-content[data-section="7"] {
+      border: 5px solid #EF4444 !important;
+      background: linear-gradient(to bottom, #FEE2E2, #FFFFFF) !important;
+      padding: 2rem !important;
+      min-height: 400px !important;
+    }
     .section-content {
       margin: 2rem auto !important;
       max-width: 1200px !important;
@@ -1941,13 +1971,6 @@ p.active-sentence {
 </div>
 <!-- END OF VOCABULARY GALLERY -->
     </section>
-
-    <!-- REMAINING CONTENT (Sections 3-7) - Hidden until implemented in progressive nav -->
-    <div id="remaining-content" style="display: none;">
-      <p class="text-center text-gray-500 p-8">
-        📖 The Story, Strategy, Model Essay, and Reflection sections will be available in the next update!
-      </p>
-    </div>
 
     <div id="the-story-begins" class="anchor-target" aria-hidden="true"></div>
     <!-- STORY SECTION 1: The Setup -->
@@ -2907,8 +2930,6 @@ Finally, Step 4: Restate your position..."
 
     </div><!-- Close px wrapper -->
   </main>
-
-  </div><!-- END remaining-content (Sections 3-7 hidden until implemented) -->
 
  <script>
     // ===== FIXED: LEARNING PROGRESS TRACKING =====
@@ -4491,17 +4512,16 @@ Finally, Step 4: Restate your position..."
         console.log('🚀 Initializing Option 3: Progressive Navigation & Translation');
 
         // 1. Initialize ProgressiveNav
-        progressiveNav = new ProgressiveNav(1, 2); // Episode 1, 2 sections for now (will add more in next phases)
+        progressiveNav = new ProgressiveNav(1, 7); // Episode 1, 7 sections total
 
-        // 2. Register sections (only the ones we've implemented)
+        // 2. Register all sections
         progressiveNav.registerSection(1, 'Start & Check-In', '🏁', false);
         progressiveNav.registerSection(2, 'Vocabulary', '📚', false);
-        // Sections 3-7 will be added in future phases:
-        // progressiveNav.registerSection(3, 'The Story', '📖', false);
-        // progressiveNav.registerSection(4, "Tee's 4-Step Strategy", '🧭', false);
-        // progressiveNav.registerSection(5, "Lee's Essay Model", '✍️', false);
-        // progressiveNav.registerSection(6, 'Your Turn to Write', '📝', false);
-        // progressiveNav.registerSection(7, 'Reflect & Celebrate', '💭', false);
+        progressiveNav.registerSection(3, 'The Story', '📖', false);
+        progressiveNav.registerSection(4, "Tee's 4-Step Strategy", '🧭', false);
+        progressiveNav.registerSection(5, "Lee's Essay Model", '✍️', false);
+        progressiveNav.registerSection(6, 'Your Turn to Write', '📝', false);
+        progressiveNav.registerSection(7, 'Reflect & Celebrate', '💭', false);
 
         // 3. Wrap existing content sections into progressive nav containers
         wrapSectionsForProgressiveNav();
@@ -4608,8 +4628,122 @@ Finally, Step 4: Restate your position..."
         console.warn('Could not find Vocabulary section');
       }
 
-      // Section 3-7: Story and activities (will be implemented in next phases)
-      // For now, we'll keep them outside the progressive system
+      // Section 3: The Story - wrap all story sections together
+      const storyAnchor = document.getElementById('the-story-begins');
+      const firstStorySection = storyAnchor ? storyAnchor.nextElementSibling : null;
+
+      if (firstStorySection) {
+        const section3 = document.createElement('div');
+        section3.className = 'section-content';
+        section3.setAttribute('data-section', '3');
+        sectionDisplay.appendChild(section3);
+
+        // Move all story sections (until we hit the 4-step strategy anchor)
+        let currentElement = firstStorySection;
+        const strategyAnchor = document.getElementById('tees-4-step-strategy');
+
+        while (currentElement && currentElement !== strategyAnchor) {
+          const nextElement = currentElement.nextElementSibling;
+          if (currentElement.tagName === 'SECTION' || currentElement.classList.contains('story-section')) {
+            section3.appendChild(currentElement);
+          }
+          currentElement = nextElement;
+        }
+
+        console.log('✓ Section 3 wrapped (The Story)');
+      }
+
+      // Section 4: Tee's 4-Step Strategy
+      const strategyAnchor = document.getElementById('tees-4-step-strategy');
+      const strategySection = strategyAnchor ? strategyAnchor.nextElementSibling : null;
+
+      if (strategySection) {
+        const section4 = document.createElement('div');
+        section4.className = 'section-content';
+        section4.setAttribute('data-section', '4');
+        sectionDisplay.appendChild(section4);
+
+        // Move content until Lee's essay anchor
+        let currentElement = strategyAnchor;
+        const essayAnchor = document.getElementById('lees-essay-model');
+
+        while (currentElement && currentElement !== essayAnchor) {
+          const nextElement = currentElement.nextElementSibling;
+          section4.appendChild(currentElement);
+          currentElement = nextElement;
+        }
+
+        console.log('✓ Section 4 wrapped (4-Step Strategy)');
+      }
+
+      // Section 5: Lee's Essay Model
+      const essayAnchor = document.getElementById('lees-essay-model');
+      const essaySection = document.getElementById('section-essay');
+
+      if (essayAnchor && essaySection) {
+        const section5 = document.createElement('div');
+        section5.className = 'section-content';
+        section5.setAttribute('data-section', '5');
+        sectionDisplay.appendChild(section5);
+
+        // Move content until Your Turn anchor
+        let currentElement = essayAnchor;
+        const writeAnchor = document.getElementById('your-turn-write');
+
+        while (currentElement && currentElement !== writeAnchor) {
+          const nextElement = currentElement.nextElementSibling;
+          section5.appendChild(currentElement);
+          currentElement = nextElement;
+        }
+
+        console.log('✓ Section 5 wrapped (Essay Model)');
+      }
+
+      // Section 6: Your Turn to Write
+      const writeAnchor = document.getElementById('your-turn-write');
+
+      if (writeAnchor) {
+        const section6 = document.createElement('div');
+        section6.className = 'section-content';
+        section6.setAttribute('data-section', '6');
+        sectionDisplay.appendChild(section6);
+
+        // Move content until Reflect anchor
+        let currentElement = writeAnchor;
+        const reflectAnchor = document.getElementById('reflect-on-your-learning');
+
+        while (currentElement && currentElement !== reflectAnchor) {
+          const nextElement = currentElement.nextElementSibling;
+          section6.appendChild(currentElement);
+          currentElement = nextElement;
+        }
+
+        console.log('✓ Section 6 wrapped (Your Turn to Write)');
+      }
+
+      // Section 7: Reflect & Celebrate
+      const reflectAnchor = document.getElementById('reflect-on-your-learning');
+
+      if (reflectAnchor) {
+        const section7 = document.createElement('div');
+        section7.className = 'section-content';
+        section7.setAttribute('data-section', '7');
+        sectionDisplay.appendChild(section7);
+
+        // Move all remaining content until we hit the main closing tag or script
+        let currentElement = reflectAnchor;
+        const mainElement = document.querySelector('main');
+
+        while (currentElement && currentElement.parentNode === mainElement.parentNode) {
+          const nextElement = currentElement.nextElementSibling;
+          if (nextElement && nextElement.tagName === 'SCRIPT') break;
+          section7.appendChild(currentElement);
+          currentElement = nextElement;
+        }
+
+        console.log('✓ Section 7 wrapped (Reflect & Celebrate)');
+      }
+
       console.log(`Total sections wrapped: ${sectionDisplay.children.length} of 7`);
     }
 
