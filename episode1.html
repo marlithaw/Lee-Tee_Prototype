@@ -1061,23 +1061,31 @@ p.active-sentence {
     }
     
     /* Reading focus mode */
-    .reading-focus {
+       .reading-focus {
       background: linear-gradient(to right, #FEF3C7 0%, transparent 100%);
       padding: 10px;
       border-radius: 8px;
       margin: 10px 0;
     }
     
-    /* ===== STICKY NAVIGATION ===== */
-    .sticky-section-nav {
+    /* ===== STICKY TOP STACK ===== */
+    #sticky-ui {
       position: sticky;
-      top: 60px;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-light);
+      top: 0;
+      z-index: 5000;
+      background: var(--bg-primary, #FFF8F0);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
+    /* Neutralize child stickiness so the wrapper controls layout */
+    #sticky-ui .section-progress-bar,
+    #sticky-ui .section-nav,
+    #sticky-ui .learning-shell {
+      position: relative !important;
+      top: auto !important;
+      z-index: auto !important;
+    }
+    
     /* Floating Stop Button (appears during read-aloud) */
     .floating-stop-btn {
       position: fixed;
@@ -1156,22 +1164,6 @@ p.active-sentence {
         width: 100%;
       }
       
-      .sticky-section-nav {
-        top: 50px;
-        padding: 8px 12px;
-      }
-
-      .sticky-section-nav .flex {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 4px;
-      }
-
-      .sticky-section-nav a {
-        font-size: 12px;
-        padding: 6px 10px;
-      }
-
       .floating-stop-btn {
         bottom: 100px;
         right: 50%;
@@ -1338,16 +1330,17 @@ p.active-sentence {
   <script src="shared/adaptive-helpers.js"></script>
 </head>
 <body data-episode="1">
-  <!-- Progressive Navigation: Progress Bar + Section Nav -->
-  <div class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
-  </div>
+  <div id="sticky-ui">
+    <!-- Progressive Navigation: Progress Bar + Section Nav -->
+    <div class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+    </div>
 
-  <nav id="section-nav" class="section-nav" aria-label="Section navigation">
-    <!-- Will be populated by JavaScript -->
-  </nav>
+    <nav id="section-nav" class="section-nav" aria-label="Section navigation">
+      <!-- Will be populated by JavaScript -->
+    </nav>
 
-  <style>
+    <style>
     /* Make section switching VERY obvious for testing */
     .section-content[data-section="1"] {
       border: 5px solid #7C3AED !important;
@@ -1395,11 +1388,11 @@ p.active-sentence {
       margin: 2rem auto !important;
       max-width: 1200px !important;
     }
-  </style>
+    </style>
 
-  <div id="top" class="anchor-target" aria-hidden="true"></div>
-  <!-- Unified Learning Dashboard Shell -->
-  <div id="learningShell" class="learning-shell">
+    <div id="top" class="anchor-target" aria-hidden="true"></div>
+    <!-- Unified Learning Dashboard Shell -->
+    <div id="learningShell" class="learning-shell">
     <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
       📚 Learning Dashboard
     </button>
@@ -1799,10 +1792,11 @@ p.active-sentence {
         </div>
       </div>
     </header>
-    
-       <!-- LEARNING OBJECTIVES -->␊
-    <section class="bg-white border-b p-6">␊
-      <div class="flex flex-wrap gap-3 justify-center">
+  </div>
+  
+  <!-- LEARNING OBJECTIVES -->␊
+  <section class="bg-white border-b p-6">␊
+    <div class="flex flex-wrap gap-3 justify-center">
         <div class="section-marker">
           <span class="text-purple-600">📖</span>
           <span>Read: 15 min</span>
@@ -4815,6 +4809,7 @@ Finally, Step 4: Restate your position..."
 </script>
 </body>
 </html>
+
 
 
 
