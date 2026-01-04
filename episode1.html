@@ -1784,7 +1784,7 @@ p.active-sentence {
     </section>
 
     <!-- SEL CHECK-IN -->
-    <section class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-white">
+    <section id="sel-checkin" class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-white">
       <h2 class="font-display text-2xl font-bold mb-4 text-center">How are you feeling today?</h2>
       <p class="text-center text-gray-600 mb-6">Choose what describes you best right now:</p>
       
@@ -1812,7 +1812,7 @@ p.active-sentence {
     </section>
 
     <!-- CHARACTER CHOICE -->
-    <section class="p-8 md:p-12 bg-gradient-to-b from-purple-50 to-white">
+    <section id="character-choice" class="p-8 md:p-12 bg-gradient-to-b from-purple-50 to-white">
       <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Choose Your Learning Guide</h2>
       <p class="text-lg mb-6">Which character do you want to help first? You'll learn from both, but you choose where to start!</p>
       
@@ -4520,10 +4520,10 @@ Finally, Step 4: Restate your position..."
       }
 
       // Section 1: SEL Check-In + Character Choice
-      const selSection = document.querySelector('section.p-8.md\\:p-12.bg-gradient-to-b.from-blue-50');
-      const characterSection = selSection ? selSection.nextElementSibling : null;
+      const selSection = document.getElementById('sel-checkin');
+      const characterSection = document.getElementById('character-choice');
 
-      if (selSection) {
+      if (selSection && characterSection) {
         const section1 = document.createElement('div');
         section1.className = 'section-content';
         section1.setAttribute('data-section', '1');
@@ -4531,9 +4531,11 @@ Finally, Step 4: Restate your position..."
         // Move SEL and Character sections into Section 1
         sectionDisplay.appendChild(section1);
         section1.appendChild(selSection);
-        if (characterSection && characterSection.textContent.includes('Choose Your Learning Guide')) {
-          section1.appendChild(characterSection);
-        }
+        section1.appendChild(characterSection);
+
+        console.log('✓ Section 1 wrapped (SEL + Character Choice)');
+      } else {
+        console.warn('Could not find SEL or Character sections');
       }
 
       // Section 2: Vocabulary
@@ -4544,10 +4546,15 @@ Finally, Step 4: Restate your position..."
         section2.setAttribute('data-section', '2');
         sectionDisplay.appendChild(section2);
         section2.appendChild(vocabSection);
+
+        console.log('✓ Section 2 wrapped (Vocabulary)');
+      } else {
+        console.warn('Could not find Vocabulary section');
       }
 
       // Section 3-7: Story and activities (will be implemented in next phases)
       // For now, we'll keep them outside the progressive system
+      console.log(`Total sections wrapped: ${sectionDisplay.children.length} of 7`);
     }
 
     /**
