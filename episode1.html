@@ -4462,16 +4462,17 @@ Finally, Step 4: Restate your position..."
         console.log('🚀 Initializing Option 3: Progressive Navigation & Translation');
 
         // 1. Initialize ProgressiveNav
-        progressiveNav = new ProgressiveNav(1, 7); // Episode 1, 7 sections total
+        progressiveNav = new ProgressiveNav(1, 2); // Episode 1, 2 sections for now (will add more in next phases)
 
-        // 2. Register sections
+        // 2. Register sections (only the ones we've implemented)
         progressiveNav.registerSection(1, 'Start & Check-In', '🏁', false);
         progressiveNav.registerSection(2, 'Vocabulary', '📚', false);
-        progressiveNav.registerSection(3, 'The Story', '📖', false);
-        progressiveNav.registerSection(4, "Tee's 4-Step Strategy", '🧭', false);
-        progressiveNav.registerSection(5, "Lee's Essay Model", '✍️', false);
-        progressiveNav.registerSection(6, 'Your Turn to Write', '📝', false);
-        progressiveNav.registerSection(7, 'Reflect & Celebrate', '💭', false);
+        // Sections 3-7 will be added in future phases:
+        // progressiveNav.registerSection(3, 'The Story', '📖', false);
+        // progressiveNav.registerSection(4, "Tee's 4-Step Strategy", '🧭', false);
+        // progressiveNav.registerSection(5, "Lee's Essay Model", '✍️', false);
+        // progressiveNav.registerSection(6, 'Your Turn to Write', '📝', false);
+        // progressiveNav.registerSection(7, 'Reflect & Celebrate', '💭', false);
 
         // 3. Wrap existing content sections into progressive nav containers
         wrapSectionsForProgressiveNav();
