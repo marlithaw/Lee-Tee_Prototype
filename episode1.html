@@ -1330,27 +1330,23 @@ p.active-sentence {
   <script src="shared-header.js"></script>
   <script src="shared-skills.js"></script>
   <script src="shared/learning-dashboard.js"></script>
+
+  <!-- Load Option 3: Progressive Navigation & Translation System -->
+  <link rel="stylesheet" href="shared/progressive-nav.css">
+  <script src="translations/translation-engine.js"></script>
+  <script src="shared/progressive-nav.js"></script>
+  <script src="shared/adaptive-helpers.js"></script>
 </head>
 <body data-episode="1">
-  <!-- ADD THIS RIGHT AFTER THE <body> TAG OR YOUR MAIN HEADER -->
-  <nav id="lessonNav" style="position: fixed; top: 0; width: 100%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 12px 20px; z-index: 10000; border-bottom: 1px solid #4A90E2;">
-      <div style="max-width: 1000px; margin: 0 auto; display: flex; align-items: center; gap: 15px;">
-          <strong style="color: #2c3e50; white-space: nowrap;">Lesson Map:</strong>
-          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-              <a href="#top" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Start</a>
-              <a href="#words-youll-need" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Vocab</a>
-              <a href="#the-story-begins" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Story</a>
-              <a href="#tees-4-step-strategy" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">4-Step Practice</a>
-              <a href="#lees-essay-model" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Model Essay</a>
-              <a href="#your-turn-write" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Your Turn</a>
-              <a href="#reflect-on-your-learning" style="text-decoration: none; color: #3498db; font-weight: 500; padding: 4px 8px; border-radius: 4px;">Reflect</a>
-          </div>
-      </div>
+  <!-- Progressive Navigation: Progress Bar + Section Nav -->
+  <div class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+  </div>
+
+  <nav id="section-nav" class="section-nav" aria-label="Section navigation">
+    <!-- Will be populated by JavaScript -->
   </nav>
 
-  <!-- ADD A SPACER SO YOUR CONTENT DOESN'T GET HIDDEN BEHIND THE FIXED NAV -->
-  <div style="height: 70px;"></div>
-  <div id="top" class="anchor-target" aria-hidden="true"></div>
   <div id="top" class="anchor-target" aria-hidden="true"></div>
   <!-- Unified Learning Dashboard Shell -->
   <div id="learningShell" class="learning-shell">
@@ -1398,19 +1394,6 @@ p.active-sentence {
     </div>
   <!-- Global Header -->
   <div id="global-header"></div>
-
-  <!-- Lesson navigation bar -->
-  <nav id="lesson-nav" aria-label="Lesson sections">
-    <div class="lesson-nav__links">
-      <a href="#top">⬆️ Start</a>
-      <a href="#words-youll-need">📚 Words You'll Need</a>
-      <a href="#the-story-begins">📖 The Story Begins</a>
-      <a href="#tees-4-step-strategy">🧭 Tee's 4-Step Strategy</a>
-      <a href="#lees-essay-model">✍️ Lee's Essay Model</a>
-      <a href="#your-turn-write">📝 Your Turn to Write</a>
-      <a href="#reflect-on-your-learning">💭 Reflect</a>
-    </div>
-  </nav>
 
   <!-- Mobile Rail Toggle -->
   <button onclick="toggleLeftRail()"
@@ -4460,6 +4443,193 @@ Finally, Step 4: Restate your position..."
       // Update help boxes if they exist
       // (Episode 1 uses helper buttons, future episodes will use help boxes)
     });
+
+    // ========================================
+    // OPTION 3: PROGRESSIVE NAV INITIALIZATION
+    // ========================================
+
+    // Initialize progressive navigation system
+    let progressiveNav;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        console.log('🚀 Initializing Option 3: Progressive Navigation & Translation');
+
+        // 1. Initialize ProgressiveNav
+        progressiveNav = new ProgressiveNav(1, 7); // Episode 1, 7 sections total
+
+        // 2. Register sections
+        progressiveNav.registerSection(1, 'Start & Check-In', '🏁', false);
+        progressiveNav.registerSection(2, 'Vocabulary', '📚', false);
+        progressiveNav.registerSection(3, 'The Story', '📖', false);
+        progressiveNav.registerSection(4, "Tee's 4-Step Strategy", '🧭', false);
+        progressiveNav.registerSection(5, "Lee's Essay Model", '✍️', false);
+        progressiveNav.registerSection(6, 'Your Turn to Write', '📝', false);
+        progressiveNav.registerSection(7, 'Reflect & Celebrate', '💭', false);
+
+        // 3. Wrap existing content sections into progressive nav containers
+        wrapSectionsForProgressiveNav();
+
+        // 4. Initialize the navigation
+        progressiveNav.init();
+
+        // 5. Load translation languages
+        await translator.loadLanguage('en');
+        await translator.loadLanguage('es');
+        await translator.loadLanguage('fr');
+        await translator.loadLanguage('ht');
+
+        // 6. Initialize adaptive helpers
+        adaptiveHelpers.init();
+
+        // 7. Add translation UI toggle
+        addTranslationUI();
+
+        // 8. Connect character choice to adaptive system
+        connectCharacterChoice();
+
+        console.log('✅ Option 3 initialized successfully');
+
+      } catch (error) {
+        console.error('❌ Failed to initialize Option 3:', error);
+        // Graceful degradation - show all content if system fails
+        document.querySelectorAll('.section-content').forEach(section => {
+          section.style.display = 'block';
+        });
+      }
+    });
+
+    /**
+     * Wrap existing sections into progressive nav containers
+     */
+    function wrapSectionsForProgressiveNav() {
+      // Find the section-display container
+      let sectionDisplay = document.getElementById('section-display');
+
+      // If it doesn't exist, create it
+      if (!sectionDisplay) {
+        sectionDisplay = document.createElement('div');
+        sectionDisplay.id = 'section-display';
+        sectionDisplay.className = 'section-display';
+
+        // Find where to insert it (after learning objectives)
+        const learningObjectives = document.querySelector('.bg-white.border-b');
+        if (learningObjectives && learningObjectives.parentNode) {
+          learningObjectives.parentNode.insertBefore(sectionDisplay, learningObjectives.nextSibling);
+        }
+      }
+
+      // Section 1: SEL Check-In + Character Choice
+      const selSection = document.querySelector('section.p-8.md\\:p-12.bg-gradient-to-b.from-blue-50');
+      const characterSection = selSection ? selSection.nextElementSibling : null;
+
+      if (selSection) {
+        const section1 = document.createElement('div');
+        section1.className = 'section-content';
+        section1.setAttribute('data-section', '1');
+
+        // Move SEL and Character sections into Section 1
+        sectionDisplay.appendChild(section1);
+        section1.appendChild(selSection);
+        if (characterSection && characterSection.textContent.includes('Choose Your Learning Guide')) {
+          section1.appendChild(characterSection);
+        }
+      }
+
+      // Section 2: Vocabulary
+      const vocabSection = document.getElementById('section-vocab');
+      if (vocabSection) {
+        const section2 = document.createElement('div');
+        section2.className = 'section-content';
+        section2.setAttribute('data-section', '2');
+        sectionDisplay.appendChild(section2);
+        section2.appendChild(vocabSection);
+      }
+
+      // Section 3-7: Story and activities (will be implemented in next phases)
+      // For now, we'll keep them outside the progressive system
+    }
+
+    /**
+     * Add translation UI toggle
+     */
+    function addTranslationUI() {
+      const header = document.getElementById('global-header');
+      if (!header) return;
+
+      const langToggle = document.createElement('div');
+      langToggle.className = 'language-toggle';
+      langToggle.style.cssText = 'position: fixed; top: 60px; right: 20px; z-index: 1001; background: white; padding: 8px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);';
+      langToggle.innerHTML = `
+        <label for="lang-select" style="font-size: 12px; color: #666; margin-right: 8px;">Language:</label>
+        <select id="lang-select" style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd;">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="ht">Kreyòl</option>
+        </select>
+      `;
+
+      document.body.appendChild(langToggle);
+
+      document.getElementById('lang-select').addEventListener('change', async (e) => {
+        await translator.switchLanguage(e.target.value);
+      });
+    }
+
+    /**
+     * Connect character choice to adaptive helpers
+     */
+    function connectCharacterChoice() {
+      // Override existing chooseCharacter function to integrate with adaptive system
+      const originalChooseCharacter = window.chooseCharacter;
+
+      window.chooseCharacter = function(character) {
+        // Call original function if it exists
+        if (typeof originalChooseCharacter === 'function') {
+          originalChooseCharacter(character);
+        }
+
+        // Set character choice in adaptive helpers
+        adaptiveHelpers.setCharacterChoice(character);
+
+        // Show feedback
+        const feedback = document.getElementById('characterFeedback');
+        if (feedback) {
+          feedback.classList.remove('hidden');
+
+          if (character === 'lee') {
+            feedback.innerHTML = `
+              <p class="font-bold text-purple-800 mb-2">Great choice! You chose Lee!</p>
+              <p class="text-sm">You'll see more sentence frames, word banks, and step-by-step scaffolds throughout the lesson.</p>
+            `;
+          } else {
+            feedback.innerHTML = `
+              <p class="font-bold text-amber-800 mb-2">Great choice! You chose Tee!</p>
+              <p class="text-sm">You'll see strategic thinking questions and problem-solving prompts throughout the lesson.</p>
+            `;
+          }
+        }
+
+        // Log the choice
+        console.log(`✓ Student chose ${character} - adaptive scaffolding activated`);
+      };
+    }
+
+    /**
+     * Navigation controls
+     */
+    function nextSection() {
+      if (progressiveNav) {
+        progressiveNav.nextSection();
+      }
+    }
+
+    function previousSection() {
+      if (progressiveNav) {
+        progressiveNav.previousSection();
+      }
+    }
 </script>
 </body>
 </html>
