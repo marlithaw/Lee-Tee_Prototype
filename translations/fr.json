@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "start": "Commencer",
+    "vocab": "Vocabulaire",
+    "story": "Histoire",
+    "strategy": "Stratégie en 4 Étapes",
+    "model": "Essai Modèle",
+    "write": "Votre Tour",
+    "reflect": "Réfléchir"
+  },
+  "vocab": {
+    "claim": "Affirmation",
+    "claim_def": "Ce que vous essayez de prouver dans votre argument",
+    "evidence": "Preuve",
+    "evidence_def": "Faits ou preuves qui soutiennent votre affirmation",
+    "counterclaim": "Contre-argument",
+    "counterclaim_def": "L'argument de l'autre côté"
+  },
+  "sel": {
+    "question": "Comment vous sentez-vous aujourd'hui?",
+    "excited": "Excité",
+    "calm": "Calme",
+    "nervous": "Nerveux",
+    "tired": "Fatigué"
+  },
+  "helpers": {
+    "lee_writing": "Besoin d'aide pour commencer? Essayez ces amorces de phrases:",
+    "tee_strategy": "Ne sois pas bruyant. Sois correct. Demande-toi:"
+  },
+  "story": {
+    "title": "La Bataille de Récréation",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden"
+    }
+  },
+  "buttons": {
+    "listen": "Écouter",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "check": "Vérifier",
+    "continue": "Continuer"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "start": "Kòmanse",
+    "vocab": "Vokabilè",
+    "story": "Istwa",
+    "strategy": "Estrateji 4 Etap",
+    "model": "Modèl Esè",
+    "write": "Tou Ou",
+    "reflect": "Reflechi"
+  },
+  "vocab": {
+    "claim": "Reklamasyon",
+    "claim_def": "Sa w ap eseye pwouve nan agiman ou",
+    "evidence": "Prèv",
+    "evidence_def": "Fè oswa prèv ki sipòte reklamasyon ou",
+    "counterclaim": "Kont-agiman",
+    "counterclaim_def": "Agiman lòt bò a"
+  },
+  "sel": {
+    "question": "Kijan ou santi ou jodi a?",
+    "excited": "Eksite",
+    "calm": "Kalm",
+    "nervous": "Nève",
+    "tired": "Fatige"
+  },
+  "helpers": {
+    "lee_writing": "Bezwen èd pou kòmanse? Eseye fraze sa yo:",
+    "tee_strategy": "Pa fè bri. Fè l kòrèk. Mande tèt ou:"
+  },
+  "story": {
+    "title": "Batay Rekreyasyon",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden"
+    }
+  },
+  "buttons": {
+    "listen": "Koute",
+    "next": "Pwochen",
+    "previous": "Anvan",
+    "submit": "Soumèt",
+    "check": "Verifye",
+    "continue": "Kontinye"
+  }
+}

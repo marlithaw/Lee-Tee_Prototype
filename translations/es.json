@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "start": "Inicio",
+    "vocab": "Vocabulario",
+    "story": "Historia",
+    "strategy": "Estrategia de 4 Pasos",
+    "model": "Ensayo Modelo",
+    "write": "Tu Turno",
+    "reflect": "Reflexionar"
+  },
+  "vocab": {
+    "claim": "Afirmación",
+    "claim_def": "Lo que intentas probar en tu argumento",
+    "evidence": "Evidencia",
+    "evidence_def": "Pruebas o hechos que apoyan tu afirmación",
+    "counterclaim": "Contraargumento",
+    "counterclaim_def": "El argumento del otro lado"
+  },
+  "sel": {
+    "question": "¿Cómo te sientes hoy?",
+    "excited": "Emocionado",
+    "calm": "Tranquilo",
+    "nervous": "Nervioso",
+    "tired": "Cansado"
+  },
+  "helpers": {
+    "lee_writing": "¿Necesitas ayuda para empezar? Prueba estos iniciadores de oraciones:",
+    "tee_strategy": "No seas ruidoso. Sé correcto. Pregúntate:"
+  },
+  "story": {
+    "title": "La Batalla de Recreo",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden"
+    }
+  },
+  "buttons": {
+    "listen": "Escuchar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "check": "Verificar",
+    "continue": "Continuar"
+  }
+}
