@@ -19,6 +19,7 @@
       --text-secondary: #57534E;
       --success: #16A34A;
       --border-light: #E7E5E4;
+      --sticky-stack-height: 320px;
     }
     
     html {
@@ -1068,13 +1069,17 @@ p.active-sentence {
       margin: 10px 0;
     }
     
-    /* ===== STICKY TOP STACK ===== */
+        /* ===== STICKY TOP STACK ===== */
     #sticky-ui {
       position: sticky;
       top: 0;
-      z-index: 5000;
+      z-index: 1200;
       background: var(--bg-primary, #FFF8F0);
       border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      height: fit-content;
+      width: 100%;
+      overflow: visible;
+      isolation: isolate;
     }
 
     /* Neutralize child stickiness so the wrapper controls layout */
@@ -1083,7 +1088,43 @@ p.active-sentence {
     #sticky-ui .learning-shell {
       position: relative !important;
       top: auto !important;
-      z-index: auto !important;
+      z-index: 1 !important;
+      left: auto !important;
+      right: auto !important;
+    }
+
+    #sticky-ui .section-nav {
+      padding-right: 8.5rem;
+    }
+
+    #sticky-ui .language-toggle {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      z-index: 1250;
+      background: white;
+      padding: 8px 10px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      pointer-events: auto;
+    }
+
+    #sticky-ui .language-toggle label {
+      font-size: 12px;
+      color: #444;
+      margin: 0;
+    }
+
+    #sticky-ui .language-toggle select {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 13px;
+      background: white;
     }
     
     /* Floating Stop Button (appears during read-aloud) */
@@ -1141,8 +1182,19 @@ p.active-sentence {
         right: 10px;
         padding: 0.5rem 1rem;
       }
-      .points-number {
+            .points-number {
         font-size: 1.25rem;
+      }
+
+      #sticky-ui .section-nav {
+        padding-right: 7rem;
+      }
+
+      #sticky-ui .language-toggle {
+        top: 10px;
+        right: 12px;
+        gap: 8px;
+        padding: 7px 9px;
       }
       .helper-btn {
         bottom: 10px;
@@ -1185,6 +1237,7 @@ p.active-sentence {
       }
     }
     
+   
     /* Image error fallback */
     img {
       background: linear-gradient(135deg, #f3e8ff 0%, #fef3c7 100%);
@@ -1241,18 +1294,18 @@ p.active-sentence {
       outline: none;
       box-shadow: 0 6px 16px -10px rgba(49, 46, 129, 0.4);
     }
+    #lesson-nav a:focus-visible {␊
+      box-shadow: 0 0 0 3px rgba(49, 46, 129, 0.4);␊
+    }␊
+␊
+    .anchor-target {␊
+      scroll-margin-top: var(--sticky-stack-height);
+      display: block;␊
+      height: 1px;␊
+      width: 1px;␊
+      position: relative;␊
+      top: -1px;␊
 
-    #lesson-nav a:focus-visible {
-      box-shadow: 0 0 0 3px rgba(49, 46, 129, 0.4);
-    }
-
-    .anchor-target {
-      scroll-margin-top: 180px;
-      display: block;
-      height: 1px;
-      width: 1px;
-      position: relative;
-      top: -1px;
     }
 
     @media (max-width: 768px) {
@@ -1266,14 +1319,11 @@ p.active-sentence {
         justify-content: flex-start;
         flex-wrap: nowrap;
       }
-      #lesson-nav a {
+            #lesson-nav a {
         white-space: nowrap;
       }
-      .anchor-target {
-        scroll-margin-top: 220px;
-      }
     }
-
+    
     /* Left Rail Sidebar */
     .left-rail {
       position: fixed;
@@ -1328,16 +1378,25 @@ p.active-sentence {
   <script src="translations/translation-engine.js"></script>
   <script src="shared/progressive-nav.js"></script>
   <script src="shared/adaptive-helpers.js"></script>
+
+  <style>
+    /* Mobile-specific sticky stack sizing */
+    @media (max-width: 768px) {
+      :root {
+        --sticky-stack-height: 360px;
+      }
+    }
+  </style>
 </head>
 <body data-episode="1">
-  <div id="sticky-ui">
-    <!-- Progressive Navigation: Progress Bar + Section Nav -->
-    <div class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-      <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
-    </div>
-
-    <nav id="section-nav" class="section-nav" aria-label="Section navigation">
-      <!-- Will be populated by JavaScript -->
+  <div id="sticky-ui">␊
+    <!-- Progressive Navigation: Progress Bar + Section Nav -->␊
+    <div id="section-progress-bar" class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill" class="progress-fill" style="width: 0%"></div>␊
+    </div>␊
+␊
+    <nav id="section-nav" class="section-nav" aria-label="Section navigation">␊
+      <!-- Will be populated by JavaScript -->␊
     </nav>
 
     <style>
@@ -1437,6 +1496,8 @@ p.active-sentence {
     </div>
   <!-- Global Header -->
   <div id="global-header"></div>
+
+</div>
 
   <!-- Mobile Rail Toggle -->
   <button onclick="toggleLeftRail()"
@@ -4749,15 +4810,14 @@ Finally, Step 4: Restate your position..."
      * Add translation UI toggle
      */
     function addTranslationUI() {
-      const header = document.getElementById('global-header');
-      if (!header) return;
+      const stickyContainer = document.getElementById('sticky-ui');
+      if (!stickyContainer) return;
 
       const langToggle = document.createElement('div');
       langToggle.className = 'language-toggle';
-      langToggle.style.cssText = 'position: fixed; top: 60px; right: 20px; z-index: 1001; background: white; padding: 8px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);';
       langToggle.innerHTML = `
-        <label for="lang-select" style="font-size: 12px; color: #666; margin-right: 8px;">Language:</label>
-        <select id="lang-select" style="padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd;">
+        <label for="lang-select">Language:</label>
+        <select id="lang-select">
           <option value="en">English</option>
           <option value="es">Español</option>
           <option value="fr">Français</option>
@@ -4765,7 +4825,7 @@ Finally, Step 4: Restate your position..."
         </select>
       `;
 
-      document.body.appendChild(langToggle);
+      stickyContainer.appendChild(langToggle);
 
       document.getElementById('lang-select').addEventListener('change', async (e) => {
         await translator.switchLanguage(e.target.value);
@@ -4828,6 +4888,7 @@ Finally, Step 4: Restate your position..."
 </script>
 </body>
 </html>
+
 
 
 
