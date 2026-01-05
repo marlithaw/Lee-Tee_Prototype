@@ -1814,25 +1814,25 @@ p.active-sentence {
 
     <!-- SEL CHECK-IN -->
     <section id="sel-checkin" class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-white">
-      <h2 class="font-display text-2xl font-bold mb-4 text-center">How are you feeling today?</h2>
-      <p class="text-center text-gray-600 mb-6">Choose what describes you best right now:</p>
-      
+      <h2 class="font-display text-2xl font-bold mb-4 text-center" data-translate="sel.question">How are you feeling today?</h2>
+      <p class="text-center text-gray-600 mb-6" data-translate="instructions.select_emotion">Choose what describes you best right now:</p>
+
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
         <div class="emotion-option bg-white" onclick="selectEmotion(this, 'excited')">
           <div class="text-4xl mb-2">😄</div>
-          <div class="font-semibold">Excited</div>
+          <div class="font-semibold" data-translate="sel.excited">Excited</div>
         </div>
         <div class="emotion-option bg-white" onclick="selectEmotion(this, 'calm')">
           <div class="text-4xl mb-2">😊</div>
-          <div class="font-semibold">Calm</div>
+          <div class="font-semibold" data-translate="sel.calm">Calm</div>
         </div>
         <div class="emotion-option bg-white" onclick="selectEmotion(this, 'nervous')">
           <div class="text-4xl mb-2">😰</div>
-          <div class="font-semibold">Nervous</div>
+          <div class="font-semibold" data-translate="sel.nervous">Nervous</div>
         </div>
         <div class="emotion-option bg-white" onclick="selectEmotion(this, 'tired')">
           <div class="text-4xl mb-2">😴</div>
-          <div class="font-semibold">Tired</div>
+          <div class="font-semibold" data-translate="sel.tired">Tired</div>
         </div>
       </div>
 
@@ -1842,20 +1842,20 @@ p.active-sentence {
 
     <!-- CHARACTER CHOICE -->
     <section id="character-choice" class="p-8 md:p-12 bg-gradient-to-b from-purple-50 to-white">
-      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Choose Your Learning Guide</h2>
-      <p class="text-lg mb-6">Which character do you want to help first? You'll learn from both, but you choose where to start!</p>
-      
+      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700" data-translate="character.title">Choose Your Learning Guide</h2>
+      <p class="text-lg mb-6" data-translate="instructions.select_character">Which character do you want to help first? You'll learn from both, but you choose where to start!</p>
+
       <div class="grid md:grid-cols-2 gap-6">
         <div id="chooseLee" class="choice-card bg-white p-6 rounded-xl shadow" onclick="chooseCharacter('lee')">
           <div class="text-6xl mb-4 text-center">📓</div>
-          <h3 class="font-display text-2xl font-bold mb-2 text-center">Start with Lee</h3>
-          <p class="text-gray-600 text-center">The analytical thinker who loves to write everything down</p>
+          <h3 class="font-display text-2xl font-bold mb-2 text-center" data-translate="character.lee_name">Start with Lee</h3>
+          <p class="text-gray-600 text-center" data-translate="character.lee_desc">The analytical thinker who loves to write everything down</p>
         </div>
-        
+
         <div id="chooseTee" class="choice-card bg-white p-6 rounded-xl shadow" onclick="chooseCharacter('tee')">
           <div class="text-6xl mb-4 text-center">🎤</div>
-          <h3 class="font-display text-2xl font-bold mb-2 text-center">Start with Tee</h3>
-          <p class="text-gray-600 text-center">The strategic speaker who thinks on her feet</p>
+          <h3 class="font-display text-2xl font-bold mb-2 text-center" data-translate="character.tee_name">Start with Tee</h3>
+          <p class="text-gray-600 text-center" data-translate="character.tee_desc">The strategic speaker who thinks on her feet</p>
         </div>
       </div>
       
@@ -2808,63 +2808,65 @@ Finally, Step 4: Restate your position..."
     <div id="reflect-on-your-learning" class="anchor-target" aria-hidden="true"></div>
     <!-- REFLECTION & SEL INTEGRATION -->
     <section class="p-8 md:p-12 bg-gradient-to-b from-blue-50 to-purple-50" id="section-reflect">
-      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700">Reflect on Your Learning</h2>
-      
+      <h2 class="font-display text-3xl font-bold mb-4 text-purple-700" data-translate="reflection.title">Reflect on Your Learning</h2>
+
       <div class="space-y-6">
         <div class="bg-white p-6 rounded-xl">
-          <h4 class="font-semibold mb-3">When have YOU had to address a counterclaim in real life?</h4>
-          <textarea 
-            class="w-full p-4 border-2 border-gray-200 rounded-lg resize-none" 
+          <h4 class="font-semibold mb-3" data-translate="reflection.question1">When have YOU had to address a counterclaim in real life?</h4>
+          <textarea
+            class="w-full p-4 border-2 border-gray-200 rounded-lg resize-none"
             rows="3"
+            data-translate="reflection.placeholder1"
             placeholder="Maybe with a friend, family member, or teacher..."
           ></textarea>
         <div class="mt-2 flex gap-2">
-        <button type="button" onclick="startDictation(this)" 
-                class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm hover:bg-blue-200 transition">
+        <button type="button" onclick="startDictation(this)"
+                class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm hover:bg-blue-200 transition" data-translate="buttons.speak_answer">
           🎤 Speak Answer
         </button>
         <button type="button" onclick="this.previousElementSibling.value=''"
-                class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200 transition">
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200 transition" data-translate="buttons.clear">
           🗑️ Clear
         </button>
       </div>
-        
+
         <div class="bg-white p-6 rounded-xl">
-          <h4 class="font-semibold mb-3">What's the difference between arguing with facts vs. arguing with volume?</h4>
-          <textarea 
-            class="w-full p-4 border-2 border-gray-200 rounded-lg resize-none" 
+          <h4 class="font-semibold mb-3" data-translate="reflection.question2">What's the difference between arguing with facts vs. arguing with volume?</h4>
+          <textarea
+            class="w-full p-4 border-2 border-gray-200 rounded-lg resize-none"
             rows="3"
+            data-translate="reflection.placeholder2"
             placeholder="Think about Tee's calm approach compared to how Jayden started..."
           ></textarea>
         <div class="mt-2 flex gap-2">
-        <button type="button" onclick="startDictation(this)" 
-                class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm hover:bg-blue-200 transition">
+        <button type="button" onclick="startDictation(this)"
+                class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm hover:bg-blue-200 transition" data-translate="buttons.speak_answer">
           🎤 Speak Answer
         </button>
         <button type="button" onclick="this.previousElementSibling.value=''"
-                class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200 transition">
+                class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-200 transition" data-translate="buttons.clear">
           🗑️ Clear
         </button>
       </div>
-        
+
         <div class="bg-white p-6 rounded-xl">
-          <h4 class="font-semibold mb-3">How are you feeling now after this lesson?</h4>
+          <h4 class="font-semibold mb-3" data-translate="reflection.question3">How are you feeling now after this lesson?</h4>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
             <button class="emotion-option" onclick="selectFinalEmotion(this, 'confident')">
               <div class="text-3xl">💪</div>
-              <div class="text-sm font-semibold">Confident</div>
+              <div class="text-sm font-semibold" data-translate="reflection.confident">Confident</div>
             </button>
             <button class="emotion-option" onclick="selectFinalEmotion(this, 'curious')">
               <div class="text-3xl">🤔</div>
-              <div class="text-sm font-semibold">Curious</div>
+              <div class="text-sm font-semibold" data-translate="reflection.curious">Curious</div>
             </button>
             <button class="emotion-option" onclick="selectFinalEmotion(this, 'ready')">
               <div class="text-3xl">🚀</div>
-              <div class="text-sm font-semibold">Ready!</div>
+              <div class="text-sm font-semibold" data-translate="reflection.ready_emotion">Ready!</div>
             </button>
             <button class="emotion-option" onclick="selectFinalEmotion(this, 'unsure')">
               <div class="text-3xl">😕</div>
-              <div class="text-sm font-semibold">Still Unsure</div>
+              <div class="text-sm font-semibold" data-translate="reflection.still_unsure">Still Unsure</div>
             </button>
           </div>
         </div>
@@ -2876,27 +2878,27 @@ Finally, Step 4: Restate your position..."
       <div class="media-container mb-6" style="max-width: 300px; margin: 0 auto;">
         <img src="Gemini_Generated_Image_jhb8wijhb8wijhb8.png" alt="Tee walking away victoriously">
       </div>
-      
+
       <div class="text-6xl mb-4">🎉</div>
-      <h2 class="font-display text-3xl font-bold mb-3">Lesson Complete!</h2>
+      <h2 class="font-display text-3xl font-bold mb-3" data-translate="ui.lesson_complete">Lesson Complete!</h2>
       <p class="text-purple-200 text-lg mb-6">You learned how to address a counterclaim using Tee's 4-step strategy.</p>
-      
+
       <div class="bg-white/10 backdrop-blur rounded-xl p-6 max-w-md mx-auto mb-8">
-        <p class="font-semibold text-amber-300 mb-2">🔑 Key Takeaway:</p>
-        <p class="text-xl font-display">"Loud is not the same as true."</p>
-        <p class="text-purple-200 text-sm mt-2">— From Lee's notebook</p>
+        <p class="font-semibold text-amber-300 mb-2" data-translate="celebration.key_takeaway">🔑 Key Takeaway:</p>
+        <p class="text-xl font-display" data-translate="celebration.quote">"Loud is not the same as true."</p>
+        <p class="text-purple-200 text-sm mt-2" data-translate="celebration.from_notebook">— From Lee's notebook</p>
       </div>
-      
+
       <div id="finalScore" class="bg-white/20 backdrop-blur rounded-xl p-6 max-w-md mx-auto mb-8">
-        <p class="text-2xl font-bold mb-2">Your Learning Points: <span id="finalPoints">0</span></p>
-        <p class="text-purple-200 text-sm">Great work today!</p>
+        <p class="text-2xl font-bold mb-2"><span data-translate="celebration.your_points">Your Learning Points:</span> <span id="finalPoints">0</span></p>
+        <p class="text-purple-200 text-sm" data-translate="ui.great_work">Great work today!</p>
       </div>
-      
+
       <div class="flex flex-wrap justify-center gap-4">
-        <button onclick="window.location.reload()" class="bg-white text-purple-700 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition">
+        <button onclick="window.location.reload()" class="bg-white text-purple-700 font-bold py-3 px-6 rounded-full hover:bg-purple-100 transition" data-translate="buttons.try_again">
           📖 Try Again
         </button>
-        <a href="episode2.html" class="bg-amber-400 text-amber-900 font-bold py-3 px-6 rounded-full hover:bg-amber-300 transition inline-block">
+        <a href="episode2.html" class="bg-amber-400 text-amber-900 font-bold py-3 px-6 rounded-full hover:bg-amber-300 transition inline-block" data-translate="celebration.next_episode">
           ➡️ Next Episode
         </a>
       </div>
