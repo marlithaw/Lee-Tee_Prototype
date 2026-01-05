@@ -9,16 +9,30 @@
     "reflect": "Reflechi epi Selebre"
   },
   "vocab": {
+    "title": "Mo W ap Bezwen",
+    "intro": "Ann aprann twa mo enpòtan. Èske w ka devine ki mo ki ale nan chak fraz?",
+    "word_bank": "📖 Bank Mo:",
+    "tap_to_learn": "Touche pou aprann",
     "claim": "Reklamasyon",
+    "claim_subtitle": "Pwen prensipal ou oswa agiman w",
     "claim_def": "Sa w ap eseye pwouve nan agiman w",
+    "claim_example": "Nan istwa a: \"Tee pa janm genyen...\"",
     "evidence": "Prèv",
-    "evidence_def": "Fè oswa prèv ki sipòte reklamasyon w",
+    "evidence_subtitle": "Prèv oswa fè (\"resi\")",
+    "evidence_def": "Prèv konkrè ki sipòte reklamasyon w",
+    "evidence_example": "Nan istwa a: Dosye prezans",
     "counterclaim": "Kont-agiman",
-    "counterclaim_def": "Agiman lòt bò a",
+    "counterclaim_subtitle": "Vi opoze",
+    "counterclaim_def": "Agiman lòt bò a ou dwe adrese",
+    "counterclaim_example": "Nan istwa a: Defi Jayden",
     "rebuttal": "Refitasyon",
     "rebuttal_def": "Repons ou bay kont-agiman an",
     "reasoning": "Rezonman",
-    "reasoning_def": "Eksplike kijan prèv ou sipòte reklamasyon w"
+    "reasoning_def": "Eksplike kijan prèv ou sipòte reklamasyon w",
+    "ritual_marker": "🥄 Melanje Li — Rasanble Engredyan yo",
+    "siop_vocab": "📚 Pre-ansèyman Vokabilè",
+    "siop_visual": "🖼️ Sipò Vizyèl",
+    "siop_frames": "🗣️ Kad Fraz"
   },
   "sel": {
     "question": "Kijan w santi w jodi a?",
@@ -106,5 +120,47 @@
     "from_notebook": "— Nan kaye Lee",
     "your_points": "Pwen Aprantisaj Ou:",
     "next_episode": "➡️ Pwochen Epizòd"
+  },
+  "section3": {
+    "title": "Istwa a Kòmanse",
+    "ritual_marker": "🍳 Kuit Li — Swiv Resèt la",
+    "listen_btn": "🔊 Koute",
+    "read_aloud_btn": "🎙️ Li Byen Fò"
+  },
+  "section4": {
+    "title": "4 Etap Estrateji Tee",
+    "ritual_marker": "🔬 Eseye Li — Eksperimante ak Metòd la",
+    "intro": "Tee pa t rele. Li te itilize yon plan etap pa etap. Men estrateji li:",
+    "step1": "Etap 1: Repete reklamasyon yo",
+    "step1_desc": "Montre w te koute",
+    "step2": "Etap 2: Aksepte sa ki vre",
+    "step2_desc": "Jwenn tè komen",
+    "step3": "Etap 3: Prezante prèv OU",
+    "step3_desc": "Done, pa volim",
+    "step4": "Etap 4: Reafime reklamasyon OU",
+    "step4_desc": "Fini fò",
+    "guided_practice": "Pratik Gide"
+  },
+  "section5": {
+    "title": "Modèl Esè Lee",
+    "ritual_marker": "🔎 Egzamine Li — Analize Modèl la",
+    "intro": "Lee te ekri tout bagay. Ann gade kijan esè li gen TOUT pati yo:",
+    "find_parts": "Jwenn Pati Esè a",
+    "instruction": "Klike sou yon bouton anba a, epi klike sou paragraf ki gen pati sa a.",
+    "find_claim": "Jwenn REKLAMASYON an",
+    "find_evidence": "Jwenn PRÈV la",
+    "find_counterclaim": "Jwenn KONT-AGIMAN an",
+    "find_conclusion": "Jwenn KONKLIZYON an"
+  },
+  "section6": {
+    "title": "Tou Ou pou Ekri",
+    "ritual_marker": "✨ Fè l Pa W — Kreye Vèsyon Pa W",
+    "intro": "Kounye a se tou ou. Ekri yon repons kout lè w sèvi ak estrateji Tee oswa modèl Lee.",
+    "prompt": "Ekri yon repons kout (3-5 fraz) kote w adrese yon kont-agiman.",
+    "checklist_title": "Lis Verifikasyon Ekriti:",
+    "checklist_1": "□ Mwen rekònet kont-agiman an",
+    "checklist_2": "□ Mwen bay prèv",
+    "checklist_3": "□ Mwen reafime reklamasyon mwen",
+    "tip": "Konsèy: Make chak eleman lè w enkli li nan repons ou!"
   }
 }

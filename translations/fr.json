@@ -9,16 +9,30 @@
     "reflect": "Réfléchir et Célébrer"
   },
   "vocab": {
+    "title": "Mots Dont Vous Aurez Besoin",
+    "intro": "Apprenons trois mots importants. Pouvez-vous prédire quel mot correspond à chaque phrase?",
+    "word_bank": "📖 Banque de Mots:",
+    "tap_to_learn": "Toucher pour apprendre",
     "claim": "Affirmation",
+    "claim_subtitle": "Votre point principal ou argument",
     "claim_def": "Ce que vous essayez de prouver dans votre argument",
+    "claim_example": "Dans l'histoire: \"Tee ne gagne jamais...\"",
     "evidence": "Preuve",
-    "evidence_def": "Faits ou preuves qui soutiennent votre affirmation",
+    "evidence_subtitle": "Preuves ou faits (\"reçus\")",
+    "evidence_def": "Preuve concrète qui soutient votre affirmation",
+    "evidence_example": "Dans l'histoire: Registres de présence",
     "counterclaim": "Contre-argument",
-    "counterclaim_def": "L'argument de l'autre côté",
+    "counterclaim_subtitle": "Vue opposée",
+    "counterclaim_def": "L'argument de l'autre côté que vous devez aborder",
+    "counterclaim_example": "Dans l'histoire: Le défi de Jayden",
     "rebuttal": "Réfutation",
     "rebuttal_def": "Votre réponse au contre-argument",
     "reasoning": "Raisonnement",
-    "reasoning_def": "Expliquer comment votre preuve soutient votre affirmation"
+    "reasoning_def": "Expliquer comment votre preuve soutient votre affirmation",
+    "ritual_marker": "🥄 Remuez — Rassemblez les Ingrédients",
+    "siop_vocab": "📚 Pré-enseignement du Vocabulaire",
+    "siop_visual": "🖼️ Supports Visuels",
+    "siop_frames": "🗣️ Cadres de Phrases"
   },
   "sel": {
     "question": "Comment vous sentez-vous aujourd'hui?",
@@ -106,5 +120,47 @@
     "from_notebook": "— Du cahier de Lee",
     "your_points": "Vos Points d'Apprentissage:",
     "next_episode": "➡️ Épisode Suivant"
+  },
+  "section3": {
+    "title": "L'Histoire Commence",
+    "ritual_marker": "🍳 Cuisinez — Suivez la Recette",
+    "listen_btn": "🔊 Écouter",
+    "read_aloud_btn": "🎙️ Lire à Voix Haute"
+  },
+  "section4": {
+    "title": "La Stratégie en 4 Étapes de Tee",
+    "ritual_marker": "🔬 Testez — Expérimentez avec la Méthode",
+    "intro": "Tee n'a pas crié. Elle a utilisé un plan étape par étape. Voici sa stratégie:",
+    "step1": "Étape 1: Répétez leur affirmation",
+    "step1_desc": "Montrez que vous avez écouté",
+    "step2": "Étape 2: Acceptez ce qui est vrai",
+    "step2_desc": "Trouvez un terrain d'entente",
+    "step3": "Étape 3: Introduisez VOTRE preuve",
+    "step3_desc": "Données, pas volume",
+    "step4": "Étape 4: Reformulez VOTRE affirmation",
+    "step4_desc": "Terminez fort",
+    "guided_practice": "Pratique Guidée"
+  },
+  "section5": {
+    "title": "L'Essai Modèle de Lee",
+    "ritual_marker": "🔎 Examinez — Analysez le Modèle",
+    "intro": "Lee a tout écrit. Voyons comment son essai a TOUTES les parties:",
+    "find_parts": "Trouvez les Parties de l'Essai",
+    "instruction": "Cliquez sur un bouton ci-dessous, puis cliquez sur le paragraphe qui contient cette partie.",
+    "find_claim": "Trouver l'AFFIRMATION",
+    "find_evidence": "Trouver la PREUVE",
+    "find_counterclaim": "Trouver le CONTRE-ARGUMENT",
+    "find_conclusion": "Trouver la CONCLUSION"
+  },
+  "section6": {
+    "title": "À Votre Tour d'Écrire",
+    "ritual_marker": "✨ Faites-le Vôtre — Créez Votre Version",
+    "intro": "C'est maintenant votre tour. Écrivez une réponse courte en utilisant la stratégie de Tee ou le modèle de Lee.",
+    "prompt": "Écrivez une réponse courte (3-5 phrases) où vous abordez un contre-argument.",
+    "checklist_title": "Liste de Vérification d'Écriture:",
+    "checklist_1": "□ J'ai reconnu le contre-argument",
+    "checklist_2": "□ J'ai fourni des preuves",
+    "checklist_3": "□ J'ai reformulé mon affirmation",
+    "tip": "Astuce: Cochez chaque élément au fur et à mesure que vous l'incluez dans votre réponse!"
   }
 }
