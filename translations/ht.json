@@ -1,34 +1,51 @@
 {
   "nav": {
-    "start": "Kòmanse",
+    "start": "Kòmansman ak Check-In",
     "vocab": "Vokabilè",
-    "story": "Istwa",
-    "strategy": "Estrateji 4 Etap",
-    "model": "Modèl Esè",
-    "write": "Tou Ou",
-    "reflect": "Reflechi"
+    "story": "Istwa a",
+    "strategy": "4 Etap Estrateji Tee",
+    "model": "Modèl Esè Lee",
+    "write": "Tou Ou pou Ekri",
+    "reflect": "Reflechi epi Selebre"
   },
   "vocab": {
     "claim": "Reklamasyon",
-    "claim_def": "Sa w ap eseye pwouve nan agiman ou",
+    "claim_def": "Sa w ap eseye pwouve nan agiman w",
     "evidence": "Prèv",
-    "evidence_def": "Fè oswa prèv ki sipòte reklamasyon ou",
+    "evidence_def": "Fè oswa prèv ki sipòte reklamasyon w",
     "counterclaim": "Kont-agiman",
-    "counterclaim_def": "Agiman lòt bò a"
+    "counterclaim_def": "Agiman lòt bò a",
+    "rebuttal": "Refitasyon",
+    "rebuttal_def": "Repons ou bay kont-agiman an",
+    "reasoning": "Rezonman",
+    "reasoning_def": "Eksplike kijan prèv ou sipòte reklamasyon w"
   },
   "sel": {
-    "question": "Kijan ou santi ou jodi a?",
-    "excited": "Eksite",
+    "question": "Kijan w santi w jodi a?",
+    "excited": "Eksité",
     "calm": "Kalm",
     "nervous": "Nève",
-    "tired": "Fatige"
+    "tired": "Fatige",
+    "happy": "Kontan",
+    "worried": "Enkyete",
+    "ready": "Pare",
+    "unsure": "Pa sèten"
+  },
+  "character": {
+    "title": "Chwazi Patnè Aprantisaj Ou",
+    "lee_name": "Lee",
+    "lee_desc": "Mwen renmen pran nòt epi itilize èd",
+    "tee_name": "Tee",
+    "tee_desc": "Mwen prefere reflechi estratejikman etap pa etap",
+    "choose": "Chwazi"
   },
   "helpers": {
-    "lee_writing": "Bezwen èd pou kòmanse? Eseye fraze sa yo:",
-    "tee_strategy": "Pa fè bri. Fè l kòrèk. Mande tèt ou:"
+    "lee_writing": "Bezwen èd pou kòmanse? Eseye fraz sa yo pou kòmanse:",
+    "tee_strategy": "Pa fè bri. Swa korèk. Mande tèt ou:"
   },
   "story": {
-    "title": "Batay Rekreyasyon",
+    "title": "Lee & Tee: Batay Rekreyasyon an",
+    "episode": "Epizòd 1",
     "characters": {
       "lee": "Lee",
       "tee": "Tee",
@@ -36,11 +53,58 @@
     }
   },
   "buttons": {
-    "listen": "Koute",
+    "listen": "🔊 Koute",
+    "read_aloud": "🎙️ Li Byen Fò",
+    "stop": "⏹️ Kanpe",
     "next": "Pwochen",
     "previous": "Anvan",
     "submit": "Soumèt",
     "check": "Verifye",
-    "continue": "Kontinye"
+    "check_answer": "Verifye Repons",
+    "continue": "Kontinye",
+    "try_again": "Eseye Ankò",
+    "speak_answer": "🎤 Pale Repons",
+    "clear": "🗑️ Efase",
+    "show_vocab": "Wè Definisyon",
+    "close": "Fèmen"
+  },
+  "ui": {
+    "points": "Pwen",
+    "progress": "Pwogrè",
+    "complete": "Konplè",
+    "lesson_complete": "Leson Konplè!",
+    "great_work": "Bon travay!",
+    "correct": "✓ Korèk!",
+    "incorrect": "❌ Pa tout afè. Eseye ankò!",
+    "loading": "Ap chaje...",
+    "saved": "Konsève",
+    "language": "Lang"
+  },
+  "instructions": {
+    "select_emotion": "Chwazi kijan w santi w:",
+    "select_character": "Chwazi patnè aprantisaj ou:",
+    "read_story": "Li istwa a:",
+    "answer_question": "Reponn kesyon an:",
+    "fill_blank": "Ranpli vid la:",
+    "click_to_reveal": "Klike pou revele"
+  },
+  "reflection": {
+    "title": "Reflechi Sou Aprantisaj Ou",
+    "question1": "Ki lè OU te dwe adrese yon kont-agiman nan lavi reyèl?",
+    "question2": "Ki diferans ant ogimante ak fè ak ogimante ak volim?",
+    "question3": "Kijan w santi w kounye a apre leson sa a?",
+    "placeholder1": "Petèt ak yon zanmi, fanmi oswa pwofesè...",
+    "placeholder2": "Panse sou apwòch kalm Tee konpare ak jan Jayden te kòmanse...",
+    "confident": "Konfyan",
+    "curious": "Kirye",
+    "ready_emotion": "Pare!",
+    "still_unsure": "Toujou Pa Sèten"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Pwen Kle:",
+    "quote": "\"Fò pa menm bagay ak vre.\"",
+    "from_notebook": "— Nan kaye Lee",
+    "your_points": "Pwen Aprantisaj Ou:",
+    "next_episode": "➡️ Pwochen Epizòd"
   }
 }

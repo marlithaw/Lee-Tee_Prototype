@@ -1,12 +1,12 @@
 {
   "nav": {
-    "start": "Commencer",
+    "start": "Début et Check-In",
     "vocab": "Vocabulaire",
-    "story": "Histoire",
-    "strategy": "Stratégie en 4 Étapes",
-    "model": "Essai Modèle",
-    "write": "Votre Tour",
-    "reflect": "Réfléchir"
+    "story": "L'Histoire",
+    "strategy": "Stratégie en 4 Étapes de Tee",
+    "model": "Essai Modèle de Lee",
+    "write": "À Votre Tour d'Écrire",
+    "reflect": "Réfléchir et Célébrer"
   },
   "vocab": {
     "claim": "Affirmation",
@@ -14,21 +14,38 @@
     "evidence": "Preuve",
     "evidence_def": "Faits ou preuves qui soutiennent votre affirmation",
     "counterclaim": "Contre-argument",
-    "counterclaim_def": "L'argument de l'autre côté"
+    "counterclaim_def": "L'argument de l'autre côté",
+    "rebuttal": "Réfutation",
+    "rebuttal_def": "Votre réponse au contre-argument",
+    "reasoning": "Raisonnement",
+    "reasoning_def": "Expliquer comment votre preuve soutient votre affirmation"
   },
   "sel": {
     "question": "Comment vous sentez-vous aujourd'hui?",
-    "excited": "Excité",
+    "excited": "Excité/e",
     "calm": "Calme",
-    "nervous": "Nerveux",
-    "tired": "Fatigué"
+    "nervous": "Nerveux/se",
+    "tired": "Fatigué/e",
+    "happy": "Heureux/se",
+    "worried": "Inquiet/ète",
+    "ready": "Prêt/e",
+    "unsure": "Incertain/e"
+  },
+  "character": {
+    "title": "Choisissez Votre Partenaire d'Apprentissage",
+    "lee_name": "Lee",
+    "lee_desc": "J'aime prendre des notes et utiliser des aides",
+    "tee_name": "Tee",
+    "tee_desc": "Je préfère penser stratégiquement étape par étape",
+    "choose": "Choisir"
   },
   "helpers": {
     "lee_writing": "Besoin d'aide pour commencer? Essayez ces amorces de phrases:",
     "tee_strategy": "Ne sois pas bruyant. Sois correct. Demande-toi:"
   },
   "story": {
-    "title": "La Bataille de Récréation",
+    "title": "Lee & Tee: La Bataille de Récréation",
+    "episode": "Épisode 1",
     "characters": {
       "lee": "Lee",
       "tee": "Tee",
@@ -36,11 +53,58 @@
     }
   },
   "buttons": {
-    "listen": "Écouter",
+    "listen": "🔊 Écouter",
+    "read_aloud": "🎙️ Lire à Voix Haute",
+    "stop": "⏹️ Arrêter",
     "next": "Suivant",
     "previous": "Précédent",
     "submit": "Soumettre",
     "check": "Vérifier",
-    "continue": "Continuer"
+    "check_answer": "Vérifier la Réponse",
+    "continue": "Continuer",
+    "try_again": "Réessayer",
+    "speak_answer": "🎤 Parler la Réponse",
+    "clear": "🗑️ Effacer",
+    "show_vocab": "Voir la Définition",
+    "close": "Fermer"
+  },
+  "ui": {
+    "points": "Points",
+    "progress": "Progrès",
+    "complete": "Complet",
+    "lesson_complete": "Leçon Complète!",
+    "great_work": "Excellent travail!",
+    "correct": "✓ Correct!",
+    "incorrect": "❌ Pas tout à fait. Réessayez!",
+    "loading": "Chargement...",
+    "saved": "Sauvegardé",
+    "language": "Langue"
+  },
+  "instructions": {
+    "select_emotion": "Sélectionnez comment vous vous sentez:",
+    "select_character": "Choisissez votre partenaire d'apprentissage:",
+    "read_story": "Lisez l'histoire:",
+    "answer_question": "Répondez à la question:",
+    "fill_blank": "Remplissez le blanc:",
+    "click_to_reveal": "Cliquez pour révéler"
+  },
+  "reflection": {
+    "title": "Réfléchissez Sur Votre Apprentissage",
+    "question1": "Quand avez-VOUS dû aborder un contre-argument dans la vie réelle?",
+    "question2": "Quelle est la différence entre argumenter avec des faits vs. argumenter avec le volume?",
+    "question3": "Comment vous sentez-vous maintenant après cette leçon?",
+    "placeholder1": "Peut-être avec un ami, un membre de la famille ou un enseignant...",
+    "placeholder2": "Pensez à l'approche calme de Tee par rapport à la façon dont Jayden a commencé...",
+    "confident": "Confiant/e",
+    "curious": "Curieux/se",
+    "ready_emotion": "Prêt/e!",
+    "still_unsure": "Encore Incertain/e"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Point Clé:",
+    "quote": "\"Fort n'est pas la même chose que vrai.\"",
+    "from_notebook": "— Du cahier de Lee",
+    "your_points": "Vos Points d'Apprentissage:",
+    "next_episode": "➡️ Épisode Suivant"
   }
 }

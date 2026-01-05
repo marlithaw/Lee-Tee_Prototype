@@ -122,7 +122,20 @@ class ProgressiveNav {
       const navItem = document.createElement('button');
       navItem.className = 'section-nav__item';
       navItem.setAttribute('data-section', section.id);
-      navItem.innerHTML = `<span class="section-emoji">${section.emoji}</span><span class="section-title">${section.title}</span>`;
+
+      // Add translation keys for section titles
+      const translationKeys = {
+        1: 'nav.start',
+        2: 'nav.vocab',
+        3: 'nav.story',
+        4: 'nav.strategy',
+        5: 'nav.model',
+        6: 'nav.write',
+        7: 'nav.reflect'
+      };
+
+      const titleSpan = `<span class="section-title" data-translate="${translationKeys[section.id]}" data-original="${section.title}">${section.title}</span>`;
+      navItem.innerHTML = `<span class="section-emoji">${section.emoji}</span>${titleSpan}`;
 
       if (isActive) navItem.classList.add('active');
       if (isCompleted) navItem.classList.add('completed');

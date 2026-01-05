@@ -1,12 +1,12 @@
 {
   "nav": {
-    "start": "Inicio",
+    "start": "Inicio y Check-In",
     "vocab": "Vocabulario",
-    "story": "Historia",
-    "strategy": "Estrategia de 4 Pasos",
-    "model": "Ensayo Modelo",
-    "write": "Tu Turno",
-    "reflect": "Reflexionar"
+    "story": "La Historia",
+    "strategy": "Estrategia de 4 Pasos de Tee",
+    "model": "Ensayo Modelo de Lee",
+    "write": "Tu Turno de Escribir",
+    "reflect": "Reflexionar y Celebrar"
   },
   "vocab": {
     "claim": "Afirmación",
@@ -14,21 +14,38 @@
     "evidence": "Evidencia",
     "evidence_def": "Pruebas o hechos que apoyan tu afirmación",
     "counterclaim": "Contraargumento",
-    "counterclaim_def": "El argumento del otro lado"
+    "counterclaim_def": "El argumento del otro lado",
+    "rebuttal": "Refutación",
+    "rebuttal_def": "Tu respuesta al contraargumento",
+    "reasoning": "Razonamiento",
+    "reasoning_def": "Explicar cómo tu evidencia apoya tu afirmación"
   },
   "sel": {
     "question": "¿Cómo te sientes hoy?",
-    "excited": "Emocionado",
-    "calm": "Tranquilo",
-    "nervous": "Nervioso",
-    "tired": "Cansado"
+    "excited": "Emocionado/a",
+    "calm": "Tranquilo/a",
+    "nervous": "Nervioso/a",
+    "tired": "Cansado/a",
+    "happy": "Feliz",
+    "worried": "Preocupado/a",
+    "ready": "Listo/a",
+    "unsure": "Inseguro/a"
+  },
+  "character": {
+    "title": "Elige Tu Compañero de Aprendizaje",
+    "lee_name": "Lee",
+    "lee_desc": "Me gusta tomar notas y usar ayudas",
+    "tee_name": "Tee",
+    "tee_desc": "Prefiero pensar estratégicamente paso a paso",
+    "choose": "Elegir"
   },
   "helpers": {
     "lee_writing": "¿Necesitas ayuda para empezar? Prueba estos iniciadores de oraciones:",
     "tee_strategy": "No seas ruidoso. Sé correcto. Pregúntate:"
   },
   "story": {
-    "title": "La Batalla de Recreo",
+    "title": "Lee & Tee: La Batalla de Recreo",
+    "episode": "Episodio 1",
     "characters": {
       "lee": "Lee",
       "tee": "Tee",
@@ -36,11 +53,58 @@
     }
   },
   "buttons": {
-    "listen": "Escuchar",
+    "listen": "🔊 Escuchar",
+    "read_aloud": "🎙️ Leer en Voz Alta",
+    "stop": "⏹️ Parar",
     "next": "Siguiente",
     "previous": "Anterior",
     "submit": "Enviar",
     "check": "Verificar",
-    "continue": "Continuar"
+    "check_answer": "Verificar Respuesta",
+    "continue": "Continuar",
+    "try_again": "Intentar Otra Vez",
+    "speak_answer": "🎤 Hablar Respuesta",
+    "clear": "🗑️ Borrar",
+    "show_vocab": "Ver Definición",
+    "close": "Cerrar"
+  },
+  "ui": {
+    "points": "Puntos",
+    "progress": "Progreso",
+    "complete": "Completo",
+    "lesson_complete": "¡Lección Completa!",
+    "great_work": "¡Buen trabajo!",
+    "correct": "✓ ¡Correcto!",
+    "incorrect": "❌ No del todo. Intenta otra vez!",
+    "loading": "Cargando...",
+    "saved": "Guardado",
+    "language": "Idioma"
+  },
+  "instructions": {
+    "select_emotion": "Selecciona cómo te sientes:",
+    "select_character": "Elige tu compañero de aprendizaje:",
+    "read_story": "Lee la historia:",
+    "answer_question": "Responde la pregunta:",
+    "fill_blank": "Llena el espacio en blanco:",
+    "click_to_reveal": "Haz clic para revelar"
+  },
+  "reflection": {
+    "title": "Reflexiona Sobre Tu Aprendizaje",
+    "question1": "¿Cuándo has tenido QUE abordar un contraargumento en la vida real?",
+    "question2": "¿Cuál es la diferencia entre argumentar con hechos vs. argumentar con volumen?",
+    "question3": "¿Cómo te sientes ahora después de esta lección?",
+    "placeholder1": "Tal vez con un amigo, familiar o maestro...",
+    "placeholder2": "Piensa en el enfoque calmado de Tee comparado con cómo empezó Jayden...",
+    "confident": "Confiado/a",
+    "curious": "Curioso/a",
+    "ready_emotion": "¡Listo/a!",
+    "still_unsure": "Aún Inseguro/a"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Punto Clave:",
+    "quote": "\"Fuerte no es lo mismo que verdadero.\"",
+    "from_notebook": "— Del cuaderno de Lee",
+    "your_points": "Tus Puntos de Aprendizaje:",
+    "next_episode": "➡️ Siguiente Episodio"
   }
 }
