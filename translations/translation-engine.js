@@ -143,37 +143,186 @@ class TranslationEngine {
   }
 
   /**
-   * Switch entire page to a language (full page mode)
+   * Switch entire page to a language (full page mode with automatic detection)
    * @param {string} lang - Language code
    */
   async switchLanguage(lang) {
     await this.loadLanguage(lang);
     this.currentLang = lang;
 
-    // Update all elements with data-translate
-    const elements = document.querySelectorAll('[data-translate]');
-    elements.forEach(el => {
-      const key = el.getAttribute('data-translate');
-      const translation = this.translate(key, lang);
-
-      if (lang === 'en') {
-        // Restore original text (stored in data-original)
+    if (lang === 'en') {
+      // Restore all original text
+      document.querySelectorAll('[data-original]').forEach(el => {
         const original = el.getAttribute('data-original');
         if (original) {
           el.textContent = original;
         }
-      } else {
-        // Store original if not already stored
-        if (!el.getAttribute('data-original')) {
-          el.setAttribute('data-original', el.textContent);
-        }
-        el.textContent = translation;
-      }
-    });
+      });
+      document.documentElement.setAttribute('lang', 'en');
+      console.log('✓ Restored to English');
+      return;
+    }
 
-    // Update language selector UI
+    // Automatic translation: Find and translate common UI elements
+    this.translateNavigationButtons(lang);
+    this.translateCommonButtons(lang);
+    this.translateSectionTitles(lang);
+    this.translateVocabularyCards(lang);
+    this.translateReflectionElements(lang);
+    this.translateCelebrationElements(lang);
+
+    // Update language attribute
     document.documentElement.setAttribute('lang', lang);
     console.log(`✓ Page language switched to ${lang}`);
+  }
+
+  /**
+   * Automatically translate navigation buttons
+   */
+  translateNavigationButtons(lang) {
+    const navButtons = document.querySelectorAll('.section-nav__item .section-title');
+    const navKeys = ['nav.start', 'nav.vocab', 'nav.story', 'nav.strategy', 'nav.model', 'nav.write', 'nav.reflect'];
+
+    navButtons.forEach((button, index) => {
+      if (navKeys[index]) {
+        if (!button.getAttribute('data-original')) {
+          button.setAttribute('data-original', button.textContent);
+        }
+        const translation = this.translate(navKeys[index], lang);
+        button.textContent = translation;
+      }
+    });
+  }
+
+  /**
+   * Automatically translate common buttons by text matching
+   */
+  translateCommonButtons(lang) {
+    const buttonMap = {
+      '🔊 Listen': 'buttons.listen',
+      'Read Aloud': 'buttons.read_aloud',
+      '⏹️ Stop': 'buttons.stop',
+      '🎤 Speak Answer': 'buttons.speak_answer',
+      '🗑️ Clear': 'buttons.clear',
+      'Try Again': 'buttons.try_again',
+      'Next Episode': 'celebration.next_episode'
+    };
+
+    document.querySelectorAll('button, a').forEach(el => {
+      const text = el.textContent.trim();
+      if (buttonMap[text]) {
+        if (!el.getAttribute('data-original')) {
+          el.setAttribute('data-original', text);
+        }
+        const translation = this.translate(buttonMap[text], lang);
+        if (translation !== buttonMap[text]) {
+          el.textContent = translation;
+        }
+      }
+    });
+  }
+
+  /**
+   * Automatically translate section titles by pattern matching
+   */
+  translateSectionTitles(lang) {
+    const titleMap = {
+      'Words You\'ll Need': 'vocab.title',
+      'How are you feeling today?': 'sel.question',
+      'Choose Your Learning Guide': 'character.title',
+      'Reflect on Your Learning': 'reflection.title',
+      'Lesson Complete!': 'ui.lesson_complete'
+    };
+
+    document.querySelectorAll('h1, h2, h3, h4').forEach(el => {
+      const text = el.textContent.trim();
+      if (titleMap[text]) {
+        if (!el.getAttribute('data-original')) {
+          el.setAttribute('data-original', text);
+        }
+        const translation = this.translate(titleMap[text], lang);
+        if (translation !== titleMap[text]) {
+          el.textContent = translation;
+        }
+      }
+    });
+  }
+
+  /**
+   * Automatically translate vocabulary cards
+   */
+  translateVocabularyCards(lang) {
+    const vocabWords = ['Claim', 'Evidence', 'Counterclaim'];
+    const vocabKeys = ['vocab.claim', 'vocab.evidence', 'vocab.counterclaim'];
+
+    document.querySelectorAll('.vocab-word, .font-bold.text-purple-700, .font-bold.text-teal-700, .font-bold.text-amber-700').forEach(el => {
+      const text = el.textContent.trim();
+      const index = vocabWords.indexOf(text);
+      if (index !== -1) {
+        if (!el.getAttribute('data-original')) {
+          el.setAttribute('data-original', text);
+        }
+        const translation = this.translate(vocabKeys[index], lang);
+        if (translation !== vocabKeys[index]) {
+          el.textContent = translation;
+        }
+      }
+    });
+  }
+
+  /**
+   * Automatically translate reflection elements
+   */
+  translateReflectionElements(lang) {
+    const emotionMap = {
+      'Excited': 'sel.excited',
+      'Calm': 'sel.calm',
+      'Nervous': 'sel.nervous',
+      'Tired': 'sel.tired',
+      'Confident': 'reflection.confident',
+      'Curious': 'reflection.curious',
+      'Ready!': 'reflection.ready_emotion',
+      'Still Unsure': 'reflection.still_unsure'
+    };
+
+    document.querySelectorAll('.emotion-option .font-semibold, .emotion-option .text-sm').forEach(el => {
+      const text = el.textContent.trim();
+      if (emotionMap[text]) {
+        if (!el.getAttribute('data-original')) {
+          el.setAttribute('data-original', text);
+        }
+        const translation = this.translate(emotionMap[text], lang);
+        if (translation !== emotionMap[text]) {
+          el.textContent = translation;
+        }
+      }
+    });
+  }
+
+  /**
+   * Automatically translate celebration section
+   */
+  translateCelebrationElements(lang) {
+    const celebrationMap = {
+      '🔑 Key Takeaway:': 'celebration.key_takeaway',
+      '"Loud is not the same as true."': 'celebration.quote',
+      '— From Lee\'s notebook': 'celebration.from_notebook',
+      'Your Learning Points:': 'celebration.your_points',
+      'Great work today!': 'ui.great_work'
+    };
+
+    document.querySelectorAll('p, span').forEach(el => {
+      const text = el.textContent.trim();
+      if (celebrationMap[text]) {
+        if (!el.getAttribute('data-original')) {
+          el.setAttribute('data-original', text);
+        }
+        const translation = this.translate(celebrationMap[text], lang);
+        if (translation !== celebrationMap[text]) {
+          el.textContent = translation;
+        }
+      }
+    });
   }
 
   /**
