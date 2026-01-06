@@ -9,6 +9,8 @@
  * - Navigation
  */
 
+const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+
 // ===== GLOBAL STATE MANAGEMENT =====
 
 const GLOBAL_STATE_KEY = 'leeTeeBook1GlobalState';
@@ -180,6 +182,19 @@ function renderGlobalHeader(currentEpisode = null) {
   const episodeProgress = currentEpisode ? state.episodes[currentEpisode] : null;
   const episodeConfig = currentEpisode ? EPISODE_CONFIGS[currentEpisode] : null;
 
+  const homeLabel = tr('header.home', 'Home');
+  const bookProgressLabel = tr('header.book_progress', 'Book Progress');
+  const episodeProgressLabel = tr('header.episode_progress', 'Episode Progress');
+  const pointsLabel = tr('header.points', 'Points');
+  const learningGuideLabel = tr('header.learning_guide', 'Learning Guide');
+  const accessibilityLabel = tr('header.accessibility', 'Accessibility');
+  const leeModeLabel = tr('header.lee_mode', 'Lee');
+  const teeModeLabel = tr('header.tee_mode', 'Tee');
+  const dyslexiaLabel = tr('header.dyslexia_font', 'Dyslexia-friendly font');
+  const highContrastLabel = tr('header.high_contrast', 'High contrast mode');
+  const pointsShort = tr('header.points_short', 'points');
+  const episodeLabel = tr('header.episode_label', 'Episode');
+
   // Calculate book progress
   const totalEpisodes = 4;
   const completedEpisodes = Object.values(state.episodes).filter(ep => ep.complete).length;
@@ -202,13 +217,13 @@ function renderGlobalHeader(currentEpisode = null) {
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
-          <span class="font-semibold">Home</span>
+          <span class="font-semibold">${homeLabel}</span>
         </a>
 
         ${currentEpisode ? `
           <div class="pl-4 border-l-2 border-gray-300">
             <div class="text-sm text-gray-500">${episodeConfig.subject}</div>
-            <div class="font-bold text-gray-800">Episode ${currentEpisode}: ${episodeConfig.title}</div>
+            <div class="font-bold text-gray-800">${episodeLabel} ${currentEpisode}: ${episodeConfig.title}</div>
           </div>
         ` : ''}
       </div>
@@ -217,7 +232,7 @@ function renderGlobalHeader(currentEpisode = null) {
       <div class="flex items-center gap-6">
         <!-- Book Progress -->
         <div class="text-center">
-          <div class="text-xs text-gray-500 mb-1">Book Progress</div>
+          <div class="text-xs text-gray-500 mb-1">${bookProgressLabel}</div>
           <div class="flex items-center gap-2">
             <div class="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
               <div class="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500"
@@ -230,7 +245,7 @@ function renderGlobalHeader(currentEpisode = null) {
         <!-- Episode Progress (if on an episode page) -->
         ${currentEpisode ? `
           <div class="text-center">
-            <div class="text-xs text-gray-500 mb-1">Episode Progress</div>
+            <div class="text-xs text-gray-500 mb-1">${episodeProgressLabel}</div>
             <div class="flex items-center gap-2">
               <div class="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div class="h-full transition-all duration-500"
@@ -251,7 +266,7 @@ function renderGlobalHeader(currentEpisode = null) {
                 class="flex items-center gap-2 px-4 py-2 bg-amber-100 hover:bg-amber-200 rounded-lg transition-colors">
           <span class="text-2xl">⭐</span>
           <div class="text-left">
-            <div class="text-xs text-amber-700">Points</div>
+            <div class="text-xs text-amber-700">${pointsLabel}</div>
             <div class="text-lg font-bold text-amber-900">${state.totalPoints}</div>
           </div>
           ${state.badges.length > 0 ? `
@@ -266,12 +281,12 @@ function renderGlobalHeader(currentEpisode = null) {
           <button onclick="toggleLearningMode()"
                   class="flex items-center gap-2 px-3 py-2 rounded-md transition-all ${state.learningMode === 'lee' ? 'bg-purple-500 text-white' : 'bg-white text-gray-700'}">
             <span class="text-lg">📝</span>
-            <span class="font-semibold text-sm">Lee</span>
+            <span class="font-semibold text-sm">${leeModeLabel}</span>
           </button>
           <button onclick="toggleLearningMode()"
                   class="flex items-center gap-2 px-3 py-2 rounded-md transition-all ${state.learningMode === 'tee' ? 'bg-amber-500 text-white' : 'bg-white text-gray-700'}">
             <span class="text-lg">🎯</span>
-            <span class="font-semibold text-sm">Tee</span>
+            <span class="font-semibold text-sm">${teeModeLabel}</span>
           </button>
         </div>
 
@@ -279,14 +294,14 @@ function renderGlobalHeader(currentEpisode = null) {
         <div class="flex items-center gap-2">
           <button onclick="toggleDyslexiaMode()"
                   class="p-2 rounded-lg transition-colors ${state.accessibility.dyslexiaMode ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}"
-                  title="Dyslexia-friendly font">
+                  title="${dyslexiaLabel}">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
             </svg>
           </button>
           <button onclick="toggleHighContrast()"
                   class="p-2 rounded-lg transition-colors ${state.accessibility.highContrast ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}"
-                  title="High contrast mode">
+                  title="${highContrastLabel}">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM10 0a10 10 0 110 20 10 10 0 010-20zm0 4v12a6 6 0 000-12z"/>
             </svg>
@@ -303,7 +318,7 @@ function renderGlobalHeader(currentEpisode = null) {
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
-          <span class="font-semibold">Home</span>
+          <span class="font-semibold">${homeLabel}</span>
         </a>
 
         <button onclick="toggleMobileMenu()" class="p-2 text-gray-700">
@@ -317,7 +332,7 @@ function renderGlobalHeader(currentEpisode = null) {
       <div class="px-4 pb-3 space-y-2">
         ${currentEpisode ? `
           <div>
-            <div class="text-xs text-gray-500 mb-1">Episode ${currentEpisode}: ${episodeConfig.title}</div>
+            <div class="text-xs text-gray-500 mb-1">${episodeLabel} ${currentEpisode}: ${episodeConfig.title}</div>
             <div class="flex items-center gap-2">
               <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div class="h-full transition-all duration-500"
@@ -331,7 +346,7 @@ function renderGlobalHeader(currentEpisode = null) {
         ` : ''}
 
         <div>
-          <div class="text-xs text-gray-500 mb-1">Book Progress</div>
+          <div class="text-xs text-gray-500 mb-1">${bookProgressLabel}</div>
           <div class="flex items-center gap-2">
             <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
               <div class="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500"
@@ -345,7 +360,7 @@ function renderGlobalHeader(currentEpisode = null) {
         <button onclick="showPointsModal()"
                 class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-amber-100 rounded-lg">
           <span class="text-xl">⭐</span>
-          <span class="font-bold text-amber-900">${state.totalPoints} points</span>
+          <span class="font-bold text-amber-900">${state.totalPoints} ${pointsShort}</span>
           ${state.badges.length > 0 ? `
             <span class="px-2 py-1 bg-amber-200 rounded-full text-xs font-semibold text-amber-900">
               ${state.badges.length} 🏆
@@ -358,32 +373,32 @@ function renderGlobalHeader(currentEpisode = null) {
       <div id="mobile-menu" class="hidden border-t border-gray-200 px-4 py-3 space-y-3">
         <!-- Learning Mode -->
         <div>
-          <div class="text-xs text-gray-500 mb-2">Learning Guide</div>
+          <div class="text-xs text-gray-500 mb-2">${learningGuideLabel}</div>
           <div class="flex gap-2">
             <button onclick="toggleLearningMode()"
                     class="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md transition-all ${state.learningMode === 'lee' ? 'bg-purple-500 text-white' : 'bg-gray-200 text-gray-700'}">
               <span>📝</span>
-              <span class="font-semibold text-sm">Lee Mode</span>
+              <span class="font-semibold text-sm">${leeModeLabel}</span>
             </button>
             <button onclick="toggleLearningMode()"
                     class="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md transition-all ${state.learningMode === 'tee' ? 'bg-amber-500 text-white' : 'bg-gray-200 text-gray-700'}">
               <span>🎯</span>
-              <span class="font-semibold text-sm">Tee Mode</span>
+              <span class="font-semibold text-sm">${teeModeLabel}</span>
             </button>
           </div>
         </div>
 
         <!-- Accessibility -->
         <div>
-          <div class="text-xs text-gray-500 mb-2">Accessibility</div>
+          <div class="text-xs text-gray-500 mb-2">${accessibilityLabel}</div>
           <div class="flex gap-2">
             <button onclick="toggleDyslexiaMode()"
                     class="flex-1 px-3 py-2 rounded-lg transition-colors ${state.accessibility.dyslexiaMode ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}">
-              <div class="text-sm font-semibold">Dyslexia Font</div>
+              <div class="text-sm font-semibold">${dyslexiaLabel}</div>
             </button>
             <button onclick="toggleHighContrast()"
                     class="flex-1 px-3 py-2 rounded-lg transition-colors ${state.accessibility.highContrast ? 'bg-gray-900 text-white' : 'bg-gray-200 text-gray-700'}">
-              <div class="text-sm font-semibold">High Contrast</div>
+              <div class="text-sm font-semibold">${highContrastLabel}</div>
             </button>
           </div>
         </div>
@@ -405,6 +420,15 @@ function updateHeaderDisplay() {
   const currentEpisode = getCurrentEpisodeNumber();
   renderGlobalHeader(currentEpisode);
 }
+
+document.addEventListener('languageChanged', () => {
+  updateHeaderDisplay();
+  const pointsModal = document.getElementById('points-modal');
+  if (pointsModal) {
+    pointsModal.remove();
+    createPointsModal();
+  }
+});
 
 // Get current episode number from URL or data attribute
 function getCurrentEpisodeNumber() {
@@ -436,18 +460,25 @@ function showPointsModal() {
 function createPointsModal() {
   const state = globalLearningState;
   const badgeInfo = {
-    'first-episode': { emoji: '🎯', title: 'First Steps', description: 'Completed Episode 1' },
-    'two-episodes': { emoji: '📚', title: 'Book Explorer', description: 'Completed 2 episodes' },
-    'hundred-points': { emoji: '⭐', title: 'Super Learner', description: 'Earned 100+ points' },
-    'book-complete': { emoji: '🏆', title: 'Book Champion', description: 'Completed Book 1' }
+    'first-episode': { emoji: '🎯', title: tr('global_badges.first_episode.title', 'First Steps'), description: tr('global_badges.first_episode.description', 'Completed Episode 1') },
+    'two-episodes': { emoji: '📚', title: tr('global_badges.two_episodes.title', 'Book Explorer'), description: tr('global_badges.two_episodes.description', 'Completed 2 episodes') },
+    'hundred-points': { emoji: '⭐', title: tr('global_badges.hundred_points.title', 'Super Learner'), description: tr('global_badges.hundred_points.description', 'Earned 100+ points') },
+    'book-complete': { emoji: '🏆', title: tr('global_badges.book_complete.title', 'Book Champion'), description: tr('global_badges.book_complete.description', 'Completed Book 1') }
   };
+
+  const modalTitle = tr('header.points_badges', 'Points & Badges');
+  const totalPointsLabel = tr('header.total_points', 'Total Points');
+  const episodePointsLabel = tr('header.episode_progress', 'Episode Progress');
+  const badgesEarnedLabel = tr('header.badges_earned', 'Badges Earned');
+  const episodeLabel = tr('header.episode_label', 'Episode');
+  const pointsShort = tr('header.points_short', 'points');
 
   const modalHTML = `
     <div id="points-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
          onclick="closePointsModal(event)">
       <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-2xl font-bold text-gray-800">Your Progress</h2>
+          <h2 class="text-2xl font-bold text-gray-800">${modalTitle}</h2>
           <button onclick="closePointsModal()" class="text-gray-500 hover:text-gray-700">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -460,13 +491,13 @@ function createPointsModal() {
           <div class="text-center">
             <div class="text-4xl mb-2">⭐</div>
             <div class="text-3xl font-bold text-amber-900">${state.totalPoints}</div>
-            <div class="text-sm text-amber-700">Total Points</div>
+            <div class="text-sm text-amber-700">${totalPointsLabel}</div>
           </div>
         </div>
 
         <!-- Episode Breakdown -->
         <div class="mb-4">
-          <h3 class="text-sm font-semibold text-gray-600 mb-2">Episode Points</h3>
+          <h3 class="text-sm font-semibold text-gray-600 mb-2">${episodePointsLabel}</h3>
           <div class="space-y-2">
             ${Object.entries(EPISODE_CONFIGS).map(([num, config]) => {
               const ep = state.episodes[num];
@@ -474,10 +505,10 @@ function createPointsModal() {
                 <div class="flex items-center justify-between py-2 px-3 rounded-lg ${ep.complete ? 'bg-green-50' : 'bg-gray-50'}">
                   <div class="flex items-center gap-2">
                     <div class="w-3 h-3 rounded-full" style="background-color: ${config.color}"></div>
-                    <span class="text-sm font-medium text-gray-700">Ep ${num}: ${config.subject}</span>
+                    <span class="text-sm font-medium text-gray-700">${episodeLabel} ${num}: ${config.subject}</span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <span class="text-sm font-bold text-gray-800">${ep.points} pts</span>
+                    <span class="text-sm font-bold text-gray-800">${ep.points} ${pointsShort}</span>
                     ${ep.complete ? '<span class="text-green-600">✓</span>' : ''}
                   </div>
                 </div>
@@ -489,10 +520,11 @@ function createPointsModal() {
         <!-- Badges -->
         ${state.badges.length > 0 ? `
           <div>
-            <h3 class="text-sm font-semibold text-gray-600 mb-2">Badges Earned</h3>
+            <h3 class="text-sm font-semibold text-gray-600 mb-2">${badgesEarnedLabel}</h3>
             <div class="grid grid-cols-2 gap-3">
               ${state.badges.map(badgeId => {
                 const badge = badgeInfo[badgeId];
+                if (!badge) return '';
                 return `
                   <div class="bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg p-3 text-center">
                     <div class="text-3xl mb-1">${badge.emoji}</div>

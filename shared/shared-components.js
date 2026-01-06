@@ -13,6 +13,8 @@ let learningState = {
   currentSection: 1
 };
 
+const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+
 // ===== PROGRESS TRACKING =====
 
 /**
@@ -109,16 +111,19 @@ function checkBadgeUnlocks() {
   }
 }
 
-/**
- * Update badge display
- */
-function updateBadges() {
-  const badgeContainer = document.getElementById('badgeContainer');
-  if (!badgeContainer) return;
+function getBadgeName(emoji) {
+  const keyMap = {
+    '🎯': 'badge_names.first_steps',
+    '📚': 'badge_names.vocab_master',
+    '🧠': 'badge_names.critical_thinker',
+    '✍️': 'badge_names.response_writer',
+    '🎤': 'badge_names.strategy_expert',
+    '⭐': 'badge_names.super_reader',
+    '🏆': 'badge_names.episode_champion',
+    '🌟': 'badge_names.book_complete'
+  };
 
-  badgeContainer.innerHTML = '';
-
-  const badgeNames = {
+  const fallback = {
     '🎯': 'First Steps',
     '📚': 'Vocab Master',
     '🧠': 'Critical Thinker',
@@ -129,10 +134,23 @@ function updateBadges() {
     '🌟': 'Book 1 Complete'
   };
 
+  const key = keyMap[emoji];
+  return key ? tr(key, fallback[emoji]) : tr('badge_modal.earned_title', 'Badge Earned!');
+}
+
+/**
+ * Update badge display
+ */
+function updateBadges() {
+  const badgeContainer = document.getElementById('badgeContainer');
+  if (!badgeContainer) return;
+
+  badgeContainer.innerHTML = '';
+
   learningState.badges.forEach(emoji => {
     const badge = document.createElement('span');
     badge.textContent = emoji;
-    badge.title = badgeNames[emoji] || 'Badge Earned';
+    badge.title = getBadgeName(emoji);
     badge.style.fontSize = '1.5rem';
     badge.style.cursor = 'pointer';
     badgeContainer.appendChild(badge);
@@ -143,20 +161,11 @@ function updateBadges() {
  * Show badge celebration
  */
 function showBadgeCelebration(emoji) {
-  const badgeNames = {
-    '🎯': 'First Steps',
-    '📚': 'Vocab Master',
-    '🧠': 'Critical Thinker',
-    '✍️': 'Response Writer',
-    '🎤': 'Strategy Expert',
-    '⭐': 'Super Reader',
-    '🏆': 'Episode Champion',
-    '🌟': 'Book 1 Complete'
-  };
-
+  const badgeName = getBadgeName(emoji);
+  const earnedMessage = tr('badge_modal.earned_message', 'You earned the {{badge}} badge!').replace('{{badge}}', badgeName);
   showCelebration(
-    'Badge Earned!',
-    `You earned the ${badgeNames[emoji] || 'Achievement'} badge!`,
+    tr('badge_modal.earned_title', 'Badge Earned!'),
+    earnedMessage,
     emoji
   );
 }
@@ -165,7 +174,7 @@ function showBadgeCelebration(emoji) {
  * Reset progress (with confirmation)
  */
 function resetProgress() {
-  if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+  if (confirm(tr('messages.reset_nav_confirm', 'Are you sure you want to reset all progress? This cannot be undone.'))) {
     learningState = {
       points: 0,
       badges: [],
@@ -244,10 +253,12 @@ function checkAnswer(questionId, selectedAnswer, correctAnswer, feedbackId) {
 
   if (isCorrect) {
     feedback.classList.remove('hidden');
+    const correctTitle = tr('quiz.correct_title', '✓ Correct!');
+    const correctBody = tr('quiz.correct_body', 'Great job! You got it right.');
     feedback.innerHTML = `
       <div class="bg-green-100 border-2 border-green-500 rounded-xl p-4">
-        <p class="font-bold text-green-800 text-lg mb-2">✓ Correct!</p>
-        <p class="text-green-700">Great job! You got it right.</p>
+        <p class="font-bold text-green-800 text-lg mb-2">${correctTitle}</p>
+        <p class="text-green-700">${correctBody}</p>
       </div>
     `;
 
@@ -258,10 +269,12 @@ function checkAnswer(questionId, selectedAnswer, correctAnswer, feedbackId) {
     }
   } else {
     feedback.classList.remove('hidden');
+    const incorrectTitle = tr('quiz.incorrect_title', '✗ Not quite');
+    const incorrectBody = tr('quiz.incorrect_body', 'Try again! Review the text and think about the evidence.');
     feedback.innerHTML = `
       <div class="bg-red-100 border-2 border-red-500 rounded-xl p-4">
-        <p class="font-bold text-red-800 text-lg mb-2">✗ Not quite</p>
-        <p class="text-red-700">Try again! Review the text and think about the evidence.</p>
+        <p class="font-bold text-red-800 text-lg mb-2">${incorrectTitle}</p>
+        <p class="text-red-700">${incorrectBody}</p>
       </div>
     `;
   }

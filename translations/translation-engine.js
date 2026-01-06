@@ -13,6 +13,7 @@ class TranslationEngine {
     this.fallbackLang = 'en';
     this.loading = false;
     this.mixConfig = {
+      // Alternate every other sentence for bilingual display (50% mix)
       ratio: 0.5,
       strategy: 'alternate'
     };
@@ -86,6 +87,7 @@ class TranslationEngine {
     document.documentElement.setAttribute('lang', lang);
     this.translatePage();
     this.renderStoryLanguage(lang);
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
   }
 
   async switchLanguage(lang) {
@@ -126,6 +128,23 @@ class TranslationEngine {
         this.setText(el, this.t(key, el.textContent.trim()));
       });
     });
+
+    // Translate language selector options
+    const langSelect = document.getElementById('lang-select');
+    if (langSelect) {
+      langSelect.setAttribute('aria-label', this.t('ui.language_label', langSelect.getAttribute('aria-label') || 'Language'));
+      const optionMap = this.getAvailableLanguages().reduce((acc, lang) => {
+        acc[lang.code] = this.t(`languages.${lang.code}`, lang.native);
+        return acc;
+      }, {});
+
+      [...langSelect.options].forEach(option => {
+        const code = option.value;
+        if (optionMap[code]) {
+          option.textContent = optionMap[code];
+        }
+      });
+    }
 
     // Translate nav buttons if present
     const navKeys = ['nav.start', 'nav.vocab', 'nav.story', 'nav.strategy', 'nav.model', 'nav.write', 'nav.reflect'];

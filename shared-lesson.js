@@ -3,6 +3,8 @@
  * Common functions used across all episode lessons
  */
 
+const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+
 // ===== UTILITY FUNCTIONS =====
 
 /**
@@ -91,7 +93,7 @@ function showBadgeNotification(badge) {
     ">
       <div style="font-size: 4rem; margin-bottom: 1rem;">${badge.icon}</div>
       <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem; color: #7C3AED;">
-        Badge Earned!
+        ${tr('badge_modal.earned_title', 'Badge Earned!')}
       </h3>
       <p style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">
         ${badge.name}
@@ -108,7 +110,7 @@ function showBadgeNotification(badge) {
         font-weight: 600;
         cursor: pointer;
       ">
-        Awesome!
+        ${tr('badge_modal.confirm', 'Awesome!')}
       </button>
     </div>
   `;
@@ -204,19 +206,19 @@ function createAccessibilityMenu() {
   `;
 
   menu.innerHTML = `
-    <h4 style="font-weight: bold; margin-bottom: 0.75rem;">Accessibility</h4>
+    <h4 style="font-weight: bold; margin-bottom: 0.75rem;">${tr('accessibility_menu.title', 'Accessibility')}</h4>
     <div style="display: flex; flex-direction: column; gap: 0.5rem;">
       <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
         <input type="checkbox" id="dyslexia-toggle" onchange="toggleDyslexiaMode(this.checked)">
-        <span>Dyslexia-friendly font</span>
+        <span>${tr('accessibility_menu.dyslexia', 'Dyslexia-friendly font')}</span>
       </label>
       <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
         <input type="checkbox" id="contrast-toggle" onchange="toggleHighContrast(this.checked)">
-        <span>High contrast</span>
+        <span>${tr('accessibility_menu.high_contrast', 'High contrast')}</span>
       </label>
       <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
         <input type="checkbox" id="hints-toggle" onchange="toggleHints(this.checked)" checked>
-        <span>Show hints</span>
+        <span>${tr('accessibility_menu.hints', 'Show hints')}</span>
       </label>
     </div>
   `;

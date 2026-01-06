@@ -3,6 +3,8 @@
  * Manages section-by-section reveal, navigation, and progress tracking
  */
 
+const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+
 class ProgressiveNav {
   constructor(episodeId, totalSections) {
     this.episodeId = episodeId;
@@ -258,6 +260,7 @@ class ProgressiveNav {
   updateControlButtons() {
     if (this.prevBtn) {
       this.prevBtn.disabled = this.currentSection === 1;
+      this.prevBtn.textContent = tr('controls.previous', '← Previous');
     }
 
     if (this.nextBtn) {
@@ -265,9 +268,11 @@ class ProgressiveNav {
 
       // Change text if on last section
       if (this.currentSection === this.totalSections) {
-        this.nextBtn.textContent = '🎉 Finish';
+        this.nextBtn.textContent = tr('controls.finish', '🎉 Finish');
+        this.nextBtn.dataset.state = 'finish';
       } else {
-        this.nextBtn.textContent = 'Next →';
+        this.nextBtn.textContent = tr('controls.next', 'Next →');
+        this.nextBtn.dataset.state = 'next';
       }
     }
   }
@@ -291,6 +296,10 @@ class ProgressiveNav {
       } else if (e.key === 'ArrowRight' && !this.nextBtn?.disabled) {
         this.nextSection();
       }
+    });
+
+    document.addEventListener('languageChanged', () => {
+      this.updateControlButtons();
     });
   }
 
@@ -364,7 +373,7 @@ class ProgressiveNav {
    * Reset all progress (for testing or restart)
    */
   resetProgress() {
-    if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+    if (confirm(tr('messages.reset_nav_confirm', 'Are you sure you want to reset all progress? This cannot be undone.'))) {
       this.currentSection = 1;
       this.completedSections = [];
       this.saveState();
