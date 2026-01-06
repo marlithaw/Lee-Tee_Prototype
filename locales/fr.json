@@ -1,0 +1,205 @@
+{
+  "nav": {
+    "start": "Début et Check-In",
+    "vocab": "Vocabulaire",
+    "story": "L'Histoire",
+    "strategy": "Stratégie en 4 Étapes de Tee",
+    "model": "Essai Modèle de Lee",
+    "write": "À Votre Tour d'Écrire",
+    "reflect": "Réfléchir et Célébrer"
+  },
+  "vocab": {
+    "title": "Mots Dont Vous Aurez Besoin",
+    "intro": "Apprenons trois mots importants. Pouvez-vous prédire quel mot correspond à chaque phrase?",
+    "word_bank": "📖 Banque de Mots:",
+    "tap_to_learn": "Toucher pour apprendre",
+    "claim": "Affirmation",
+    "claim_subtitle": "Votre point principal ou argument",
+    "claim_def": "Ce que vous essayez de prouver dans votre argument",
+    "claim_example": "Dans l'histoire: \"Tee ne gagne jamais...\"",
+    "evidence": "Preuve",
+    "evidence_subtitle": "Preuves ou faits (\"reçus\")",
+    "evidence_def": "Preuve concrète qui soutient votre affirmation",
+    "evidence_example": "Dans l'histoire: Registres de présence",
+    "counterclaim": "Contre-argument",
+    "counterclaim_subtitle": "Vue opposée",
+    "counterclaim_def": "L'argument de l'autre côté que vous devez aborder",
+    "counterclaim_example": "Dans l'histoire: Le défi de Jayden",
+    "rebuttal": "Réfutation",
+    "rebuttal_def": "Votre réponse au contre-argument",
+    "reasoning": "Raisonnement",
+    "reasoning_def": "Expliquer comment votre preuve soutient votre affirmation",
+    "ritual_marker": "🥄 Remuez — Rassemblez les Ingrédients",
+    "siop_vocab": "📚 Pré-enseignement du Vocabulaire",
+    "siop_visual": "🖼️ Supports Visuels",
+    "siop_frames": "🗣️ Cadres de Phrases"
+  },
+  "sel": {
+    "question": "Comment vous sentez-vous aujourd'hui?",
+    "excited": "Excité/e",
+    "calm": "Calme",
+    "nervous": "Nerveux/se",
+    "tired": "Fatigué/e",
+    "happy": "Heureux/se",
+    "worried": "Inquiet/ète",
+    "ready": "Prêt/e",
+    "unsure": "Incertain/e"
+  },
+  "character": {
+    "title": "Choisissez Votre Partenaire d'Apprentissage",
+    "lee_name": "Lee",
+    "lee_desc": "J'aime prendre des notes et utiliser des aides",
+    "tee_name": "Tee",
+    "tee_desc": "Je préfère penser stratégiquement étape par étape",
+    "choose": "Choisir"
+  },
+  "helpers": {
+    "lee_writing": "Besoin d'aide pour commencer? Essayez ces amorces de phrases:",
+    "tee_strategy": "Ne sois pas bruyant. Sois correct. Demande-toi:"
+  },
+  "story": {
+    "title": "Lee & Tee: La Bataille de Récréation",
+    "episode": "Épisode 1",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden",
+      "lee_label": "Lee",
+      "lee_desc": "Reste en arrière, serre son cahier, n'aime pas le bruit",
+      "tee_label": "Tee",
+      "tee_desc": "Marche vers le bruit, confiant, prêt"
+    },
+    "highlight_battle": "\"C'est clairement une battle,\"",
+    "tee_heading_in": "— dit Tee. Il marchait déjà vers là.",
+    "jayden_taunt": "\"Te voilà. Grande gueule, Tee. Essaie de ne pas t'étouffer.\"",
+    "jayden_loud": "— dit Jayden, assez fort pour que tout le monde entende."
+  },
+  "buttons": {
+    "listen": "🔊 Écouter",
+    "read_aloud": "🎙️ Lire à Voix Haute",
+    "stop": "⏹️ Arrêter",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "submit": "Soumettre",
+    "check": "Vérifier",
+    "check_answer": "Vérifier la Réponse",
+    "continue": "Continuer",
+    "try_again": "Réessayer",
+    "speak_answer": "🎤 Parler la Réponse",
+    "clear": "🗑️ Effacer",
+    "show_vocab": "Voir la Définition",
+    "close": "Fermer"
+  },
+  "ui": {
+    "points": "Points",
+    "progress": "Progrès",
+    "complete": "Complet",
+    "lesson_complete": "Leçon Complète!",
+    "great_work": "Excellent travail!",
+    "correct": "✓ Correct!",
+    "incorrect": "❌ Pas tout à fait. Réessayez!",
+    "loading": "Chargement...",
+    "saved": "Sauvegardé",
+    "language": "Langue",
+    "goal_label": "🎯 Objectif du jour :",
+    "goal_text": "Apprends la structure en 4 étapes pour répondre aux contre-arguments en regardant une battle de rap",
+    "language_label": "Langue :"
+  },
+  "instructions": {
+    "select_emotion": "Sélectionnez comment vous vous sentez:",
+    "select_character": "Choisissez votre partenaire d'apprentissage:",
+    "read_story": "Lisez l'histoire:",
+    "answer_question": "Répondez à la question:",
+    "fill_blank": "Remplissez le blanc:",
+    "click_to_reveal": "Cliquez pour révéler"
+  },
+  "reflection": {
+    "title": "Réfléchissez Sur Votre Apprentissage",
+    "question1": "Quand avez-VOUS dû aborder un contre-argument dans la vie réelle?",
+    "question2": "Quelle est la différence entre argumenter avec des faits vs. argumenter avec le volume?",
+    "question3": "Comment vous sentez-vous maintenant après cette leçon?",
+    "placeholder1": "Peut-être avec un ami, un membre de la famille ou un enseignant...",
+    "placeholder2": "Pensez à l'approche calme de Tee par rapport à la façon dont Jayden a commencé...",
+    "confident": "Confiant/e",
+    "curious": "Curieux/se",
+    "ready_emotion": "Prêt/e!",
+    "still_unsure": "Encore Incertain/e"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Point Clé:",
+    "quote": "\"Fort n'est pas la même chose que vrai.\"",
+    "from_notebook": "— Du cahier de Lee",
+    "your_points": "Vos Points d'Apprentissage:",
+    "next_episode": "➡️ Épisode Suivant"
+  },
+  "section3": {
+    "title": "L'Histoire Commence",
+    "ritual_marker": "🍳 Cuisinez — Suivez la Recette",
+    "listen_btn": "🔊 Écouter",
+    "read_aloud_btn": "🎙️ Lire à Voix Haute",
+    "ms_rodriguez_intro": "Mme Rodriguez a expliqué que nous avons besoin d'une affirmation, de preuves et d'un contre-argument dans nos essais.",
+    "lee_thinking": "Lee écrit toujours tout.",
+    "tee_thinking": "Tee préfère parler plutôt qu'écrire.",
+    "recess_scene": "À la récréation, quelque chose s'est passé entre Tee et Jayden.",
+    "jayden_claim": "Jayden a dit: 'Tee ne gagne jamais au basket.'",
+    "crowd_reaction": "Tout le monde s'est retourné pour regarder.",
+    "tee_strategy_intro": "Tee n'a pas crié. Elle avait un plan.",
+    "tee_response": "Tee a répondu calmement en utilisant des faits, pas du volume.",
+    "lee_notes": "Lee a tout écrit dans son cahier.",
+    "lesson_learned": "Ils ont appris que fort n'est pas la même chose que vrai."
+  },
+  "section4": {
+    "title": "La Stratégie en 4 Étapes de Tee",
+    "ritual_marker": "🔬 Testez — Expérimentez avec la Méthode",
+    "intro": "Tee n'a pas crié. Elle a utilisé un plan étape par étape. Voici sa stratégie:",
+    "step1": "Étape 1: Répétez leur affirmation",
+    "step1_desc": "Montrez que vous avez écouté",
+    "step2": "Étape 2: Acceptez ce qui est vrai",
+    "step2_desc": "Trouvez un terrain d'entente",
+    "step3": "Étape 3: Introduisez VOTRE preuve",
+    "step3_desc": "Données, pas volume",
+    "step4": "Étape 4: Reformulez VOTRE affirmation",
+    "step4_desc": "Terminez fort",
+    "guided_practice": "Pratique Guidée"
+  },
+  "section5": {
+    "title": "L'Essai Modèle de Lee",
+    "ritual_marker": "🔎 Examinez — Analysez le Modèle",
+    "intro": "Lee a tout écrit. Voyons comment son essai a TOUTES les parties:",
+    "find_parts": "Trouvez les Parties de l'Essai",
+    "instruction": "Cliquez sur un bouton ci-dessous, puis cliquez sur le paragraphe qui contient cette partie.",
+    "find_claim": "Trouver l'AFFIRMATION",
+    "find_evidence": "Trouver la PREUVE",
+    "find_counterclaim": "Trouver le CONTRE-ARGUMENT",
+    "find_conclusion": "Trouver la CONCLUSION"
+  },
+  "section6": {
+    "title": "À Votre Tour d'Écrire",
+    "ritual_marker": "✨ Faites-le Vôtre — Créez Votre Version",
+    "intro": "C'est maintenant votre tour. Écrivez une réponse courte en utilisant la stratégie de Tee ou le modèle de Lee.",
+    "prompt": "Écrivez une réponse courte (3-5 phrases) où vous abordez un contre-argument.",
+    "checklist_title": "Liste de Vérification d'Écriture:",
+    "checklist_1": "□ J'ai reconnu le contre-argument",
+    "checklist_2": "□ J'ai fourni des preuves",
+    "checklist_3": "□ J'ai reformulé mon affirmation",
+    "tip": "Astuce: Cochez chaque élément au fur et à mesure que vous l'incluez dans votre réponse!"
+  },
+  "feedback": {
+    "problem_not_quite": "Pas tout à fait ! ",
+    "problem_behavior": "Souviens-toi : on cherche ce qui rend l'ARGUMENT faible, pas seulement des problèmes de comportement. ",
+    "problem_two_answers": "Il y a DEUX bonnes réponses - assure-toi de sélectionner les deux !",
+    "problem_explanation": "L'argument de Jayden est faible car il fait de grandes affirmations (\"ne gagne jamais\") sans aucune preuve. C'est une affirmation non étayée. Voyons comment Tee répond...",
+    "comp1": "✓ Exact ! Lee dit que la partie contre-argument semble \"glissante\" et \"difficile à saisir\".",
+    "comp2": "✓ Exactement ! Tee a remarqué que Jayden faisait des affirmations mais n'apportait \"aucun fait\".",
+    "guided1": "✓ Correct ! Tee répète ce que Jayden a affirmé.",
+    "guided2": "✓ Oui ! Tee apporte des faits et des preuves.",
+    "guided3": "✓ Parfait ! Tee relie ses preuves à pourquoi l'affirmation de Jayden échoue.",
+    "guided_complete": "🎉 Super ! Tu es prêt à ordonner les lignes du rap."
+  },
+  "rewards": {
+    "critical_thinking": "Pensée critique !"
+  },
+  "banners": {
+    "heading": "Objectifs de langue et de contenu SIOP"
+  }
+}

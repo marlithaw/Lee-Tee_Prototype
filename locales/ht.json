@@ -1,0 +1,205 @@
+{
+  "nav": {
+    "start": "Kòmansman ak Check-In",
+    "vocab": "Vokabilè",
+    "story": "Istwa a",
+    "strategy": "4 Etap Estrateji Tee",
+    "model": "Modèl Esè Lee",
+    "write": "Tou Ou pou Ekri",
+    "reflect": "Reflechi epi Selebre"
+  },
+  "vocab": {
+    "title": "Mo W ap Bezwen",
+    "intro": "Ann aprann twa mo enpòtan. Èske w ka devine ki mo ki ale nan chak fraz?",
+    "word_bank": "📖 Bank Mo:",
+    "tap_to_learn": "Touche pou aprann",
+    "claim": "Reklamasyon",
+    "claim_subtitle": "Pwen prensipal ou oswa agiman w",
+    "claim_def": "Sa w ap eseye pwouve nan agiman w",
+    "claim_example": "Nan istwa a: \"Tee pa janm genyen...\"",
+    "evidence": "Prèv",
+    "evidence_subtitle": "Prèv oswa fè (\"resi\")",
+    "evidence_def": "Prèv konkrè ki sipòte reklamasyon w",
+    "evidence_example": "Nan istwa a: Dosye prezans",
+    "counterclaim": "Kont-agiman",
+    "counterclaim_subtitle": "Vi opoze",
+    "counterclaim_def": "Agiman lòt bò a ou dwe adrese",
+    "counterclaim_example": "Nan istwa a: Defi Jayden",
+    "rebuttal": "Refitasyon",
+    "rebuttal_def": "Repons ou bay kont-agiman an",
+    "reasoning": "Rezonman",
+    "reasoning_def": "Eksplike kijan prèv ou sipòte reklamasyon w",
+    "ritual_marker": "🥄 Melanje Li — Rasanble Engredyan yo",
+    "siop_vocab": "📚 Pre-ansèyman Vokabilè",
+    "siop_visual": "🖼️ Sipò Vizyèl",
+    "siop_frames": "🗣️ Kad Fraz"
+  },
+  "sel": {
+    "question": "Kijan w santi w jodi a?",
+    "excited": "Eksité",
+    "calm": "Kalm",
+    "nervous": "Nève",
+    "tired": "Fatige",
+    "happy": "Kontan",
+    "worried": "Enkyete",
+    "ready": "Pare",
+    "unsure": "Pa sèten"
+  },
+  "character": {
+    "title": "Chwazi Patnè Aprantisaj Ou",
+    "lee_name": "Lee",
+    "lee_desc": "Mwen renmen pran nòt epi itilize èd",
+    "tee_name": "Tee",
+    "tee_desc": "Mwen prefere reflechi estratejikman etap pa etap",
+    "choose": "Chwazi"
+  },
+  "helpers": {
+    "lee_writing": "Bezwen èd pou kòmanse? Eseye fraz sa yo pou kòmanse:",
+    "tee_strategy": "Pa fè bri. Swa korèk. Mande tèt ou:"
+  },
+  "story": {
+    "title": "Lee & Tee: Batay Rekreyasyon an",
+    "episode": "Epizòd 1",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden",
+      "lee_label": "Lee",
+      "lee_desc": "Rete dèyè, kenbe kaye li, pa renmen bri",
+      "tee_label": "Tee",
+      "tee_desc": "Mache al kote bri a, konfyans, pare"
+    },
+    "highlight_battle": "\"Sa a se yon batay pou bon,\"",
+    "tee_heading_in": "— Tee di sa. Li te deja ap mache ale la.",
+    "jayden_taunt": "\"Men ou. Pale anpil, Tee. Eseye pa trangle.\"",
+    "jayden_loud": "— Jayden di l fò ase pou tout moun tande."
+  },
+  "buttons": {
+    "listen": "🔊 Koute",
+    "read_aloud": "🎙️ Li Byen Fò",
+    "stop": "⏹️ Kanpe",
+    "next": "Pwochen",
+    "previous": "Anvan",
+    "submit": "Soumèt",
+    "check": "Verifye",
+    "check_answer": "Verifye Repons",
+    "continue": "Kontinye",
+    "try_again": "Eseye Ankò",
+    "speak_answer": "🎤 Pale Repons",
+    "clear": "🗑️ Efase",
+    "show_vocab": "Wè Definisyon",
+    "close": "Fèmen"
+  },
+  "ui": {
+    "points": "Pwen",
+    "progress": "Pwogrè",
+    "complete": "Konplè",
+    "lesson_complete": "Leson Konplè!",
+    "great_work": "Bon travay!",
+    "correct": "✓ Korèk!",
+    "incorrect": "❌ Pa tout afè. Eseye ankò!",
+    "loading": "Ap chaje...",
+    "saved": "Konsève",
+    "language": "Lang",
+    "goal_label": "🎯 Objektif Jodi a:",
+    "goal_text": "Aprann estrikti 4 etap pou reponn kontre-reklamasyon pandan w ap gade yon batay rap",
+    "language_label": "Lang:"
+  },
+  "instructions": {
+    "select_emotion": "Chwazi kijan w santi w:",
+    "select_character": "Chwazi patnè aprantisaj ou:",
+    "read_story": "Li istwa a:",
+    "answer_question": "Reponn kesyon an:",
+    "fill_blank": "Ranpli vid la:",
+    "click_to_reveal": "Klike pou revele"
+  },
+  "reflection": {
+    "title": "Reflechi Sou Aprantisaj Ou",
+    "question1": "Ki lè OU te dwe adrese yon kont-agiman nan lavi reyèl?",
+    "question2": "Ki diferans ant ogimante ak fè ak ogimante ak volim?",
+    "question3": "Kijan w santi w kounye a apre leson sa a?",
+    "placeholder1": "Petèt ak yon zanmi, fanmi oswa pwofesè...",
+    "placeholder2": "Panse sou apwòch kalm Tee konpare ak jan Jayden te kòmanse...",
+    "confident": "Konfyan",
+    "curious": "Kirye",
+    "ready_emotion": "Pare!",
+    "still_unsure": "Toujou Pa Sèten"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Pwen Kle:",
+    "quote": "\"Fò pa menm bagay ak vre.\"",
+    "from_notebook": "— Nan kaye Lee",
+    "your_points": "Pwen Aprantisaj Ou:",
+    "next_episode": "➡️ Pwochen Epizòd"
+  },
+  "section3": {
+    "title": "Istwa a Kòmanse",
+    "ritual_marker": "🍳 Kuit Li — Swiv Resèt la",
+    "listen_btn": "🔊 Koute",
+    "read_aloud_btn": "🎙️ Li Byen Fò",
+    "ms_rodriguez_intro": "Madam Rodriguez te eksplike nou bezwen yon reklamasyon, prèv ak yon kont-agiman nan esè nou yo.",
+    "lee_thinking": "Lee toujou ekri tout bagay.",
+    "tee_thinking": "Tee prefere pale pito pase ekri.",
+    "recess_scene": "Nan rekreyasyon an, yon bagay te pase ant Tee ak Jayden.",
+    "jayden_claim": "Jayden te di: 'Tee pa janm genyen nan baskètbòl.'",
+    "crowd_reaction": "Tout moun te vire pou gade.",
+    "tee_strategy_intro": "Tee pa t rele. Li te gen yon plan.",
+    "tee_response": "Tee te reponn kalm lè l sèvi ak fè, pa volim.",
+    "lee_notes": "Lee te ekri tout bagay nan kaye li.",
+    "lesson_learned": "Yo te aprann ke fò pa menm bagay ak vre."
+  },
+  "section4": {
+    "title": "4 Etap Estrateji Tee",
+    "ritual_marker": "🔬 Eseye Li — Eksperimante ak Metòd la",
+    "intro": "Tee pa t rele. Li te itilize yon plan etap pa etap. Men estrateji li:",
+    "step1": "Etap 1: Repete reklamasyon yo",
+    "step1_desc": "Montre w te koute",
+    "step2": "Etap 2: Aksepte sa ki vre",
+    "step2_desc": "Jwenn tè komen",
+    "step3": "Etap 3: Prezante prèv OU",
+    "step3_desc": "Done, pa volim",
+    "step4": "Etap 4: Reafime reklamasyon OU",
+    "step4_desc": "Fini fò",
+    "guided_practice": "Pratik Gide"
+  },
+  "section5": {
+    "title": "Modèl Esè Lee",
+    "ritual_marker": "🔎 Egzamine Li — Analize Modèl la",
+    "intro": "Lee te ekri tout bagay. Ann gade kijan esè li gen TOUT pati yo:",
+    "find_parts": "Jwenn Pati Esè a",
+    "instruction": "Klike sou yon bouton anba a, epi klike sou paragraf ki gen pati sa a.",
+    "find_claim": "Jwenn REKLAMASYON an",
+    "find_evidence": "Jwenn PRÈV la",
+    "find_counterclaim": "Jwenn KONT-AGIMAN an",
+    "find_conclusion": "Jwenn KONKLIZYON an"
+  },
+  "section6": {
+    "title": "Tou Ou pou Ekri",
+    "ritual_marker": "✨ Fè l Pa W — Kreye Vèsyon Pa W",
+    "intro": "Kounye a se tou ou. Ekri yon repons kout lè w sèvi ak estrateji Tee oswa modèl Lee.",
+    "prompt": "Ekri yon repons kout (3-5 fraz) kote w adrese yon kont-agiman.",
+    "checklist_title": "Lis Verifikasyon Ekriti:",
+    "checklist_1": "□ Mwen rekònet kont-agiman an",
+    "checklist_2": "□ Mwen bay prèv",
+    "checklist_3": "□ Mwen reafime reklamasyon mwen",
+    "tip": "Konsèy: Make chak eleman lè w enkli li nan repons ou!"
+  },
+  "feedback": {
+    "problem_not_quite": "Pa egzakteman! ",
+    "problem_behavior": "Sonje: n ap chèche sa ki fè agiman an fèb, pa sèlman konpòtman. ",
+    "problem_two_answers": "Gen DE repons kòrèk - asire w ou chwazi toude!",
+    "problem_explanation": "Agiman Jayden fèb paske li fè gwo deklarasyon (\"li pa janm genyen anyen\") san okenn prèv. Yo rele sa yon reklamasyon san sipò. Ann wè kijan Tee reponn...",
+    "comp1": "✓ Bon! Lee di pati kontre-reklamasyon an santi li \"glise\" e \"difisil pou kenbe\".",
+    "comp2": "✓ Egzakteman! Tee remake Jayden fè reklamasyon men pa bay \"okenn prèv\" - pa gen okenn.",
+    "guided1": "✓ Kòrèk! Tee ap repete sa Jayden te di.",
+    "guided2": "✓ Wi! Tee pote prèv ak reyalite.",
+    "guided3": "✓ Pafè! Tee konekte prèv li ak rezon ki fè reklamasyon Jayden nan pa mache.",
+    "guided_complete": "🎉 Trè byen! Koulye a ou pare pou mete liy rap yo nan lòd."
+  },
+  "rewards": {
+    "critical_thinking": "Panse kritik!"
+  },
+  "banners": {
+    "heading": "Objektif Lang ak Kontni SIOP"
+  }
+}
