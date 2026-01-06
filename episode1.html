@@ -1824,18 +1824,18 @@ p.active-sentence {
     <!-- SIOP OBJECTIVES BANNER -->
     <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-4 border-b border-teal-200">
       <div class="max-w-4xl mx-auto">
-        <h3 class="font-bold text-teal-800 mb-2 flex items-center gap-2">
+        <h3 class="font-bold text-teal-800 mb-2 flex items-center gap-2" data-i18n="banners.heading">
           <span>🏫</span>
           <span>SIOP Language & Content Objectives</span>
         </h3>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="language-objective">
-            <h4 class="font-bold text-green-800 mb-1">Language Objective:</h4>
-            <p>I will use academic vocabulary (claim, evidence, counterclaim) to discuss and write about arguments.</p>
+            <h4 class="font-bold text-green-800 mb-1" data-i18n="banners.language_objective_title">Language Objective:</h4>
+            <p data-i18n="banners.language_objective_body">I will use academic vocabulary (claim, evidence, counterclaim) to discuss and write about arguments.</p>
           </div>
           <div class="content-objective">
-            <h4 class="font-bold text-amber-800 mb-1">Content Objective:</h4>
-            <p>I will identify and address counterclaims using a 4-step strategy in both discussions and writing.</p>
+            <h4 class="font-bold text-amber-800 mb-1" data-i18n="banners.content_objective_title">Content Objective:</h4>
+            <p data-i18n="banners.content_objective_body">I will identify and address counterclaims using a 4-step strategy in both discussions and writing.</p>
           </div>
         </div>
       </div>
@@ -1845,11 +1845,11 @@ p.active-sentence {
     <header class="relative">
       <img src="header.png" alt="Lee and Tee looking confident" class="w-full">
       <div class="hero-gradient text-white p-8 md:p-12 text-center">
-        <div class="inline-block bg-white/20 backdrop-blur px-4 py-1 rounded-full text-sm font-semibold mb-4">
+        <div class="inline-block bg-white/20 backdrop-blur px-4 py-1 rounded-full text-sm font-semibold mb-4" data-i18n="story.title">
           📚 Episode 1 • ELA: Argumentative Writing
         </div>
-        <h1 class="font-display text-4xl md:text-5xl font-bold mb-3">The Recess Battle</h1>
-        <p class="text-lg opacity-90 max-w-md mx-auto">
+        <h1 class="font-display text-4xl md:text-5xl font-bold mb-3" data-i18n="hero.title">The Recess Battle</h1>
+        <p class="text-lg opacity-90 max-w-md mx-auto" data-i18n="hero.subtitle">
           How to win an argument without yelling—a story about <em>loudness</em> vs. <em>logic</em>
         </p>
         
@@ -1870,11 +1870,11 @@ p.active-sentence {
         
         <div class="mt-8 bg-white/10 backdrop-blur rounded-xl p-4 max-w-md mx-auto">
           <div class="standard-tag bg-white/20 backdrop-blur border-white/30 text-white mb-2">
-            <span class="standard-code">CCSS.ELA.W.5.1</span>
-            <span>Opinion Writing with Reasons</span>
+            <span class="standard-code" data-i18n="hero.standard_code">CCSS.ELA.W.5.1</span>
+            <span data-i18n="hero.standard_label">Opinion Writing with Reasons</span>
           </div>
-          <p class="font-semibold mb-2">🎯 Today's Goal:</p>
-          <p class="text-sm">Learn the 4-step structure for addressing counterclaims by watching a rap battle</p>
+          <p class="font-semibold mb-2" data-i18n="ui.goal_label">🎯 Today's Goal:</p>
+          <p class="text-sm" data-i18n="ui.goal_text">Learn the 4-step structure for addressing counterclaims by watching a rap battle</p>
         </div>
       </div>
     </header>
@@ -2065,36 +2065,21 @@ p.active-sentence {
   
   <!-- SENTENCE FRAMES FOR ELL - NEW -->
   <div class="sentence-frame mb-4">
-    <p class="text-sm font-semibold text-blue-700 mb-1">🗣️ Sentence Frames for This Section:</p>
-    <p class="text-sm">"Ms. Rodriguez explained that we need to ________, ________, and ________ in our essays."</p>
+    <p class="text-sm font-semibold text-blue-700 mb-1" data-i18n="section3.ritual_marker">🗣️ Sentence Frames for This Section:</p>
+    <p class="text-sm" data-i18n="instructions.fill_blank">"Ms. Rodriguez explained that we need to ________, ________, and ________ in our essays."</p>
   </div>
   
-  <div class="story-text space-y-4">
-    <p>
-      <strong>"Only 3 more minutes to recess,"</strong> Lee anxiously thought. Ms. Rodriguez continued explaining their homework.
-    </p>
-    
-    <div class="speech-bubble">
-      <p class="font-semibold">Ms. Rodriguez:</p>
-      <p data-translate="section3.ms_rodriguez_intro">"Your opinion essay is due Friday. You need to state a <span class="vocab-word" onclick="showVocab('claim')">claim</span>, provide <span class="vocab-word" onclick="showVocab('evidence')">evidence</span>, address a <span class="vocab-word" onclick="showVocab('counterclaim')">counterclaim</span>, and draw a conclusion. This is argumentative writing. Use facts, not feelings."</p>
-    </div>
+  <div class="story-text space-y-4" data-story-section="section-1">
+  </div>
 
-    <!-- Classroom image -->
-    <div class="media-container">
-      <img src="Gemini_Generated_Image_cuhlvucuhlvucuhl.png" alt="Playground setting with noise and static">
-    </div>
+  <div class="speech-bubble">
+    <p class="font-semibold">Ms. Rodriguez:</p>
+    <p data-i18n="section3.ms_rodriguez_intro">"Your opinion essay is due Friday. You need to state a <span class="vocab-word" onclick="showVocab('claim')">claim</span>, provide <span class="vocab-word" onclick="showVocab('evidence')">evidence</span>, address a <span class="vocab-word" onclick="showVocab('counterclaim')">counterclaim</span>, and draw a conclusion. This is argumentative writing. Use facts, not feelings."</p>
+  </div>
 
-    <p>
-      <span data-translate="section3.lee_thinking">Lee had written it all down. She <em>always</em> wrote everything down.</span> She understood claim (say what you believe). She understood evidence (prove it with facts). She understood conclusion (wrap it up).
-    </p>
-    
-    <p class="text-lg font-semibold text-purple-700 bg-purple-50 p-4 rounded-lg">
-      But <em>address a counterclaim</em>? That part felt slippery. Hard to hold.
-    </p>
-    
-    <p>
-      Then, the bell rang. Lee darted from her seat, with her journal in hand, and zoomed out of the room to meet up with Tee. She was nervous and excited at the same time.
-    </p>
+  <!-- Classroom image -->
+  <div class="media-container">
+    <img src="Gemini_Generated_Image_cuhlvucuhlvucuhl.png" alt="Playground setting with noise and static">
   </div>
   
   <!-- Comprehension check -->
@@ -2107,7 +2092,7 @@ p.active-sentence {
       <button class="quiz-option w-full text-left" onclick="checkAnswer(this, true, 'comp1')">C) Addressing a counterclaim</button>
       <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp1')">D) Writing a conclusion</button>
     </div>
-    <p class="mt-3 text-green-600 font-semibold hidden" id="comp1-feedback">✓ Right! Lee says the counterclaim part feels "slippery" and "hard to hold."</p>
+    <p class="mt-3 text-green-600 font-semibold hidden" id="comp1-feedback" data-i18n="feedback.comp1">✓ Right! Lee says the counterclaim part feels "slippery" and "hard to hold."</p>
   </div>
 </section>
 
@@ -2199,41 +2184,26 @@ p.active-sentence {
     </div>
   </div>
   
-  <div class="story-text space-y-4">
-    <p>
-      Recess had barely started and the fifth grade yard was already loud. Kickball shouts on one side, double-dutch ropes hitting concrete on the other, somebody arguing about who was "it" for tag.
-    </p>
-    
-    <p>
-      Near the benches, the sound shifted. Kids were crowding into a circle.
-    </p>
-    
-    <div class="bg-amber-100 p-4 rounded-lg my-6 border-l-4 border-amber-500">
-      <p class="font-semibold">"That is definitely a battle,"</p>
-      <p class="text-sm text-amber-800 mt-1">— Tee said. He was already walking toward it.</p>
+  <div class="story-text space-y-4" data-story-section="section-2">
+  </div>
+
+  <div class="bg-amber-100 p-4 rounded-lg my-6 border-l-4 border-amber-500">
+    <p class="font-semibold" data-i18n="story.highlight_battle">"That is definitely a battle,"</p>
+    <p class="text-sm text-amber-800 mt-1" data-i18n="story.tee_heading_in">— Tee said. He was already walking toward it.</p>
+  </div>
+  
+  <!-- Character comparison images -->
+  <div class="media-grid">
+    <div class="text-center p-4 bg-purple-50 rounded-lg">
+      <div class="text-4xl mb-2">📓</div>
+      <p class="font-semibold" data-i18n="story.characters.lee_label">Lee</p>
+      <p class="text-sm text-gray-600" data-i18n="story.characters.lee_desc">Hangs back, hugs notebook, doesn't like noise</p>
     </div>
-    
-    <!-- Character comparison images -->
-    <div class="media-grid">
-      <div class="text-center p-4 bg-purple-50 rounded-lg">
-        <div class="text-4xl mb-2">📓</div>
-        <p class="font-semibold">Lee</p>
-        <p class="text-sm text-gray-600">Hangs back, hugs notebook, doesn't like noise</p>
-      </div>
-      <div class="text-center p-4 bg-amber-50 rounded-lg">
-        <div class="text-4xl mb-2">🎤</div>
-        <p class="font-semibold">Tee</p>
-        <p class="text-sm text-gray-600">Walks toward noise, confident, ready</p>
-      </div>
+    <div class="text-center p-4 bg-amber-50 rounded-lg">
+      <div class="text-4xl mb-2">🎤</div>
+      <p class="font-semibold" data-i18n="story.characters.tee_label">Tee</p>
+      <p class="text-sm text-gray-600" data-i18n="story.characters.tee_desc">Walks toward noise, confident, ready</p>
     </div>
-    
-    <p>
-      Lee followed a few steps behind, notebook hugged to her chest. The noise wrapped around her like static, like the buzzing of a radio. She did not like static.
-    </p>
-    
-    <p class="font-semibold text-purple-700">
-      But Tee walked like the sound belonged to him, so she stayed close.
-    </p>
   </div>
 
 </section>
@@ -2263,21 +2233,12 @@ p.active-sentence {
     <img src="Gemini_Generated_Image_k7tn0nk7tn0nk7tn.png" alt="Battle circle with argument in action" class="media-container">
   </div>
   
-  <div class="story-text space-y-4">
-    <p>
-      By the time they reached the circle, <strong>Jayden</strong> was in the middle, chin high, eyes already locked on Tee.
-    </p>
-    
-    <div class="bg-red-50 p-4 rounded-lg my-6 border-l-4 border-red-500">
-      <p class="font-semibold">"There you go. Big talk Tee. Try not to choke."</p>
-      <p class="text-sm text-red-700 mt-1">— Jayden said, loud enough for everyone to hear.</p>
-    </div>
-    
-    <p>A few kids laughed.</p>
-    
-    <p>Tee just folded his arms. <strong>"You sure you want this?"</strong></p>
-    
-    <p>Jayden took one quick step forward and went first:</p>
+  <div class="story-text space-y-4" data-story-section="section-3">
+  </div>
+
+  <div class="bg-red-50 p-4 rounded-lg my-6 border-l-4 border-red-500">
+    <p class="font-semibold" data-i18n="story.jayden_taunt">"There you go. Big talk Tee. Try not to choke."</p>
+    <p class="text-sm text-red-700 mt-1" data-i18n="story.jayden_loud">— Jayden said, loud enough for everyone to hear.</p>
   </div>
 
   <!-- OPTIONAL: Watch Jayden's Rap Video -->
@@ -2342,7 +2303,7 @@ p.active-sentence {
       <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp2')">C) Volume</button>
       <button class="quiz-option w-full text-left" onclick="checkAnswer(this, false, 'comp2')">D) Confidence</button>
     </div>
-    <p class="mt-3 text-green-600 font-semibold hidden" id="comp2-feedback">✓ Exactly! Tee noticed Jayden made claims but gave "zero facts" - no proof at all.</p>
+    <p class="mt-3 text-green-600 font-semibold hidden" id="comp2-feedback" data-i18n="feedback.comp2">✓ Exactly! Tee noticed Jayden made claims but gave "zero facts" - no proof at all.</p>
   </div>
 
   <!-- ACTIVE LEARNING: Identify the Problem -->
@@ -2375,8 +2336,8 @@ p.active-sentence {
     </button>
 
     <div id="problemFeedback" class="hidden mt-4 p-4 bg-green-100 rounded-lg">
-      <p class="font-bold text-green-800 mb-2">✓ Great analysis!</p>
-      <p>Jayden's argument is weak because he makes big claims ("never wins at nothing") without any proof. That's called an <strong>unsupported claim</strong>. Let's see how Tee responds...</p>
+      <p class="font-bold text-green-800 mb-2" data-i18n="ui.great_work">✓ Great analysis!</p>
+      <p data-i18n="feedback.problem_explanation">Jayden's argument is weak because he makes big claims ("never wins at nothing") without any proof. That's called an <strong>unsupported claim</strong>. Let's see how Tee responds...</p>
     </div>
   </div>
 </section>
@@ -2420,12 +2381,7 @@ p.active-sentence {
         <p class="text-sm">Before reading, turn to a partner and predict: What 4 steps do you think Tee will use to respond?</p>
       </div>
       
-      <div class="story-text space-y-4 mb-8">
-        <p>Tee didn't yell. She didn't even raise her voice. Instead, she pulled out what Ms. Rodriguez called "receipts."</p>
-        
-        <p>"Okay, Jayden. Let's talk about it."</p>
-        
-        <p>Lee watched as Tee broke it down, step by step:</p>
+      <div class="story-text space-y-4 mb-8" data-story-section="section-4">
       </div>
       
       <!-- INTERACTIVE STRATEGY SEQUENCE -->
@@ -2499,7 +2455,7 @@ p.active-sentence {
               <button class="px-4 py-2 bg-gray-100 rounded hover:bg-amber-100 transition" onclick="checkGuidedStep(this, false, 'guided1')">Step 3: Explain why wrong</button>
               <button class="px-4 py-2 bg-gray-100 rounded hover:bg-amber-100 transition" onclick="checkGuidedStep(this, false, 'guided1')">Step 4: Restate position</button>
             </div>
-            <p id="guided1-feedback" class="hidden mt-2 text-green-700 font-semibold">✓ Correct! Tee is repeating what Jayden claimed.</p>
+            <p id="guided1-feedback" class="hidden mt-2 text-green-700 font-semibold" data-i18n="feedback.guided1">✓ Correct! Tee is repeating what Jayden claimed.</p>
           </div>
 
           <!-- GUIDED ITEM 2 -->
@@ -2512,7 +2468,7 @@ p.active-sentence {
               <button class="px-4 py-2 bg-gray-100 rounded hover:bg-amber-100 transition" onclick="checkGuidedStep(this, false, 'guided2')">Step 3: Explain why wrong</button>
               <button class="px-4 py-2 bg-gray-100 rounded hover:bg-amber-100 transition" onclick="checkGuidedStep(this, false, 'guided2')">Step 4: Restate position</button>
             </div>
-            <p id="guided2-feedback" class="hidden mt-2 text-green-700 font-semibold">✓ Yes! Tee is bringing facts and receipts.</p>
+            <p id="guided2-feedback" class="hidden mt-2 text-green-700 font-semibold" data-i18n="feedback.guided2">✓ Yes! Tee is bringing facts and receipts.</p>
           </div>
 
           <!-- GUIDED ITEM 3 -->
@@ -2525,11 +2481,11 @@ p.active-sentence {
               <button class="px-4 py-2 bg-gray-100 rounded hover:bg-amber-100 transition" onclick="checkGuidedStep(this, true, 'guided3')">Step 3: Explain why wrong</button>
               <button class="px-4 py-2 bg-gray-100 rounded hover:bg-amber-100 transition" onclick="checkGuidedStep(this, false, 'guided3')">Step 4: Restate position</button>
             </div>
-            <p id="guided3-feedback" class="hidden mt-2 text-green-700 font-semibold">✓ Perfect! Tee is connecting her evidence to why Jayden's claim fails.</p>
+            <p id="guided3-feedback" class="hidden mt-2 text-green-700 font-semibold" data-i18n="feedback.guided3">✓ Perfect! Tee is connecting her evidence to why Jayden's claim fails.</p>
           </div>
 
           <div id="guidedComplete" class="hidden mt-4 p-4 bg-green-100 rounded-lg">
-            <p class="font-bold text-green-800">🎉 Great! Now you're ready to sequence the rap lines.</p>
+            <p class="font-bold text-green-800" data-i18n="feedback.guided_complete">🎉 Great! Now you're ready to sequence the rap lines.</p>
           </div>
         </div>
       </div>
@@ -2590,9 +2546,7 @@ p.active-sentence {
         <img src="Gemini_Generated_Image_jhb8wijhb8wijhb8.png" alt="Tee walking away victoriously" class="media-container">
       </div>
       
-      <div class="story-text mt-4">
-        <p>Jayden's mouth opened, then closed. His eyes darted around the circle like he was checking if anyone would rescue him with some evidence.</p>
-        <p class="font-semibold">Nobody did.</p>
+      <div class="story-text mt-4" data-story-section="section-4-summary">
       </div>
     </section>
 
@@ -3936,19 +3890,19 @@ Finally, Step 4: Restate your position..."
         document.getElementById('problemFeedback').classList.remove('hidden');
         if (!learningState.completedActivities.includes('problemAnalysis')) {
           learningState.completedActivities.push('problemAnalysis');
-          addPoints(15, 'Critical thinking!');
+          addPoints(15, translator.t('rewards.critical_thinking', 'Critical thinking!'));
           awardBadge('🧠');
         }
       } else {
         // Better feedback based on what they got wrong
-        let message = 'Not quite! ';
+        let message = translator.t('feedback.problem_not_quite', 'Not quite! ');
 
         if (incorrectCount > 0) {
-          message += 'Remember: we\'re looking for what makes the ARGUMENT weak, not just behavior issues. ';
+          message += translator.t('feedback.problem_behavior', 'Remember: we\\'re looking for what makes the ARGUMENT weak, not just behavior issues. ');
         }
 
         if (correctCount < 2) {
-          message += 'There are TWO correct answers - make sure you select both!';
+          message += translator.t('feedback.problem_two_answers', 'There are TWO correct answers - make sure you select both!');
         }
 
         alert(message);
@@ -4627,6 +4581,8 @@ Finally, Step 4: Restate your position..."
 
         // 7. Add translation UI toggle
         addTranslationUI();
+        translator.translatePage();
+        translator.renderStoryLanguage(translator.currentLang);
 
         // 8. Connect character choice to adaptive system
         connectCharacterChoice();
@@ -4841,7 +4797,7 @@ Finally, Step 4: Restate your position..."
       const langToggle = document.createElement('div');
       langToggle.className = 'language-toggle';
       langToggle.innerHTML = `
-        <label for="lang-select">Language:</label>
+        <label for="lang-select" data-i18n="ui.language_label">Language:</label>
         <select id="lang-select">
           <option value="en">English</option>
           <option value="es">Español</option>
@@ -4852,8 +4808,13 @@ Finally, Step 4: Restate your position..."
 
       stickyContainer.appendChild(langToggle);
 
-      document.getElementById('lang-select').addEventListener('change', async (e) => {
-        await translator.switchLanguage(e.target.value);
+      const storedLang = localStorage.getItem('preferred-language') || 'en';
+      const selectEl = document.getElementById('lang-select');
+      selectEl.value = storedLang;
+
+      selectEl.addEventListener('change', async (e) => {
+        await translator.applyLanguage(e.target.value);
+        translator.translatePage();
       });
     }
 
