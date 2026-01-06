@@ -25,6 +25,7 @@
     "counterclaim_subtitle": "Vue opposée",
     "counterclaim_def": "L'argument de l'autre côté que vous devez aborder",
     "counterclaim_example": "Dans l'histoire: Le défi de Jayden",
+    "conclusion": "Conclusion",
     "rebuttal": "Réfutation",
     "rebuttal_def": "Votre réponse au contre-argument",
     "reasoning": "Raisonnement",
@@ -194,12 +195,185 @@
     "guided1": "✓ Correct ! Tee répète ce que Jayden a affirmé.",
     "guided2": "✓ Oui ! Tee apporte des faits et des preuves.",
     "guided3": "✓ Parfait ! Tee relie ses preuves à pourquoi l'affirmation de Jayden échoue.",
-    "guided_complete": "🎉 Super ! Tu es prêt à ordonner les lignes du rap."
+    "guided_complete": "🎉 Super ! Tu es prêt à ordonner les lignes du rap.",
+    "match_success": "✓ Tu as tout associé ! Débrouillardise = savoir des livres !"
   },
   "rewards": {
     "critical_thinking": "Pensée critique !"
   },
   "banners": {
     "heading": "Objectifs de langue et de contenu SIOP"
+  },
+  "languages": {
+    "en": "Anglais",
+    "es": "Espagnol",
+    "fr": "Français",
+    "ht": "Kreyòl Ayisyen"
+  },
+  "controls": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "finish": "Terminer",
+    "close": "Fermer"
+  },
+  "modes": {
+    "guided": "Guidé",
+    "explore": "Explorer"
+  },
+  "messages": {
+    "reset_episode_confirm": "Es-tu sûr de vouloir réinitialiser tout le progrès ? Cela effacera les points et badges.",
+    "reset_nav_confirm": "Es-tu sûr de vouloir réinitialiser tout le progrès ? Cela ne peut pas être annulé.",
+    "reset_global_progress": "Réinitialiser tout le progrès pour cet épisode ?",
+    "drag_correct": "Parfait ! Toutes les étapes sont dans le bon ordre !",
+    "drag_incorrect": "Pas encore. Essaie encore !",
+    "writing_saved": "Écriture enregistrée ! Beau travail !",
+    "writing_too_short": "Il te faut au moins 50 mots. Actuel : {{count}}",
+    "episode_complete": "🎉 Épisode terminé ! Beau travail !",
+    "word_count": "{{count}} mots"
+  },
+  "progress_labels": {
+    "sel": "Bilan initial",
+    "vocab": "Vocabulaire",
+    "section1": "Section 1",
+    "section2": "Section 2",
+    "section3": "Section 3",
+    "drag": "Glisser-déposer",
+    "essay": "Essai modèle",
+    "reflect": "Réflexion"
+  },
+  "character_feedback": {
+    "lee_title": "Bon choix ! Tu as choisi Lee !",
+    "lee_body": "Tu verras plus de cadres de phrases, de banques de mots et d'étapes guidées tout au long de la leçon.",
+    "tee_title": "Bon choix ! Tu as choisi Tee !",
+    "tee_body": "Tu verras des questions de réflexion stratégique et des invites de résolution de problèmes tout au long de la leçon."
+  },
+  "help": {
+    "cta": "Compris !",
+    "vocab_lee": {
+      "title": "📝 Lee : Aide sur les mots",
+      "bullets": [
+        "Une affirmation est ce que quelqu'un croit",
+        "Les preuves sont les éléments qui soutiennent l'affirmation",
+        "Essaie ce cadre : « J'affirme que ___ parce que ___ »"
+      ],
+      "example": "Exemple : « J'affirme que la récréation est importante car les élèves ont besoin d'exercice. »"
+    },
+    "vocab_tee": {
+      "title": "🤔 Tee : Vérification de stratégie",
+      "bullets": [
+        "Que cherche l'auteur à prouver ?",
+        "Quels faits ou exemples soutiennent son point de vue ?",
+        "Quelqu'un pourrait-il être en désaccord ? Que dirait-il ?"
+      ]
+    },
+    "sequence_tee": {
+      "title": "🤔 Tee : Comment ordonner les étapes",
+      "bullets": [
+        "D'abord, que fait Tee ? (Répète l'affirmation de Jayden)",
+        "Ensuite ? (Souligne la faiblesse)",
+        "Puis ? (Donne des preuves)",
+        "Enfin ? (Conclut avec impact)"
+      ]
+    },
+    "sequence_lee": {
+      "title": "📝 Lee : Rappel des cadres",
+      "bullets": [
+        "Étape 1 : « Tu as dit ___ »",
+        "Étape 2 : « Mais ça ne marche pas parce que ___ »",
+        "Étape 3 : « Par exemple, ___ »",
+        "Étape 4 : « Donc en fait, ___ »"
+      ]
+    },
+    "writing_lee": {
+      "title": "📝 Lee : Cadre d'écriture",
+      "bullets": [
+        "Paragraphe 1 : Énonce ton affirmation → « Je crois que ___ »",
+        "Paragraphe 2 : Donne des preuves → « Par exemple, ___ » → « Cela montre que ___ »",
+        "Paragraphe 3 : Adresse le contre-argument → « Certains pourraient dire ___, mais ___ »",
+        "Paragraphe 4 : Conclus → « Donc, ___ »"
+      ]
+    },
+    "writing_tee": {
+      "title": "🤔 Tee : Vérification de qualité",
+      "bullets": [
+        "☐ As-tu clairement déclaré ce que tu crois ?",
+        "☐ As-tu donné au moins 2 preuves ?",
+        "☐ As-tu expliqué POURQUOI tes preuves comptent ?",
+        "☐ As-tu traité ce avec quoi quelqu'un pourrait être en désaccord ?",
+        "☐ Ta conclusion relie-t-elle tout ?"
+      ]
+    }
+  },
+  "badge_modal": {
+    "earned_title": "Badge gagné !",
+    "earned_message": "Tu as gagné le badge {{badge}} !",
+    "confirm": "Génial !"
+  },
+  "badge_names": {
+    "first_steps": "Premiers pas",
+    "vocab_master": "Maître du vocabulaire",
+    "critical_thinker": "Penseur critique",
+    "response_writer": "Rédacteur de réponse",
+    "strategy_expert": "Expert en stratégie",
+    "super_reader": "Super lecteur",
+    "episode_champion": "Champion de l'épisode",
+    "book_complete": "Livre 1 terminé"
+  },
+  "essay_hunt": {
+    "found_prefix": "✓ Trouvé",
+    "perfect": "🎉 Parfait ! Tu as trouvé les quatre parties !",
+    "continue": "✓ Correct ! Clique sur un autre bouton pour continuer.",
+    "not_quite": "❌ Pas encore. Essaie encore !"
+  },
+  "quiz": {
+    "correct_title": "✓ Correct !",
+    "correct_body": "Beau travail ! C'est juste.",
+    "incorrect_title": "✗ Pas encore",
+    "incorrect_body": "Essaie encore ! Relis le texte et pense aux preuves."
+  },
+  "accessibility_menu": {
+    "title": "Accessibilité",
+    "dyslexia": "Police adaptée à la dyslexie",
+    "high_contrast": "Haut contraste",
+    "hints": "Afficher les indices"
+  },
+  "header": {
+    "home": "Accueil",
+    "book_progress": "Progrès du livre",
+    "episode_progress": "Progrès de l'épisode",
+    "points": "Points",
+    "badges": "Badges",
+    "learning_guide": "Guide d'apprentissage",
+    "lee_mode": "Lee",
+    "tee_mode": "Tee",
+    "accessibility": "Accessibilité",
+    "dyslexia_font": "Police adaptée à la dyslexie",
+    "high_contrast": "Mode haut contraste",
+    "sections_complete": "Sections terminées",
+    "book_label": "Livre",
+    "points_short": "points",
+    "points_badges": "Points et badges",
+    "total_points": "Total de points",
+    "badges_earned": "Badges obtenus",
+    "close": "Fermer",
+    "episode_label": "Épisode"
+  },
+  "global_badges": {
+    "first_episode": {
+      "title": "Premiers pas",
+      "description": "Épisode 1 terminé"
+    },
+    "two_episodes": {
+      "title": "Explorateur du livre",
+      "description": "2 épisodes terminés"
+    },
+    "hundred_points": {
+      "title": "Super apprenant",
+      "description": "100+ points obtenus"
+    },
+    "book_complete": {
+      "title": "Champion du livre",
+      "description": "Livre 1 terminé"
+    }
   }
 }

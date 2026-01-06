@@ -35,6 +35,8 @@ let state = {
   }
 };
 
+const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+
 // ===== BADGE DEFINITIONS =====
 
 const BADGES = {
@@ -99,7 +101,7 @@ function loadState() {
 }
 
 function resetState() {
-  if (confirm('Are you sure you want to reset all progress? This will clear all points and badges.')) {
+  if (confirm(tr('messages.reset_episode_confirm', 'Are you sure you want to reset all progress? This will clear all points and badges.'))) {
     localStorage.removeItem(STATE_KEY);
     location.reload();
   }
@@ -217,7 +219,9 @@ function toggleMode() {
   // Update mode button text
   const modeText = document.getElementById('mode-text');
   if (modeText) {
-    modeText.textContent = state.mode === 'guided' ? 'Guided' : 'Explore';
+    modeText.textContent = state.mode === 'guided'
+      ? tr('modes.guided', 'Guided')
+      : tr('modes.explore', 'Explore');
   }
 
   saveState();
@@ -465,7 +469,7 @@ function checkDragOrder() {
     saveState();
 
     if (typeof showNotification === 'function') {
-      showNotification('Perfect! All steps are in the correct order!', 'success');
+      showNotification(tr('messages.drag_correct', 'Perfect! All steps are in the correct order!'), 'success');
     }
 
     // Enable continue button
@@ -475,7 +479,7 @@ function checkDragOrder() {
     }
   } else if (!correct) {
     if (typeof showNotification === 'function') {
-      showNotification('Not quite right. Try again!', 'error');
+      showNotification(tr('messages.drag_incorrect', 'Not quite right. Try again!'), 'error');
     }
   }
 }
@@ -494,7 +498,7 @@ function saveWriting() {
     saveState();
 
     if (typeof showNotification === 'function') {
-      showNotification('Writing saved! Great work!', 'success');
+      showNotification(tr('messages.writing_saved', 'Writing saved! Great work!'), 'success');
     }
 
     // Enable continue button
@@ -504,7 +508,8 @@ function saveWriting() {
     }
   } else if (wordCount < 50) {
     if (typeof showNotification === 'function') {
-      showNotification(`You need at least 50 words. Current: ${wordCount}`, 'info');
+      const tooShort = tr('messages.writing_too_short', 'You need at least 50 words. Current: {{count}}');
+      showNotification(tooShort.replace('{{count}}', wordCount), 'info');
     }
   }
 }
@@ -517,7 +522,8 @@ function updateWordCount() {
 
   const text = textarea.value.trim();
   const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
-  counter.textContent = `${wordCount} words`;
+  const label = tr('messages.word_count', '{{count}} words');
+  counter.textContent = label.replace('{{count}}', wordCount);
 
   // Change color based on count
   if (wordCount >= 50) {
@@ -552,10 +558,9 @@ function saveReflection() {
 
 // ===== CONTEXTUAL HELP =====
 
-const HELP_CONTENT = {
+const HELP_FALLBACK = {
   'vocab-lee': {
     title: '📝 Lee: Word Help',
-    type: 'lee',
     bullets: [
       'A claim is what someone believes',
       'Evidence is proof that supports the claim',
@@ -565,7 +570,6 @@ const HELP_CONTENT = {
   },
   'vocab-tee': {
     title: '🤔 Tee: Strategy Check',
-    type: 'tee',
     bullets: [
       'What is the writer trying to prove?',
       'What facts or examples support their point?',
@@ -574,7 +578,6 @@ const HELP_CONTENT = {
   },
   'sequence-tee': {
     title: '🤔 Tee: How to Order the Steps',
-    type: 'tee',
     bullets: [
       'First, what does Tee do? (Repeats Jayden\'s claim)',
       'Then what? (Points out the weakness)',
@@ -584,7 +587,6 @@ const HELP_CONTENT = {
   },
   'sequence-lee': {
     title: '📝 Lee: Sentence Frame Reminder',
-    type: 'lee',
     bullets: [
       'Step 1: "You said ___"',
       'Step 2: "But that doesn\'t work because ___"',
@@ -594,7 +596,6 @@ const HELP_CONTENT = {
   },
   'writing-lee': {
     title: '📝 Lee: Writing Frame',
-    type: 'lee',
     bullets: [
       'Paragraph 1: State your claim → "I believe that ___"',
       'Paragraph 2: Give evidence → "For example, ___" → "This shows that ___"',
@@ -604,7 +605,6 @@ const HELP_CONTENT = {
   },
   'writing-tee': {
     title: '🤔 Tee: Quality Check',
-    type: 'tee',
     bullets: [
       '☐ Did you clearly state what you believe?',
       '☐ Did you give at least 2 pieces of evidence?',
@@ -615,9 +615,47 @@ const HELP_CONTENT = {
   }
 };
 
+const HELP_CONTENT = {
+  'vocab-lee': {
+    titleKey: 'help.vocab_lee.title',
+    bulletsKey: 'help.vocab_lee.bullets',
+    exampleKey: 'help.vocab_lee.example',
+    type: 'lee'
+  },
+  'vocab-tee': {
+    titleKey: 'help.vocab_tee.title',
+    bulletsKey: 'help.vocab_tee.bullets',
+    type: 'tee'
+  },
+  'sequence-tee': {
+    titleKey: 'help.sequence_tee.title',
+    bulletsKey: 'help.sequence_tee.bullets',
+    type: 'tee'
+  },
+  'sequence-lee': {
+    titleKey: 'help.sequence_lee.title',
+    bulletsKey: 'help.sequence_lee.bullets',
+    type: 'lee'
+  },
+  'writing-lee': {
+    titleKey: 'help.writing_lee.title',
+    bulletsKey: 'help.writing_lee.bullets',
+    type: 'lee'
+  },
+  'writing-tee': {
+    titleKey: 'help.writing_tee.title',
+    bulletsKey: 'help.writing_tee.bullets',
+    type: 'tee'
+  }
+};
+
 function openHelp(helpId) {
   const help = HELP_CONTENT[helpId];
+  const fallback = HELP_FALLBACK[helpId] || {};
   if (!help) return;
+
+  const bullets = tr(help.bulletsKey, fallback.bullets || []);
+  const example = help.exampleKey ? tr(help.exampleKey, fallback.example || '') : (fallback.example || '');
 
   const modal = document.createElement('div');
   modal.className = 'help-modal';
@@ -631,17 +669,19 @@ function openHelp(helpId) {
   content.className = `help-content ${help.type}`;
   content.onclick = (e) => e.stopPropagation();
 
-  let html = `<h3>${help.title}</h3><ul>`;
-  help.bullets.forEach(bullet => {
-    html += `<li>${bullet}</li>`;
+  let html = `<h3>${tr(help.titleKey, fallback.title || '')}</h3><ul>`;
+  (Array.isArray(bullets) ? bullets : [bullets]).forEach(bullet => {
+    if (bullet) {
+      html += `<li>${bullet}</li>`;
+    }
   });
   html += '</ul>';
 
-  if (help.example) {
-    html += `<div class="example">${help.example}</div>`;
+  if (example) {
+    html += `<div class="example">${example}</div>`;
   }
 
-  html += '<button class="btn btn-primary close-btn" onclick="this.closest(\'.help-modal\').remove()">Got it!</button>';
+  html += `<button class="btn btn-primary close-btn" onclick="this.closest('.help-modal').remove()">${tr('help.cta', 'Got it!')}</button>`;
 
   content.innerHTML = html;
   modal.appendChild(content);
@@ -656,7 +696,7 @@ function showCompletionScreen() {
   // The completion content is already in Phase 4
   // Just make sure it's visible
   if (typeof showNotification === 'function') {
-    showNotification('🎉 Episode Complete! Well done!', 'success');
+    showNotification(tr('messages.episode_complete', '🎉 Episode Complete! Well done!'), 'success');
   }
 }
 

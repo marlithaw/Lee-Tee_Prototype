@@ -25,6 +25,7 @@
     "counterclaim_subtitle": "Vi opoze",
     "counterclaim_def": "Agiman lòt bò a ou dwe adrese",
     "counterclaim_example": "Nan istwa a: Defi Jayden",
+    "conclusion": "Konklizyon",
     "rebuttal": "Refitasyon",
     "rebuttal_def": "Repons ou bay kont-agiman an",
     "reasoning": "Rezonman",
@@ -194,12 +195,185 @@
     "guided1": "✓ Kòrèk! Tee ap repete sa Jayden te di.",
     "guided2": "✓ Wi! Tee pote prèv ak reyalite.",
     "guided3": "✓ Pafè! Tee konekte prèv li ak rezon ki fè reklamasyon Jayden nan pa mache.",
-    "guided_complete": "🎉 Trè byen! Koulye a ou pare pou mete liy rap yo nan lòd."
+    "guided_complete": "🎉 Trè byen! Koulye a ou pare pou mete liy rap yo nan lòd.",
+    "match_success": "✓ Ou matche yo tout! Entèlijans lari = entèlijans liv!"
   },
   "rewards": {
     "critical_thinking": "Panse kritik!"
   },
   "banners": {
     "heading": "Objektif Lang ak Kontni SIOP"
+  },
+  "languages": {
+    "en": "Anglè",
+    "es": "Panyòl",
+    "fr": "Franse",
+    "ht": "Kreyòl Ayisyen"
+  },
+  "controls": {
+    "previous": "Anvan",
+    "next": "Pwochen",
+    "finish": "Fini",
+    "close": "Fèmen"
+  },
+  "modes": {
+    "guided": "Gide",
+    "explore": "Eksplore"
+  },
+  "messages": {
+    "reset_episode_confirm": "Ou sèten ou vle rekòmanse tout pwogrè a? Sa ap efase pwen ak badj yo.",
+    "reset_nav_confirm": "Ou sèten ou vle rekòmanse tout pwogrè a? Sa pa ka anile.",
+    "reset_global_progress": "Reyajiste tout pwogrè epizòd sa a?",
+    "drag_correct": "Parfe! Tout etap yo nan bon lòd!",
+    "drag_incorrect": "Toujou pa byen. Eseye ankò!",
+    "writing_saved": "Ekriti sove! Bèl travay!",
+    "writing_too_short": "Ou bezwen omwen 50 mo. Kounye a: {{count}}",
+    "episode_complete": "🎉 Epizòd fini! Bèl travay!",
+    "word_count": "{{count}} mo"
+  },
+  "progress_labels": {
+    "sel": "Tcheke",
+    "vocab": "Vokabilè",
+    "section1": "Seksyon 1",
+    "section2": "Seksyon 2",
+    "section3": "Seksyon 3",
+    "drag": "Trennen & Lage",
+    "essay": "Modèl esè",
+    "reflect": "Refleksyon"
+  },
+  "character_feedback": {
+    "lee_title": "Bon chwa! Ou chwazi Lee!",
+    "lee_body": "Ou pral wè plis ankadreman fraz, bank mo, ak sipò etap-pa-etap pandan leson an.",
+    "tee_title": "Bon chwa! Ou chwazi Tee!",
+    "tee_body": "Ou pral wè kesyon sou panse estratejik ak endikasyon pou rezoud pwoblèm pandan leson an."
+  },
+  "help": {
+    "cta": "Mwen konprann!",
+    "vocab_lee": {
+      "title": "📝 Lee: Èd sou mo yo",
+      "bullets": [
+        "Yon reklamasyon se sa yon moun kwè",
+        "Prèv se sipò ki bay fòs reklamasyon an",
+        "Eseye sa a: \"Mwen reklame ke ___ paske ___\""
+      ],
+      "example": "Egzanp: \"Mwen reklame ke rekreyasyon enpòtan paske elèv yo bezwen egzèsis.\""
+    },
+    "vocab_tee": {
+      "title": "🤔 Tee: Tcheke estrateji a",
+      "bullets": [
+        "Kisa otè a ap eseye pwouve?",
+        "Ki reyalite oswa egzanp ki sipòte pwen li?",
+        "Èske gen moun ki ta ka pa dakò? Kisa yo ta di?"
+      ]
+    },
+    "sequence_tee": {
+      "title": "🤔 Tee: Kijan pou mete etap yo nan lòd",
+      "bullets": [
+        "Premye, kisa Tee fè? (Repete reklamasyon Jayden)",
+        "Apre sa? (Montre feblès la)",
+        "Epi? (Bay prèv/egzanp)",
+        "Finalman? (Fèmen ak enpak)"
+      ]
+    },
+    "sequence_lee": {
+      "title": "📝 Lee: Rappel ankadreman yo",
+      "bullets": [
+        "Etap 1: \"Ou te di ___\"",
+        "Etap 2: \"Men sa pa mache paske ___\"",
+        "Etap 3: \"Pa egzanp, ___\"",
+        "Etap 4: \"Se konsa, an reyalite, ___\""
+      ]
+    },
+    "writing_lee": {
+      "title": "📝 Lee: Ankadreman ekriti",
+      "bullets": [
+        "Paragraf 1: Mete reklamasyon ou → \"Mwen kwè ke ___\"",
+        "Paragraf 2: Bay prèv → \"Pa egzanp, ___\" → \"Sa montre ke ___\"",
+        "Paragraf 3: Adrese kont-agiman an → \"Gen kèk ki ta ka di ___, men ___\"",
+        "Paragraf 4: Konklizyon → \"Se poutèt sa, ___\""
+      ]
+    },
+    "writing_tee": {
+      "title": "🤔 Tee: Tcheke kalite",
+      "bullets": [
+        "☐ Èske ou te klè sou sa ou kwè?",
+        "☐ Èske ou bay omwen 2 prèv?",
+        "☐ Èske ou te eksplike POUKISA prèv ou enpòtan?",
+        "☐ Èske ou te adrese sa yon moun ta ka pa dakò?",
+        "☐ Èske konklizyon ou mare tout bagay ansanm?"
+      ]
+    }
+  },
+  "badge_modal": {
+    "earned_title": "Badj jwenn!",
+    "earned_message": "Ou jwenn badj {{badge}} la!",
+    "confirm": "Trè byen!"
+  },
+  "badge_names": {
+    "first_steps": "Premye pa",
+    "vocab_master": "Mèt vokabilè",
+    "critical_thinker": "Panser kritik",
+    "response_writer": "Ekritè repons",
+    "strategy_expert": "Ekspè estrateji",
+    "super_reader": "Super lektè",
+    "episode_champion": "Chanpyon epizòd",
+    "book_complete": "Liv 1 fini"
+  },
+  "essay_hunt": {
+    "found_prefix": "✓ Jwenn",
+    "perfect": "🎉 Pafè! Ou jwenn tout kat pati yo!",
+    "continue": "✓ Kòrèk! Klike sou yon lòt bouton pou kontinye.",
+    "not_quite": "❌ Pa egzakteman. Eseye ankò!"
+  },
+  "quiz": {
+    "correct_title": "✓ Kòrèk!",
+    "correct_body": "Bon travay! Ou jwenn li.",
+    "incorrect_title": "✗ Pa ankò",
+    "incorrect_body": "Eseye ankò! Revize tèks la epi panse sou prèv yo."
+  },
+  "accessibility_menu": {
+    "title": "Aksè",
+    "dyslexia": "Polis zanmitay pou disleksi",
+    "high_contrast": "Kontras wo",
+    "hints": "Montre endis yo"
+  },
+  "header": {
+    "home": "Akèy",
+    "book_progress": "Pwogrè liv la",
+    "episode_progress": "Pwogrè epizòd la",
+    "points": "Pwen",
+    "badges": "Badj",
+    "learning_guide": "Gid aprantisaj",
+    "lee_mode": "Lee",
+    "tee_mode": "Tee",
+    "accessibility": "Aksè",
+    "dyslexia_font": "Polis zanmitay pou disleksi",
+    "high_contrast": "Mòd gwo kontras",
+    "sections_complete": "Seksyon fini",
+    "book_label": "Liv",
+    "points_short": "pwen",
+    "points_badges": "Pwen ak badj",
+    "total_points": "Total pwen",
+    "badges_earned": "Badj jwenn",
+    "close": "Fèmen",
+    "episode_label": "Epizòd"
+  },
+  "global_badges": {
+    "first_episode": {
+      "title": "Premye pa",
+      "description": "Epizòd 1 fini"
+    },
+    "two_episodes": {
+      "title": "Eksploratè liv la",
+      "description": "Fini 2 epizòd"
+    },
+    "hundred_points": {
+      "title": "Super aprenan",
+      "description": "Jwenn 100+ pwen"
+    },
+    "book_complete": {
+      "title": "Chanpyon liv la",
+      "description": "Liv 1 fini"
+    }
   }
 }

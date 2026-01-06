@@ -2652,15 +2652,15 @@ p.active-sentence {
     </div>
   </div>
   
-  <p id="matchFeedback" class="mt-4 text-green-600 font-semibold hidden">✓ You matched them all! Street smarts = Book smarts!</p>
+  <p id="matchFeedback" class="mt-4 text-green-600 font-semibold hidden" data-i18n="feedback.match_success">✓ You matched them all! Street smarts = Book smarts!</p>
 </div>
     </section>
 
     <div id="lees-essay-model" class="anchor-target" aria-hidden="true"></div>
     <!-- LEE'S MODEL ESSAY - INTERACTIVE -->
     <section class="p-8 md:p-12 bg-slate-50" id="section-essay">
-      <h2 class="font-display text-3xl font-bold mb-2 text-purple-700">Lee's Essay (Model)</h2>
-      <p class="text-gray-600 mb-6">Using what she learned, Lee wrote her argumentative essay. Now it's YOUR turn to find the parts!</p>
+      <h2 class="font-display text-3xl font-bold mb-2 text-purple-700" data-i18n="section5.title">Lee's Essay (Model)</h2>
+      <p class="text-gray-600 mb-6" data-i18n="section5.intro">Using what she learned, Lee wrote her argumentative essay. Now it's YOUR turn to find the parts!</p>
 
       <!-- Study image -->
       <div class="media-container mb-6" style="max-width: 400px;">
@@ -2669,29 +2669,33 @@ p.active-sentence {
 
       <!-- INTERACTIVE CHALLENGE -->
       <div class="bg-gradient-to-r from-purple-100 to-amber-100 p-6 rounded-xl mb-6">
-        <h3 class="font-bold text-xl mb-3">🎯 Interactive Challenge:</h3>
-        <p class="mb-4">Click a button below, then click the paragraph that contains that part!</p>
+        <h3 class="font-bold text-xl mb-3" data-i18n="section5.find_parts">🎯 Interactive Challenge:</h3>
+        <p class="mb-4" data-i18n="section5.instruction">Click a button below, then click the paragraph that contains that part!</p>
 
         <div class="flex flex-wrap gap-3 mb-4">
           <button id="btn-claim" onclick="highlightEssayPart('claim')"
-            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+            data-part-name="Claim" data-i18n="section5.find_claim">
             Find the CLAIM
           </button>
           <button id="btn-evidence" onclick="highlightEssayPart('evidence')"
-            class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
+            class="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
+            data-part-name="Evidence" data-i18n="section5.find_evidence">
             Find the EVIDENCE
           </button>
           <button id="btn-counterclaim" onclick="highlightEssayPart('counterclaim')"
-            class="px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition">
+            class="px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition"
+            data-part-name="Counterclaim" data-i18n="section5.find_counterclaim">
             Find the COUNTERCLAIM
           </button>
           <button id="btn-conclusion" onclick="highlightEssayPart('conclusion')"
-            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+            data-part-name="Conclusion" data-i18n="section5.find_conclusion">
             Find the CONCLUSION
           </button>
         </div>
 
-        <p id="essay-instruction" class="text-sm text-gray-700 font-semibold">👆 Click a button above to start!</p>
+        <p id="essay-instruction" class="text-sm text-gray-700 font-semibold" data-i18n="section5.instruction">👆 Click a button above to start!</p>
       </div>
 
       <!-- THE ESSAY - NOW CLICKABLE -->
@@ -3056,17 +3060,29 @@ Finally, Step 4: Restate your position..."
         button.disabled = true;
         button.classList.add('opacity-50');
         button.classList.remove('ring-4', 'ring-purple-300');
-        button.textContent = button.textContent.replace('Find', '✓ Found');
+        const foundPrefix = typeof translator !== 'undefined'
+          ? translator.t('essay_hunt.found_prefix', '✓ Found')
+          : '✓ Found';
+        const partName = button.dataset.partName
+          ? (typeof translator !== 'undefined'
+              ? translator.t(`vocab.${button.dataset.partName.toLowerCase()}`, button.dataset.partName)
+              : button.dataset.partName)
+          : button.textContent.trim();
+        button.textContent = `${foundPrefix} ${partName}`;
 
         essayPartsFound++;
 
         if (essayPartsFound >= 4) {
           // ALL FOUND!
-          instruction.textContent = '🎉 Perfect! You found all four parts!';
+          instruction.textContent = typeof translator !== 'undefined'
+            ? translator.t('essay_hunt.perfect', '🎉 Perfect! You found all four parts!')
+            : '🎉 Perfect! You found all four parts!';
           document.getElementById('essayComplete').classList.remove('hidden');
           updatePoints(20, 'Identified all essay parts!');
         } else {
-          instruction.textContent = '✓ Correct! Click another button to continue.';
+          instruction.textContent = typeof translator !== 'undefined'
+            ? translator.t('essay_hunt.continue', '✓ Correct! Click another button to continue.')
+            : '✓ Correct! Click another button to continue.';
         }
 
         currentFinding = null;
@@ -3075,7 +3091,9 @@ Finally, Step 4: Restate your position..."
         // WRONG - shake animation
         paragraph.style.animation = 'shake 0.3s';
         setTimeout(() => { paragraph.style.animation = ''; }, 300);
-        instruction.textContent = '❌ Not quite. Try again!';
+        instruction.textContent = typeof translator !== 'undefined'
+          ? translator.t('essay_hunt.not_quite', '❌ Not quite. Try again!')
+          : '❌ Not quite. Try again!';
       }
     }
 
@@ -4469,7 +4487,10 @@ Finally, Step 4: Restate your position..."
 
     // Reset episode progress
     function resetEpisodeProgress() {
-      if (confirm('Reset all progress for this episode?')) {
+      const message = typeof translator !== 'undefined'
+        ? translator.t('messages.reset_global_progress', 'Reset all progress for this episode?')
+        : 'Reset all progress for this episode?';
+      if (confirm(message)) {
         localStorage.removeItem('leeTeeLessonProgress');
         localStorage.removeItem('episode1SkillState');
         location.reload();
@@ -4481,24 +4502,27 @@ Finally, Step 4: Restate your position..."
       const checklist = document.getElementById('progress-checklist');
       if (!checklist) return;
 
+      const t = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+
       const items = [
-        { id: 'progress-sel', label: 'Check-In' },
-        { id: 'progress-vocab', label: 'Vocabulary' },
-        { id: 'progress-section1', label: 'Section 1' },
-        { id: 'progress-section2', label: 'Section 2' },
-        { id: 'progress-section3', label: 'Section 3' },
-        { id: 'progress-drag', label: 'Drag & Drop' },
-        { id: 'progress-essay', label: 'Model Essay' },
-        { id: 'progress-reflect', label: 'Reflection' }
+        { id: 'progress-sel', key: 'progress_labels.sel', fallback: 'Check-In' },
+        { id: 'progress-vocab', key: 'progress_labels.vocab', fallback: 'Vocabulary' },
+        { id: 'progress-section1', key: 'progress_labels.section1', fallback: 'Section 1' },
+        { id: 'progress-section2', key: 'progress_labels.section2', fallback: 'Section 2' },
+        { id: 'progress-section3', key: 'progress_labels.section3', fallback: 'Section 3' },
+        { id: 'progress-drag', key: 'progress_labels.drag', fallback: 'Drag & Drop' },
+        { id: 'progress-essay', key: 'progress_labels.essay', fallback: 'Model Essay' },
+        { id: 'progress-reflect', key: 'progress_labels.reflect', fallback: 'Reflection' }
       ];
 
       checklist.innerHTML = items.map(item => {
         const el = document.getElementById(item.id);
         const complete = el && el.classList.contains('completed');
+        const label = t(item.key, item.fallback);
         return `
           <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
             <span class="text-lg">${complete ? '✅' : '⬜'}</span>
-            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
+            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${label}</span>
           </div>
         `;
       }).join('');
@@ -4814,7 +4838,7 @@ Finally, Step 4: Restate your position..."
 
       selectEl.addEventListener('change', async (e) => {
         await translator.applyLanguage(e.target.value);
-        translator.translatePage();
+        updateProgressChecklist();
       });
     }
 
@@ -4839,15 +4863,28 @@ Finally, Step 4: Restate your position..."
         if (feedback) {
           feedback.classList.remove('hidden');
 
+          const leeTitle = typeof translator !== 'undefined'
+            ? translator.t('character_feedback.lee_title', 'Great choice! You chose Lee!')
+            : 'Great choice! You chose Lee!';
+          const leeBody = typeof translator !== 'undefined'
+            ? translator.t('character_feedback.lee_body', "You'll see more sentence frames, word banks, and step-by-step scaffolds throughout the lesson.")
+            : "You'll see more sentence frames, word banks, and step-by-step scaffolds throughout the lesson.";
+          const teeTitle = typeof translator !== 'undefined'
+            ? translator.t('character_feedback.tee_title', 'Great choice! You chose Tee!')
+            : 'Great choice! You chose Tee!';
+          const teeBody = typeof translator !== 'undefined'
+            ? translator.t('character_feedback.tee_body', "You'll see strategic thinking questions and problem-solving prompts throughout the lesson.")
+            : "You'll see strategic thinking questions and problem-solving prompts throughout the lesson.";
+
           if (character === 'lee') {
             feedback.innerHTML = `
-              <p class="font-bold text-purple-800 mb-2">Great choice! You chose Lee!</p>
-              <p class="text-sm">You'll see more sentence frames, word banks, and step-by-step scaffolds throughout the lesson.</p>
+              <p class="font-bold text-purple-800 mb-2">${leeTitle}</p>
+              <p class="text-sm">${leeBody}</p>
             `;
           } else {
             feedback.innerHTML = `
-              <p class="font-bold text-amber-800 mb-2">Great choice! You chose Tee!</p>
-              <p class="text-sm">You'll see strategic thinking questions and problem-solving prompts throughout the lesson.</p>
+              <p class="font-bold text-amber-800 mb-2">${teeTitle}</p>
+              <p class="text-sm">${teeBody}</p>
             `;
           }
         }
@@ -4856,6 +4893,30 @@ Finally, Step 4: Restate your position..."
         console.log(`✓ Student chose ${character} - adaptive scaffolding activated`);
       };
     }
+
+    document.addEventListener('languageChanged', () => {
+      updateProgressChecklist();
+      const feedback = document.getElementById('characterFeedback');
+      if (feedback && typeof state !== 'undefined' && state.guideChoice) {
+        const isLee = state.guideChoice === 'lee';
+        const title = typeof translator !== 'undefined'
+          ? translator.t(isLee ? 'character_feedback.lee_title' : 'character_feedback.tee_title', isLee ? 'Great choice! You chose Lee!' : 'Great choice! You chose Tee!')
+          : isLee ? 'Great choice! You chose Lee!' : 'Great choice! You chose Tee!';
+        const body = typeof translator !== 'undefined'
+          ? translator.t(isLee ? 'character_feedback.lee_body' : 'character_feedback.tee_body', isLee
+            ? "You'll see more sentence frames, word banks, and step-by-step scaffolds throughout the lesson."
+            : "You'll see strategic thinking questions and problem-solving prompts throughout the lesson.")
+          : isLee
+            ? "You'll see more sentence frames, word banks, and step-by-step scaffolds throughout the lesson."
+            : "You'll see strategic thinking questions and problem-solving prompts throughout the lesson.";
+
+        feedback.classList.remove('hidden');
+        feedback.innerHTML = `
+          <p class="font-bold ${isLee ? 'text-purple-800' : 'text-amber-800'} mb-2">${title}</p>
+          <p class="text-sm">${body}</p>
+        `;
+      }
+    });
 
     /**
      * Navigation controls
