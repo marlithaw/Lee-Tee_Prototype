@@ -1,0 +1,239 @@
+/**
+ * Lee & Tee - Shared Styles
+ * Common styles used across all episodes
+ */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-primary: #FFF8F0;
+  --bg-secondary: #FEF3E2;
+  --accent-purple: #7C3AED;
+  --accent-amber: #F59E0B;
+  --accent-teal: #0D9488;
+  --accent-blue: #2563EB;
+  --accent-rose: #E11D48;
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --success: #16A34A;
+  --border-light: #E7E5E4;
+}
+
+/* ===== BASE STYLES ===== */
+html {
+  overflow-x: hidden !important;
+  width: 100%;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lexend', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding-top: 80px; /* Space for fixed header */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll */
+section, div, main, article, header, footer, nav {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, video, iframe {
+  max-width: 100% !important;
+  height: auto;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.font-display {
+  font-family: 'Fredoka', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ===== ACCESSIBILITY MODES ===== */
+body.dyslexia-mode {
+  font-family: 'OpenDyslexic', sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 2;
+}
+
+body.high-contrast {
+  --bg-primary: #000000;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E5E5E5;
+  --border-light: #404040;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-family: 'Lexend', sans-serif;
+}
+
+.btn-primary {
+  background: var(--accent-purple);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #6d28d9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.btn-secondary {
+  background: var(--accent-amber);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+.btn-outline:hover {
+  background: var(--accent-purple);
+  color: white;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s ease forwards;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-center {
+  text-align: center;
+}
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+
+.hidden {
+  display: none !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  body {
+    padding-top: 120px; /* More space for wrapped header on mobile */
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}

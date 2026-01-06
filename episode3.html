@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode 3: The Dinner Table | Lee & Tee Book 1</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- OpenDyslexic Font -->
+  <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="shared/design-system.css">
+
+  <style>
+    /* Episode 3 Specific Styles */
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: linear-gradient(to bottom, #F0FDFA 0%, #CCFBF1 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      color: #1C1917;
+    }
+
+    /* Episode 3 Teal Theme */
+    :root {
+      --episode-color: #0D9488;
+      --episode-light: #CCFBF1;
+      --episode-dark: #115E59;
+    }
+
+    .episode-accent {
+      color: var(--episode-color);
+    }
+
+    .episode-bg {
+      background-color: var(--episode-light);
+    }
+
+    /* Header */
+    .hero-header {
+      background: linear-gradient(135deg, #CCFBF1 0%, #5EEAD4 50%, #0D9488 100%);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: #134E4A;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      z-index: 1000;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #0D9488, #5EEAD4);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* Story Text */
+    .story-text {
+      font-size: 1.25rem;
+      line-height: 2;
+      margin: 1.5rem 0;
+      color: #292524;
+    }
+
+    .story-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Character Cards */
+    .character-card {
+      background: white;
+      border: 3px solid var(--episode-color);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .character-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
+    }
+
+    /* Perspective Organizer */
+    .perspective-box {
+      background: white;
+      border: 3px solid var(--episode-color);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .perspective-box:hover {
+      background: var(--episode-light);
+      transform: scale(1.02);
+    }
+
+    .perspective-box.selected {
+      background: var(--episode-light);
+      border-color: var(--episode-dark);
+    }
+
+    /* Vocab Terms */
+    .vocab-term {
+      color: var(--episode-color);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .vocab-term:hover {
+      color: var(--episode-dark);
+    }
+
+    /* Quiz Choices */
+    .quiz-choice {
+      background: white;
+      border: 3px solid #CCFBF1;
+      padding: 1rem 1.5rem;
+      margin: 0.75rem 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .quiz-choice:hover {
+      border-color: #0D9488;
+      background: #CCFBF1;
+      transform: translateX(4px);
+    }
+
+    .quiz-choice.correct {
+      border-color: #16A34A;
+      background: #DCFCE7;
+    }
+
+    .quiz-choice.incorrect {
+      border-color: #DC2626;
+      background: #FEE2E2;
+    }
+
+    /* Floating Stop Button */
+    .floating-stop-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 200;
+      background: #DC2626;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    .floating-stop-btn.active {
+      display: flex;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Sticky Navigation */
+    .sticky-section-nav {
+      position: sticky;
+      top: 50px;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 50;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+
+      .hero-header {
+        padding: 2rem 1rem;
+      }
+
+      .story-text {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Dyslexia Mode */
+    body.dyslexia-mode {
+      font-family: 'OpenDyslexic', sans-serif;
+      letter-spacing: 0.05em;
+      word-spacing: 0.1em;
+      line-height: 2;
+    }
+
+    /* High Contrast Mode */
+    body.high-contrast {
+      background: #000000;
+      color: #FFFFFF;
+    }
+
+    body.high-contrast .character-card,
+    body.high-contrast .perspective-box {
+      background: #1a1a1a;
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body data-episode="3">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-container">
+    <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+  </div>
+
+  <!-- BACK TO HOME BUTTON -->
+  <div style="position: fixed; top: 70px; left: 20px; z-index: 100;">
+    <a href="index.html" class="bg-white border-2 border-teal-200 text-teal-700 px-4 py-2 rounded-full font-semibold hover:bg-teal-50 hover:border-teal-400 transition flex items-center gap-2 shadow-md" style="text-decoration: none; display: inline-flex;">
+      <span>←</span>
+      <span>Back to Home</span>
+    </a>
+  </div>
+
+  <!-- FLOATING STOP BUTTON -->
+  <button id="floatingStopBtn" class="floating-stop-btn" onclick="stopAllNarration()">
+    <span>⏹️</span>
+    <span>STOP</span>
+  </button>
+
+  <!-- HEADER -->
+  <header class="hero-header">
+    <div class="max-w-4xl mx-auto">
+      <!-- PLACEHOLDER: Episode Header Image -->
+      <div class="img-placeholder mb-6" style="max-width: 500px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%);">
+        🍽️ EPISODE 3 HEADER IMAGE<br>
+        <span style="font-size: 0.875rem;">(Dinner table with family gathered, plates of bulgogi)</span>
+      </div>
+
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="color: #134E4A;">
+        Episode 3: The Dinner Table
+      </h1>
+      <p class="text-xl md:text-2xl mb-2 font-semibold" style="color: #115E59;">
+        Understanding Multiple Perspectives
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <span class="bg-white px-4 py-2 rounded-full font-semibold text-teal-800">🌍 Social Studies</span>
+        <span class="bg-white px-4 py-2 rounded-full font-semibold text-teal-800">💭 Perspectives</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-4xl mx-auto px-4 pb-20">
+
+    <!-- ACCESSIBILITY CONTROLS -->
+    <div class="sticky-section-nav">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-3 flex-wrap">
+          <button onclick="toggleDyslexia()" class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg font-semibold text-purple-700 transition">
+            👓 Dyslexia Mode
+          </button>
+          <button onclick="toggleHighContrast()" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-semibold text-gray-700 transition">
+            ◐ High Contrast
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-600">Progress:</span>
+          <span id="pointsDisplay" class="font-bold text-teal-600 text-lg">0</span>
+          <span class="text-sm text-gray-600">points</span>
+          <div id="badgeContainer" class="flex gap-1 ml-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: SETTING THE TABLE -->
+    <section id="section-1" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🍽️ Setting the Table
+        </h2>
+
+        <!-- PLACEHOLDER: Dinner Table Scene -->
+        <div class="img-placeholder mb-6" style="height: 240px;">
+          🍽️ DINNER TABLE PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(Extended family table set for 9 - plates, bulgogi in center, rice pot)</span>
+        </div>
+
+        <div class="story-text">
+          <p>The table was too small for nine people, but they made it work.</p>
+          <p>Grandma Ladoris had set out plates an hour ago, stacking them on the counter so people could serve themselves. The big skillet of bulgogi sat in the middle of the table on a wooden trivet, still steaming. White rice in a pot next to it. A bowl of green onions somebody had chopped at the last second.</p>
+          <p>Chairs scraped across the linoleum.</p>
+          <p>Nicky claimed the seat by the window before anyone else could—she always did.</p>
+          <p>August slid into his spot without looking up from the small motor he was turning over in his hands, gears and springs visible through his fingers.</p>
+          <p>Devin dropped into his chair hard enough to make the table shake, shot Lee a look that said <em>stay out of my way</em>, then reached for the rice spoon before Grandma even sat down.</p>
+          <p>"Devin," Grandma said, her voice sharp but not loud.</p>
+          <p>He pulled his hand back.</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-1')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section1" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE FAMILY ASSEMBLES + CHARACTER CARDS -->
+    <section id="section-2" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          👥 The Family Assembles
+        </h2>
+
+        <div class="story-text">
+          <p>Uncle Romi came in last, wearing a dashiki he had tie-dyed himself, headphones around his neck, humming something low and off-beat. He grinned at Lee as he passed. "Yo, I heard you wrote a whole essay today. That's what's up."</p>
+          <p>Lee looked down, smiling a little. "It's just a first draft."</p>
+          <p>"First draft is the hardest one," Romi said, sitting down next to Tee. "That's when you figure out what you actually think."</p>
+          <p>Uncle Vernon said nothing. He never did at the table. He just pulled his chair in, folded his hands, and waited.</p>
+          <p>Mom Nae came in from the hallway, still in her work clothes, hair pulled back in a ponytail, looking tired but relieved to sit down.</p>
+          <p>She squeezed Lee's shoulder as she passed. "How was school?"</p>
+          <p>"Good," Lee said.</p>
+          <p>Tee grinned. "Lee figured out counterclaims."</p>
+          <p>Mom raised an eyebrow. "Oh yeah?"</p>
+          <p>"I'll tell you after dinner," Lee said.</p>
+        </div>
+
+        <!-- CHARACTER CARDS -->
+        <div class="mt-8">
+          <h3 class="font-bold text-xl mb-4 text-center episode-accent">Meet the Family (Click to Learn More)</h3>
+
+          <div class="grid md:grid-cols-3 gap-4">
+            <!-- Uncle Romi Card -->
+            <div class="character-card" onclick="showCharacter('romi')">
+              <div class="text-center">
+                <div class="text-5xl mb-3">🎨</div>
+                <h4 class="font-bold text-lg episode-accent mb-2">Uncle Romi</h4>
+                <p class="text-sm text-gray-600 italic">"Questions everything"</p>
+              </div>
+            </div>
+
+            <!-- Uncle Vernon Card -->
+            <div class="character-card" onclick="showCharacter('vernon')">
+              <div class="text-center">
+                <div class="text-5xl mb-3">💼</div>
+                <h4 class="font-bold text-lg episode-accent mb-2">Uncle Vernon</h4>
+                <p class="text-sm text-gray-600 italic">"Sees opportunities"</p>
+              </div>
+            </div>
+
+            <!-- Mom Nae Card -->
+            <div class="character-card" onclick="showCharacter('mom')">
+              <div class="text-center">
+                <div class="text-5xl mb-3">💪</div>
+                <h4 class="font-bold text-lg episode-accent mb-2">Mom Nae</h4>
+                <p class="text-sm text-gray-600 italic">"The mediator"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-2')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section2" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SMALL TALK + REFLECTION -->
+    <section id="section-3" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💬 Small Talk
+        </h2>
+
+        <div class="story-text">
+          <p>The first few minutes were quiet. Utensils scraping plates. Quiet chewing. The smell of sesame oil and soy sauce still strong.</p>
+          <p>August finally looked up from his motor. "This bulgogi's good, Grandpa."</p>
+          <p>"Grandpa made it from scratch," Tee said. "He even scaled the recipe from Grandpa Park's original."</p>
+          <p>"That old thing?" Grandma smiled. "Park wrote that recipe back in Korea before he even came here."</p>
+          <p>"Precision matters," Grandpa said quietly, eyes on his plate.</p>
+          <p>Nicky raised an eyebrow at Lee. "You two been learning fractions or something?"</p>
+          <p>"Multiplying them," Lee said.</p>
+          <p>"Of course you have." Nicky grinned and took another bite.</p>
+          <p>Devin muttered something under his breath that Lee couldn't hear.</p>
+          <p>Then Uncle Romi spoke.</p>
+          <p>"So I walked past that new coffee shop on Maple today."</p>
+          <p>Everyone kept eating.</p>
+          <p>"Five dollars for a cookie," Romi continued. "Five. Dollars."</p>
+          <p>Vernon glanced up. "That's market rate for artisan baked goods."</p>
+          <p>Romi laughed, but it wasn't a happy sound. "Artisan. Right."</p>
+        </div>
+
+        <!-- REFLECTION PROMPT -->
+        <div class="bg-amber-50 border-l-4 border-amber-400 p-6 mt-6 rounded-r-xl">
+          <h3 class="font-bold text-lg mb-3 text-amber-800">🤔 Pause & Predict</h3>
+          <p class="text-gray-700 mb-4">Uncle Romi just mentioned the new coffee shop charging $5 for a cookie. What do you think is about to happen at this dinner table?</p>
+          <textarea id="prediction-section3" class="w-full border-2 border-amber-200 rounded-lg p-3 focus:border-amber-400 focus:outline-none" rows="3" placeholder="Write your prediction here..."></textarea>
+          <button onclick="savePrediction('section3')" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2 rounded-lg font-semibold mt-3 transition">
+            Save My Prediction
+          </button>
+          <div id="feedback-prediction-section3" class="hidden mt-3 text-amber-700 font-semibold">✓ Prediction saved! Keep reading to see what happens.</div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-3')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section3" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE SPARK - GENTRIFICATION INTRODUCED -->
+    <section id="section-4" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          ⚡ The Spark
+        </h2>
+
+        <div class="story-text">
+          <p>Mom closed her eyes for just a second, like she was bracing herself.</p>
+          <p>Grandma looked at Romi. "Don't start."</p>
+          <p>"I'm not starting anything," Romi said, setting down his fork. "I'm just noticing. New shops. New people. Rent going up. It's happening again."</p>
+          <p>"What's happening again?" Lee asked.</p>
+          <p>Romi looked at her directly. "<span class="vocab-term" onclick="showVocab('gentrification')">Gentrification</span>."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-4')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section4" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: UNCLE ROMI'S POSITION + AUDIO -->
+    <section id="section-5" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🎨 Romi's Position: Change = Displacement
+        </h2>
+
+        <!-- PLACEHOLDER: Audio Segment -->
+        <div class="audio-placeholder mb-6" style="background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); border: 3px solid #F59E0B; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎧</div>
+          <p style="font-weight: 600; color: #92400E; margin-bottom: 0.5rem;">AUDIO SEGMENT 1</p>
+          <p style="font-size: 0.875rem; color: #78350F;">Romi's full argument about gentrification and displacement</p>
+        </div>
+
+        <div class="story-text">
+          <p>The word hung in the air for a second.</p>
+          <p>Lee looked up from her plate.</p>
+          <p>Grandma set her fork down. "Romi."</p>
+          <p>"What?" Romi spread his hands. "I'm just saying. New coffee shop, five-dollar cookies, everything white and clean like the old neighborhood wasn't good enough? That's what it is."</p>
+          <p>Devin looked up, interested now. "They tore down Mr. Hassan's store to build that."</p>
+          <p>"Mr. Hassan's lease was up," Grandpa said, his voice calm. "Building owner didn't renew it. That's business."</p>
+          <p>"That's <span class="vocab-term" onclick="showVocab('displacement')">displacement</span>," Romi shot back. "Mr. Hassan's been there twenty years. Now he's gone and some new place shows up charging five dollars for a cookie nobody from around here can afford."</p>
+          <p>Mom sighed. "It's more complicated than that."</p>
+          <p>"Is it?" Romi leaned back in his chair, arms crossed. "Because from where I'm sitting, it looks pretty simple. New people move in, old people get pushed out. Rents go up, neighbors leave. Same story, different decade."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-5')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section5" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: VERNON'S COUNTER + AUDIO -->
+    <section id="section-6" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💼 Vernon's Counter: Change = Opportunity
+        </h2>
+
+        <!-- PLACEHOLDER: Audio Segment -->
+        <div class="audio-placeholder mb-6" style="background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); border: 3px solid #F59E0B; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎧</div>
+          <p style="font-weight: 600; color: #92400E; margin-bottom: 0.5rem;">AUDIO SEGMENT 2</p>
+          <p style="font-size: 0.875rem; color: #78350F;">Vernon's full argument about property values and economic opportunity</p>
+        </div>
+
+        <div class="story-text">
+          <p>Vernon set down his fork carefully.</p>
+          <p>"Different perspective," he said. His voice was measured. Calm. "Property values in this neighborhood have gone up thirty percent in the last three years. That's good for homeowners. That's equity. That's wealth building."</p>
+          <p>"For people who <em>own</em>," Romi shot back. "What about the people who rent? What about the families who've been here for decades and now can't afford to stay?"</p>
+          <p>"People adapt," Vernon said. "Markets change. If you don't own property, you're vulnerable. That's always been true."</p>
+          <p>Devin frowned. "So it's their fault for not owning a house?"</p>
+          <p>"I didn't say that," Vernon replied. "I'm saying change creates opportunity. New businesses mean new jobs. Higher property values mean tax revenue for schools and infrastructure. Rising tide lifts all boats."</p>
+          <p>Romi laughed again, sharper this time. "Unless you drown first."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-6')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section6" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: MOM'S MIDDLE GROUND + AUDIO -->
+    <section id="section-7" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💪 Mom's Middle Ground: Both Sides Have Truth
+        </h2>
+
+        <!-- PLACEHOLDER: Audio Segment -->
+        <div class="audio-placeholder mb-6" style="background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); border: 3px solid #F59E0B; padding: 1.5rem; border-radius: 1rem; text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎧</div>
+          <p style="font-weight: 600; color: #92400E; margin-bottom: 0.5rem;">AUDIO SEGMENT 3</p>
+          <p style="font-size: 0.875rem; color: #78350F;">Mom Nae's mediation and question: Who benefits?</p>
+        </div>
+
+        <div class="story-text">
+          <p>Mom set her fork down.</p>
+          <p>"Both of you are right," she said quietly.</p>
+          <p>Everyone looked at her.</p>
+          <p>"Vernon's right that rising property values help people who own homes. We own this house. It's worth more now than when Mama and Daddy bought it. That's real."</p>
+          <p>Romi started to speak, but Mom held up a hand.</p>
+          <p>"And Romi's right that people are being pushed out. Mrs. Chen's rent doubled. The Johnsons moved to Riverside because they couldn't afford to stay. That's real too."</p>
+          <p>She looked around the table.</p>
+          <p>"The question isn't whether change is happening. The question is: <em>who benefits?</em>"</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-7')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section7" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: LEE'S MENTAL MAP + PERSPECTIVE ORGANIZER DIAGRAM -->
+    <section id="section-8" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🧠 Lee's Mental Map
+        </h2>
+
+        <div class="story-text">
+          <p>Lee's brain started organizing the conversation like a chart.</p>
+          <p>Three people. Three <span class="vocab-term" onclick="showVocab('perspective')">perspectives</span>.</p>
+          <p>She pulled out her notebook—the one she always kept in her hoodie pocket—and started drawing boxes.</p>
+          <p>Tee leaned over. "What are you doing?"</p>
+          <p>"Mapping it out," Lee whispered.</p>
+        </div>
+
+        <!-- PERSPECTIVE ORGANIZER - INTERACTIVE DIAGRAM -->
+        <div class="mt-8 mb-8">
+          <h3 class="font-bold text-xl mb-4 text-center episode-accent">📊 Perspective Organizer</h3>
+          <p class="text-center text-gray-600 mb-6">Click on each person to see their perspective on neighborhood change</p>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <!-- Romi's Perspective Box -->
+            <div class="perspective-box" id="perspective-romi" onclick="togglePerspective('romi')">
+              <div class="text-center mb-3">
+                <div class="text-4xl mb-2">🎨</div>
+                <h4 class="font-bold text-lg episode-accent">Uncle Romi</h4>
+              </div>
+              <div class="perspective-content hidden" id="content-romi">
+                <div class="bg-rose-50 p-4 rounded-lg mt-4 border-l-4 border-rose-400">
+                  <p class="font-semibold text-rose-800 mb-2">View: Change = Displacement</p>
+                  <p class="text-sm text-gray-700 mb-2"><strong>Evidence:</strong> Mr. Hassan's store closed, $5 cookies, rising rents</p>
+                  <p class="text-sm text-gray-700"><strong>Concern:</strong> Long-time residents forced out</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vernon's Perspective Box -->
+            <div class="perspective-box" id="perspective-vernon" onclick="togglePerspective('vernon')">
+              <div class="text-center mb-3">
+                <div class="text-4xl mb-2">💼</div>
+                <h4 class="font-bold text-lg episode-accent">Uncle Vernon</h4>
+              </div>
+              <div class="perspective-content hidden" id="content-vernon">
+                <div class="bg-blue-50 p-4 rounded-lg mt-4 border-l-4 border-blue-400">
+                  <p class="font-semibold text-blue-800 mb-2">View: Change = Opportunity</p>
+                  <p class="text-sm text-gray-700 mb-2"><strong>Evidence:</strong> Property values up 30%, new jobs, tax revenue</p>
+                  <p class="text-sm text-gray-700"><strong>Benefit:</strong> Homeowners build wealth</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mom's Perspective Box -->
+            <div class="perspective-box" id="perspective-mom" onclick="togglePerspective('mom')">
+              <div class="text-center mb-3">
+                <div class="text-4xl mb-2">💪</div>
+                <h4 class="font-bold text-lg episode-accent">Mom Nae</h4>
+              </div>
+              <div class="perspective-content hidden" id="content-mom">
+                <div class="bg-purple-50 p-4 rounded-lg mt-4 border-l-4 border-purple-400">
+                  <p class="font-semibold text-purple-800 mb-2">View: Both Sides True</p>
+                  <p class="text-sm text-gray-700 mb-2"><strong>Key Question:</strong> Who benefits from change?</p>
+                  <p class="text-sm text-gray-700"><strong>Reality:</strong> Homeowners gain, renters lose</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-6">
+            <button onclick="checkPerspectiveComplete()" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-xl font-bold text-lg transition">
+              I've Explored All Perspectives
+            </button>
+            <div id="perspective-feedback" class="hidden mt-4 bg-green-50 border-2 border-green-400 rounded-xl p-4">
+              <p class="text-green-800 font-bold">✓ Great work! You've examined all three perspectives.</p>
+              <p class="text-green-700 text-sm mt-2">Notice how the same situation looks different depending on your position and values.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-8')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section8" class="progress-check" data-points="15"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: THE DEBATE CONTINUES -->
+    <section id="section-9" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🗣️ The Debate Continues
+        </h2>
+
+        <div class="story-text">
+          <p>Silence for a beat.</p>
+          <p>Then Devin spoke up. "So what do we do about it?"</p>
+          <p>Everyone looked at him.</p>
+          <p>"I mean," he continued, "if people are getting pushed out, what's the solution? Do we just... let it happen?"</p>
+          <p>Vernon leaned back. "The solution is ownership. Buy property. Build equity. Stop renting."</p>
+          <p>"Not everyone can afford to buy," Mom said gently.</p>
+          <p>"Then that's the problem," Vernon replied. "Not gentrification. The problem is people don't have access to capital."</p>
+          <p>Romi shook his head. "The problem is the system that makes it so only wealthy people can afford to stay in their own neighborhoods."</p>
+          <p>Grandpa Park spoke for the first time in minutes. "Both true," he said quietly. "And both incomplete."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-9')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section9" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: TEE SPEAKS UP -->
+    <section id="section-10" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🎯 Tee's Question
+        </h2>
+
+        <div class="story-text">
+          <p>Tee had been quiet the whole time, fork moving mechanically from plate to mouth.</p>
+          <p>Now he set it down.</p>
+          <p>"I have a question," he said.</p>
+          <p>Everyone turned.</p>
+          <p>"If Uncle Romi's right and gentrification is bad, does that mean Uncle Vernon is wrong? And if Uncle Vernon's right that property values are good, does that mean Uncle Romi's wrong?"</p>
+          <p>Silence.</p>
+          <p>"Or..." Tee continued slowly, "can they both be right?"</p>
+          <p>Lee looked at her brother. He was doing the thing he always did—breaking down the problem into pieces, looking for the logic.</p>
+          <p>Mom smiled. "That's the question, isn't it?"</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-10')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section10" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: PREDICTION QUIZ -->
+    <section id="section-11" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          ❓ Check Your Understanding
+        </h2>
+
+        <div class="bg-teal-50 border-2 border-teal-300 rounded-xl p-6">
+          <h3 class="font-bold text-lg mb-4">Based on what you've read, what do you think Grandpa will say next?</h3>
+
+          <div class="space-y-3">
+            <div class="quiz-choice" onclick="checkQuiz1('a')">
+              A) "Romi is right. Gentrification is always bad."
+            </div>
+            <div class="quiz-choice" onclick="checkQuiz1('b')">
+              B) "Vernon is right. Change creates opportunity."
+            </div>
+            <div class="quiz-choice" onclick="checkQuiz1('c')">
+              C) "The truth is more complicated than one perspective."
+            </div>
+            <div class="quiz-choice" onclick="checkQuiz1('d')">
+              D) "We should stop talking about this at dinner."
+            </div>
+          </div>
+
+          <div id="quiz1-feedback" class="hidden mt-4 p-4 rounded-lg"></div>
+        </div>
+
+        <div id="progress-section11" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 12: GRANDPA'S WISDOM + FEATURED AUDIO -->
+    <section id="section-12" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          👴 Grandpa's Story
+        </h2>
+
+        <!-- PLACEHOLDER: FEATURED Audio Segment -->
+        <div class="audio-placeholder mb-6" style="background: linear-gradient(135deg, #DBEAFE 0%, #93C5FD 100%); border: 4px solid #2563EB; padding: 2rem; border-radius: 1rem; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎧⭐</div>
+          <p style="font-weight: 700; font-size: 1.25rem; color: #1E3A8A; margin-bottom: 0.5rem;">FEATURED AUDIO SEGMENT</p>
+          <p style="font-size: 1rem; color: #1E40AF;">Grandpa Park's story about Korea, displacement, and choosing complexity</p>
+          <p style="font-size: 0.875rem; color: #3B82F6; margin-top: 0.5rem;">🔊 Listen to Grandpa's full wisdom</p>
+        </div>
+
+        <div class="story-text">
+          <p>Grandpa Park set down his chopsticks.</p>
+          <p>"When I was a boy in Korea," he began, "my family was displaced three times. Once by war. Once by development. Once by floods."</p>
+          <p>Everyone was quiet.</p>
+          <p>"Each time, someone benefited. Each time, someone lost. Each time, both things were true."</p>
+          <p>He looked at Romi, then Vernon, then back at his plate.</p>
+          <p>"Romi sees the people who lose. Vernon sees the people who win. Your mother sees both. All three of you are correct."</p>
+          <p>He picked up his chopsticks again.</p>
+          <p>"The mistake is thinking that being right means the other person is wrong. The world is not a multiple-choice test. Sometimes all the answers are true."</p>
+          <p>Lee wrote that down in her notebook.</p>
+          <p><em>Sometimes all the answers are true.</em></p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-12')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section12" class="progress-check" data-points="15"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 13: LEE'S REALIZATION + SEL REFLECTION -->
+    <section id="section-13" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💡 Lee's Realization
+        </h2>
+
+        <div class="story-text">
+          <p>Lee looked at her notes.</p>
+          <p>Three perspectives. Three truths.</p>
+          <p>In English class, Mrs. Harmon had taught them about thesis and antithesis. Claim and counterclaim.</p>
+          <p>But this wasn't that.</p>
+          <p>This was... <em>synthesis</em>. Multiple truths existing at the same time.</p>
+          <p>Romi's truth: People were being pushed out.</p>
+          <p>Vernon's truth: Property values were rising.</p>
+          <p>Mom's truth: Both were happening, and the question was who benefited.</p>
+          <p>Lee underlined the question in her notebook: <em>Who benefits?</em></p>
+        </div>
+
+        <!-- SEL REFLECTION ANNOTATION -->
+        <div class="bg-indigo-50 border-l-4 border-indigo-400 p-6 mt-6 rounded-r-xl">
+          <h3 class="font-bold text-lg mb-3 text-indigo-800">💭 Reflect on Your Own Experience</h3>
+          <p class="text-gray-700 mb-4">Have you ever been in a situation where two people both seemed right, even though they disagreed? What was it about?</p>
+          <textarea id="reflection-section13" class="w-full border-2 border-indigo-200 rounded-lg p-3 focus:border-indigo-400 focus:outline-none" rows="4" placeholder="Share your experience..."></textarea>
+          <button onclick="saveReflection('section13')" class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold mt-3 transition">
+            Save My Reflection
+          </button>
+          <div id="feedback-reflection-section13" class="hidden mt-3 text-indigo-700 font-semibold">✓ Reflection saved! Recognizing complexity is a sign of growth.</div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-13')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section13" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 14: THE AH-HA MOMENT + VIDEO + ANNOTATION -->
+    <section id="section-14" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          ✨ Understanding ≠ Agreeing
+        </h2>
+
+        <!-- PLACEHOLDER: Video Segment -->
+        <div class="video-placeholder mb-6" style="background: linear-gradient(135deg, #FDF4FF 0%, #FAE8FF 100%); border: 4px solid #A855F7; padding: 2rem; border-radius: 1rem; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎬</div>
+          <p style="font-weight: 700; font-size: 1.25rem; color: #6B21A8; margin-bottom: 0.5rem;">VIDEO: The Concept Bridge</p>
+          <p style="font-size: 1rem; color: #7C3AED; margin-bottom: 1rem;">"Understanding someone's perspective doesn't mean you agree with it"</p>
+          <div style="background: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
+            <p style="font-size: 0.875rem; color: #6B21A8;">📹 Animated explanation of perspective vs. agreement</p>
+          </div>
+        </div>
+
+        <div class="story-text">
+          <p>Tee leaned over and looked at Lee's notebook.</p>
+          <p>"So we're supposed to just... understand everybody?" he asked.</p>
+          <p>Mom heard him. "Understanding doesn't mean agreeing," she said. "You can understand Uncle Romi's point about displacement <em>and</em> Uncle Vernon's point about property values without thinking both solutions are right."</p>
+          <p>Lee looked up. "So it's like... I can see why Uncle Romi is upset <em>and</em> I can see why Uncle Vernon thinks it's good <em>and</em> I can still have my own opinion?"</p>
+          <p>"Exactly," Mom said.</p>
+          <p>Lee wrote that down too.</p>
+          <p><em>Understanding ≠ Agreeing.</em></p>
+        </div>
+
+        <!-- YOUR TURN TO WRITE ANNOTATION -->
+        <div class="bg-purple-50 border-l-4 border-purple-400 p-6 mt-6 rounded-r-xl">
+          <h3 class="font-bold text-lg mb-3 text-purple-800">✍️ Your Turn to Write</h3>
+          <p class="text-gray-700 mb-4">Finish this sentence: "I can understand why someone would think __________, but I believe __________."</p>
+          <textarea id="writing-section14" class="w-full border-2 border-purple-200 rounded-lg p-3 focus:border-purple-400 focus:outline-none" rows="4" placeholder="Write your response..."></textarea>
+          <button onclick="saveWriting('section14')" class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-lg font-semibold mt-3 transition">
+            Save My Writing
+          </button>
+          <div id="feedback-writing-section14" class="hidden mt-3 text-purple-700 font-semibold">✓ Great work! You're practicing perspective-taking.</div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-14')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section14" class="progress-check" data-points="15"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 15: DINNER WINDS DOWN -->
+    <section id="section-15" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🍽️ Dinner Winds Down
+        </h2>
+
+        <div class="story-text">
+          <p>The conversation shifted after that.</p>
+          <p>Devin asked about dessert. August showed Grandpa the motor he'd been working on. Nicky told a story about something that happened at work.</p>
+          <p>But Lee kept thinking about the debate.</p>
+          <p>Three perspectives. All true. All incomplete.</p>
+          <p>She thought about her essay from earlier that day—the one about the counterclaim.</p>
+          <p>Mrs. Harmon had said: <em>"A good argument acknowledges the other side."</em></p>
+          <p>But maybe it was more than that.</p>
+          <p>Maybe a <em>great</em> argument understood that the other side might actually be right about something.</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-15')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section15" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 16: SORTING PERSPECTIVES QUIZ + CUMULATIVE ASSESSMENT -->
+    <section id="section-16" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🧩 Perspective Sort: Final Challenge
+        </h2>
+
+        <p class="text-gray-700 mb-6">Match each statement to the correct perspective. This is your cumulative assessment!</p>
+
+        <div class="space-y-4">
+          <!-- Statement 1 -->
+          <div class="bg-gray-50 p-4 rounded-lg border-2 border-gray-200">
+            <p class="font-semibold mb-3">1. "New coffee shops create jobs and bring investment to the neighborhood."</p>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="checkPerspectiveMatch(1, 'romi')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">🎨 Romi</button>
+              <button onclick="checkPerspectiveMatch(1, 'vernon')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">💼 Vernon</button>
+              <button onclick="checkPerspectiveMatch(1, 'mom')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">💪 Mom</button>
+            </div>
+            <div id="feedback-match-1" class="hidden mt-2"></div>
+          </div>
+
+          <!-- Statement 2 -->
+          <div class="bg-gray-50 p-4 rounded-lg border-2 border-gray-200">
+            <p class="font-semibold mb-3">2. "Rising rents push out families who've lived here for decades."</p>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="checkPerspectiveMatch(2, 'romi')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">🎨 Romi</button>
+              <button onclick="checkPerspectiveMatch(2, 'vernon')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">💼 Vernon</button>
+              <button onclick="checkPerspectiveMatch(2, 'mom')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">💪 Mom</button>
+            </div>
+            <div id="feedback-match-2" class="hidden mt-2"></div>
+          </div>
+
+          <!-- Statement 3 -->
+          <div class="bg-gray-50 p-4 rounded-lg border-2 border-gray-200">
+            <p class="font-semibold mb-3">3. "Both sides have truth. The key question is: who benefits?"</p>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="checkPerspectiveMatch(3, 'romi')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">🎨 Romi</button>
+              <button onclick="checkPerspectiveMatch(3, 'vernon')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">💼 Vernon</button>
+              <button onclick="checkPerspectiveMatch(3, 'mom')" class="px-4 py-2 bg-white border-2 border-teal-300 rounded-lg hover:bg-teal-50 transition">💪 Mom</button>
+            </div>
+            <div id="feedback-match-3" class="hidden mt-2"></div>
+          </div>
+        </div>
+
+        <div id="quiz2-complete" class="hidden mt-6 bg-green-50 border-2 border-green-400 rounded-xl p-6 text-center">
+          <p class="text-2xl mb-2">🎉</p>
+          <p class="font-bold text-green-800 text-lg">All Correct! You've mastered perspective-taking!</p>
+          <p class="text-green-700 text-sm mt-2">You can now identify different viewpoints and understand complex social issues.</p>
+        </div>
+
+        <div id="progress-section16" class="progress-check" data-points="20"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 17: CLEARING THE TABLE -->
+    <section id="section-17" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🧹 Clearing the Table
+        </h2>
+
+        <div class="story-text">
+          <p>After dinner, Lee and Tee helped clear the table.</p>
+          <p>Plates stacked in the sink. Leftover bulgogi wrapped in foil. The big skillet soaking.</p>
+          <p>Uncle Romi and Uncle Vernon were still talking in the living room—quieter now, but still going.</p>
+          <p>"They're never gonna agree," Tee said, scraping a plate.</p>
+          <p>"Maybe that's okay," Lee said.</p>
+          <p>Tee looked at her. "What do you mean?"</p>
+          <p>"I mean... maybe the point isn't to agree. Maybe the point is to understand."</p>
+          <p>Tee thought about that. "So like... I don't have to pick a side?"</p>
+          <p>"You can," Lee said. "But you don't have to think the other side is totally wrong just because you pick one."</p>
+          <p>Tee nodded slowly. "That's kinda what Grandpa said, right? All the answers can be true?"</p>
+          <p>"Yeah," Lee said. "I think so."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-17')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section17" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 18: CONCLUSION + FINAL REFLECTION -->
+    <section id="section-18" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-teal-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🌟 What Lee Learned
+        </h2>
+
+        <div class="story-text">
+          <p>Later that night, Lee sat on her bed with her notebook open.</p>
+          <p>She wrote:</p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #0D9488; padding-left: 1rem;">
+            "Today I learned that people can see the same thing completely differently. Uncle Romi sees displacement. Uncle Vernon sees opportunity. Mom sees both. And they're all right.
+          </p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #0D9488; padding-left: 1rem;">
+            Grandpa said the world isn't a multiple-choice test. Sometimes all the answers are true.
+          </p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #0D9488; padding-left: 1rem;">
+            Understanding someone doesn't mean agreeing with them. It just means seeing where they're coming from.
+          </p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #0D9488; padding-left: 1rem;">
+            That's harder than picking a side. But maybe it's more important."
+          </p>
+          <p>She closed the notebook.</p>
+          <p>Tomorrow she had to revise her essay for Mrs. Harmon.</p>
+          <p>But tonight, she understood something new about arguments, perspectives, and truth.</p>
+          <p>Sometimes the best answer was: <em>It's complicated.</em></p>
+        </div>
+
+        <!-- FINAL REFLECTION PROMPT -->
+        <div class="bg-gradient-to-r from-teal-50 to-cyan-50 border-2 border-teal-400 p-6 mt-6 rounded-xl">
+          <h3 class="font-bold text-xl mb-3 text-teal-800">🎯 Final Reflection: What Did You Learn?</h3>
+          <p class="text-gray-700 mb-4">Reflect on this episode. What's one new thing you learned about perspectives or complex social issues?</p>
+          <textarea id="final-reflection" class="w-full border-2 border-teal-200 rounded-lg p-3 focus:border-teal-400 focus:outline-none" rows="4" placeholder="Share what you learned..."></textarea>
+          <button onclick="saveFinalReflection()" class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-bold mt-3 transition">
+            Complete Episode 3
+          </button>
+          <div id="feedback-final-reflection" class="hidden mt-3 text-teal-700 font-semibold">✓ Reflection saved! You've completed Episode 3.</div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-18')" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section18" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- EPISODE COMPLETE -->
+    <div id="episode-complete" class="hidden">
+      <div class="bg-gradient-to-r from-teal-400 to-teal-600 rounded-2xl p-8 text-center text-white shadow-2xl">
+        <p class="text-6xl mb-4">🎉</p>
+        <h2 class="font-display text-4xl font-bold mb-4">Episode 3 Complete!</h2>
+        <p class="text-xl mb-6">You've learned to understand multiple perspectives!</p>
+        <div class="bg-white text-teal-800 rounded-xl p-6 mb-6">
+          <p class="text-2xl font-bold mb-2">Total Points: <span id="final-points">0</span></p>
+          <p class="text-lg mb-4">Badges Earned: <span id="final-badges">0</span></p>
+          <p class="text-sm">You learned: perspectives, gentrification, complex arguments!</p>
+        </div>
+        <a href="index.html" class="bg-white text-teal-600 px-8 py-4 rounded-xl font-bold text-lg inline-block hover:bg-teal-50 transition">
+          Back to Home
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CHARACTER DETAIL MODAL -->
+  <div id="characterModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4" onclick="closeCharacterModal(event)" style="display: none;">
+    <div class="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="font-display text-3xl font-bold episode-accent" id="characterName">Character</h3>
+        <button onclick="closeCharacterModal(event)" class="text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
+      </div>
+      <div id="characterContent"></div>
+    </div>
+  </div>
+
+  <!-- VOCABULARY MODAL -->
+  <div id="vocabModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4" onclick="closeVocabModal(event)" style="display: none;">
+    <div class="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="font-display text-3xl font-bold episode-accent" id="vocabWord">Word</h3>
+        <button onclick="closeVocabModal(event)" class="text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
+      </div>
+      <div class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">Definition:</p>
+        <p class="text-lg text-gray-800" id="vocabDefinition">Definition here</p>
+      </div>
+      <div class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">In the story:</p>
+        <p class="text-lg text-gray-800 italic" id="vocabExample">Example here</p>
+      </div>
+      <button id="vocabSpeak" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-xl font-semibold w-full transition">
+        🔊 Hear It Pronounced
+      </button>
+    </div>
+  </div>
+
+  <!-- Shared Components JavaScript -->
+  <script src="shared/shared-components.js"></script>
+
+  <!-- Episode 3 Specific JavaScript -->
+  <script>
+    // Character Data
+    const characters = {
+      romi: {
+        name: "Uncle Romi",
+        emoji: "🎨",
+        relationship: "Lee & Tee's uncle (Mom's brother)",
+        trait: "Passionate, questions everything, advocate for community",
+        quote: "Romi leaned forward like every conversation was urgent.",
+        perspective: "Change = displacement. Gentrification erases culture and pushes people out."
+      },
+      vernon: {
+        name: "Uncle Vernon",
+        emoji: "💼",
+        relationship: "Lee & Tee's uncle",
+        trait: "Practical, business-minded, sees opportunities",
+        quote: "Vernon spoke in numbers and bottom lines.",
+        perspective: "Change = opportunity. Property values rise, owners benefit, investment pays off."
+      },
+      mom: {
+        name: "Mom Nae",
+        emoji: "💪",
+        relationship: "Lee & Tee's mother",
+        trait: "Tired but attentive, mediator, practical love",
+        quote: "Mom sighed before she even sat down, like she knew what was coming.",
+        perspective: "Both sides have truth. The question is: who benefits?"
+      }
+    };
+
+    // Vocabulary Data
+    const vocabData = {
+      gentrification: {
+        word: "gentrification",
+        pronunciation: "/ˌdʒɛntrɪfɪˈkeɪʃən/",
+        definition: "When a neighborhood changes because wealthier people and businesses move in, often making it too expensive for the people who lived there before.",
+        example: "The family is debating whether changes in their neighborhood are good or bad—and for whom.",
+        audio: "gentrification"
+      },
+      displacement: {
+        word: "displacement",
+        pronunciation: "/dɪsˈpleɪsmənt/",
+        definition: "When people are forced to leave their homes or neighborhoods, usually because of rising costs or changes they didn't choose.",
+        example: "Uncle Romi says Mr. Hassan didn't choose to leave—he was displaced because rent got too high.",
+        audio: "displacement"
+      },
+      perspective: {
+        word: "perspective",
+        pronunciation: "/pərˈspɛktɪv/",
+        definition: "A particular way of seeing or thinking about something, based on your experiences, values, and position.",
+        example: "Each family member has a different perspective on neighborhood change based on what they value and what they've experienced.",
+        audio: "perspective"
+      }
+    };
+
+    // Show Character Details
+    function showCharacter(charId) {
+      const char = characters[charId];
+      if (!char) return;
+
+      document.getElementById('characterName').textContent = char.name;
+      document.getElementById('characterContent').innerHTML = `
+        <div class="text-center mb-4">
+          <div class="text-6xl mb-4">${char.emoji}</div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <p class="font-semibold text-teal-700">Relationship:</p>
+            <p class="text-gray-700">${char.relationship}</p>
+          </div>
+          <div>
+            <p class="font-semibold text-teal-700">Key Trait:</p>
+            <p class="text-gray-700">${char.trait}</p>
+          </div>
+          <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+            <p class="italic text-gray-700">"${char.quote}"</p>
+          </div>
+          <div>
+            <p class="font-semibold text-teal-700">Their Perspective:</p>
+            <p class="text-gray-700">${char.perspective}</p>
+          </div>
+        </div>
+      `;
+
+      const modal = document.getElementById('characterModal');
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+    }
+
+    // Close Character Modal
+    function closeCharacterModal(event) {
+      const modal = document.getElementById('characterModal');
+      if (event.target === modal || event.target.closest('.close-btn')) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+    }
+
+    // Show Vocabulary
+    function showVocab(term) {
+      const vocab = vocabData[term];
+      if (!vocab) return;
+
+      document.getElementById('vocabWord').textContent = vocab.word;
+      document.getElementById('vocabDefinition').textContent = vocab.definition;
+      document.getElementById('vocabExample').textContent = vocab.example;
+
+      const modal = document.getElementById('vocabModal');
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+
+      // Text-to-speech
+      const speakBtn = document.getElementById('vocabSpeak');
+      speakBtn.onclick = function() {
+        const utterance = new SpeechSynthesisUtterance(vocab.word + '. ' + vocab.definition);
+        utterance.rate = 0.8;
+        speechSynthesis.speak(utterance);
+      };
+    }
+
+    // Close Vocab Modal
+    function closeVocabModal(event) {
+      const modal = document.getElementById('vocabModal');
+      if (event.target === modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+    }
+
+    // Mark Progress Complete
+    function markProgressComplete(progressId) {
+      const progressEl = document.getElementById(progressId);
+      if (!progressEl) return;
+
+      const points = parseInt(progressEl.getAttribute('data-points')) || 0;
+
+      if (!progressEl.classList.contains('completed')) {
+        progressEl.classList.add('completed');
+        updateProgressBar();
+      }
+    }
+
+    // Update Progress Bar
+    function updateProgressBar() {
+      const totalSections = 18;
+      const completedSections = document.querySelectorAll('.progress-check.completed').length;
+      const percentage = (completedSections / totalSections) * 100;
+
+      document.getElementById('progressBar').style.width = percentage + '%';
+
+      if (percentage >= 100) {
+        setTimeout(() => {
+          document.getElementById('episode-complete').classList.remove('hidden');
+          document.getElementById('final-points').textContent = learningState.points;
+          document.getElementById('final-badges').textContent = learningState.badges.length;
+        }, 1000);
+      }
+    }
+
+    // Text-to-Speech
+    function playStorySection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      stopAllNarration();
+
+      const storyText = section.querySelector('.story-text');
+      if (!storyText) return;
+
+      const text = storyText.textContent;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+
+      utterance.onend = function() {
+        stopAllNarration();
+        const progressId = 'progress-' + sectionId;
+        markProgressComplete(progressId);
+      };
+
+      speechSynthesis.speak(utterance);
+
+      const floatingBtn = document.getElementById('floatingStopBtn');
+      if (floatingBtn) floatingBtn.classList.add('active');
+    }
+
+    // Perspective Organizer Functions
+    const exploredPerspectives = new Set();
+
+    function togglePerspective(perspectiveId) {
+      const content = document.getElementById('content-' + perspectiveId);
+      const box = document.getElementById('perspective-' + perspectiveId);
+
+      if (content && box) {
+        content.classList.toggle('hidden');
+        box.classList.toggle('selected');
+
+        if (!content.classList.contains('hidden')) {
+          exploredPerspectives.add(perspectiveId);
+        }
+      }
+    }
+
+    function checkPerspectiveComplete() {
+      if (exploredPerspectives.size >= 3) {
+        document.getElementById('perspective-feedback').classList.remove('hidden');
+        markProgressComplete('progress-section8');
+        addPoints(15, 'Explored all perspectives!');
+      } else {
+        alert('Please explore all three perspectives before continuing!');
+      }
+    }
+
+    // Prediction & Reflection Functions
+    function savePrediction(sectionId) {
+      const textarea = document.getElementById('prediction-' + sectionId);
+      const feedback = document.getElementById('feedback-prediction-' + sectionId);
+
+      if (textarea && textarea.value.trim() !== '') {
+        feedback.classList.remove('hidden');
+        markProgressComplete('progress-' + sectionId);
+        addPoints(5, 'Prediction saved!');
+      } else {
+        alert('Please write your prediction first!');
+      }
+    }
+
+    function saveReflection(sectionId) {
+      const textarea = document.getElementById('reflection-' + sectionId);
+      const feedback = document.getElementById('feedback-reflection-' + sectionId);
+
+      if (textarea && textarea.value.trim() !== '') {
+        feedback.classList.remove('hidden');
+        markProgressComplete('progress-' + sectionId);
+        addPoints(10, 'Reflection saved!');
+      } else {
+        alert('Please write your reflection first!');
+      }
+    }
+
+    function saveWriting(sectionId) {
+      const textarea = document.getElementById('writing-' + sectionId);
+      const feedback = document.getElementById('feedback-writing-' + sectionId);
+
+      if (textarea && textarea.value.trim() !== '') {
+        feedback.classList.remove('hidden');
+        markProgressComplete('progress-' + sectionId);
+        addPoints(15, 'Writing saved!');
+      } else {
+        alert('Please complete the writing prompt first!');
+      }
+    }
+
+    function saveFinalReflection() {
+      const textarea = document.getElementById('final-reflection');
+      const feedback = document.getElementById('feedback-final-reflection');
+
+      if (textarea && textarea.value.trim() !== '') {
+        feedback.classList.remove('hidden');
+        markProgressComplete('progress-section18');
+        addPoints(10, 'Final reflection complete!');
+      } else {
+        alert('Please write your final reflection first!');
+      }
+    }
+
+    // Quiz Functions
+    function checkQuiz1(answer) {
+      const feedbackEl = document.getElementById('quiz1-feedback');
+      const choices = document.querySelectorAll('#section-11 .quiz-choice');
+
+      // Remove previous selections
+      choices.forEach(c => {
+        c.classList.remove('correct', 'incorrect');
+      });
+
+      if (answer === 'c') {
+        feedbackEl.innerHTML = '<p class="text-green-700 font-bold">✓ Correct! Grandpa values complexity and multiple truths.</p><p class="text-green-600 text-sm mt-2">You\'re understanding the theme of the story!</p>';
+        feedbackEl.className = 'mt-4 p-4 rounded-lg bg-green-50 border-2 border-green-400';
+        feedbackEl.classList.remove('hidden');
+        event.target.classList.add('correct');
+        markProgressComplete('progress-section11');
+        addPoints(10, 'Quiz correct!');
+      } else {
+        feedbackEl.innerHTML = '<p class="text-amber-700 font-bold">Not quite. Think about what Grandpa has been saying about perspectives...</p>';
+        feedbackEl.className = 'mt-4 p-4 rounded-lg bg-amber-50 border-2 border-amber-400';
+        feedbackEl.classList.remove('hidden');
+        event.target.classList.add('incorrect');
+      }
+    }
+
+    // Perspective Match Quiz
+    const matchAnswers = {
+      1: 'vernon',  // Jobs and investment = Vernon's perspective
+      2: 'romi',    // Rising rents push out families = Romi's perspective
+      3: 'mom'      // Both sides true, who benefits = Mom's perspective
+    };
+    const matchedCorrectly = new Set();
+
+    function checkPerspectiveMatch(questionNum, selectedPerspective) {
+      const feedbackEl = document.getElementById('feedback-match-' + questionNum);
+      const correctAnswer = matchAnswers[questionNum];
+
+      if (selectedPerspective === correctAnswer) {
+        feedbackEl.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct!</p>';
+        feedbackEl.className = 'mt-2 text-green-700';
+        feedbackEl.classList.remove('hidden');
+        matchedCorrectly.add(questionNum);
+
+        // Check if all 3 are correct
+        if (matchedCorrectly.size === 3) {
+          document.getElementById('quiz2-complete').classList.remove('hidden');
+          markProgressComplete('progress-section16');
+          addPoints(20, 'Perspective Sort mastered!');
+        }
+      } else {
+        feedbackEl.innerHTML = '<p class="text-red-700 font-semibold">✗ Not quite. Think about what each person values.</p>';
+        feedbackEl.className = 'mt-2 text-red-700';
+        feedbackEl.classList.remove('hidden');
+      }
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', function() {
+      loadProgress();
+      updateProgressBar();
+    });
+  </script>
+
+</body>
+</html>

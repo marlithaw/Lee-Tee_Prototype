@@ -1,0 +1,171 @@
+/* Learning Dashboard Shell - shared across pages */
+:root {
+  --shell-bg: #ffffff;
+  --shell-border: #e5e7eb;
+  --shell-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.35);
+}
+
+body.has-learning-shell {
+  padding-top: 88px;
+}
+
+.learning-shell {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: var(--shell-bg);
+  border-bottom: 1px solid var(--shell-border);
+  box-shadow: var(--shell-shadow);
+  padding: 0.75rem 1rem;
+}
+
+.learning-shell__row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.5fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.learning-shell__meta-title {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+.learning-shell__meta-subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.learning-shell__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #f3e8ff;
+  color: #6b21a8;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.learning-shell__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.learning-shell__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+.learning-shell__progress {
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  height: 10px;
+}
+
+.learning-shell__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7c3aed, #f59e0b);
+  width: 0%;
+  transition: width 0.35s ease;
+}
+
+.learning-shell__episode {
+  background: linear-gradient(135deg, #eef2ff, #ecfeff);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+}
+
+.learning-shell__badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.learning-shell__badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fdf2f8;
+  border: 2px solid #f9a8d4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.learning-shell__badge.placeholder {
+  opacity: 0.35;
+  border-style: dashed;
+}
+
+.learning-shell__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #7c3aed, #f59e0b);
+  color: #fff;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 20px -8px rgba(124, 58, 237, 0.5);
+}
+
+.learning-shell__cta:hover {
+  transform: translateY(-1px);
+}
+
+.learning-shell__mobile-toggle {
+  display: none;
+  width: 100%;
+  background: #f3e8ff;
+  color: #6b21a8;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  body.has-learning-shell {
+    padding-top: 0;
+  }
+
+  .learning-shell {
+    position: relative;
+    box-shadow: none;
+    border-bottom: none;
+  }
+
+  .learning-shell__row {
+    display: none;
+    grid-template-columns: 1fr;
+  }
+
+  .learning-shell--expanded .learning-shell__row {
+    display: grid;
+  }
+
+  .learning-shell__mobile-toggle {
+    display: block;
+  }
+}
+
+/* Adjust existing fixed progress bars to sit below the shell when present */
+body.has-learning-shell .progress-container {
+  top: 88px;
+}

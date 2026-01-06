@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode 4: The Nighttime Question | Lee & Tee Book 1</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- OpenDyslexic Font -->
+  <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="shared/design-system.css">
+
+  <style>
+    /* Episode 4 Specific Styles */
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: linear-gradient(to bottom, #EFF6FF 0%, #DBEAFE 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      color: #1C1917;
+    }
+
+    /* Episode 4 Blue Theme */
+    :root {
+      --episode-color: #2563EB;
+      --episode-light: #DBEAFE;
+      --episode-dark: #1E40AF;
+    }
+
+    .episode-accent {
+      color: var(--episode-color);
+    }
+
+    .episode-bg {
+      background-color: var(--episode-light);
+    }
+
+    /* Header */
+    .hero-header {
+      background: linear-gradient(135deg, #DBEAFE 0%, #93C5FD 50%, #2563EB 100%);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: #1E3A8A;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      z-index: 1000;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #2563EB, #93C5FD);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    /* Story Text */
+    .story-text {
+      font-size: 1.25rem;
+      line-height: 2;
+      margin: 1.5rem 0;
+      color: #292524;
+    }
+
+    .story-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Vocab Terms */
+    .vocab-term {
+      color: var(--episode-color);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .vocab-term:hover {
+      color: var(--episode-dark);
+    }
+
+    /* Quiz Choices */
+    .quiz-choice {
+      background: white;
+      border: 3px solid #DBEAFE;
+      padding: 1rem 1.5rem;
+      margin: 0.75rem 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .quiz-choice:hover {
+      border-color: #2563EB;
+      background: #DBEAFE;
+      transform: translateX(4px);
+    }
+
+    .quiz-choice.correct {
+      border-color: #16A34A;
+      background: #DCFCE7;
+    }
+
+    .quiz-choice.incorrect {
+      border-color: #DC2626;
+      background: #FEE2E2;
+    }
+
+    /* Hypothesis Builder */
+    .hypothesis-step {
+      background: white;
+      border: 3px solid #93C5FD;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .hypothesis-step input,
+    .hypothesis-step textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #DBEAFE;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Lexend', sans-serif;
+    }
+
+    .hypothesis-step input:focus,
+    .hypothesis-step textarea:focus {
+      outline: none;
+      border-color: #2563EB;
+    }
+
+    /* Episode Comparison */
+    .episode-column {
+      background: white;
+      border: 3px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .episode-column:hover {
+      border-color: #2563EB;
+      transform: translateY(-2px);
+    }
+
+    .episode-column.revealed {
+      border-color: #2563EB;
+      background: #EFF6FF;
+    }
+
+    /* Floating Stop Button */
+    .floating-stop-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 200;
+      background: #DC2626;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    .floating-stop-btn.active {
+      display: flex;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+
+      .hero-header {
+        padding: 2rem 1rem;
+      }
+
+      .story-text {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Dyslexia Mode */
+    body.dyslexia-mode {
+      font-family: 'OpenDyslexic', sans-serif;
+      letter-spacing: 0.05em;
+      word-spacing: 0.1em;
+      line-height: 2;
+    }
+
+    /* High Contrast Mode */
+    body.high-contrast {
+      background: #000000;
+      color: #FFFFFF;
+    }
+
+    body.high-contrast .hypothesis-step,
+    body.high-contrast .episode-column {
+      background: #1a1a1a;
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body data-episode="4">
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-container">
+    <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+  </div>
+
+  <!-- BACK TO HOME BUTTON -->
+  <div style="position: fixed; top: 70px; left: 20px; z-index: 100;">
+    <a href="index.html" class="bg-white border-2 border-blue-200 text-blue-700 px-4 py-2 rounded-full font-semibold hover:bg-blue-50 hover:border-blue-400 transition flex items-center gap-2 shadow-md" style="text-decoration: none; display: inline-flex;">
+      <span>←</span>
+      <span>Back to Home</span>
+    </a>
+  </div>
+
+  <!-- FLOATING STOP BUTTON -->
+  <button id="floatingStopBtn" class="floating-stop-btn" onclick="stopAllNarration()">
+    <span>⏹️</span>
+    <span>STOP</span>
+  </button>
+
+  <!-- HEADER -->
+  <header class="hero-header">
+    <div class="max-w-4xl mx-auto">
+      <!-- PLACEHOLDER: Episode Header Image -->
+      <div class="img-placeholder mb-6" style="max-width: 500px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #DBEAFE 0%, #93C5FD 100%);">
+        🔬 EPISODE 4 HEADER IMAGE<br>
+        <span style="font-size: 0.875rem;">(Streetlight flickering at night, Lee's notebook)</span>
+      </div>
+
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="color: #1E3A8A;">
+        Episode 4: The Nighttime Question
+      </h1>
+      <p class="text-xl md:text-2xl mb-2 font-semibold" style="color: #1E40AF;">
+        Using the Scientific Method
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <span class="bg-white px-4 py-2 rounded-full font-semibold text-blue-800">🔬 Science</span>
+        <span class="bg-white px-4 py-2 rounded-full font-semibold text-blue-800">🔍 Investigation</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="max-w-4xl mx-auto px-4 pb-20">
+
+    <!-- ACCESSIBILITY CONTROLS -->
+    <div class="sticky top-12 bg-white p-4 rounded-xl shadow-md mb-6 z-40">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-3 flex-wrap">
+          <button onclick="toggleDyslexia()" class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg font-semibold text-purple-700 transition">
+            👓 Dyslexia Mode
+          </button>
+          <button onclick="toggleHighContrast()" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-semibold text-gray-700 transition">
+            ◐ High Contrast
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-600">Progress:</span>
+          <span id="pointsDisplay" class="font-bold text-blue-600 text-lg">0</span>
+          <span class="text-sm text-gray-600">points</span>
+          <div id="badgeContainer" class="flex gap-1 ml-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: THE FLICKERING LIGHT -->
+    <section id="section-1" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💡 The Flickering Light
+        </h2>
+
+        <!-- PLACEHOLDER: Streetlight Image -->
+        <div class="img-placeholder mb-6" style="height: 240px;">
+          💡 STREETLIGHT PLACEHOLDER<br>
+          <span style="font-size: 0.875rem;">(View from Lee's bedroom window - streetlight outside)</span>
+        </div>
+
+        <div class="story-text">
+          <p>The streetlight outside the basement window had been flickering for three nights.</p>
+          <p>Lee noticed it the first night by accident—she had been reading, looked up, and saw the light dim, brighten, dim again, like it was breathing.</p>
+          <p>The second night, she watched on purpose. Same pattern. Same timing.</p>
+          <p>Tonight was the third night, and this time, she was ready.</p>
+          <p>She sat on her bed, notebook open, pen in hand, eyes on the window.</p>
+          <p>The clock on the dresser read 8:45 PM.</p>
+          <p>Two more minutes.</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-1')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section1" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TEE WAKES UP -->
+    <section id="section-2" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          👀 Tee Wakes Up
+        </h2>
+
+        <div class="story-text">
+          <p>Tee was already in bed, half asleep, one arm hanging off the side.</p>
+          <p>"What're you doing?" he mumbled, eyes still closed.</p>
+          <p>"Watching," Lee said.</p>
+          <p>"Watching what?"</p>
+          <p>"The streetlight."</p>
+          <p>Tee opened one eye. "Why?"</p>
+          <p>"Because it flickers," Lee said. "Every night. At the same time."</p>
+          <p>That got his attention. He propped himself up on one elbow. "Same time?"</p>
+          <p>"8:47," Lee said. "Exactly."</p>
+          <p>Tee swung his legs out of bed and came over to her window.</p>
+          <p>They both watched.</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-2')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section2" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE PATTERN -->
+    <section id="section-3" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          📊 The Pattern
+        </h2>
+
+        <div class="story-text">
+          <p>At 8:47 PM, the streetlight dimmed.</p>
+          <p>Not all the way off. Just... lower. Like someone had turned a dial halfway.</p>
+          <p>It stayed dim for about five seconds.</p>
+          <p>Then it brightened again. Full strength. Normal.</p>
+          <p>Lee wrote in her notebook:</p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #2563EB; padding-left: 1rem;">
+            Night 3: Sunday, November 30<br>
+            Time: 8:47 PM<br>
+            Duration: ~5 seconds<br>
+            Pattern: Dims, holds, brightens
+          </p>
+          <p>Tee stared at the light. "That's weird."</p>
+          <p>"I know," Lee said.</p>
+          <p>"Does it do it again?"</p>
+          <p>"No. Just once. Then it stays normal the rest of the night."</p>
+          <p>Tee sat on the edge of her bed, still watching the window like the light might flicker again if he waited long enough.</p>
+          <p>"Why?" he asked.</p>
+          <p>Lee looked at him. "That's what I'm trying to figure out."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-3')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section3" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LEE'S NOTES -->
+    <section id="section-4" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          📝 Lee's <span class="vocab-term" onclick="showVocab('observation')">Observations</span>
+        </h2>
+
+        <div class="story-text">
+          <p>She flipped back a few pages in her notebook to show him.</p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #2563EB; padding-left: 1rem;">
+            Night 1: Friday, November 28 | Time: 8:47 PM | Duration: ~5 seconds | Pattern: Dims, holds, brightens
+          </p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #2563EB; padding-left: 1rem;">
+            Night 2: Saturday, November 29 | Time: 8:47 PM | Duration: ~5 seconds | Pattern: Dims, holds, brightens
+          </p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #2563EB; padding-left: 1rem;">
+            Night 3: Sunday, November 30 | Time: 8:47 PM | Duration: ~5 seconds | Pattern: Dims, holds, brightens
+          </p>
+          <p>Tee read through her notes. "So it's the exact same every time."</p>
+          <p>"Yeah."</p>
+          <p>"That means it's not random."</p>
+          <p>Lee nodded. "That's what I think too."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-4')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section4" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: FORMING HYPOTHESES -->
+    <section id="section-5" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💭 Possible Explanations
+        </h2>
+
+        <div class="story-text">
+          <p>Tee leaned back against the wall, thinking. "Okay, so if it's not random, then there's a reason. What could make a light flicker at the same time every night?"</p>
+          <p>Lee turned to a new page in her notebook and wrote:</p>
+          <p style="font-weight: 600;">Possible Explanations:</p>
+          <p>"Maybe it's on a timer," Tee said. "Like, maybe the city has it set to dim at night to save power."</p>
+          <p>Lee wrote that down. "Maybe. But why would it only dim for five seconds? And why 8:47? That's a weird time."</p>
+          <p>"True." Tee scratched his head. "What else?"</p>
+          <p>Lee thought. "Maybe the bulb is old. Like, maybe it's dying, and that's why it flickers."</p>
+          <p>Tee nodded. "That makes sense. Old bulbs flicker."</p>
+          <p>Lee added it to the list. "But if the bulb was dying, wouldn't it flicker randomly? Not at the exact same time every night?"</p>
+          <p>Tee frowned. "Yeah, you're right. That doesn't fit."</p>
+          <p>"What else?" Lee asked.</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-5')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section5" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: THE POWER SURGE HYPOTHESIS -->
+    <section id="section-6" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          ⚡ The Power Surge <span class="vocab-term" onclick="showVocab('hypothesis')">Hypothesis</span>
+        </h2>
+
+        <div class="story-text">
+          <p>They both stared out the window, thinking.</p>
+          <p>The streetlight stayed steady. Bright. Normal.</p>
+          <p>"What if something nearby is using a lot of power at 8:47?" Tee said. "Like, what if someone turns on something big—like a heater or a machine—and it pulls power from the grid, and that makes the light dim?"</p>
+          <p>Lee's eyes widened. "That could be it."</p>
+          <p>She wrote it down:</p>
+          <p style="margin-left: 2rem; font-style: italic;">Power surge / something nearby using electricity at 8:47</p>
+          <p>"But how do we test that?" Lee asked.</p>
+          <p>Tee thought. "We'd have to see if other streetlights do the same thing. If they all dim at 8:47, then it's probably the grid. If it's just this one, then it's something local."</p>
+          <p>Lee nodded. "We can check tomorrow night."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-6')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section6" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: THE SCIENTIFIC METHOD -->
+    <section id="section-7" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🧪 The <span class="vocab-term" onclick="showVocab('scientific-method')">Scientific Method</span>
+        </h2>
+
+        <div class="story-text">
+          <p>She looked at her list of possible explanations, then drew a line under them.</p>
+          <p>"This is like science class," she said.</p>
+          <p>"What do you mean?"</p>
+          <p>"Ms. Park taught us the scientific method last month. You make observations, ask a question, come up with possible explanations, then test them to see which one is right."</p>
+          <p>Tee grinned. "So you're doing science right now."</p>
+          <p>"I guess I am."</p>
+        </div>
+
+        <!-- HYPOTHESIS BUILDER - INTERACTIVE DIAGRAM -->
+        <div class="mt-8 mb-8">
+          <h3 class="font-bold text-xl mb-4 text-center episode-accent">🧪 Hypothesis Builder</h3>
+          <p class="text-center text-gray-600 mb-6">Lee wrote down the scientific method. Fill in each step for the streetlight question:</p>
+
+          <div class="hypothesis-step">
+            <h4 class="font-bold mb-2 text-blue-700">STEP 1: OBSERVATION</h4>
+            <p class="text-sm text-gray-600 mb-2">"I noticed that..."</p>
+            <input type="text" id="step1" value="Streetlights turned on as it got dark" readonly class="bg-gray-50">
+          </div>
+
+          <div class="text-center text-2xl my-2">↓</div>
+
+          <div class="hypothesis-step">
+            <h4 class="font-bold mb-2 text-blue-700">STEP 2: QUESTION</h4>
+            <p class="text-sm text-gray-600 mb-2">"I wonder..."</p>
+            <input type="text" id="step2" value="Why does the streetlight flicker at 8:47 PM every night?" readonly class="bg-gray-50">
+          </div>
+
+          <div class="text-center text-2xl my-2">↓</div>
+
+          <div class="hypothesis-step">
+            <h4 class="font-bold mb-2 text-blue-700">STEP 3: HYPOTHESIS</h4>
+            <p class="text-sm text-gray-600 mb-2">"I think... because..."</p>
+            <textarea id="step3" rows="2" placeholder="Write your hypothesis here..."></textarea>
+          </div>
+
+          <div class="text-center text-2xl my-2">↓</div>
+
+          <div class="hypothesis-step">
+            <h4 class="font-bold mb-2 text-blue-700">STEP 4: TEST</h4>
+            <p class="text-sm text-gray-600 mb-2">"I could find out by..."</p>
+            <textarea id="step4" rows="2" placeholder="How would you test your hypothesis?"></textarea>
+          </div>
+
+          <div class="text-center text-2xl my-2">↓</div>
+
+          <div class="hypothesis-step">
+            <h4 class="font-bold mb-2 text-blue-700">STEP 5: CONCLUSION</h4>
+            <p class="text-sm text-gray-600 mb-2">"Based on my test, I learned..."</p>
+            <textarea id="step5" rows="2" placeholder="You'll fill this in after testing!" class="bg-gray-50"></textarea>
+          </div>
+
+          <div class="text-center mt-6">
+            <button onclick="saveHypothesis()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold text-lg transition">
+              Save to My Notebook
+            </button>
+            <div id="hypothesis-feedback" class="hidden mt-4 bg-green-50 border-2 border-green-400 rounded-xl p-4">
+              <p class="text-green-800 font-bold">✓ Great work! You've built a scientific hypothesis!</p>
+              <p class="text-green-700 text-sm mt-2">This is exactly what scientists do to investigate questions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-7')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section7" class="progress-check" data-points="15"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: THE CONNECTION - CAPSTONE MOMENT -->
+    <section id="section-8" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          ✨ The Connection
+        </h2>
+
+        <div class="story-text">
+          <p>Tee looked at her notebook. "You really wrote all that down?"</p>
+          <p>"Yeah."</p>
+          <p>"Why?"</p>
+          <p>Lee thought about it. "Because if I don't write it down, I might forget. Or I might miss something. Writing it helps me see the pattern."</p>
+          <p>Tee nodded slowly. "That's smart."</p>
+          <p>He looked back out the window. "You know what this reminds me of?"</p>
+          <p>"What?"</p>
+          <p>"Recess."</p>
+          <p>Lee looked up, confused. "How?"</p>
+        </div>
+
+        <!-- VIDEO PLACEHOLDER: CAPSTONE -->
+        <div class="video-placeholder my-8" style="background: linear-gradient(135deg, #FDF4FF 0%, #FAE8FF 100%); border: 4px solid #A855F7; padding: 2rem; border-radius: 1rem; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎬</div>
+          <p style="font-weight: 700; font-size: 1.25rem; color: #6B21A8; margin-bottom: 0.5rem;">VIDEO: The Same Structure Everywhere</p>
+          <p style="font-size: 1rem; color: #7C3AED; margin-bottom: 1rem;">"Arguments, Math, and Science—Same Bones"</p>
+          <div style="background: rgba(255, 255, 255, 0.7); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
+            <p style="font-size: 0.875rem; color: #6B21A8;">📹 Split-screen showing all 4 episodes in parallel</p>
+            <p style="font-size: 0.875rem; color: #6B21A8; margin-top: 0.5rem;">Duration: 75-90 seconds</p>
+          </div>
+        </div>
+
+        <!-- CROSS-EPISODE COMPARISON - CAPSTONE DIAGRAM -->
+        <div class="mt-8 mb-8">
+          <h3 class="font-bold text-xl mb-4 text-center episode-accent">🗺️ Cross-Episode Comparison</h3>
+          <p class="text-center text-gray-600 mb-6">Lee sees the pattern. Tap each row to reveal the connection across all 4 episodes:</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="text-center font-bold text-purple-700">Episode 1<br>RAP BATTLE</div>
+            <div class="text-center font-bold text-amber-700">Episode 2<br>RECIPE</div>
+            <div class="text-center font-bold text-teal-700">Episode 3<br>DEBATE</div>
+            <div class="text-center font-bold text-blue-700">Episode 4<br>QUESTION</div>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Row 1 -->
+            <div class="episode-column" id="row1" onclick="revealRow(1)">
+              <div class="text-center font-semibold mb-2">ROW 1: NOTICE</div>
+              <div class="hidden row-content" id="content-row1">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 text-sm">
+                  <div class="bg-purple-50 p-2 rounded">Repeat the claim</div>
+                  <div class="bg-amber-50 p-2 rounded">Identify what you have/need</div>
+                  <div class="bg-teal-50 p-2 rounded">State each perspective</div>
+                  <div class="bg-blue-50 p-2 rounded">Make an observation</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="episode-column" id="row2" onclick="revealRow(2)">
+              <div class="text-center font-semibold mb-2">ROW 2: THINK</div>
+              <div class="hidden row-content" id="content-row2">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 text-sm">
+                  <div class="bg-purple-50 p-2 rounded">Show what's missing</div>
+                  <div class="bg-amber-50 p-2 rounded">Find the multiplier</div>
+                  <div class="bg-teal-50 p-2 rounded">Find their evidence</div>
+                  <div class="bg-blue-50 p-2 rounded">Form a hypothesis</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="episode-column" id="row3" onclick="revealRow(3)">
+              <div class="text-center font-semibold mb-2">ROW 3: SUPPORT</div>
+              <div class="hidden row-content" id="content-row3">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 text-sm">
+                  <div class="bg-purple-50 p-2 rounded">Give evidence</div>
+                  <div class="bg-amber-50 p-2 rounded">Do the calculation</div>
+                  <div class="bg-teal-50 p-2 rounded">Compare positions</div>
+                  <div class="bg-blue-50 p-2 rounded">Design a test</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="episode-column" id="row4" onclick="revealRow(4)">
+              <div class="text-center font-semibold mb-2">ROW 4: CONCLUDE</div>
+              <div class="hidden row-content" id="content-row4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mt-4 text-sm">
+                  <div class="bg-purple-50 p-2 rounded">Conclude (punchline)</div>
+                  <div class="bg-amber-50 p-2 rounded">Verify it works</div>
+                  <div class="bg-teal-50 p-2 rounded">Understand complexity</div>
+                  <div class="bg-blue-50 p-2 rounded">Draw a conclusion</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="pattern-complete" class="hidden mt-6 bg-gradient-to-r from-purple-50 via-amber-50 via-teal-50 to-blue-50 border-2 border-blue-400 rounded-xl p-6 text-center">
+            <p class="text-2xl mb-2">🎉</p>
+            <p class="font-bold text-gray-800 text-xl">SAME STRUCTURE. DIFFERENT STUFF.</p>
+            <p class="text-gray-700 mt-2">The steps are: <strong>NOTICE → THINK → SUPPORT → CONCLUDE</strong></p>
+            <p class="text-sm text-gray-600 mt-4">Once you see the structure, you can use it anywhere.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-8')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section8" class="progress-check" data-points="20"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: TEE'S INSIGHT -->
+    <section id="section-9" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          💡 Tee's Insight
+        </h2>
+
+        <div class="story-text">
+          <p>"At recess, I had to figure out what Jayden was saying, break it down, find the weak part, and then respond," Tee said. "That's like what you're doing now. You observed the streetlight, asked a question, broke down the possibilities, and now you're testing them."</p>
+          <p>Lee stared at him.</p>
+          <p>He was right.</p>
+          <p>"Science is structured thinking," she said slowly. "Just like arguments."</p>
+          <p>"Exactly." Tee grinned. "Same process. Just different stuff."</p>
+          <p>Lee wrote that in the margin of her notebook:</p>
+          <p style="margin-left: 2rem; font-style: italic; border-left: 4px solid #2563EB; padding-left: 1rem;">
+            Science = structured thinking. Observe, question, hypothesize, test. Same as addressing an argument.
+          </p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-9')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section9" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: PLANNING THE TEST -->
+    <section id="section-10" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          📋 Planning the Test
+        </h2>
+
+        <div class="story-text">
+          <p>"Tomorrow night, we'll check the other lights," Tee said, standing up and stretching. "If they flicker too, we know it's the grid. If they don't, it's something local."</p>
+          <p>"And if it's local," Lee added, "we figure out what's nearby that turns on at 8:47."</p>
+          <p>"Exactly."</p>
+          <p>Tee went back to his bed and flopped down. "Goodnight, Science Lee."</p>
+          <p>Lee smiled. "Goodnight."</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-10')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section10" class="progress-check" data-points="5"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: LEE REFLECTS -->
+    <section id="section-11" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          ✨ Connections Everywhere
+        </h2>
+
+        <div class="story-text">
+          <p>She turned off the lamp between their beds, but she did not close her notebook yet.</p>
+          <p>In the dim light from the streetlight outside—steady now, no more flickering—she reviewed what she had written.</p>
+          <p>Observations. Questions. Hypotheses. A plan to test.</p>
+          <p>She thought about how Grandpa scaled the bulgogi recipe using math.</p>
+          <p>She thought about how Tee addressed Jayden's claim using structure.</p>
+          <p>She thought about how the dinner table held so many perspectives, all true, all incomplete.</p>
+          <p>Everything connected.</p>
+          <p>Math, arguments, science, stories.</p>
+          <p>They were all just different ways of figuring out what was true.</p>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-11')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section11" class="progress-check" data-points="10"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 12: LEE'S FINAL REFLECTION + BOOK 1 CONCLUSION -->
+    <section id="section-12" class="mb-12">
+      <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-400">
+        <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
+          🌟 The Structure is Everywhere
+        </h2>
+
+        <div class="story-text">
+          <p>Lee closed her notebook and set it on the floor next to her bed.</p>
+          <p>Tomorrow, she would test her hypothesis.</p>
+          <p>Tomorrow, she would observe the other streetlights.</p>
+          <p>Tomorrow, she would get closer to the answer.</p>
+          <p>But tonight, she had done what scientists do:</p>
+          <p>She had asked a good question.</p>
+          <p>And that was where everything started.</p>
+          <p>Lee pulled the blanket up over her shoulders and looked out the window one more time.</p>
+          <p>The streetlight was steady. Bright. Reliable.</p>
+          <p>But she knew better now.</p>
+          <p>She knew it flickered.</p>
+          <p>She knew when, and for how long, and in what pattern.</p>
+          <p>She knew there was a reason.</p>
+          <p>And soon, she would know what it was.</p>
+          <p>She closed her eyes.</p>
+          <p>Tomorrow, she would keep looking.</p>
+        </div>
+
+        <!-- SCIENTIFIC METHOD QUIZ -->
+        <div class="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mt-8">
+          <h3 class="font-bold text-lg mb-4">✏️ Quiz: Scientific Method Check</h3>
+
+          <div class="space-y-6">
+            <div>
+              <p class="font-semibold mb-3">QUESTION 1: Put the scientific method steps in the correct order:</p>
+              <div class="space-y-2">
+                <div class="quiz-choice" onclick="checkScience1('a')">
+                  A) Question → Observe → Test → Hypothesize → Conclude
+                </div>
+                <div class="quiz-choice" onclick="checkScience1('b')">
+                  B) Observe → Question → Hypothesize → Test → Conclude
+                </div>
+                <div class="quiz-choice" onclick="checkScience1('c')">
+                  C) Hypothesize → Observe → Question → Test → Conclude
+                </div>
+              </div>
+              <div id="science1-feedback" class="hidden mt-2"></div>
+            </div>
+
+            <div>
+              <p class="font-semibold mb-3">QUESTION 2: What makes a hypothesis different from a guess?</p>
+              <div class="space-y-2">
+                <div class="quiz-choice" onclick="checkScience2('a')">
+                  A) Hypotheses are always correct
+                </div>
+                <div class="quiz-choice" onclick="checkScience2('b')">
+                  B) Hypotheses can be tested
+                </div>
+                <div class="quiz-choice" onclick="checkScience2('c')">
+                  C) Hypotheses are made by scientists only
+                </div>
+              </div>
+              <div id="science2-feedback" class="hidden mt-2"></div>
+            </div>
+
+            <div>
+              <p class="font-semibold mb-3">QUESTION 3: Why did Lee write down her observations instead of just remembering them?</p>
+              <div class="space-y-2">
+                <div class="quiz-choice" onclick="checkScience3('a')">
+                  A) Because her teacher told her to
+                </div>
+                <div class="quiz-choice" onclick="checkScience3('b')">
+                  B) Writing helps her see patterns and not miss anything
+                </div>
+                <div class="quiz-choice" onclick="checkScience3('c')">
+                  C) She had nothing else to do
+                </div>
+              </div>
+              <div id="science3-feedback" class="hidden mt-2"></div>
+            </div>
+          </div>
+
+          <div id="science-complete" class="hidden mt-6 bg-green-50 border-2 border-green-400 rounded-xl p-4 text-center">
+            <p class="text-green-800 font-bold">✓ All Correct! You understand the scientific method!</p>
+          </div>
+        </div>
+
+        <!-- BOOK 1 CAPSTONE QUIZ -->
+        <div class="bg-gradient-to-r from-purple-50 via-amber-50 via-teal-50 to-blue-50 border-2 border-gray-300 rounded-xl p-6 mt-8">
+          <h3 class="font-bold text-xl mb-4 text-center">🎓 Book 1 Capstone Assessment</h3>
+          <p class="text-center text-gray-700 mb-6">Test your understanding across all 4 episodes:</p>
+
+          <div class="space-y-6">
+            <div>
+              <p class="font-semibold mb-3">Q1: What structure did Tee use in the rap battle that was the same as Ms. Rodriguez's essay requirements?</p>
+              <div class="space-y-2">
+                <div class="quiz-choice" onclick="checkCapstone1('a')">
+                  A) Rhyme → Rhythm → Flow → Finish
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone1('b')">
+                  B) Repeat → Show weakness → Counter-evidence → Conclude
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone1('c')">
+                  C) Start → Middle → End → Stop
+                </div>
+              </div>
+              <div id="capstone1-feedback" class="hidden mt-2"></div>
+            </div>
+
+            <div>
+              <p class="font-semibold mb-3">Q2: When scaling a recipe from 4 people to 9 people, what do you do FIRST?</p>
+              <div class="space-y-2">
+                <div class="quiz-choice" onclick="checkCapstone2('a')">
+                  A) Multiply everything by 9
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone2('b')">
+                  B) Divide 9 by 4 to find the multiplier
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone2('c')">
+                  C) Subtract 4 from 9
+                </div>
+              </div>
+              <div id="capstone2-feedback" class="hidden mt-2"></div>
+            </div>
+
+            <div>
+              <p class="font-semibold mb-3">Q3: What does it mean to "understand a perspective"?</p>
+              <div class="space-y-2">
+                <div class="quiz-choice" onclick="checkCapstone3('a')">
+                  A) Agreeing with someone
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone3('b')">
+                  B) Knowing why someone believes what they believe
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone3('c')">
+                  C) Proving someone is right
+                </div>
+              </div>
+              <div id="capstone3-feedback" class="hidden mt-2"></div>
+            </div>
+
+            <div>
+              <p class="font-semibold mb-3">Q4: What do argumentative essays, recipes, family debates, and scientific questions all have in common?</p>
+              <div class="space-y-2">
+                <div class="quiz-choice" onclick="checkCapstone4('a')">
+                  A) They're all boring
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone4('b')">
+                  B) They all require yelling
+                </div>
+                <div class="quiz-choice" onclick="checkCapstone4('c')">
+                  C) They all use a similar structure of organized thinking
+                </div>
+              </div>
+              <div id="capstone4-feedback" class="hidden mt-2"></div>
+            </div>
+          </div>
+
+          <div id="capstone-complete" class="hidden mt-6 bg-green-50 border-2 border-green-400 rounded-xl p-6 text-center">
+            <p class="text-2xl mb-2">🎉</p>
+            <p class="font-bold text-green-800 text-xl">You've completed Book 1!</p>
+            <p class="text-green-700 mt-2">You now know how to:</p>
+            <ul class="text-left mt-3 space-y-1 max-w-md mx-auto">
+              <li>✓ Address a counterclaim with evidence</li>
+              <li>✓ Scale quantities using ratios</li>
+              <li>✓ Understand multiple perspectives</li>
+              <li>✓ Apply the scientific method</li>
+            </ul>
+            <p class="text-green-600 mt-4 font-semibold">Same bones. Different stuff. Every time.</p>
+          </div>
+        </div>
+
+        <!-- FINAL REFLECTION -->
+        <div class="bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-400 p-6 mt-8 rounded-xl">
+          <h3 class="font-bold text-xl mb-3 text-blue-800">🎯 Final Reflection: What Did You Learn?</h3>
+          <p class="text-gray-700 mb-2">Lee wrote at the end of her notebook:</p>
+          <p class="italic text-gray-600 mb-4">"I used to think each subject was totally different. Now I see the structure underneath—notice, think, support, conclude. It's everywhere."</p>
+
+          <p class="font-semibold mb-2">YOUR TURN:</p>
+
+          <p class="text-sm text-gray-700 mb-2">One thing I learned from Lee & Tee is:</p>
+          <textarea id="final-learning" class="w-full border-2 border-blue-200 rounded-lg p-3 focus:border-blue-400 focus:outline-none" rows="3" placeholder="Share what you learned..."></textarea>
+
+          <p class="text-sm text-gray-700 mb-2 mt-4">One place I could use this structured thinking is:</p>
+          <textarea id="final-application" class="w-full border-2 border-blue-200 rounded-lg p-3 focus:border-blue-400 focus:outline-none" rows="3" placeholder="Where will you use this?"></textarea>
+
+          <button onclick="saveFinalReflection()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold mt-4 transition w-full">
+            Complete Book 1 🎉
+          </button>
+          <div id="feedback-final" class="hidden mt-3 text-blue-700 font-semibold">✓ Book 1 Complete! You've mastered the structure of organized thinking.</div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="playStorySection('section-12')" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+            <span>🎙️</span>
+            <span>Read Aloud</span>
+          </button>
+        </div>
+
+        <div id="progress-section12" class="progress-check" data-points="20"></div>
+      </div>
+    </section>
+
+    <!-- EPISODE COMPLETE -->
+    <div id="episode-complete" class="hidden">
+      <div class="bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl p-8 text-center text-white shadow-2xl">
+        <p class="text-6xl mb-4">🎉</p>
+        <h2 class="font-display text-4xl font-bold mb-4">Episode 4 Complete!</h2>
+        <p class="text-xl mb-6">You've learned to use the scientific method!</p>
+        <div class="bg-white text-blue-800 rounded-xl p-6 mb-6">
+          <p class="text-2xl font-bold mb-2">Total Points: <span id="final-points">0</span></p>
+          <p class="text-lg mb-4">Badges Earned: <span id="final-badges">0</span></p>
+          <p class="text-sm">You learned: scientific method, observations, hypotheses, structured thinking!</p>
+        </div>
+        <a href="index.html" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg inline-block hover:bg-blue-50 transition">
+          Back to Home
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VOCABULARY MODAL -->
+  <div id="vocabModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4" onclick="closeVocabModal(event)" style="display: none;">
+    <div class="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="font-display text-3xl font-bold episode-accent" id="vocabWord">Word</h3>
+        <button onclick="closeVocabModal(event)" class="text-gray-400 hover:text-gray-600 text-3xl">&times;</button>
+      </div>
+      <div class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">Definition:</p>
+        <p class="text-lg text-gray-800" id="vocabDefinition">Definition here</p>
+      </div>
+      <div class="mb-6">
+        <p class="text-sm text-gray-500 mb-2">In the story:</p>
+        <p class="text-lg text-gray-800 italic" id="vocabExample">Example here</p>
+      </div>
+      <button id="vocabSpeak" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold w-full transition">
+        🔊 Hear It Pronounced
+      </button>
+    </div>
+  </div>
+
+  <!-- Shared Components JavaScript -->
+  <script src="shared/shared-components.js"></script>
+
+  <!-- Episode 4 Specific JavaScript -->
+  <script>
+    // Vocabulary Data
+    const vocabData = {
+      observation: {
+        word: "observation",
+        pronunciation: "/ˌɒbzərˈveɪʃən/",
+        definition: "Noticing something carefully using your senses. In science, observations are the first step to understanding how things work.",
+        example: "Lee observed that the streetlight flickered at 8:47 PM every night. That observation led to her question.",
+        audio: "observation"
+      },
+      hypothesis: {
+        word: "hypothesis",
+        pronunciation: "/haɪˈpɒθəsɪs/",
+        definition: "An educated guess that tries to explain something you've observed. A hypothesis can be tested to see if it's correct.",
+        example: "Tee had a hypothesis that the streetlight dimmed because something nearby was using power at 8:47.",
+        audio: "hypothesis"
+      },
+      "scientific-method": {
+        word: "scientific method",
+        pronunciation: "/ˌsaɪənˈtɪfɪk ˈmɛθəd/",
+        definition: "A step-by-step process for investigating questions: observe, question, hypothesize, test, conclude.",
+        example: "Lee realized she was using the scientific method to figure out why the streetlight flickered—she just didn't call it that.",
+        audio: "scientific-method"
+      }
+    };
+
+    // Show Vocabulary
+    function showVocab(term) {
+      const vocab = vocabData[term];
+      if (!vocab) return;
+
+      document.getElementById('vocabWord').textContent = vocab.word;
+      document.getElementById('vocabDefinition').textContent = vocab.definition;
+      document.getElementById('vocabExample').textContent = vocab.example;
+
+      const modal = document.getElementById('vocabModal');
+      modal.classList.remove('hidden');
+      modal.style.display = 'flex';
+
+      // Text-to-speech
+      const speakBtn = document.getElementById('vocabSpeak');
+      speakBtn.onclick = function() {
+        const utterance = new SpeechSynthesisUtterance(vocab.word + '. ' + vocab.definition);
+        utterance.rate = 0.8;
+        speechSynthesis.speak(utterance);
+      };
+    }
+
+    // Close Vocab Modal
+    function closeVocabModal(event) {
+      const modal = document.getElementById('vocabModal');
+      if (event.target === modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
+    }
+
+    // Mark Progress Complete
+    function markProgressComplete(progressId) {
+      const progressEl = document.getElementById(progressId);
+      if (!progressEl) return;
+
+      const points = parseInt(progressEl.getAttribute('data-points')) || 0;
+
+      if (!progressEl.classList.contains('completed')) {
+        progressEl.classList.add('completed');
+        updateProgressBar();
+      }
+    }
+
+    // Update Progress Bar
+    function updateProgressBar() {
+      const totalSections = 12;
+      const completedSections = document.querySelectorAll('.progress-check.completed').length;
+      const percentage = (completedSections / totalSections) * 100;
+
+      document.getElementById('progressBar').style.width = percentage + '%';
+
+      if (percentage >= 100) {
+        setTimeout(() => {
+          document.getElementById('episode-complete').classList.remove('hidden');
+          document.getElementById('final-points').textContent = learningState.points;
+          document.getElementById('final-badges').textContent = learningState.badges.length;
+        }, 1000);
+      }
+    }
+
+    // Text-to-Speech
+    function playStorySection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      stopAllNarration();
+
+      const storyText = section.querySelector('.story-text');
+      if (!storyText) return;
+
+      const text = storyText.textContent;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+
+      utterance.onend = function() {
+        stopAllNarration();
+        const progressId = 'progress-' + sectionId;
+        markProgressComplete(progressId);
+      };
+
+      speechSynthesis.speak(utterance);
+
+      const floatingBtn = document.getElementById('floatingStopBtn');
+      if (floatingBtn) floatingBtn.classList.add('active');
+    }
+
+    // Hypothesis Builder
+    function saveHypothesis() {
+      const step3 = document.getElementById('step3').value;
+      const step4 = document.getElementById('step4').value;
+
+      if (step3.trim() !== '' && step4.trim() !== '') {
+        document.getElementById('hypothesis-feedback').classList.remove('hidden');
+        markProgressComplete('progress-section7');
+        addPoints(15, 'Hypothesis built!');
+      } else {
+        alert('Please fill in your hypothesis and test plan!');
+      }
+    }
+
+    // Cross-Episode Comparison
+    const revealedRows = new Set();
+
+    function revealRow(rowNum) {
+      const row = document.getElementById('row' + rowNum);
+      const content = document.getElementById('content-row' + rowNum);
+
+      if (content && row) {
+        content.classList.toggle('hidden');
+        row.classList.toggle('revealed');
+
+        if (!content.classList.contains('hidden')) {
+          revealedRows.add(rowNum);
+        }
+
+        if (revealedRows.size === 4) {
+          document.getElementById('pattern-complete').classList.remove('hidden');
+          markProgressComplete('progress-section8');
+          addPoints(20, 'Pattern recognized!');
+        }
+      }
+    }
+
+    // Scientific Method Quiz
+    const scienceAnswers = {1: false, 2: false, 3: false};
+
+    function checkScience1(answer) {
+      const feedback = document.getElementById('science1-feedback');
+      if (answer === 'b') {
+        feedback.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct! The order is: Observe → Question → Hypothesize → Test → Conclude</p>';
+        feedback.className = 'mt-2 text-green-700';
+        scienceAnswers[1] = true;
+        event.target.classList.add('correct');
+      } else {
+        feedback.innerHTML = '<p class="text-red-700 font-semibold">✗ Not quite. Think about what Lee did first.</p>';
+        feedback.className = 'mt-2 text-red-700';
+        event.target.classList.add('incorrect');
+      }
+      feedback.classList.remove('hidden');
+      checkScienceComplete();
+    }
+
+    function checkScience2(answer) {
+      const feedback = document.getElementById('science2-feedback');
+      if (answer === 'b') {
+        feedback.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct! Hypotheses can be tested.</p>';
+        feedback.className = 'mt-2 text-green-700';
+        scienceAnswers[2] = true;
+        event.target.classList.add('correct');
+      } else {
+        feedback.innerHTML = '<p class="text-red-700 font-semibold">✗ Not quite. What makes a hypothesis scientific?</p>';
+        feedback.className = 'mt-2 text-red-700';
+        event.target.classList.add('incorrect');
+      }
+      feedback.classList.remove('hidden');
+      checkScienceComplete();
+    }
+
+    function checkScience3(answer) {
+      const feedback = document.getElementById('science3-feedback');
+      if (answer === 'b') {
+        feedback.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct! Writing helps see patterns.</p>';
+        feedback.className = 'mt-2 text-green-700';
+        scienceAnswers[3] = true;
+        event.target.classList.add('correct');
+      } else {
+        feedback.innerHTML = '<p class="text-red-700 font-semibold">✗ Not quite. Why did Lee say she wrote things down?</p>';
+        feedback.className = 'mt-2 text-red-700';
+        event.target.classList.add('incorrect');
+      }
+      feedback.classList.remove('hidden');
+      checkScienceComplete();
+    }
+
+    function checkScienceComplete() {
+      if (scienceAnswers[1] && scienceAnswers[2] && scienceAnswers[3]) {
+        document.getElementById('science-complete').classList.remove('hidden');
+        addPoints(15, 'Scientific Method mastered!');
+      }
+    }
+
+    // Capstone Quiz
+    const capstoneAnswers = {1: false, 2: false, 3: false, 4: false};
+
+    function checkCapstone1(answer) {
+      const feedback = document.getElementById('capstone1-feedback');
+      if (answer === 'b') {
+        feedback.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct! (Episode 1)</p>';
+        feedback.className = 'mt-2 text-green-700';
+        capstoneAnswers[1] = true;
+        event.target.classList.add('correct');
+      } else {
+        feedback.innerHTML = '<p class="text-red-700 font-semibold">✗ Try again.</p>';
+        feedback.className = 'mt-2 text-red-700';
+        event.target.classList.add('incorrect');
+      }
+      feedback.classList.remove('hidden');
+      checkCapstoneComplete();
+    }
+
+    function checkCapstone2(answer) {
+      const feedback = document.getElementById('capstone2-feedback');
+      if (answer === 'b') {
+        feedback.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct! (Episode 2)</p>';
+        feedback.className = 'mt-2 text-green-700';
+        capstoneAnswers[2] = true;
+        event.target.classList.add('correct');
+      } else {
+        feedback.innerHTML = '<p class="text-red-700 font-semibold">✗ Try again.</p>';
+        feedback.className = 'mt-2 text-red-700';
+        event.target.classList.add('incorrect');
+      }
+      feedback.classList.remove('hidden');
+      checkCapstoneComplete();
+    }
+
+    function checkCapstone3(answer) {
+      const feedback = document.getElementById('capstone3-feedback');
+      if (answer === 'b') {
+        feedback.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct! (Episode 3)</p>';
+        feedback.className = 'mt-2 text-green-700';
+        capstoneAnswers[3] = true;
+        event.target.classList.add('correct');
+      } else {
+        feedback.innerHTML = '<p class="text-red-700 font-semibold">✗ Try again.</p>';
+        feedback.className = 'mt-2 text-red-700';
+        event.target.classList.add('incorrect');
+      }
+      feedback.classList.remove('hidden');
+      checkCapstoneComplete();
+    }
+
+    function checkCapstone4(answer) {
+      const feedback = document.getElementById('capstone4-feedback');
+      if (answer === 'c') {
+        feedback.innerHTML = '<p class="text-green-700 font-semibold">✓ Correct! (All episodes)</p>';
+        feedback.className = 'mt-2 text-green-700';
+        capstoneAnswers[4] = true;
+        event.target.classList.add('correct');
+      } else {
+        feedback.innerHTML = '<p class="text-red-700 font-semibold">✗ Try again.</p>';
+        feedback.className = 'mt-2 text-red-700';
+        event.target.classList.add('incorrect');
+      }
+      feedback.classList.remove('hidden');
+      checkCapstoneComplete();
+    }
+
+    function checkCapstoneComplete() {
+      if (capstoneAnswers[1] && capstoneAnswers[2] && capstoneAnswers[3] && capstoneAnswers[4]) {
+        document.getElementById('capstone-complete').classList.remove('hidden');
+        addPoints(25, 'Book 1 Complete!');
+      }
+    }
+
+    // Final Reflection
+    function saveFinalReflection() {
+      const learning = document.getElementById('final-learning').value;
+      const application = document.getElementById('final-application').value;
+
+      if (learning.trim() !== '' && application.trim() !== '') {
+        document.getElementById('feedback-final').classList.remove('hidden');
+        markProgressComplete('progress-section12');
+        addPoints(20, 'Book 1 reflection complete!');
+      } else {
+        alert('Please complete both reflection prompts!');
+      }
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', function() {
+      loadProgress();
+      updateProgressBar();
+    });
+  </script>
+
+</body>
+</html>
