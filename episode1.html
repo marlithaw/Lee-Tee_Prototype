@@ -19,7 +19,7 @@
       --text-secondary: #57534E;
       --success: #16A34A;
       --border-light: #E7E5E4;
-      --sticky-stack-height: 320px;
+      --sticky-stack-height: 120px; /* Reduced - only progress bar + nav tabs now */
     }
     
     html {
@@ -1095,7 +1095,6 @@ p.active-sentence {
     /* Neutralize child stickiness so the wrapper controls layout */
     #sticky-ui .section-progress-bar,
     #sticky-ui .section-nav,
-    #sticky-ui .learning-shell,
     #sticky-ui #global-header {
       position: relative !important;
       top: auto !important;
@@ -1104,6 +1103,13 @@ p.active-sentence {
       right: auto !important;
       /* Ensure children don't have their own sticky/fixed positioning */
       bottom: auto !important;
+    }
+
+    /* Learning shell in left sidebar should NOT be sticky */
+    #left-rail .learning-shell {
+      position: static !important;
+      top: auto !important;
+      z-index: auto !important;
     }
 
     #sticky-ui .section-nav {
@@ -1401,121 +1407,77 @@ p.active-sentence {
     /* Mobile-specific sticky stack sizing */
     @media (max-width: 768px) {
       :root {
-        --sticky-stack-height: 360px;
+        --sticky-stack-height: 140px; /* Smaller - dashboard moved to sidebar */
       }
     }
   </style>
 </head>
 <body data-episode="1">
-  <div id="sticky-ui">␊
-    <!-- Progressive Navigation: Progress Bar + Section Nav -->␊
+  <div id="sticky-ui">
+    <!-- Progressive Navigation: Progress Bar + Section Nav -->
     <div id="section-progress-bar" class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-      <div id="progress-fill" class="progress-fill" style="width: 0%"></div>␊
-    </div>␊
-␊
-    <nav id="section-nav" class="section-nav" aria-label="Section navigation">␊
-      <!-- Will be populated by JavaScript -->␊
+      <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+    </div>
+
+    <nav id="section-nav" class="section-nav" aria-label="Section navigation">
+      <!-- Will be populated by JavaScript -->
     </nav>
 
-    <style>
-    /* Make section switching VERY obvious for testing */
-    .section-content[data-section="1"] {
-      border: 5px solid #7C3AED !important;
-      background: linear-gradient(to bottom, #F3E8FF, #FFFFFF) !important;
-      padding: 2rem !important;
-      min-height: 400px !important;
-    }
-    .section-content[data-section="2"] {
-      border: 5px solid #F59E0B !important;
-      background: linear-gradient(to bottom, #FEF3C7, #FFFFFF) !important;
-      padding: 2rem !important;
-      min-height: 400px !important;
-    }
-    .section-content[data-section="3"] {
-      border: 5px solid #0D9488 !important;
-      background: linear-gradient(to bottom, #CCFBF1, #FFFFFF) !important;
-      padding: 2rem !important;
-      min-height: 400px !important;
-    }
-    .section-content[data-section="4"] {
-      border: 5px solid #EC4899 !important;
-      background: linear-gradient(to bottom, #FCE7F3, #FFFFFF) !important;
-      padding: 2rem !important;
-      min-height: 400px !important;
-    }
-    .section-content[data-section="5"] {
-      border: 5px solid #2563EB !important;
-      background: linear-gradient(to bottom, #DBEAFE, #FFFFFF) !important;
-      padding: 2rem !important;
-      min-height: 400px !important;
-    }
-    .section-content[data-section="6"] {
-      border: 5px solid #16A34A !important;
-      background: linear-gradient(to bottom, #DCFCE7, #FFFFFF) !important;
-      padding: 2rem !important;
-      min-height: 400px !important;
-    }
-    .section-content[data-section="7"] {
-      border: 5px solid #EF4444 !important;
-      background: linear-gradient(to bottom, #FEE2E2, #FFFFFF) !important;
-      padding: 2rem !important;
-      min-height: 400px !important;
-    }
-    .section-content {
-      margin: 2rem auto !important;
-      max-width: 1200px !important;
-    }
-    </style>
+    <!-- Global Header -->
+    <div id="global-header"></div>
+  </div>
 
-    <div id="top" class="anchor-target" aria-hidden="true"></div>
-    <!-- Unified Learning Dashboard Shell -->
-    <div id="learningShell" class="learning-shell">
-    <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
-      📚 Learning Dashboard
-    </button>
-    <div class="learning-shell__row">
-      <div class="learning-shell__section">
-        <span class="learning-shell__pill">Book 1 Journey</span>
-        <div class="learning-shell__meta-title">Same Structure. Different Stuff.</div>
-        <div class="learning-shell__meta-subtitle">Stay aware of goals and wins across episodes.</div>
-        <div class="learning-shell__label-row">
-          <span id="learningShellBookLabel">Book 1: 0/4 Episodes</span>
-          <span id="learningShellBookPercent">0%</span>
-        </div>
-        <div class="learning-shell__progress" aria-hidden="true">
-          <div id="learningShellBookFill" class="learning-shell__progress-fill"></div>
-        </div>
-      </div>
+  <style>
+  /* Make section switching VERY obvious for testing */
+  .section-content[data-section="1"] {
+    border: 5px solid #7C3AED !important;
+    background: linear-gradient(to bottom, #F3E8FF, #FFFFFF) !important;
+    padding: 2rem !important;
+    min-height: 400px !important;
+  }
+  .section-content[data-section="2"] {
+    border: 5px solid #F59E0B !important;
+    background: linear-gradient(to bottom, #FEF3C7, #FFFFFF) !important;
+    padding: 2rem !important;
+    min-height: 400px !important;
+  }
+  .section-content[data-section="3"] {
+    border: 5px solid #0D9488 !important;
+    background: linear-gradient(to bottom, #CCFBF1, #FFFFFF) !important;
+    padding: 2rem !important;
+    min-height: 400px !important;
+  }
+  .section-content[data-section="4"] {
+    border: 5px solid #EC4899 !important;
+    background: linear-gradient(to bottom, #FCE7F3, #FFFFFF) !important;
+    padding: 2rem !important;
+    min-height: 400px !important;
+  }
+  .section-content[data-section="5"] {
+    border: 5px solid #2563EB !important;
+    background: linear-gradient(to bottom, #DBEAFE, #FFFFFF) !important;
+    padding: 2rem !important;
+    min-height: 400px !important;
+  }
+  .section-content[data-section="6"] {
+    border: 5px solid #16A34A !important;
+    background: linear-gradient(to bottom, #DCFCE7, #FFFFFF) !important;
+    padding: 2rem !important;
+    min-height: 400px !important;
+  }
+  .section-content[data-section="7"] {
+    border: 5px solid #EF4444 !important;
+    background: linear-gradient(to bottom, #FEE2E2, #FFFFFF) !important;
+    padding: 2rem !important;
+    min-height: 400px !important;
+  }
+  .section-content {
+    margin: 2rem auto !important;
+    max-width: 1200px !important;
+  }
+  </style>
 
-      <div class="learning-shell__section learning-shell__episode">
-        <div class="learning-shell__label-row">
-          <span class="learning-shell__meta-title" id="learningShellEpisodeTitle">Episode 1</span>
-          <span class="learning-shell__meta-subtitle" id="learningShellEpisodeLabel">0/21 sections</span>
-        </div>
-        <div class="learning-shell__progress" aria-hidden="true">
-          <div id="learningShellEpisodeFill" class="learning-shell__progress-fill"></div>
-        </div>
-      </div>
-
-      <div class="learning-shell__section">
-        <div class="learning-shell__label-row">
-          <span class="learning-shell__meta-title">Recent Badges</span>
-          <span class="learning-shell__meta-subtitle">Motivation at a glance</span>
-        </div>
-        <div id="learningShellBadges" class="learning-shell__badge-row" aria-live="polite"></div>
-      </div>
-
-      <div class="learning-shell__section" style="align-items: flex-end;">
-        <a id="learningShellContinue" class="learning-shell__cta" href="#">
-          ▶ Continue
-        </a>
-      </div>
-    </div>
-    </div>
-  <!-- Global Header -->
-  <div id="global-header"></div>
-
-</div>
+  <div id="top" class="anchor-target" aria-hidden="true"></div>
 
   <!-- Mobile Rail Toggle -->
   <button onclick="toggleLeftRail()"
@@ -1527,6 +1489,51 @@ p.active-sentence {
 
   <!-- Left Rail Sidebar -->
   <aside id="left-rail" class="left-rail mobile-hidden">
+    <!-- Unified Learning Dashboard Shell -->
+    <div id="learningShell" class="learning-shell" style="position: static; border: none; box-shadow: none; padding: 1rem 0; margin-bottom: 1.5rem;">
+      <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
+        📚 Learning Dashboard
+      </button>
+      <div class="learning-shell__row" style="grid-template-columns: 1fr; gap: 1rem;">
+        <div class="learning-shell__section">
+          <span class="learning-shell__pill">Book 1 Journey</span>
+          <div class="learning-shell__meta-title">Same Structure. Different Stuff.</div>
+          <div class="learning-shell__meta-subtitle">Stay aware of goals and wins across episodes.</div>
+          <div class="learning-shell__label-row">
+            <span id="learningShellBookLabel">Book 1: 0/4 Episodes</span>
+            <span id="learningShellBookPercent">0%</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellBookFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section learning-shell__episode">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title" id="learningShellEpisodeTitle">Episode 1</span>
+            <span class="learning-shell__meta-subtitle" id="learningShellEpisodeLabel">0/21 sections</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellEpisodeFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title">Recent Badges</span>
+            <span class="learning-shell__meta-subtitle">Motivation at a glance</span>
+          </div>
+          <div id="learningShellBadges" class="learning-shell__badge-row" aria-live="polite"></div>
+        </div>
+
+        <div class="learning-shell__section" style="align-items: flex-end;">
+          <a id="learningShellContinue" class="learning-shell__cta" href="#">
+            ▶ Continue
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="mb-6">
       <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
         <span class="text-xl">✓</span>
