@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Episode 2: Grandpa's Kitchen | Lee & Tee Book 1</title>
 
   <!-- Tailwind CSS -->
@@ -18,9 +18,16 @@
 
   <!-- Shared Design System -->
   <link rel="stylesheet" href="shared/design-system.css">
+  <link rel="stylesheet" href="shared/learning-dashboard.css">
+  <link rel="stylesheet" href="shared/progressive-nav.css">
 
   <style>
     /* Episode 2 Specific Styles */
+    html {
+      width: 100%;
+      position: relative;
+    }
+
     body {
       font-family: 'Lexend', sans-serif;
       background: linear-gradient(to bottom, #FFF8F0 0%, #FEF3E2 100%);
@@ -28,6 +35,23 @@
       margin: 0;
       padding: 0;
       color: #1C1917;
+      width: 100%;
+      max-width: 100vw;
+      position: relative;
+      touch-action: pan-y pinch-zoom;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    section, div:not(#sticky-ui), main, article, header, footer, nav {
+      max-width: 100%;
+    }
+
+    img, video, iframe {
+      max-width: 100% !important;
+      height: auto;
     }
 
     /* Episode 2 Amber Theme */
@@ -53,25 +77,6 @@
       color: #78350F;
       margin-bottom: 2rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Progress Bar */
-    .progress-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.3);
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(to right, #F59E0B, #FBBF24);
-      width: 0%;
-      transition: width 0.5s ease;
     }
 
     /* Math Interactive Containers */
@@ -197,10 +202,11 @@
 
     /* Story Text Highlighting */
     .story-text {
-      font-size: 1.25rem;
-      line-height: 2;
+      font-size: 1.125rem;
+      line-height: 1.9;
       margin: 1.5rem 0;
       color: #292524;
+      max-width: 65ch;
     }
 
     .story-text p {
@@ -220,16 +226,36 @@
       background: rgba(254, 243, 199, 0.3);
     }
 
-    /* Sticky Navigation */
-    .sticky-section-nav {
+    /* Sticky UI Stack */
+    #sticky-ui {
+      position: -webkit-sticky;
       position: sticky;
-      top: 50px;
-      background: white;
-      padding: 1rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      z-index: 50;
-      margin-bottom: 2rem;
-      border-radius: 12px;
+      top: 0;
+      z-index: 1200;
+      background: var(--bg-primary, #FFF8F0);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 100vw;
+      overflow: visible;
+      isolation: isolate;
+      align-self: flex-start;
+    }
+
+    #sticky-ui .section-progress-bar,
+    #sticky-ui .section-nav,
+    #sticky-ui #global-header {
+      position: relative !important;
+      top: auto !important;
+      z-index: 1 !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+    }
+
+    #left-rail .learning-shell {
+      position: static !important;
+      top: auto !important;
+      z-index: auto !important;
     }
 
     /* Conversion Table */
@@ -271,7 +297,7 @@
       }
 
       .story-text {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
 
       .fraction-display {
@@ -362,11 +388,40 @@
   <!-- Load Shared Components -->
   <script src="shared-header.js"></script>
   <script src="shared-skills.js"></script>
+  <script src="shared/shared/learning-dashboard.js"></script>
 </head>
 <body data-episode="2">
 
-  <!-- Global Header -->
-  <div id="global-header"></div>
+  <div id="sticky-ui">
+    <div id="section-progress-bar" class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progressBar" class="progress-fill" style="width: 0%"></div>
+    </div>
+
+    <nav id="section-nav" class="section-nav" aria-label="Section navigation">
+      <a class="section-nav__item" href="#story">
+        <span class="section-emoji">📖</span>
+        <span class="section-title">Story</span>
+      </a>
+      <a class="section-nav__item" href="#vocab">
+        <span class="section-emoji">📚</span>
+        <span class="section-title">Vocabulary</span>
+      </a>
+      <a class="section-nav__item" href="#practice">
+        <span class="section-emoji">✍️</span>
+        <span class="section-title">Practice</span>
+      </a>
+      <a class="section-nav__item" href="#check">
+        <span class="section-emoji">✅</span>
+        <span class="section-title">Check</span>
+      </a>
+      <a class="section-nav__item" href="#reflect">
+        <span class="section-emoji">💭</span>
+        <span class="section-title">Reflect</span>
+      </a>
+    </nav>
+
+    <div id="global-header"></div>
+  </div>
 
   <!-- Mobile Rail Toggle -->
   <button onclick="toggleLeftRail()"
@@ -378,6 +433,50 @@
 
   <!-- Left Rail Sidebar -->
   <aside id="left-rail" class="left-rail mobile-hidden">
+    <div id="learningShell" class="learning-shell" style="position: static; border: none; box-shadow: none; padding: 1rem 0; margin-bottom: 1.5rem;">
+      <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
+        📚 Learning Dashboard
+      </button>
+      <div class="learning-shell__row" style="grid-template-columns: 1fr; gap: 1rem;">
+        <div class="learning-shell__section">
+          <span class="learning-shell__pill">Book 1 Journey</span>
+          <div class="learning-shell__meta-title">Same Structure. Different Stuff.</div>
+          <div class="learning-shell__meta-subtitle">Stay aware of goals and wins across episodes.</div>
+          <div class="learning-shell__label-row">
+            <span id="learningShellBookLabel">Book 1: 0/4 Episodes</span>
+            <span id="learningShellBookPercent">0%</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellBookFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section learning-shell__episode">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title" id="learningShellEpisodeTitle">Episode 2</span>
+            <span class="learning-shell__meta-subtitle" id="learningShellEpisodeLabel">0/15 sections</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellEpisodeFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title">Recent Badges</span>
+            <span class="learning-shell__meta-subtitle">Motivation at a glance</span>
+          </div>
+          <div id="learningShellBadges" class="learning-shell__badge-row" aria-live="polite"></div>
+        </div>
+
+        <div class="learning-shell__section" style="align-items: flex-end;">
+          <a id="learningShellContinue" class="learning-shell__cta" href="#">
+            ▶ Continue
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="mb-6">
       <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
         <span class="text-xl">✓</span>
@@ -437,28 +536,10 @@
   </header>
 
   <!-- MAIN CONTENT CONTAINER -->
-  <main class="main-with-rail min-h-screen pb-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <main class="main-with-rail max-w-4xl mx-auto min-h-screen pb-20">
+    <div class="px-4 sm:px-6 lg:px-8">
 
-    <!-- ACCESSIBILITY CONTROLS -->
-    <div class="sticky-section-nav">
-      <div class="flex items-center justify-between flex-wrap gap-3">
-        <div class="flex items-center gap-3 flex-wrap">
-          <button onclick="toggleDyslexia()" class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg font-semibold text-purple-700 transition">
-            👓 Dyslexia Mode
-          </button>
-          <button onclick="toggleHighContrast()" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-semibold text-gray-700 transition">
-            ◐ High Contrast
-          </button>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600">Progress:</span>
-          <span id="pointsDisplay" class="font-bold text-amber-600 text-lg">0</span>
-          <span class="text-sm text-gray-600">points</span>
-          <div id="badgeContainer" class="flex gap-1 ml-2"></div>
-        </div>
-      </div>
-    </div>
+    <div id="story" class="anchor-target" aria-hidden="true"></div>
 
     <!-- SECTION 1: THE SMELL -->
     <section id="section-1" class="mb-12">
@@ -492,6 +573,8 @@
         <div id="progress-section1" class="progress-check" data-points="5"></div>
       </div>
     </section>
+
+    <div id="vocab" class="anchor-target" aria-hidden="true"></div>
 
     <!-- SECTION 2: FINDING GRANDPA -->
     <section id="section-2" class="mb-12">
@@ -767,6 +850,8 @@
       </div>
     </section>
 
+    <div id="practice" class="anchor-target" aria-hidden="true"></div>
+
     <!-- SECTION 6: SCALING THE REST -->
     <section id="section-6" class="mb-12">
       <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
@@ -847,6 +932,8 @@
         <div id="progress-section6" class="progress-check" data-points="10"></div>
       </div>
     </section>
+
+    <div id="check" class="anchor-target" aria-hidden="true"></div>
 
     <!-- SECTION 7: UNIT CONVERSION CHALLENGE -->
     <section id="section-7" class="mb-12">
@@ -1061,6 +1148,8 @@
         <div id="progress-section9" class="progress-check" data-points="15"></div>
       </div>
     </section>
+
+    <div id="reflect" class="anchor-target" aria-hidden="true"></div>
 
     <!-- REFLECTION ACTIVITY -->
     <section id="section-10" class="mb-12">
