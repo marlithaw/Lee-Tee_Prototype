@@ -164,11 +164,21 @@ class TranslationEngine {
     }
   }
 
-  getStorySentence(section, id, lang) {
-    const sectionData = this.storyTranslations[lang]?.sections?.[section];
-    if (!sectionData) return undefined;
-    return sectionData[id];
+getStorySentence(section, id, lang) {
+  const sectionData = this.storyTranslations[lang]?.sections?.[section];
+  if (!sectionData) return undefined;
+
+  // Your story files store sections as ARRAYS of { id, text } objects
+  if (Array.isArray(sectionData)) {
+    const match = sectionData.find(item => item.id === id);
+    return match?.text || match?.html;
   }
+
+  // Backward compatibility if any section is stored as an object map
+  const value = sectionData[id];
+  if (typeof value === 'string') return value;
+  return value?.text || value?.html;
+}
 
   renderStoryLanguage(lang) {
     const englishStory = this.storyTranslations[this.fallbackLang]?.sections || {};
