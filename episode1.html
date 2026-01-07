@@ -3253,8 +3253,10 @@ Finally, Step 4: Restate your position..."
     }
 
     function updateBadges() {
-      const container = document.getElementById('badgeContainer');
-      container.innerHTML = '';
+       const container = document.getElementById('badgeContainer');
+       if (!container) return;
+       container.innerHTML = '';
+
       learningState.badges.forEach(badge => {
         const badgeEl = document.createElement('div');
         badgeEl.className = 'text-2xl badge-earned';
@@ -4935,6 +4937,7 @@ Finally, Step 4: Restate your position..."
 </script>
 </body>
 </html>
+
 
 
 
