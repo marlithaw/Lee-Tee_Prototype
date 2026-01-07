@@ -41,8 +41,7 @@ class TranslationEngine {
     }
 
     if (!this.storyTranslations[lang]) {
-      const storyPrefix = window.storyLocalePrefix || 'story';
-      this.storyTranslations[lang] = await this.fetchJson(`locales/${storyPrefix}.${lang}.json`);
+      this.storyTranslations[lang] = await this.fetchJson(`locales/story.${lang}.json`);
     }
 
     return this.uiTranslations[lang];
