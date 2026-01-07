@@ -3,7 +3,7 @@
  * Manages section-by-section reveal, navigation, and progress tracking
  */
 
-const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+const navTr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
 
 class ProgressiveNav {
   constructor(episodeId, totalSections) {
