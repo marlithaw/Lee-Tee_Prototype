@@ -3402,10 +3402,16 @@ Finally, Step 4: Restate your position..."
         speechSynthesis.cancel();
       }
       
-      const word = document.getElementById('vocabWord').textContent;
-      const def = document.getElementById('vocabDef').textContent;
-      const example = document.getElementById('vocabExample').textContent;
-      const utterance = new SpeechSynthesisUtterance(`${word}. ${def}. Example: ${example}`);
+      const pickVoice = () => {
+  const voices = speechSynthesis.getVoices();
+  return voices.find(v => v.name === 'Google US English')
+    || voices.find(v => v.lang === 'en-US')
+    || voices[0];
+};
+
+utterance.voice = pickVoice();
+utterance.lang = utterance.voice?.lang || 'en-US';
+
       utterance.rate = 0.9;
       
       // Store the current narration
@@ -4940,6 +4946,7 @@ Finally, Step 4: Restate your position..."
 </script>
 </body>
 </html>
+
 
 
 
