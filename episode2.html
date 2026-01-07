@@ -18,6 +18,8 @@
 
   <!-- Shared Design System -->
   <link rel="stylesheet" href="shared/design-system.css">
+  <link rel="stylesheet" href="shared/learning-dashboard.css">
+  <link rel="stylesheet" href="shared/progressive-nav.css">
 
   <style>
     /* Episode 2 Specific Styles */
@@ -35,6 +37,10 @@
       --episode-color: #F59E0B;
       --episode-light: #FEF3C7;
       --episode-dark: #D97706;
+      --bg-primary: #FFF8F0;
+      --border-light: #E7E5E4;
+      --accent-purple: #7C3AED;
+      --success: #16A34A;
     }
 
     .episode-accent {
@@ -55,23 +61,35 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* Progress Bar */
-    .progress-container {
-      position: fixed;
+    /* ===== STICKY TOP STACK ===== */
+    #sticky-ui {
+      position: -webkit-sticky;
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.3);
-      z-index: 1000;
-      backdrop-filter: blur(10px);
+      z-index: 1200;
+      background: var(--bg-primary, #FFF8F0);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      height: fit-content;
+      width: 100%;
+      max-width: 100vw;
+      overflow: visible;
+      isolation: isolate;
+      align-self: flex-start;
     }
 
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(to right, #F59E0B, #FBBF24);
-      width: 0%;
-      transition: width 0.5s ease;
+    #sticky-ui .section-progress-bar,
+    #sticky-ui .section-nav,
+    #sticky-ui #global-header {
+      position: relative !important;
+      top: auto !important;
+      z-index: 1 !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+    }
+
+    #sticky-ui .section-nav {
+      padding-right: 8.5rem;
     }
 
     /* Math Interactive Containers */
@@ -220,16 +238,73 @@
       background: rgba(254, 243, 199, 0.3);
     }
 
-    /* Sticky Navigation */
-    .sticky-section-nav {
-      position: sticky;
-      top: 50px;
+    /* Accessibility panel */
+    .a11y-panel {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+    .a11y-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-purple);
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: transform 0.2s;
+    }
+    .a11y-btn:hover { transform: scale(1.1); }
+    .a11y-menu {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
       background: white;
+      border-radius: 1rem;
       padding: 1rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      z-index: 50;
-      margin-bottom: 2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      min-width: 200px;
+      display: none;
+    }
+    .a11y-menu.open { display: block; }
+    .a11y-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .a11y-toggle:last-child { border-bottom: none; }
+
+    .toggle {
+      width: 44px;
+      height: 24px;
+      background: #D6D3D1;
       border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle.on { background: var(--success); }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.2s;
+    }
+    .toggle.on::after {
+      transform: translateX(20px);
     }
 
     /* Conversion Table */
@@ -362,15 +437,30 @@
   <!-- Load Shared Components -->
   <script src="shared-header.js"></script>
   <script src="shared-skills.js"></script>
+  <script src="shared/shared/learning-dashboard.js"></script>
+
+  <!-- Progressive Navigation -->
+  <script src="shared/progressive-nav.js"></script>
+  <script src="shared/adaptive-helpers.js"></script>
 </head>
 <body data-episode="2">
+  <div id="sticky-ui">
+    <div id="section-progress-bar" class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+    </div>
 
-  <!-- Global Header -->
-  <div id="global-header"></div>
+    <nav id="section-nav" class="section-nav" aria-label="Section navigation">
+      <!-- Will be populated by JavaScript -->
+    </nav>
+
+    <div id="global-header"></div>
+  </div>
+
+  <div id="top" class="anchor-target" aria-hidden="true"></div>
 
   <!-- Mobile Rail Toggle -->
   <button onclick="toggleLeftRail()"
-          class="lg:hidden fixed bottom-6 left-6 z-40 w-14 h-14 bg-amber-600 text-white rounded-full shadow-lg flex items-center justify-center">
+          class="lg:hidden fixed bottom-6 left-6 z-40 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg flex items-center justify-center">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
     </svg>
@@ -378,6 +468,49 @@
 
   <!-- Left Rail Sidebar -->
   <aside id="left-rail" class="left-rail mobile-hidden">
+    <div id="learningShell" class="learning-shell" style="position: static; border: none; box-shadow: none; padding: 1rem 0; margin-bottom: 1.5rem;">
+      <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
+        📚 Learning Dashboard
+      </button>
+      <div class="learning-shell__row" style="grid-template-columns: 1fr; gap: 1rem;">
+        <div class="learning-shell__section">
+          <span class="learning-shell__pill">Book 1 Journey</span>
+          <div class="learning-shell__meta-title">Same Structure. Different Stuff.</div>
+          <div class="learning-shell__meta-subtitle">Stay aware of goals and wins across episodes.</div>
+          <div class="learning-shell__label-row">
+            <span id="learningShellBookLabel">Book 1: 0/4 Episodes</span>
+            <span id="learningShellBookPercent">0%</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellBookFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section learning-shell__episode">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title" id="learningShellEpisodeTitle">Episode 2</span>
+            <span class="learning-shell__meta-subtitle" id="learningShellEpisodeLabel">0/15 sections</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellEpisodeFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title">Recent Badges</span>
+            <span class="learning-shell__meta-subtitle">Motivation at a glance</span>
+          </div>
+          <div id="learningShellBadges" class="learning-shell__badge-row" aria-live="polite"></div>
+        </div>
+
+        <div class="learning-shell__section" style="align-items: flex-end;">
+          <a id="learningShellContinue" class="learning-shell__cta" href="#">
+            ▶ Continue
+          </a>
+        </div>
+      </div>
+    </div>
     <div class="mb-6">
       <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
         <span class="text-xl">✓</span>
@@ -414,6 +547,39 @@
     <span>STOP</span>
   </button>
 
+  <div class="a11y-panel">
+    <div class="a11y-menu" id="a11yMenu">
+      <p class="font-semibold mb-3">Reading Settings</p>
+      <div class="a11y-toggle">
+        <span>🔊 Read Aloud</span>
+        <div class="toggle" id="toggleAudio" onclick="toggleSetting('audio')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>📖 Dyslexia Font</span>
+        <div class="toggle" id="toggleDyslexia" onclick="toggleSetting('dyslexia')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>🌙 High Contrast</span>
+        <div class="toggle" id="toggleContrast" onclick="toggleSetting('contrast')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>📝 Show Hints</span>
+        <div class="toggle on" id="toggleHints" onclick="toggleSetting('hints')"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>🏫 SIOP Strategies</span>
+        <div class="toggle" id="toggleSiop" onclick="toggleSiopStrategies()"></div>
+      </div>
+      <div class="a11y-toggle">
+        <span>🔄 Reset Progress</span>
+        <button class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded" onclick="resetEpisodeProgress()">Reset</button>
+      </div>
+    </div>
+    <button class="a11y-btn" onclick="toggleA11yMenu()" aria-label="Accessibility settings">
+      ⚙️
+    </button>
+  </div>
+
   <!-- HEADER -->
   <header class="hero-header">
     <div class="max-w-4xl mx-auto">
@@ -437,28 +603,9 @@
   </header>
 
   <!-- MAIN CONTENT CONTAINER -->
-  <main class="main-with-rail min-h-screen pb-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <!-- ACCESSIBILITY CONTROLS -->
-    <div class="sticky-section-nav">
-      <div class="flex items-center justify-between flex-wrap gap-3">
-        <div class="flex items-center gap-3 flex-wrap">
-          <button onclick="toggleDyslexia()" class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg font-semibold text-purple-700 transition">
-            👓 Dyslexia Mode
-          </button>
-          <button onclick="toggleHighContrast()" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-semibold text-gray-700 transition">
-            ◐ High Contrast
-          </button>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600">Progress:</span>
-          <span id="pointsDisplay" class="font-bold text-amber-600 text-lg">0</span>
-          <span class="text-sm text-gray-600">points</span>
-          <div id="badgeContainer" class="flex gap-1 ml-2"></div>
-        </div>
-      </div>
-    </div>
+  <main class="main-with-rail max-w-4xl mx-auto min-h-screen pb-20">
+    <div class="px-4 sm:px-6 lg:px-8">
+      <div id="section-display" class="section-display"></div>
 
     <!-- SECTION 1: THE SMELL -->
     <section id="section-1" class="mb-12">
@@ -1169,6 +1316,42 @@
 
   <!-- Episode 2 Specific JavaScript -->
   <script>
+    let progressiveNav;
+
+    function initProgressiveNav() {
+      const sections = Array.from(document.querySelectorAll('main section[id^="section-"]'));
+      progressiveNav = new ProgressiveNav(2, sections.length);
+
+      sections.forEach((section, index) => {
+        const heading = section.querySelector('h2');
+        const headingText = heading ? heading.textContent.trim().replace(/\s+/g, ' ') : `Section ${index + 1}`;
+        const emojiMatch = headingText.match(/\p{Extended_Pictographic}/u);
+        const emoji = emojiMatch ? emojiMatch[0] : '📖';
+        const title = headingText.replace(/\p{Extended_Pictographic}/gu, '').replace(/\s+/g, ' ').trim();
+        progressiveNav.registerSection(index + 1, title || `Section ${index + 1}`, emoji, false);
+      });
+
+      wrapSectionsForProgressiveNav(sections);
+      progressiveNav.init();
+      progressiveNav.currentSection = 1;
+      progressiveNav.showSection(1);
+    }
+
+    function wrapSectionsForProgressiveNav(sections) {
+      const sectionDisplay = document.getElementById('section-display');
+      if (!sectionDisplay) return;
+
+      sections.forEach(section => {
+        const match = section.id.match(/section-(\d+)/);
+        const sectionNumber = match ? match[1] : null;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'section-content';
+        if (sectionNumber) wrapper.setAttribute('data-section', sectionNumber);
+        sectionDisplay.appendChild(wrapper);
+        wrapper.appendChild(section);
+      });
+    }
+
     // Check Beef Answer
     function checkBeefAnswer() {
       const answer = parseFloat(document.getElementById('beef-answer').value);
@@ -1293,15 +1476,25 @@
         progressEl.classList.add('completed');
         updateProgressBar();
       }
+
+      const match = progressId.match(/progress-section(\d+)/);
+      if (progressiveNav && match) {
+        progressiveNav.completeSection(parseInt(match[1], 10), false);
+      }
+
+      updateProgressChecklist();
     }
 
     // Update Progress Bar
     function updateProgressBar() {
-      const totalSections = 10;
+      const totalSections = document.querySelectorAll('.progress-check').length;
       const completedSections = document.querySelectorAll('.progress-check.completed').length;
       const percentage = (completedSections / totalSections) * 100;
 
-      document.getElementById('progressBar').style.width = percentage + '%';
+      const bar = document.getElementById('progress-fill');
+      if (bar) {
+        bar.style.width = percentage + '%';
+      }
 
       // Check if episode complete
       if (percentage >= 100) {
@@ -1342,6 +1535,7 @@
 
     // Initialize on page load
     window.addEventListener('DOMContentLoaded', function() {
+      initProgressiveNav();
       loadProgress();
       updateProgressBar();
 
@@ -1359,6 +1553,38 @@
       // Initialize progress checklist
       updateProgressChecklist();
     });
+
+    // ===== ACCESSIBILITY SETTINGS =====
+    function toggleA11yMenu() {
+      document.getElementById('a11yMenu').classList.toggle('open');
+    }
+
+    function toggleSetting(setting) {
+      const toggle = document.getElementById('toggle' + setting.charAt(0).toUpperCase() + setting.slice(1));
+      if (!toggle) return;
+      toggle.classList.toggle('on');
+
+      if (setting === 'dyslexia') {
+        toggleDyslexia();
+      } else if (setting === 'contrast') {
+        toggleHighContrast();
+      } else if (setting === 'hints') {
+        document.querySelectorAll('.hint-text').forEach(el => {
+          el.style.display = toggle.classList.contains('on') ? 'block' : 'none';
+        });
+      }
+    }
+
+    function toggleSiopStrategies() {
+      const toggle = document.getElementById('toggleSiop');
+      if (!toggle) return;
+      toggle.classList.toggle('on');
+      const isVisible = toggle.classList.contains('on');
+
+      document.querySelectorAll('.siop-strategy').forEach(el => {
+        el.style.display = isVisible ? 'inline-flex' : 'none';
+      });
+    }
 
     // ===== GLOBAL STATE INTEGRATION =====
 
@@ -1382,24 +1608,18 @@
       const checklist = document.getElementById('progress-checklist');
       if (!checklist) return;
 
-      const items = [
-        { id: 'progress-section1', label: 'Introduction' },
-        { id: 'progress-section2', label: 'The Recipe' },
-        { id: 'progress-section3', label: 'The Problem' },
-        { id: 'progress-section4', label: 'Scale Factor' },
-        { id: 'progress-section5', label: 'The Math' },
-        { id: 'progress-section6', label: 'Calculator Activity' },
-        { id: 'progress-section7', label: 'Check Understanding' },
-        { id: 'progress-section8', label: 'Reflection' }
-      ];
-
-      checklist.innerHTML = items.map(item => {
-        const el = document.getElementById(item.id);
+      const sections = Array.from(document.querySelectorAll('main section[id^="section-"]'));
+      checklist.innerHTML = sections.map((section, index) => {
+        const heading = section.querySelector('h2');
+        const headingText = heading ? heading.textContent.trim().replace(/\s+/g, ' ') : `Section ${index + 1}`;
+        const label = headingText.replace(/\p{Extended_Pictographic}/gu, '').replace(/\s+/g, ' ').trim();
+        const progressId = `progress-section${index + 1}`;
+        const el = document.getElementById(progressId);
         const complete = el && el.classList.contains('completed');
         return `
           <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
             <span class="text-lg">${complete ? '✅' : '⬜'}</span>
-            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
+            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${label || `Section ${index + 1}`}</span>
           </div>
         `;
       }).join('');
