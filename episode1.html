@@ -3432,7 +3432,10 @@ utterance.lang = utterance.voice?.lang || 'en-US';
 
   const speakNow = () => {
   const voices = speechSynthesis.getVoices();
-  const v = voices.find(x => x.name === 'Google US English');
+  const v =
+  voices.find(x => x.name === "Google US English") ||
+  voices.find(x => x.lang === "en-US") || voices[0];
+
   if (v) {
     utterance.voice = v;
     utterance.lang = 'en-US';
@@ -4964,6 +4967,7 @@ if (speechSynthesis.getVoices().length) {
 </script>
 </body>
 </html>
+
 
 
 
