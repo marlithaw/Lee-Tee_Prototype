@@ -3428,7 +3428,25 @@ utterance.lang = utterance.voice?.lang || 'en-US';
         isPlaying = false;
       };
       
-      speechSynthesis.speak(utterance);
+     speechSynthesis.cancel(); // stop any previous voice
+
+  const speakNow = () => {
+  const voices = speechSynthesis.getVoices();
+  const v = voices.find(x => x.name === 'Google US English');
+  if (v) {
+    utterance.voice = v;
+    utterance.lang = 'en-US';
+  }
+  console.log('VOICE USED:', utterance.voice?.name, 'LANG:', utterance.lang);
+  speechSynthesis.speak(utterance);
+};
+
+if (speechSynthesis.getVoices().length) {
+  speakNow();
+} else {
+  speechSynthesis.onvoiceschanged = () => speakNow();
+}
+
     }
 
     function showVocabChoices(blankId, correctWord) {
@@ -4946,6 +4964,7 @@ utterance.lang = utterance.voice?.lang || 'en-US';
 </script>
 </body>
 </html>
+
 
 
 
