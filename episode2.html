@@ -1162,6 +1162,123 @@
 
   <!-- Episode 2 Specific JavaScript -->
   <script>
+    // ===== LEARNING STATE MANAGEMENT =====
+    let learningState = {
+      points: 0,
+      badges: [],
+      completedActivities: []
+    };
+
+    // Load progress from localStorage
+    function loadProgress() {
+      const saved = localStorage.getItem('episode2Progress');
+      if (saved) {
+        try {
+          learningState = JSON.parse(saved);
+        } catch (e) {
+          console.error('Failed to load progress:', e);
+        }
+      }
+      updatePointsDisplay();
+    }
+
+    // Save progress to localStorage
+    function saveProgress() {
+      try {
+        localStorage.setItem('episode2Progress', JSON.stringify(learningState));
+      } catch (e) {
+        console.error('Failed to save progress:', e);
+      }
+    }
+
+    // Add points and trigger celebration
+    function addPoints(amount, reason) {
+      learningState.points += amount;
+      updatePointsDisplay();
+      saveProgress();
+
+      // Update global state if available
+      if (typeof addGlobalPoints === 'function') {
+        addGlobalPoints(2, amount, reason);
+      }
+    }
+
+    // Update points display
+    function updatePointsDisplay() {
+      const pointsDisplay = document.getElementById('pointsDisplay');
+      if (pointsDisplay) {
+        pointsDisplay.textContent = learningState.points;
+      }
+    }
+
+    // Mark section as complete
+    function markProgressComplete(progressId) {
+      const progressEl = document.getElementById(progressId);
+      if (!progressEl) return;
+
+      const points = parseInt(progressEl.getAttribute('data-points')) || 0;
+
+      if (!progressEl.classList.contains('completed')) {
+        progressEl.classList.add('completed');
+        if (points > 0 && !learningState.completedActivities.includes(progressId)) {
+          learningState.completedActivities.push(progressId);
+          addPoints(points, 'Section completed!');
+        }
+        updateProgressBar();
+        updateProgressChecklist();
+      }
+    }
+
+    // Stop all narration
+    function stopAllNarration() {
+      if (typeof speechSynthesis !== 'undefined') {
+        speechSynthesis.cancel();
+      }
+      const floatingBtn = document.getElementById('floatingStopBtn');
+      if (floatingBtn) {
+        floatingBtn.classList.remove('active');
+      }
+    }
+
+    // Vocabulary modal functions
+    function showVocabModal() {
+      const modal = document.getElementById('vocabModal');
+      if (modal) {
+        modal.style.display = 'flex';
+      }
+    }
+
+    function closeVocabModal(event) {
+      if (event && event.target.id !== 'vocabModal') return;
+      const modal = document.getElementById('vocabModal');
+      if (modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    // Celebration overlay functions
+    function showCelebration(title, message, emoji) {
+      const overlay = document.getElementById('celebrationOverlay');
+      if (!overlay) return;
+
+      const titleEl = document.getElementById('celebrationTitle');
+      const messageEl = document.getElementById('celebrationMessage');
+      const emojiEl = document.getElementById('celebrationEmoji');
+
+      if (titleEl) titleEl.textContent = title;
+      if (messageEl) messageEl.textContent = message;
+      if (emojiEl) emojiEl.textContent = emoji;
+
+      overlay.style.display = 'flex';
+    }
+
+    function closeCelebration() {
+      const overlay = document.getElementById('celebrationOverlay');
+      if (overlay) {
+        overlay.style.display = 'none';
+      }
+    }
+
     // Check Beef Answer
     function checkBeefAnswer() {
       const answer = parseFloat(document.getElementById('beef-answer').value);
@@ -1398,19 +1515,15 @@
       }).join('');
     }
 
-    // Update addPoints to also update global state
-    const originalAddPoints = addPoints;
-    addPoints = function(amount, reason) {
-      originalAddPoints(amount, reason);
-      if (typeof addGlobalPoints === 'function') {
-        addGlobalPoints(2, amount, reason);
-      }
-    };
-
     // ===== PROGRESSIVE NAVIGATION INITIALIZATION =====
     document.addEventListener('DOMContentLoaded', async function() {
       try {
         console.log('🚀 Initializing Episode 2 with Progressive Navigation');
+
+        // 0. Load saved progress
+        loadProgress();
+        updateProgressBar();
+        updateProgressChecklist();
 
         // 1. Create progressive navigation instance
         const progressiveNav = new ProgressiveNav(2, 7);
