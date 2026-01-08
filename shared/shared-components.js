@@ -13,7 +13,8 @@ let learningState = {
   currentSection: 1
 };
 
-const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+window.tr = window.tr || ((key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback));
+const tr = window.tr;
 
 // ===== PROGRESS TRACKING =====
 
