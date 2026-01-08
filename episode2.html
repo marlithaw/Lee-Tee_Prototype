@@ -17,7 +17,10 @@
   <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
 
   <!-- Shared Design System -->
-  <link rel="stylesheet" href="shared/design-system.css">
+  <link rel="stylesheet" href="shared-styles.css">
+  <link rel="stylesheet" href="episode2.css">
+  <link rel="stylesheet" href="shared/progressive-nav.css">
+  <link rel="stylesheet" href="shared/learning-dashboard.css">
 
   <style>
     /* Episode 2 Specific Styles */
@@ -362,11 +365,27 @@
   <!-- Load Shared Components -->
   <script src="shared-header.js"></script>
   <script src="shared-skills.js"></script>
+  <script src="shared/shared/learning-dashboard.js"></script>
+
+  <!-- Load Progressive Navigation & Translation System -->
+  <script src="translations/translation-engine.js"></script>
+  <script src="shared/progressive-nav.js"></script>
+  <script src="shared/adaptive-helpers.js"></script>
 </head>
 <body data-episode="2">
+  <div id="sticky-ui">
+    <!-- Progressive Navigation: Progress Bar + Section Nav -->
+    <div id="section-progress-bar" class="section-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+    </div>
 
-  <!-- Global Header -->
-  <div id="global-header"></div>
+    <nav id="section-nav" class="section-nav" aria-label="Section navigation">
+      <!-- Will be populated by JavaScript -->
+    </nav>
+
+    <!-- Global Header -->
+    <div id="global-header"></div>
+  </div>
 
   <!-- Mobile Rail Toggle -->
   <button onclick="toggleLeftRail()"
@@ -414,53 +433,27 @@
     <span>STOP</span>
   </button>
 
-  <!-- HEADER -->
-  <header class="hero-header">
-    <div class="max-w-4xl mx-auto">
-      <!-- PLACEHOLDER: Episode Header Image -->
-      <div class="img-placeholder mb-6" style="max-width: 500px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 100%);">
-        🥘 EPISODE 2 HEADER IMAGE<br>
-        <span style="font-size: 0.875rem;">(Grandpa's kitchen with Korean ingredients - soy sauce, sesame oil, ginger)</span>
-      </div>
-
-      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="color: #78350F;">
-        Episode 2: Grandpa's Kitchen
-      </h1>
-      <p class="text-xl md:text-2xl mb-2 font-semibold" style="color: #92400E;">
-        Korean Bulgogi & the Math of Precision
-      </p>
-      <div class="flex items-center justify-center gap-4 flex-wrap">
-        <span class="bg-white px-4 py-2 rounded-full font-semibold text-amber-800">📐 Mathematics</span>
-        <span class="bg-white px-4 py-2 rounded-full font-semibold text-amber-800">🥘 Ratios & Conversions</span>
-      </div>
-    </div>
-  </header>
-
   <!-- MAIN CONTENT CONTAINER -->
   <main class="main-with-rail min-h-screen pb-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- ACCESSIBILITY CONTROLS -->
-    <div class="sticky-section-nav">
-      <div class="flex items-center justify-between flex-wrap gap-3">
-        <div class="flex items-center gap-3 flex-wrap">
-          <button onclick="toggleDyslexia()" class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg font-semibold text-purple-700 transition">
-            👓 Dyslexia Mode
-          </button>
-          <button onclick="toggleHighContrast()" class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg font-semibold text-gray-700 transition">
-            ◐ High Contrast
-          </button>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600">Progress:</span>
-          <span id="pointsDisplay" class="font-bold text-amber-600 text-lg">0</span>
-          <span class="text-sm text-gray-600">points</span>
-          <div id="badgeContainer" class="flex gap-1 ml-2"></div>
-        </div>
+    <!-- EPISODE HEADER -->
+    <header class="hero-gradient text-white p-8 md:p-12 text-center mb-8" style="background: linear-gradient(135deg, #FEF3C7 0%, #FBBF24 50%, #F59E0B 100%); color: #78350F; border-radius: 1rem;">
+      <div class="inline-block bg-white/20 backdrop-blur px-4 py-1 rounded-full text-sm font-semibold mb-4">
+        📐 Episode 2 • Mathematics: Ratios & Conversions
       </div>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-3">Episode 2: Grandpa's Kitchen</h1>
+      <p class="text-xl opacity-90 max-w-md mx-auto">
+        Korean Bulgogi & the Math of Precision
+      </p>
+    </header>
+
+    <!-- SECTION DISPLAY CONTAINER -->
+    <div id="section-display">
+      <!-- Sections will be wrapped by JavaScript -->
     </div>
 
-    <!-- SECTION 1: THE SMELL -->
+    <!-- SECTION 1: THE SMELL (SEL + OPENER) -->
     <section id="section-1" class="mb-12">
       <div class="bg-white rounded-xl p-6 shadow-lg border-t-4 border-amber-400">
         <h2 class="font-display text-3xl font-bold mb-4 episode-accent">
@@ -1413,6 +1406,223 @@
         addGlobalPoints(2, amount, reason);
       }
     };
+
+    // ===== PROGRESSIVE NAVIGATION INITIALIZATION =====
+    document.addEventListener('DOMContentLoaded', async function() {
+      try {
+        console.log('🚀 Initializing Episode 2 with Progressive Navigation');
+
+        // 1. Create progressive navigation instance
+        const progressiveNav = new ProgressiveNav(2, 7);
+
+        // 2. Register sections
+        progressiveNav.registerSection(1, 'Start: The Story', '📖', false);
+        progressiveNav.registerSection(2, 'Vocabulary: Key Concepts', '📚', false);
+        progressiveNav.registerSection(3, 'Story: The Math', '🔢', false);
+        progressiveNav.registerSection(4, 'Strategy: Practice', '🎯', false);
+        progressiveNav.registerSection(5, 'Model: Grandpa\'s Wisdom', '💭', false);
+        progressiveNav.registerSection(6, 'Your Turn: Reflect', '✍️', false);
+        progressiveNav.registerSection(7, 'Celebrate: Complete', '🎉', false);
+
+        // 3. Wrap existing content sections
+        wrapSectionsForProgressiveNav();
+
+        // 4. Initialize the navigation
+        progressiveNav.init();
+
+        // 5. Force Section 1 to show
+        setTimeout(() => {
+          progressiveNav.currentSection = 1;
+          progressiveNav.showSection(1);
+          console.log('✓ Episode 2 Section 1 displayed');
+        }, 100);
+
+        // 6. Load translation languages
+        if (typeof translator !== 'undefined') {
+          await translator.loadLanguage('en');
+          await translator.loadLanguage('es');
+          addTranslationUI();
+          translator.translatePage();
+        }
+
+        // 7. Initialize adaptive helpers if available
+        if (typeof adaptiveHelpers !== 'undefined') {
+          adaptiveHelpers.init();
+        }
+
+        console.log('✅ Episode 2 Progressive Navigation initialized');
+
+      } catch (error) {
+        console.error('❌ Failed to initialize Episode 2 navigation:', error);
+        // Graceful degradation - show all content
+        document.querySelectorAll('section[id^="section-"]').forEach(section => {
+          section.style.display = 'block';
+        });
+      }
+    });
+
+    /**
+     * Wrap Episode 2 sections into progressive nav containers
+     */
+    function wrapSectionsForProgressiveNav() {
+      const sectionDisplay = document.getElementById('section-display');
+      if (!sectionDisplay) {
+        console.error('section-display container not found');
+        return;
+      }
+
+      // Section 1: The Smell + Recipe Card (sections 1-2)
+      const sec1 = document.getElementById('section-1');
+      const sec2 = document.getElementById('section-2');
+      if (sec1 && sec2) {
+        const wrapper1 = document.createElement('div');
+        wrapper1.className = 'section-content';
+        wrapper1.setAttribute('data-section', '1');
+        sectionDisplay.appendChild(wrapper1);
+        wrapper1.appendChild(sec1);
+        wrapper1.appendChild(sec2);
+      }
+
+      // Section 2: Calculating + Scale Factor (sections 3-4)
+      const sec3 = document.getElementById('section-3');
+      const sec4 = document.getElementById('section-4');
+      if (sec3 && sec4) {
+        const wrapper2 = document.createElement('div');
+        wrapper2.className = 'section-content';
+        wrapper2.setAttribute('data-section', '2');
+        sectionDisplay.appendChild(wrapper2);
+        wrapper2.appendChild(sec3);
+        wrapper2.appendChild(sec4);
+      }
+
+      // Section 3: Multiplying Fractions + Scaling (sections 5-6)
+      const sec5 = document.getElementById('section-5');
+      const sec6 = document.getElementById('section-6');
+      if (sec5 && sec6) {
+        const wrapper3 = document.createElement('div');
+        wrapper3.className = 'section-content';
+        wrapper3.setAttribute('data-section', '3');
+        sectionDisplay.appendChild(wrapper3);
+        wrapper3.appendChild(sec5);
+        wrapper3.appendChild(sec6);
+      }
+
+      // Section 4: Unit Conversion + Ginger & Garlic (sections 7-8)
+      const sec7 = document.getElementById('section-7');
+      const sec8 = document.getElementById('section-8');
+      if (sec7 && sec8) {
+        const wrapper4 = document.createElement('div');
+        wrapper4.className = 'section-content';
+        wrapper4.setAttribute('data-section', '4');
+        sectionDisplay.appendChild(wrapper4);
+        wrapper4.appendChild(sec7);
+        wrapper4.appendChild(sec8);
+      }
+
+      // Section 5: Grandpa's Wisdom (section 9)
+      const sec9 = document.getElementById('section-9');
+      if (sec9) {
+        const wrapper5 = document.createElement('div');
+        wrapper5.className = 'section-content';
+        wrapper5.setAttribute('data-section', '5');
+        sectionDisplay.appendChild(wrapper5);
+        wrapper5.appendChild(sec9);
+      }
+
+      // Section 6: Reflection Activity (section 10)
+      const sec10 = document.getElementById('section-10');
+      if (sec10) {
+        const wrapper6 = document.createElement('div');
+        wrapper6.className = 'section-content';
+        wrapper6.setAttribute('data-section', '6');
+        sectionDisplay.appendChild(wrapper6);
+        wrapper6.appendChild(sec10);
+      }
+
+      // Section 7: Episode Complete
+      const episodeComplete = document.getElementById('episode-complete');
+      if (episodeComplete) {
+        const wrapper7 = document.createElement('div');
+        wrapper7.className = 'section-content';
+        wrapper7.setAttribute('data-section', '7');
+        sectionDisplay.appendChild(wrapper7);
+        wrapper7.appendChild(episodeComplete);
+      }
+
+      console.log('✓ Episode 2 sections wrapped for progressive navigation');
+    }
+
+    /**
+     * Add translation UI (simple fallback if not provided by shared header)
+     */
+    function addTranslationUI() {
+      // Translation UI will be added by shared-header.js
+      // This is just a placeholder function for compatibility
+      console.log('Translation UI loaded');
+    }
+
+    // ===== ACCESSIBILITY FUNCTIONS =====
+    function toggleDyslexia() {
+      document.body.classList.toggle('dyslexia-mode');
+    }
+
+    function toggleHighContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    // ===== NULL GUARDS FOR OPTIONAL UI ELEMENTS =====
+    function updateProgressBar() {
+      const progressBar = document.getElementById('progressBar');
+      if (progressBar) {
+        const totalSections = 10;
+        const completedSections = document.querySelectorAll('.progress-check.completed').length;
+        const percentage = (completedSections / totalSections) * 100;
+        progressBar.style.width = percentage + '%';
+
+        // Check if episode complete
+        if (percentage >= 100) {
+          setTimeout(() => {
+            const episodeCompleteEl = document.getElementById('episode-complete');
+            if (episodeCompleteEl) {
+              episodeCompleteEl.classList.remove('hidden');
+              const finalPoints = document.getElementById('final-points');
+              const finalBadges = document.getElementById('final-badges');
+              if (finalPoints) finalPoints.textContent = learningState.points;
+              if (finalBadges) finalBadges.textContent = learningState.badges.length;
+            }
+          }, 1000);
+        }
+      }
+    }
+
+    function updateProgressChecklist() {
+      const checklist = document.getElementById('progress-checklist');
+      if (!checklist) return;
+
+      const items = [
+        { id: 'progress-section1', label: 'The Smell' },
+        { id: 'progress-section2', label: 'Recipe Card' },
+        { id: 'progress-section3', label: 'Beef Calculation' },
+        { id: 'progress-section4', label: 'Scale Factor' },
+        { id: 'progress-section5', label: 'Fractions' },
+        { id: 'progress-section6', label: 'Scaling' },
+        { id: 'progress-section7', label: 'Conversions' },
+        { id: 'progress-section8', label: 'Ginger & Garlic' },
+        { id: 'progress-section9', label: 'Wisdom' },
+        { id: 'progress-section10', label: 'Reflection' }
+      ];
+
+      checklist.innerHTML = items.map(item => {
+        const el = document.getElementById(item.id);
+        const complete = el && el.classList.contains('completed');
+        return `
+          <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
+            <span class="text-lg">${complete ? '✅' : '⬜'}</span>
+            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
+          </div>
+        `;
+      }).join('');
+    }
   </script>
 
 </body>
