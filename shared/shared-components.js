@@ -5,15 +5,21 @@
  */
 
 // ===== GLOBAL STATE =====
-let learningState = {
-  points: 0,
-  badges: [],
-  completedActivities: [],
-  currentEpisode: 1,
-  currentSection: 1
-};
+// Only define if not already defined by episode-specific code
+if (typeof learningState === 'undefined') {
+  var learningState = {
+    points: 0,
+    badges: [],
+    completedActivities: [],
+    currentEpisode: 1,
+    currentSection: 1
+  };
+}
 
-const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+// Only define tr if not already defined
+if (typeof tr === 'undefined') {
+  var tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+}
 
 // ===== PROGRESS TRACKING =====
 
