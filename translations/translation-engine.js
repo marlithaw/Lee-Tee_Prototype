@@ -30,14 +30,6 @@ class TranslationEngine {
     ];
   }
 
-  getStoryPath(lang) {
-    const episode = document.body?.dataset?.episode;
-    if (episode && episode !== '1') {
-      return `locales/story-episode${episode}.${lang}.json`;
-    }
-    return `locales/story.${lang}.json`;
-  }
-
   async loadLanguage(lang) {
     if (!this.availableLangs.includes(lang)) {
       console.warn(`Language '${lang}' not supported. Using ${this.fallbackLang}`);
@@ -49,7 +41,7 @@ class TranslationEngine {
     }
 
     if (!this.storyTranslations[lang]) {
-      this.storyTranslations[lang] = await this.fetchJson(this.getStoryPath(lang));
+      this.storyTranslations[lang] = await this.fetchJson(`locales/story.${lang}.json`);
     }
 
     return this.uiTranslations[lang];
