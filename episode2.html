@@ -1163,11 +1163,14 @@
   <!-- Episode 2 Specific JavaScript -->
   <script>
     // ===== LEARNING STATE MANAGEMENT =====
-    let learningState = {
-      points: 0,
-      badges: [],
-      completedActivities: []
-    };
+    // Initialize learningState if not already defined by shared-components.js
+    if (typeof learningState === 'undefined') {
+      var learningState = {
+        points: 0,
+        badges: [],
+        completedActivities: []
+      };
+    }
 
     // Load progress from localStorage
     function loadProgress() {
