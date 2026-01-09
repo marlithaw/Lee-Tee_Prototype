@@ -198,6 +198,61 @@
       50% { transform: scale(1.05); }
     }
 
+    /* Character Helper Buttons (matches Episode 1) */
+    .helper-btn {
+      position: fixed;
+      bottom: 20px;
+      z-index: 90;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .helper-btn:hover { transform: scale(1.1); }
+    .helper-btn img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      object-fit: cover;
+      object-position: top center;
+    }
+    .helper-btn .label {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    #helper-lee { left: 20px; }
+    #helper-tee { left: 100px; }
+
+    /* Helper Modals */
+    .helper-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 150;
+      padding: 1rem;
+    }
+    .helper-modal.open { display: flex; }
+    .helper-content {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
     /* Story Text Highlighting */
     .story-text {
       font-size: 1.25rem;
@@ -397,6 +452,51 @@
 
   <!-- Left Rail Sidebar -->
   <aside id="left-rail" class="left-rail mobile-hidden">
+    <!-- Unified Learning Dashboard Shell (matches Episode 1) -->
+    <div id="learningShell" class="learning-shell" style="position: static; border: none; box-shadow: none; padding: 1rem 0; margin-bottom: 1.5rem;">
+      <button id="learningShellToggle" class="learning-shell__mobile-toggle" aria-expanded="false">
+        📚 Learning Dashboard
+      </button>
+      <div class="learning-shell__row" style="grid-template-columns: 1fr; gap: 1rem;">
+        <div class="learning-shell__section">
+          <span class="learning-shell__pill">Book 1 Journey</span>
+          <div class="learning-shell__meta-title">Same Structure. Different Stuff.</div>
+          <div class="learning-shell__meta-subtitle">Stay aware of goals and wins across episodes.</div>
+          <div class="learning-shell__label-row">
+            <span id="learningShellBookLabel">Book 1: 0/4 Episodes</span>
+            <span id="learningShellBookPercent">0%</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellBookFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section learning-shell__episode">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title" id="learningShellEpisodeTitle">Episode 2</span>
+            <span class="learning-shell__meta-subtitle" id="learningShellEpisodeLabel">0/15 sections</span>
+          </div>
+          <div class="learning-shell__progress" aria-hidden="true">
+            <div id="learningShellEpisodeFill" class="learning-shell__progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="learning-shell__section">
+          <div class="learning-shell__label-row">
+            <span class="learning-shell__meta-title">Recent Badges</span>
+            <span class="learning-shell__meta-subtitle">Motivation at a glance</span>
+          </div>
+          <div id="learningShellBadges" class="learning-shell__badge-row" aria-live="polite"></div>
+        </div>
+
+        <div class="learning-shell__section" style="align-items: flex-end;">
+          <a id="learningShellContinue" class="learning-shell__cta" href="#">
+            ▶ Continue
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="mb-6">
       <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
         <span class="text-xl">✓</span>
@@ -411,11 +511,11 @@
         Quick Jump
       </h3>
       <div class="space-y-2 text-sm">
-        <a href="#vocab" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">📚 Vocabulary</a>
-        <a href="#story" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">📖 Story</a>
-        <a href="#practice" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✍️ Practice</a>
-        <a href="#check" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✅ Check</a>
-        <a href="#reflect" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">💭 Reflect</a>
+        <a href="#section-1" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">👃 The Smell</a>
+        <a href="#section-3" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">🥩 Beef Calculation</a>
+        <a href="#section-5" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✖️ Fractions</a>
+        <a href="#section-7" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">🔄 Conversions</a>
+        <a href="#section-10" class="block px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-700">✍️ Reflection</a>
       </div>
     </div>
 
@@ -432,6 +532,73 @@
     <span>⏹️</span>
     <span>STOP</span>
   </button>
+
+  <!-- Character Helper Buttons (matching Episode 1) -->
+  <div id="helper-lee" class="helper-btn" onclick="openHelper('lee')">
+    <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee with notebook">
+    <div class="label text-purple-600">ASK LEE</div>
+  </div>
+
+  <div id="helper-tee" class="helper-btn" onclick="openHelper('tee')">
+    <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee gesturing">
+    <div class="label text-amber-600">ASK TEE</div>
+  </div>
+
+  <!-- Lee's Helper Modal -->
+  <div id="lee-modal" class="helper-modal" onclick="closeHelper(event, 'lee')">
+    <div class="helper-content bg-purple-50 border-2 border-purple-300">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee" class="w-14 h-14 rounded-full border-2 border-purple-400 object-cover object-top">
+        <div>
+          <h3 class="font-display text-xl font-bold text-purple-700">Lee's Writing Tips</h3>
+          <p class="text-sm text-purple-600">For Episode 2: Math & Precision</p>
+        </div>
+      </div>
+      <div class="space-y-3 text-sm">
+        <div class="bg-white rounded-lg p-3 border border-purple-200">
+          <p class="font-semibold text-purple-800 mb-1">📝 Sentence Starters</p>
+          <ul class="list-disc pl-4 space-y-1 text-gray-700">
+            <li>"The recipe requires..." → explain quantities</li>
+            <li>"To scale up/down, I need to..." → show process</li>
+            <li>"Converting units means..." → define terms</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-3 border border-purple-200">
+          <p class="font-semibold text-purple-800 mb-1">🧮 Math Writing Tips</p>
+          <p class="text-gray-700">Show your work! Write out each step clearly.</p>
+        </div>
+      </div>
+      <button onclick="document.getElementById('lee-modal').classList.remove('open')" class="mt-4 w-full bg-purple-600 text-white py-2 rounded-lg font-semibold">Got it!</button>
+    </div>
+  </div>
+
+  <!-- Tee's Helper Modal -->
+  <div id="tee-modal" class="helper-modal" onclick="closeHelper(event, 'tee')">
+    <div class="helper-content bg-amber-50 border-2 border-amber-300">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee" class="w-14 h-14 rounded-full border-2 border-amber-400 object-cover object-top">
+        <div>
+          <h3 class="font-display text-xl font-bold text-amber-700">Tee's Strategy Check</h3>
+          <p class="text-sm text-amber-600">Think about these questions...</p>
+        </div>
+      </div>
+      <div class="space-y-3 text-sm">
+        <div class="bg-white rounded-lg p-3 border border-amber-200">
+          <p class="font-semibold text-amber-800 mb-1">🎯 Check Your Work</p>
+          <ul class="list-disc pl-4 space-y-1 text-gray-700">
+            <li>Does my answer make sense?</li>
+            <li>Did I multiply/divide correctly?</li>
+            <li>Are my units correct?</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-lg p-3 border border-amber-200">
+          <p class="font-semibold text-amber-800 mb-1">🔍 When Stuck</p>
+          <p class="text-gray-700">Go back to the original recipe and identify what changed.</p>
+        </div>
+      </div>
+      <button onclick="document.getElementById('tee-modal').classList.remove('open')" class="mt-4 w-full bg-amber-500 text-white py-2 rounded-lg font-semibold">Got it!</button>
+    </div>
+  </div>
 
   <!-- MAIN CONTENT CONTAINER -->
   <main class="main-with-rail min-h-screen pb-20">
@@ -1282,6 +1449,17 @@
       }
     }
 
+    // Helper Modal Functions (matches Episode 1)
+    function openHelper(character) {
+      document.getElementById(character + '-modal').classList.add('open');
+    }
+
+    function closeHelper(e, character) {
+      if (e.target.classList.contains('helper-modal')) {
+        document.getElementById(character + '-modal').classList.remove('open');
+      }
+    }
+
     // Check Beef Answer
     function checkBeefAnswer() {
       const answer = parseFloat(document.getElementById('beef-answer').value);
@@ -1395,36 +1573,8 @@
       markProgressComplete('progress-section10');
     }
 
-    // Mark Progress Complete
-    function markProgressComplete(progressId) {
-      const progressEl = document.getElementById(progressId);
-      if (!progressEl) return;
-
-      const points = parseInt(progressEl.getAttribute('data-points')) || 0;
-
-      if (!progressEl.classList.contains('completed')) {
-        progressEl.classList.add('completed');
-        updateProgressBar();
-      }
-    }
-
-    // Update Progress Bar
-    function updateProgressBar() {
-      const totalSections = 10;
-      const completedSections = document.querySelectorAll('.progress-check.completed').length;
-      const percentage = (completedSections / totalSections) * 100;
-
-      document.getElementById('progressBar').style.width = percentage + '%';
-
-      // Check if episode complete
-      if (percentage >= 100) {
-        setTimeout(() => {
-          document.getElementById('episode-complete').classList.remove('hidden');
-          document.getElementById('final-points').textContent = learningState.points;
-          document.getElementById('final-badges').textContent = learningState.badges.length;
-        }, 1000);
-      }
-    }
+    // NOTE: markProgressComplete is defined earlier (lines 1218-1232) - removed duplicate here
+    // NOTE: updateProgressBar is defined below (lines 1690+) with null guards - removed duplicate here
 
     // Simplified Text-to-Speech
     function playStorySection(sectionId) {
@@ -1491,32 +1641,7 @@
       }
     }
 
-    function updateProgressChecklist() {
-      const checklist = document.getElementById('progress-checklist');
-      if (!checklist) return;
-
-      const items = [
-        { id: 'progress-section1', label: 'Introduction' },
-        { id: 'progress-section2', label: 'The Recipe' },
-        { id: 'progress-section3', label: 'The Problem' },
-        { id: 'progress-section4', label: 'Scale Factor' },
-        { id: 'progress-section5', label: 'The Math' },
-        { id: 'progress-section6', label: 'Calculator Activity' },
-        { id: 'progress-section7', label: 'Check Understanding' },
-        { id: 'progress-section8', label: 'Reflection' }
-      ];
-
-      checklist.innerHTML = items.map(item => {
-        const el = document.getElementById(item.id);
-        const complete = el && el.classList.contains('completed');
-        return `
-          <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
-            <span class="text-lg">${complete ? '✅' : '⬜'}</span>
-            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
-          </div>
-        `;
-      }).join('');
-    }
+    // NOTE: updateProgressChecklist is defined below (with all 10 items) - removed duplicate here
 
     // ===== PROGRESSIVE NAVIGATION INITIALIZATION =====
     document.addEventListener('DOMContentLoaded', async function() {
@@ -1553,17 +1678,28 @@
           console.log('✓ Episode 2 Section 1 displayed');
         }, 100);
 
-        // 6. Load translation languages
+        // 6. Load translation languages (matching Episode 1)
         if (typeof translator !== 'undefined') {
           await translator.loadLanguage('en');
           await translator.loadLanguage('es');
+          await translator.loadLanguage('fr');
+          await translator.loadLanguage('ht');
           addTranslationUI();
           translator.translatePage();
+          // Add story language rendering (matches Episode 1)
+          if (typeof translator.renderStoryLanguage === 'function') {
+            translator.renderStoryLanguage(translator.currentLang);
+          }
         }
 
         // 7. Initialize adaptive helpers if available
         if (typeof adaptiveHelpers !== 'undefined') {
           adaptiveHelpers.init();
+        }
+
+        // 8. Sync unified dashboard shell (matches Episode 1)
+        if (window.LearningShell && typeof window.LearningShell.refresh === 'function') {
+          window.LearningShell.refresh();
         }
 
         console.log('✅ Episode 2 Progressive Navigation initialized');
@@ -1688,12 +1824,13 @@
 
     // ===== NULL GUARDS FOR OPTIONAL UI ELEMENTS =====
     function updateProgressBar() {
-      const progressBar = document.getElementById('progressBar');
-      if (progressBar) {
+      // Use progress-fill (the actual element ID in HTML) not progressBar
+      const progressFill = document.getElementById('progress-fill');
+      if (progressFill) {
         const totalSections = 10;
         const completedSections = document.querySelectorAll('.progress-check.completed').length;
         const percentage = (completedSections / totalSections) * 100;
-        progressBar.style.width = percentage + '%';
+        progressFill.style.width = percentage + '%';
 
         // Check if episode complete
         if (percentage >= 100) {
