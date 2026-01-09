@@ -1,0 +1,381 @@
+{
+  "nav": {
+    "start": "Start & Check-In",
+    "vocab": "Vocabulary",
+    "story": "The Story",
+    "strategy": "Tee's 4-Step Strategy",
+    "model": "Lee's Model Essay",
+    "write": "Your Turn to Write",
+    "reflect": "Reflect & Celebrate"
+  },
+  "vocab": {
+    "title": "Words You'll Need",
+    "intro": "Let's learn three important words. Can you predict which word fits each sentence?",
+    "word_bank": "📖 Word Bank:",
+    "tap_to_learn": "Tap to learn",
+    "claim": "Claim",
+    "claim_subtitle": "Your main point or argument",
+    "claim_def": "What you're trying to prove in your argument",
+    "claim_example": "In story: \"Tee never wins...\"",
+    "evidence": "Evidence",
+    "evidence_subtitle": "Proof or facts (\"receipts\")",
+    "evidence_def": "Concrete proof that supports your claim",
+    "evidence_example": "In story: Attendance records",
+    "counterclaim": "Counterclaim",
+    "counterclaim_subtitle": "Opposite view",
+    "counterclaim_def": "The other side's argument you need to address",
+    "counterclaim_example": "In story: Jayden's challenge",
+    "conclusion": "Conclusion",
+    "rebuttal": "Rebuttal",
+    "rebuttal_def": "Your answer to the counterclaim",
+    "reasoning": "Reasoning",
+    "reasoning_def": "Explain how your evidence supports your claim",
+    "ritual_marker": "🥄 Stir It — Gather the Ingredients",
+    "siop_vocab": "📚 Vocabulary Pre-teach",
+    "siop_visual": "🖼️ Visual Supports",
+    "siop_frames": "🗣️ Sentence Frames"
+  },
+  "sel": {
+    "question": "How are you feeling today?",
+    "excited": "Excited",
+    "calm": "Calm",
+    "nervous": "Nervous",
+    "tired": "Tired",
+    "happy": "Happy",
+    "worried": "Worried",
+    "ready": "Ready",
+    "unsure": "Unsure"
+  },
+  "character": {
+    "title": "Choose Your Learning Partner",
+    "lee_name": "Lee",
+    "lee_desc": "I like taking notes and using supports",
+    "tee_name": "Tee",
+    "tee_desc": "I prefer thinking strategically step-by-step",
+    "choose": "Choose"
+  },
+  "helpers": {
+    "lee_writing": "Need help getting started? Try these sentence starters:",
+    "tee_strategy": "Don't be loud. Be right. Ask yourself:"
+  },
+  "story": {
+    "title": "Lee & Tee: The Recess Battle",
+    "episode": "Episode 1",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden",
+      "lee_label": "Lee",
+      "lee_desc": "Hangs back, hugs notebook, doesn't like noise",
+      "tee_label": "Tee",
+      "tee_desc": "Walks toward noise, confident, ready"
+    },
+    "highlight_battle": "\"That is definitely a battle,\"",
+    "tee_heading_in": "— Tee said. He was already walking toward it.",
+    "jayden_taunt": "\"There you go. Big talk Tee. Try not to choke.\"",
+    "jayden_loud": "— Jayden said, loud enough for everyone to hear."
+  },
+  "buttons": {
+    "listen": "🔊 Listen",
+    "read_aloud": "🎙️ Read Aloud",
+    "stop": "⏹️ Stop",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "check": "Check",
+    "check_answer": "Check Answer",
+    "continue": "Continue",
+    "try_again": "Try Again",
+    "speak_answer": "🎤 Speak Answer",
+    "clear": "🗑️ Clear",
+    "show_vocab": "View Definition",
+    "close": "Close"
+  },
+  "ui": {
+    "points": "Points",
+    "progress": "Progress",
+    "complete": "Complete",
+    "lesson_complete": "Lesson Complete!",
+    "great_work": "Great work!",
+    "correct": "✓ Correct!",
+    "incorrect": "❌ Not quite. Try again!",
+    "loading": "Loading...",
+    "saved": "Saved",
+    "language": "Language",
+    "language_label": "Language:",
+    "goal_label": "🎯 Today's Goal:",
+    "goal_text": "Learn the 4-step structure for addressing counterclaims by watching a rap battle"
+  },
+  "instructions": {
+    "select_emotion": "Select how you're feeling:",
+    "select_character": "Choose your learning partner:",
+    "read_story": "Read the story:",
+    "answer_question": "Answer the question:",
+    "fill_blank": "Fill in the blank:",
+    "click_to_reveal": "Click to reveal"
+  },
+  "reflection": {
+    "title": "Reflect on Your Learning",
+    "question1": "When have you had to address a counterclaim in real life?",
+    "question2": "What's the difference between arguing with facts vs. arguing with volume?",
+    "question3": "How do you feel now after this lesson?",
+    "placeholder1": "Maybe with a friend, family member, or teacher...",
+    "placeholder2": "Think about Tee's calm approach compared to how Jayden started...",
+    "confident": "Confident",
+    "curious": "Curious",
+    "ready_emotion": "Ready!",
+    "still_unsure": "Still Unsure"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Key Takeaway:",
+    "quote": "\"Loud is not the same as true.\"",
+    "from_notebook": "— From Lee's notebook",
+    "your_points": "Your Learning Points:",
+    "next_episode": "➡️ Next Episode"
+  },
+  "section3": {
+    "title": "The Story Begins",
+    "ritual_marker": "🍳 Cook It — Follow the Recipe",
+    "listen_btn": "🔊 Listen",
+    "read_aloud_btn": "🎙️ Read Aloud",
+    "ms_rodriguez_intro": "\"Your opinion essay is due Friday. You need to state a <span class=\"vocab-word\" onclick=\"showVocab('claim')\">claim</span>, provide <span class=\"vocab-word\" onclick=\"showVocab('evidence')\">evidence</span>, address a <span class=\"vocab-word\" onclick=\"showVocab('counterclaim')\">counterclaim</span>, and draw a conclusion. This is argumentative writing. Use facts, not feelings.\"",
+    "lee_thinking": "Lee had written it all down. She <em>always</em> wrote everything down."
+  },
+  "section4": {
+    "title": "Tee's 4-Step Strategy",
+    "ritual_marker": "🔬 Test It — Experiment with the Method",
+    "intro": "Tee didn't shout. She used a step-by-step plan. Here is her strategy:",
+    "step1": "Step 1: Repeat their claim",
+    "step1_desc": "Show you listened",
+    "step2": "Step 2: Agree with what's true",
+    "step2_desc": "Find common ground",
+    "step3": "Step 3: Bring YOUR evidence",
+    "step3_desc": "Facts, not volume",
+    "step4": "Step 4: Restate YOUR claim",
+    "step4_desc": "Finish strong",
+    "guided_practice": "Guided Practice"
+  },
+  "section5": {
+    "title": "Lee's Model Essay",
+    "ritual_marker": "🔎 Study It — Analyze the Model",
+    "intro": "Lee wrote everything down. Let's see how her essay has ALL the parts:",
+    "find_parts": "Find the Essay Parts",
+    "instruction": "Click a button below, then click the paragraph that contains that part.",
+    "find_claim": "Find the CLAIM",
+    "find_evidence": "Find the EVIDENCE",
+    "find_counterclaim": "Find the COUNTERCLAIM",
+    "find_conclusion": "Find the CONCLUSION"
+  },
+  "section6": {
+    "title": "Your Turn to Write",
+    "ritual_marker": "✨ Make It Yours — Create Your Version",
+    "intro": "Now it's your turn. Write a short response using Tee's strategy or Lee's model.",
+    "prompt": "Write a short response (3-5 sentences) where you address a counterclaim.",
+    "checklist_title": "Writing Checklist:",
+    "checklist_1": "□ I acknowledged the counterclaim",
+    "checklist_2": "□ I provided evidence",
+    "checklist_3": "□ I restated my claim",
+    "tip": "Tip: Check each item as you include it in your response!"
+  },
+  "hero": {
+    "title": "The Recess Battle",
+    "subtitle": "How to win an argument without yelling—a story about loudness vs. logic",
+    "standard_code": "CCSS.ELA.W.5.1",
+    "standard_label": "Opinion Writing with Reasons"
+  },
+  "banners": {
+    "language_objective_title": "Language Objective:",
+    "language_objective_body": "I will use academic vocabulary (claim, evidence, counterclaim) to discuss and write about arguments.",
+    "content_objective_title": "Content Objective:",
+    "content_objective_body": "I will identify and address counterclaims using a 4-step strategy in both discussions and writing.",
+    "heading": "SIOP Language & Content Objectives"
+  },
+  "feedback": {
+    "problem_not_quite": "Not quite! ",
+    "problem_behavior": "Remember: we're looking for what makes the ARGUMENT weak, not just behavior issues. ",
+    "problem_two_answers": "There are TWO correct answers - make sure you select both!",
+    "problem_explanation": "Jayden's argument is weak because he makes big claims (\"never wins at nothing\") without any proof. That's called an unsupported claim. Let's see how Tee responds...",
+    "comp1": "✓ Right! Lee says the counterclaim part feels \"slippery\" and \"hard to hold.\"",
+    "comp2": "✓ Exactly! Tee noticed Jayden made claims but gave \"zero facts\" - no proof at all.",
+    "guided1": "✓ Correct! Tee is repeating what Jayden claimed.",
+    "guided2": "✓ Yes! Tee is bringing facts and receipts.",
+    "guided3": "✓ Perfect! Tee is connecting her evidence to why Jayden's claim fails.",
+    "guided_complete": "🎉 Great! Now you're ready to sequence the rap lines.",
+    "match_success": "✓ You matched them all! Street smarts = Book smarts!"
+  },
+  "rewards": {
+    "critical_thinking": "Critical thinking!"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Español",
+    "fr": "Français",
+    "ht": "Kreyòl Ayisyen"
+  },
+  "controls": {
+    "previous": "Previous",
+    "next": "Next",
+    "finish": "Finish",
+    "close": "Close"
+  },
+  "modes": {
+    "guided": "Guided",
+    "explore": "Explore"
+  },
+  "messages": {
+    "reset_episode_confirm": "Are you sure you want to reset all progress? This will clear all points and badges.",
+    "reset_nav_confirm": "Are you sure you want to reset all progress? This cannot be undone.",
+    "reset_global_progress": "Reset all progress for this episode?",
+    "drag_correct": "Perfect! All steps are in the correct order!",
+    "drag_incorrect": "Not quite right. Try again!",
+    "writing_saved": "Writing saved! Great work!",
+    "writing_too_short": "You need at least 50 words. Current: {{count}}",
+    "episode_complete": "🎉 Episode Complete! Well done!",
+    "word_count": "{{count}} words"
+  },
+  "progress_labels": {
+    "sel": "Check-In",
+    "vocab": "Vocabulary",
+    "section1": "Section 1",
+    "section2": "Section 2",
+    "section3": "Section 3",
+    "drag": "Drag & Drop",
+    "essay": "Model Essay",
+    "reflect": "Reflection"
+  },
+  "character_feedback": {
+    "lee_title": "Great choice! You chose Lee!",
+    "lee_body": "You'll see more sentence frames, word banks, and step-by-step scaffolds throughout the lesson.",
+    "tee_title": "Great choice! You chose Tee!",
+    "tee_body": "You'll see strategic thinking questions and problem-solving prompts throughout the lesson."
+  },
+  "help": {
+    "cta": "Got it!",
+    "vocab_lee": {
+      "title": "📝 Lee: Word Help",
+      "bullets": [
+        "A claim is what someone believes",
+        "Evidence is proof that supports the claim",
+        "Try this frame: \"I claim that ___ because ___\""
+      ],
+      "example": "Example: \"I claim that recess is important because students need exercise.\""
+    },
+    "vocab_tee": {
+      "title": "🤔 Tee: Strategy Check",
+      "bullets": [
+        "What is the writer trying to prove?",
+        "What facts or examples support their point?",
+        "Could someone disagree? What would they say?"
+      ]
+    },
+    "sequence_tee": {
+      "title": "🤔 Tee: How to Order the Steps",
+      "bullets": [
+        "First, what does Tee do? (Repeats Jayden's claim)",
+        "Then what? (Points out the weakness)",
+        "Next? (Gives proof/evidence)",
+        "Finally? (Wraps it up with impact)"
+      ]
+    },
+    "sequence_lee": {
+      "title": "📝 Lee: Sentence Frame Reminder",
+      "bullets": [
+        "Step 1: \"You said ___\"",
+        "Step 2: \"But that doesn't work because ___\"",
+        "Step 3: \"For example, ___\"",
+        "Step 4: \"So really, ___\""
+      ]
+    },
+    "writing_lee": {
+      "title": "📝 Lee: Writing Frame",
+      "bullets": [
+        "Paragraph 1: State your claim → \"I believe that ___\"",
+        "Paragraph 2: Give evidence → \"For example, ___\" → \"This shows that ___\"",
+        "Paragraph 3: Address counterclaim → \"Some might say ___, but ___\"",
+        "Paragraph 4: Conclude → \"Therefore, ___\""
+      ]
+    },
+    "writing_tee": {
+      "title": "🤔 Tee: Quality Check",
+      "bullets": [
+        "☐ Did you clearly state what you believe?",
+        "☐ Did you give at least 2 pieces of evidence?",
+        "☐ Did you explain WHY your evidence matters?",
+        "☐ Did you address what someone might disagree with?",
+        "☐ Does your conclusion tie it all together?"
+      ]
+    }
+  },
+  "badge_modal": {
+    "earned_title": "Badge Earned!",
+    "earned_message": "You earned the {{badge}} badge!",
+    "confirm": "Awesome!"
+  },
+  "badge_names": {
+    "first_steps": "First Steps",
+    "vocab_master": "Vocab Master",
+    "critical_thinker": "Critical Thinker",
+    "response_writer": "Response Writer",
+    "strategy_expert": "Strategy Expert",
+    "super_reader": "Super Reader",
+    "episode_champion": "Episode Champion",
+    "book_complete": "Book 1 Complete"
+  },
+  "essay_hunt": {
+    "found_prefix": "✓ Found",
+    "perfect": "🎉 Perfect! You found all four parts!",
+    "continue": "✓ Correct! Click another button to continue.",
+    "not_quite": "❌ Not quite. Try again!"
+  },
+  "quiz": {
+    "correct_title": "✓ Correct!",
+    "correct_body": "Great job! You got it right.",
+    "incorrect_title": "✗ Not quite",
+    "incorrect_body": "Try again! Review the text and think about the evidence."
+  },
+  "accessibility_menu": {
+    "title": "Accessibility",
+    "dyslexia": "Dyslexia-friendly font",
+    "high_contrast": "High contrast",
+    "hints": "Show hints"
+  },
+  "header": {
+    "home": "Home",
+    "book_progress": "Book Progress",
+    "episode_progress": "Episode Progress",
+    "points": "Points",
+    "badges": "Badges",
+    "learning_guide": "Learning Guide",
+    "lee_mode": "Lee",
+    "tee_mode": "Tee",
+    "accessibility": "Accessibility",
+    "dyslexia_font": "Dyslexia-friendly font",
+    "high_contrast": "High contrast mode",
+    "sections_complete": "Sections Complete",
+    "book_label": "Book",
+    "points_short": "points",
+    "points_badges": "Points & Badges",
+    "total_points": "Total Points",
+    "badges_earned": "Badges Earned",
+    "close": "Close",
+    "episode_label": "Episode"
+  },
+  "global_badges": {
+    "first_episode": {
+      "title": "First Steps",
+      "description": "Completed Episode 1"
+    },
+    "two_episodes": {
+      "title": "Book Explorer",
+      "description": "Completed 2 episodes"
+    },
+    "hundred_points": {
+      "title": "Super Learner",
+      "description": "Earned 100+ points"
+    },
+    "book_complete": {
+      "title": "Book Champion",
+      "description": "Completed Book 1"
+    }
+  }
+}

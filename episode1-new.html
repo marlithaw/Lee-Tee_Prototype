@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Episode 1: The Recess Battle | Lee & Tee</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&family=OpenDyslexic:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="shared-styles.css">
+  <link rel="stylesheet" href="episode1.css">
+
+  <!-- Scripts -->
+  <script src="shared-lesson.js" defer></script>
+  <script src="episode1.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== FIXED HEADER ===== -->
+  <header id="lesson-header">
+    <div class="header-content">
+      <!-- Left: Episode Info & Phase -->
+      <div class="episode-info">
+        <a href="index.html" class="home-link">← Home</a>
+        <div class="phase-info">
+          <div class="episode-title">Episode 1: The Recess Battle</div>
+          <div class="phase-title">
+            Phase <span id="current-phase-num">0</span> of 4:
+            <span id="current-phase-title">Start & Setup</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Progress Bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar">
+          <div id="phase-progress-bar" class="progress-fill" style="width: 0%"></div>
+        </div>
+        <span id="phase-progress-text" class="progress-text">0%</span>
+      </div>
+
+      <!-- Right: Points, Badges, Controls -->
+      <div class="header-controls">
+        <div class="points-badge">
+          <span>⭐</span>
+          <span id="points-display">0</span>
+        </div>
+
+        <div class="badges-badge">
+          <span>🏆</span>
+          <span id="badges-display">0</span>
+        </div>
+
+        <button id="mode-toggle" class="mode-toggle" onclick="toggleMode()">
+          <span id="mode-text">Guided</span> ⇄
+        </button>
+
+        <button class="accessibility-btn" onclick="toggleAccessibilityMenu()" title="Accessibility settings">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM10 0a10 10 0 110 20 10 10 0 010-20zm0 4v12a6 6 0 000-12z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="lesson-container">
+
+    <!-- ============================================ -->
+    <!-- PHASE 0: START & SETUP -->
+    <!-- ============================================ -->
+    <section class="lesson-phase is-active" data-phase="0" data-phase-title="Start & Setup">
+      <div class="phase-header">
+        <h2><span class="phase-number">Phase 0</span> Start & Setup</h2>
+      </div>
+
+      <div class="phase-content">
+        <!-- Hero Section -->
+        <div style="text-align: center; padding: 2rem 0;">
+          <h1 style="font-size: 2.5rem; color: #7C3AED; margin-bottom: 1rem;">
+            The Recess Battle
+          </h1>
+          <p style="font-size: 1.25rem; color: #6b7280;">
+            How to win an argument without yelling—a story about <em>loudness</em> vs. <em>logic</em>
+          </p>
+        </div>
+
+        <!-- Emotional Check -->
+        <div style="background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
+          <h2 style="text-align: center; margin-bottom: 1.5rem;">How are you feeling today?</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+            <button class="emotion-choice btn" onclick="selectEmotion('excited')" style="background: #fef3c7; border: 2px solid #f59e0b;">
+              <div style="font-size: 2rem;">😊</div>
+              <div>Excited</div>
+            </button>
+            <button class="emotion-choice btn" onclick="selectEmotion('nervous')" style="background: #dbeafe; border: 2px solid #3b82f6;">
+              <div style="font-size: 2rem;">😰</div>
+              <div>Nervous</div>
+            </button>
+            <button class="emotion-choice btn" onclick="selectEmotion('curious')" style="background: #d1fae5; border: 2px solid #10b981;">
+              <div style="font-size: 2rem;">🤔</div>
+              <div>Curious</div>
+            </button>
+            <button class="emotion-choice btn" onclick="selectEmotion('tired')" style="background: #e5e7eb; border: 2px solid #6b7280;">
+              <div style="font-size: 2rem;">😴</div>
+              <div>Tired</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide Choice -->
+        <div style="background: linear-gradient(135deg, #fae8ff 0%, #fef3c7 100%); padding: 2rem; border-radius: 1rem; margin: 2rem 0;">
+          <h2 style="text-align: center; margin-bottom: 1rem;">Choose Your Learning Guide</h2>
+          <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">
+            Pick who you'd like to help you through this lesson. You can switch anytime!
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <div class="guide-choice card" onclick="selectGuide('lee')" style="cursor: pointer; text-align: center; border: 3px solid transparent;">
+              <h3 style="color: #7C3AED; margin-bottom: 0.5rem;">📝 Start with Lee</h3>
+              <p style="font-size: 0.875rem; color: #6b7280;">
+                Lee gives you step-by-step help, sentence frames, and examples.
+              </p>
+            </div>
+
+            <div class="guide-choice card" onclick="selectGuide('tee')" style="cursor: pointer; text-align: center; border: 3px solid transparent;">
+              <h3 style="color: #f59e0b; margin-bottom: 0.5rem;">🎯 Start with Tee</h3>
+              <p style="font-size: 0.875rem; color: #6b7280;">
+                Tee asks strategic questions to help you think it through.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-footer">
+        <div></div> <!-- Empty for spacing -->
+        <button class="btn btn-continue" onclick="completePhase(0)" disabled>
+          Start Learning →
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PHASE 1: BUILD FOUNDATIONS -->
+    <!-- ============================================ -->
+    <section class="lesson-phase" data-phase="1" data-phase-title="Build Foundations">
+      <div class="phase-header">
+        <h2><span class="phase-number">Phase 1</span> Build Foundations</h2>
+      </div>
+
+      <div class="phase-content">
+        <!-- Words You'll Need -->
+        <div class="card">
+          <h2 style="color: #7C3AED; margin-bottom: 1rem;">📚 Words You'll Need</h2>
+          <p style="margin-bottom: 2rem;">
+            These three words are the building blocks of every strong argument. Let's learn them!
+          </p>
+
+          <div style="display: grid; gap: 1.5rem;">
+            <!-- Claim -->
+            <div style="background: #fef3c7; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
+              <h3 style="color: #78350f; margin-bottom: 0.5rem;">claim</h3>
+              <p style="font-size: 0.875rem; color: #78350f; margin-bottom: 0.5rem;">
+                <strong>What it means:</strong> The main point someone is trying to prove. What they believe.
+              </p>
+              <p style="font-size: 0.875rem; color: #78350f; font-style: italic;">
+                <strong>Example:</strong> "Recess should be longer because students need time to run and play."
+              </p>
+            </div>
+
+            <!-- Evidence -->
+            <div style="background: #dbeafe; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+              <h3 style="color: #1e40af; margin-bottom: 0.5rem;">evidence</h3>
+              <p style="font-size: 0.875rem; color: #1e40af; margin-bottom: 0.5rem;">
+                <strong>What it means:</strong> Facts, examples, or proof that support your claim.
+              </p>
+              <p style="font-size: 0.875rem; color: #1e40af; font-style: italic;">
+                <strong>Example:</strong> "Studies show that students who have more recess focus better in class."
+              </p>
+            </div>
+
+            <!-- Counterclaim -->
+            <div style="background: #fce7f3; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #db2777;">
+              <h3 style="color: #831843; margin-bottom: 0.5rem;">counterclaim</h3>
+              <p style="font-size: 0.875rem; color: #831843; margin-bottom: 0.5rem;">
+                <strong>What it means:</strong> The opposite argument. What someone on the other side might say.
+              </p>
+              <p style="font-size: 0.875rem; color: #831843; font-style: italic;">
+                <strong>Example:</strong> "Some teachers think longer recess means less time for learning."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Now You Try - Vocab Activity -->
+        <div class="vocab-activity">
+          <h3 style="margin-bottom: 1rem;">✍️ Now You Try: Use the Words</h3>
+          <p style="margin-bottom: 1.5rem;">
+            Fill in the blanks with the correct vocabulary word: claim, evidence, or counterclaim
+          </p>
+
+          <!-- Blank 1 -->
+          <div id="blank1" class="fill-in-blank">
+            <p><strong>1.</strong> Jayden's __________ was that he's the best rapper on the playground.</p>
+            <div class="word-choices">
+              <button class="word-choice" onclick="checkVocabAnswer('blank1', 'claim')">claim</button>
+              <button class="word-choice" onclick="checkVocabAnswer('blank1', 'evidence')">evidence</button>
+              <button class="word-choice" onclick="checkVocabAnswer('blank1', 'counterclaim')">counterclaim</button>
+            </div>
+          </div>
+
+          <!-- Blank 2 -->
+          <div id="blank2" class="fill-in-blank">
+            <p><strong>2.</strong> Tee used __________ from Jayden's own rap to prove his point.</p>
+            <div class="word-choices">
+              <button class="word-choice" onclick="checkVocabAnswer('blank2', 'claim')">claim</button>
+              <button class="word-choice" onclick="checkVocabAnswer('blank2', 'evidence')">evidence</button>
+              <button class="word-choice" onclick="checkVocabAnswer('blank2', 'counterclaim')">counterclaim</button>
+            </div>
+          </div>
+
+          <!-- Blank 3 -->
+          <div id="blank3" class="fill-in-blank">
+            <p><strong>3.</strong> Tee's __________ was that being loud doesn't make you the best.</p>
+            <div class="word-choices">
+              <button class="word-choice" onclick="checkVocabAnswer('blank3', 'claim')">claim</button>
+              <button class="word-choice" onclick="checkVocabAnswer('blank3', 'evidence')">evidence</button>
+              <button class="word-choice" onclick="checkVocabAnswer('blank3', 'counterclaim')">counterclaim</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contextual Help Buttons -->
+        <div class="help-buttons">
+          <button class="help-btn lee" onclick="openHelp('vocab-lee')">
+            📝 Lee: Word Help
+          </button>
+          <button class="help-btn tee" onclick="openHelp('vocab-tee')">
+            🤔 Tee: Strategy Check
+          </button>
+        </div>
+      </div>
+
+      <div class="phase-footer">
+        <button class="btn btn-back btn-outline" onclick="goBack()">
+          ← Back
+        </button>
+        <button class="btn btn-continue" onclick="completePhase(1)" disabled>
+          Continue to Story →
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PHASE 2: ANALYZE THE MODEL -->
+    <!-- ============================================ -->
+    <section class="lesson-phase" data-phase="2" data-phase-title="Analyze the Model">
+      <div class="phase-header">
+        <h2><span class="phase-number">Phase 2</span> Analyze the Model</h2>
+      </div>
+
+      <div class="phase-content">
+        <!-- Story Section: The Rap Battle -->
+        <div class="card">
+          <h2 style="color: #7C3AED; margin-bottom: 1rem;">📖 The Rap Battle</h2>
+
+          <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🎤 Jayden's Verse</h3>
+          <div style="background: #fee2e2; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #dc2626;">
+            <p style="font-style: italic; line-height: 1.8;">
+              "I'm the king of this playground, can't nobody compete,<br>
+              My rhymes are so fire, they can't handle the heat!<br>
+              I rap so loud everyone hears what I say,<br>
+              Volume equals talent—that's just the only way!"
+            </p>
+          </div>
+
+          <h3 style="margin-top: 2rem; margin-bottom: 1rem;">🎯 Tee's Response</h3>
+          <div style="background: #d1fae5; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #10b981;">
+            <p style="font-style: italic; line-height: 1.8;">
+              "<strong>You said volume equals talent</strong>, that's your claim right there,<br>
+              <strong>But being loud doesn't prove</strong> that your skills are rare.<br>
+              <strong>Look at your own verse</strong>—you just repeated the same,<br>
+              No wordplay, no metaphors, just hollering your name.<br>
+              <strong>So actually</strong>, quiet skill beats a loud empty boast,<br>
+              Real talent speaks volumes—you don't need to shout the most."
+            </p>
+          </div>
+        </div>
+
+        <!-- Tee's 4-Step Strategy -->
+        <div class="card" style="background: linear-gradient(135deg, #fae8ff 0%, #e0e7ff 100%);">
+          <h2 style="color: #7C3AED; margin-bottom: 1.5rem;">🎯 Tee's 4-Step Strategy</h2>
+          <p style="margin-bottom: 2rem;">
+            Tee didn't just respond with another boast. She used a specific strategy to win the argument. Let's break it down:
+          </p>
+
+          <div style="display: grid; gap: 1.5rem;">
+            <!-- Step 1 -->
+            <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #7C3AED;">
+              <h3 style="color: #7C3AED; margin-bottom: 0.5rem;">Step 1: NOTICE (Repeat the claim)</h3>
+              <p style="margin-bottom: 0.5rem;">
+                <strong>What Tee did:</strong> "You said volume equals talent"
+              </p>
+              <p style="font-size: 0.875rem; color: #6b7280;">
+                <strong>Why it works:</strong> Shows you're listening and sets up your response
+              </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
+              <h3 style="color: #f59e0b; margin-bottom: 0.5rem;">Step 2: THINK (Show the weakness)</h3>
+              <p style="margin-bottom: 0.5rem;">
+                <strong>What Tee did:</strong> "But being loud doesn't prove that your skills are rare"
+              </p>
+              <p style="font-size: 0.875rem; color: #6b7280;">
+                <strong>Why it works:</strong> Points out the logical flaw in their argument
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #10b981;">
+              <h3 style="color: #10b981; margin-bottom: 0.5rem;">Step 3: SUPPORT (Give evidence)</h3>
+              <p style="margin-bottom: 0.5rem;">
+                <strong>What Tee did:</strong> "Look at your own verse—you just repeated the same, no wordplay, no metaphors"
+              </p>
+              <p style="font-size: 0.875rem; color: #6b7280;">
+                <strong>Why it works:</strong> Uses specific examples to prove your point
+              </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #dc2626;">
+              <h3 style="color: #dc2626; margin-bottom: 0.5rem;">Step 4: CONCLUDE (Make it stick)</h3>
+              <p style="margin-bottom: 0.5rem;">
+                <strong>What Tee did:</strong> "So actually, quiet skill beats a loud empty boast"
+              </p>
+              <p style="font-size: 0.875rem; color: #6b7280;">
+                <strong>Why it works:</strong> Delivers a memorable final statement that wins the argument
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice: Drag and Drop -->
+        <div class="drag-drop-activity">
+          <h3 style="margin-bottom: 1rem;">🧩 Practice: Put the Steps in Order</h3>
+          <p style="margin-bottom: 1.5rem;">
+            Drag the steps below into the correct order (NOTICE → THINK → SUPPORT → CONCLUDE)
+          </p>
+
+          <div id="drag-container" class="drag-container">
+            <div class="drag-item" draggable="true" data-step="support">
+              <strong>3. SUPPORT:</strong> Give evidence or examples
+            </div>
+            <div class="drag-item" draggable="true" data-step="notice">
+              <strong>1. NOTICE:</strong> Repeat their claim
+            </div>
+            <div class="drag-item" draggable="true" data-step="conclude">
+              <strong>4. CONCLUDE:</strong> Make your final point
+            </div>
+            <div class="drag-item" draggable="true" data-step="think">
+              <strong>2. THINK:</strong> Show the weakness
+            </div>
+          </div>
+
+          <button class="btn btn-primary" onclick="checkDragOrder()" style="margin-top: 1rem;">
+            Check My Order
+          </button>
+        </div>
+
+        <!-- Contextual Help Buttons -->
+        <div class="help-buttons">
+          <button class="help-btn tee" onclick="openHelp('sequence-tee')">
+            🤔 Tee: How to Order the Steps
+          </button>
+          <button class="help-btn lee" onclick="openHelp('sequence-lee')">
+            📝 Lee: Sentence Frame Reminder
+          </button>
+        </div>
+      </div>
+
+      <div class="phase-footer">
+        <button class="btn btn-back btn-outline" onclick="goBack()">
+          ← Back
+        </button>
+        <button class="btn btn-continue" onclick="completePhase(2)" disabled>
+          Continue to Writing →
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PHASE 3: APPLY TO WRITING -->
+    <!-- ============================================ -->
+    <section class="lesson-phase" data-phase="3" data-phase-title="Apply to Writing">
+      <div class="phase-header">
+        <h2><span class="phase-number">Phase 3</span> Apply to Writing</h2>
+      </div>
+
+      <div class="phase-content">
+        <!-- Lee's Discovery -->
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7 0%, #fae8ff 100%);">
+          <h2 style="color: #7C3AED; margin-bottom: 1rem;">💡 Lee's Discovery</h2>
+          <p style="font-size: 1.125rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            "Wait a second," Lee said, looking at her notes. "Tee's rap battle strategy... it's the same as argumentative writing!
+            Just in a different format!"
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+            <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
+              <h4 style="color: #7C3AED;">In a Rap Battle:</h4>
+              <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>NOTICE → Repeat claim</li>
+                <li>THINK → Show weakness</li>
+                <li>SUPPORT → Give evidence</li>
+                <li>CONCLUDE → Punchline</li>
+              </ul>
+            </div>
+
+            <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
+              <h4 style="color: #f59e0b;">In an Essay:</h4>
+              <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li>NOTICE → State the topic</li>
+                <li>THINK → Present your claim</li>
+                <li>SUPPORT → Give evidence</li>
+                <li>CONCLUDE → Summarize impact</li>
+              </ul>
+            </div>
+          </div>
+
+          <p style="margin-top: 1.5rem; font-weight: 600; text-align: center; color: #7C3AED; font-size: 1.25rem;">
+            Same structure. Different format. Still powerful.
+          </p>
+        </div>
+
+        <!-- Writing Activity -->
+        <div class="writing-activity">
+          <h3 style="margin-bottom: 1rem;">✍️ Your Turn: Write a Response</h3>
+          <p style="margin-bottom: 1.5rem;">
+            Now you try! Write a short argumentative paragraph about this topic:
+          </p>
+
+          <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem; border: 2px solid #7C3AED;">
+            <p style="font-weight: 600; text-align: center; font-size: 1.125rem;">
+              Should students get more free choice time during the school day?
+            </p>
+          </div>
+
+          <textarea
+            id="writing-response"
+            class="writing-textarea"
+            placeholder="Type your response here... Remember to use the 4-step structure!"
+            oninput="updateWordCount()"></textarea>
+
+          <div class="word-count" id="word-count">0 words</div>
+
+          <button class="btn btn-primary" onclick="saveWriting()" style="margin-top: 1rem;">
+            Save My Writing
+          </button>
+        </div>
+
+        <!-- Contextual Help Buttons -->
+        <div class="help-buttons">
+          <button class="help-btn lee" onclick="openHelp('writing-lee')">
+            📝 Lee: Writing Frame
+          </button>
+          <button class="help-btn tee" onclick="openHelp('writing-tee')">
+            🤔 Tee: Quality Check
+          </button>
+        </div>
+      </div>
+
+      <div class="phase-footer">
+        <button class="btn btn-back btn-outline" onclick="goBack()">
+          ← Back
+        </button>
+        <button class="btn btn-continue" onclick="completePhase(3)" disabled>
+          Continue to Reflection →
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PHASE 4: REFLECT & CELEBRATE -->
+    <!-- ============================================ -->
+    <section class="lesson-phase" data-phase="4" data-phase-title="Reflect & Celebrate">
+      <div class="phase-header">
+        <h2><span class="phase-number">Phase 4</span> Reflect & Celebrate</h2>
+      </div>
+
+      <div class="phase-content">
+        <!-- Reflection Questions -->
+        <div class="card">
+          <h2 style="color: #7C3AED; margin-bottom: 1.5rem;">💭 Reflect on Your Learning</h2>
+          <p style="margin-bottom: 2rem;">
+            Take a moment to think about what you've learned today:
+          </p>
+
+          <div style="display: grid; gap: 1.5rem;">
+            <div>
+              <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">
+                1. What was the most important thing you learned today?
+              </label>
+              <textarea id="reflection-q1" oninput="saveReflection()"
+                style="width: 100%; min-height: 100px; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem;"></textarea>
+            </div>
+
+            <div>
+              <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">
+                2. How will you use this strategy in your own writing or discussions?
+              </label>
+              <textarea id="reflection-q2" oninput="saveReflection()"
+                style="width: 100%; min-height: 100px; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem;"></textarea>
+            </div>
+
+            <div>
+              <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">
+                3. What was challenging? How did you work through it?
+              </label>
+              <textarea id="reflection-q3" oninput="saveReflection()"
+                style="width: 100%; min-height: 100px; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 0.5rem;"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div class="card" style="background: linear-gradient(135deg, #7C3AED 0%, #a78bfa 100%); color: white; text-align: center; padding: 3rem 2rem;">
+          <h2 style="font-size: 3rem; margin-bottom: 1rem;">🎉</h2>
+          <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Lesson Complete!</h2>
+          <p style="font-size: 1.25rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">
+            You've mastered the 4-step strategy for powerful arguments!
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <div style="background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 0.5rem;">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">⭐</div>
+              <div style="font-size: 2rem; font-weight: bold;" id="final-points">0</div>
+              <div style="font-size: 0.875rem; opacity: 0.9;">Total Points</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 0.5rem;">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏆</div>
+              <div style="font-size: 2rem; font-weight: bold;" id="final-badges">0</div>
+              <div style="font-size: 0.875rem; opacity: 0.9;">Badges Earned</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="index.html" class="btn" style="background: white; color: #7C3AED; text-decoration: none;">
+              ← Back to Home
+            </a>
+            <a href="episode2.html" class="btn btn-secondary" style="text-decoration: none;">
+              Next Episode →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-footer">
+        <button class="btn btn-back btn-outline" onclick="goBack()">
+          ← Back
+        </button>
+        <button class="btn btn-continue" onclick="completePhase(4)" disabled>
+          Finish Episode
+        </button>
+      </div>
+    </section>
+
+  </div> <!-- End lesson-container -->
+
+  <script>
+    // Update final points/badges display
+    function updateCompletionStats() {
+      const finalPoints = document.getElementById('final-points');
+      const finalBadges = document.getElementById('final-badges');
+
+      if (finalPoints && window.state) {
+        finalPoints.textContent = window.state.points;
+      }
+
+      if (finalBadges && window.state) {
+        finalBadges.textContent = window.state.badges.length;
+      }
+    }
+
+    // Update when state changes
+    setInterval(updateCompletionStats, 500);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+{
+  "nav": {
+    "start": "Inicio y Check-In",
+    "vocab": "Vocabulario",
+    "story": "La Historia",
+    "strategy": "Estrategia de 4 Pasos de Tee",
+    "model": "Ensayo Modelo de Lee",
+    "write": "Tu Turno de Escribir",
+    "reflect": "Reflexionar y Celebrar"
+  },
+  "vocab": {
+    "title": "Palabras Que Necesitarás",
+    "intro": "Aprendamos tres palabras importantes. ¿Puedes predecir qué palabra encaja en cada oración?",
+    "word_bank": "📖 Banco de Palabras:",
+    "tap_to_learn": "Toca para aprender",
+    "claim": "Afirmación",
+    "claim_subtitle": "Tu punto principal o argumento",
+    "claim_def": "Lo que intentas probar en tu argumento",
+    "claim_example": "En la historia: \"Tee nunca gana...\"",
+    "evidence": "Evidencia",
+    "evidence_subtitle": "Pruebas o hechos (\"recibos\")",
+    "evidence_def": "Prueba concreta que apoya tu afirmación",
+    "evidence_example": "En la historia: Registros de asistencia",
+    "counterclaim": "Contraargumento",
+    "counterclaim_subtitle": "Vista opuesta",
+    "counterclaim_def": "El argumento del otro lado que debes abordar",
+    "counterclaim_example": "En la historia: El desafío de Jayden",
+    "conclusion": "Conclusión",
+    "rebuttal": "Refutación",
+    "rebuttal_def": "Tu respuesta al contraargumento",
+    "reasoning": "Razonamiento",
+    "reasoning_def": "Explicar cómo tu evidencia apoya tu afirmación",
+    "ritual_marker": "🥄 Revuélvelo — Reúne los Ingredientes",
+    "siop_vocab": "📚 Pre-enseñanza de Vocabulario",
+    "siop_visual": "🖼️ Apoyos Visuales",
+    "siop_frames": "🗣️ Marcos de Oraciones"
+  },
+  "sel": {
+    "question": "¿Cómo te sientes hoy?",
+    "excited": "Emocionado/a",
+    "calm": "Tranquilo/a",
+    "nervous": "Nervioso/a",
+    "tired": "Cansado/a",
+    "happy": "Feliz",
+    "worried": "Preocupado/a",
+    "ready": "Listo/a",
+    "unsure": "Inseguro/a"
+  },
+  "character": {
+    "title": "Elige Tu Compañero de Aprendizaje",
+    "lee_name": "Lee",
+    "lee_desc": "Me gusta tomar notas y usar ayudas",
+    "tee_name": "Tee",
+    "tee_desc": "Prefiero pensar estratégicamente paso a paso",
+    "choose": "Elegir"
+  },
+  "helpers": {
+    "lee_writing": "¿Necesitas ayuda para empezar? Prueba estos iniciadores de oraciones:",
+    "tee_strategy": "No seas ruidoso. Sé correcto. Pregúntate:"
+  },
+  "story": {
+    "title": "Lee & Tee: La Batalla de Recreo",
+    "episode": "Episodio 1",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden",
+      "lee_label": "Lee",
+      "lee_desc": "Se queda atrás, abraza su cuaderno, no le gusta el ruido",
+      "tee_label": "Tee",
+      "tee_desc": "Camina hacia el ruido, confiado, listo"
+    },
+    "highlight_battle": "\"Eso es definitivamente una batalla,\"",
+    "tee_heading_in": "— dijo Tee. Ya estaba caminando hacia allí.",
+    "jayden_taunt": "\"Ahí vas. Gran hablador, Tee. Intenta no atragantarte.\"",
+    "jayden_loud": "— dijo Jayden, lo bastante fuerte para que todos escucharan."
+  },
+  "buttons": {
+    "listen": "🔊 Escuchar",
+    "read_aloud": "🎙️ Leer en Voz Alta",
+    "stop": "⏹️ Parar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "check": "Verificar",
+    "check_answer": "Verificar Respuesta",
+    "continue": "Continuar",
+    "try_again": "Intentar Otra Vez",
+    "speak_answer": "🎤 Hablar Respuesta",
+    "clear": "🗑️ Borrar",
+    "show_vocab": "Ver Definición",
+    "close": "Cerrar"
+  },
+  "ui": {
+    "points": "Puntos",
+    "progress": "Progreso",
+    "complete": "Completo",
+    "lesson_complete": "¡Lección Completa!",
+    "great_work": "¡Buen trabajo!",
+    "correct": "✓ ¡Correcto!",
+    "incorrect": "❌ No del todo. Intenta otra vez!",
+    "loading": "Cargando...",
+    "saved": "Guardado",
+    "language": "Idioma",
+    "goal_label": "🎯 Meta de Hoy:",
+    "goal_text": "Aprende la estructura de 4 pasos para abordar contraargumentos viendo una batalla de rap",
+    "language_label": "Idioma:"
+  },
+  "instructions": {
+    "select_emotion": "Selecciona cómo te sientes:",
+    "select_character": "Elige tu compañero de aprendizaje:",
+    "read_story": "Lee la historia:",
+    "answer_question": "Responde la pregunta:",
+    "fill_blank": "Llena el espacio en blanco:",
+    "click_to_reveal": "Haz clic para revelar"
+  },
+  "reflection": {
+    "title": "Reflexiona Sobre Tu Aprendizaje",
+    "question1": "¿Cuándo has tenido QUE abordar un contraargumento en la vida real?",
+    "question2": "¿Cuál es la diferencia entre argumentar con hechos vs. argumentar con volumen?",
+    "question3": "¿Cómo te sientes ahora después de esta lección?",
+    "placeholder1": "Tal vez con un amigo, familiar o maestro...",
+    "placeholder2": "Piensa en el enfoque calmado de Tee comparado con cómo empezó Jayden...",
+    "confident": "Confiado/a",
+    "curious": "Curioso/a",
+    "ready_emotion": "¡Listo/a!",
+    "still_unsure": "Aún Inseguro/a"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Punto Clave:",
+    "quote": "\"Fuerte no es lo mismo que verdadero.\"",
+    "from_notebook": "— Del cuaderno de Lee",
+    "your_points": "Tus Puntos de Aprendizaje:",
+    "next_episode": "➡️ Siguiente Episodio"
+  },
+  "section3": {
+    "title": "La Historia Comienza",
+    "ritual_marker": "🍳 Cocínalo — Sigue la Receta",
+    "listen_btn": "🔊 Escuchar",
+    "read_aloud_btn": "🎙️ Leer en Voz Alta",
+    "ms_rodriguez_intro": "La Sra. Rodriguez explicó que necesitamos una afirmación, evidencia y un contraargumento en nuestros ensayos.",
+    "lee_thinking": "Lee siempre escribe todo.",
+    "tee_thinking": "Tee prefiere hablar en lugar de escribir.",
+    "recess_scene": "En el recreo, algo pasó entre Tee y Jayden.",
+    "jayden_claim": "Jayden dijo: 'Tee nunca gana en baloncesto.'",
+    "crowd_reaction": "Todos se voltearon para mirar.",
+    "tee_strategy_intro": "Tee no gritó. Ella tenía un plan.",
+    "tee_response": "Tee respondió con calma usando hechos, no volumen.",
+    "lee_notes": "Lee lo escribió todo en su cuaderno.",
+    "lesson_learned": "Aprendieron que fuerte no es lo mismo que verdadero."
+  },
+  "section4": {
+    "title": "La Estrategia de 4 Pasos de Tee",
+    "ritual_marker": "🔬 Pruébalo — Experimenta con el Método",
+    "intro": "Tee no gritó. Ella usó un plan paso a paso. Aquí está su estrategia:",
+    "step1": "Paso 1: Repite su afirmación",
+    "step1_desc": "Muestra que escuchaste",
+    "step2": "Paso 2: Acepta lo que es verdad",
+    "step2_desc": "Encuentra terreno común",
+    "step3": "Paso 3: Introduce TU evidencia",
+    "step3_desc": "Datos, no volumen",
+    "step4": "Paso 4: Replantea TU afirmación",
+    "step4_desc": "Termina fuerte",
+    "guided_practice": "Práctica Guiada"
+  },
+  "section5": {
+    "title": "El Ensayo Modelo de Lee",
+    "ritual_marker": "🔎 Examínalo — Analiza el Modelo",
+    "intro": "Lee escribió todo. Veamos cómo su ensayo tiene TODAS las partes:",
+    "find_parts": "Encuentra las Partes del Ensayo",
+    "instruction": "Haz clic en un botón de abajo, luego haz clic en el párrafo que contiene esa parte.",
+    "find_claim": "Encontrar la AFIRMACIÓN",
+    "find_evidence": "Encontrar la EVIDENCIA",
+    "find_counterclaim": "Encontrar el CONTRAARGUMENTO",
+    "find_conclusion": "Encontrar la CONCLUSIÓN"
+  },
+  "section6": {
+    "title": "Tu Turno de Escribir",
+    "ritual_marker": "✨ Hazlo Tuyo — Crea Tu Versión",
+    "intro": "Ahora es tu turno. Escribe una respuesta breve usando la estrategia de Tee o el modelo de Lee.",
+    "prompt": "Escribe una respuesta corta (3-5 oraciones) donde abordes un contraargumento.",
+    "checklist_title": "Lista de Verificación de Escritura:",
+    "checklist_1": "□ Reconocí el contraargumento",
+    "checklist_2": "□ Proporcioné evidencia",
+    "checklist_3": "□ Replanteé mi afirmación",
+    "tip": "Consejo: Marca cada elemento a medida que lo incluyas en tu respuesta!"
+  },
+  "feedback": {
+    "problem_not_quite": "¡No exactamente! ",
+    "problem_behavior": "Recuerda: buscamos qué hace débil el ARGUMENTO, no solo problemas de comportamiento. ",
+    "problem_two_answers": "Hay DOS respuestas correctas: ¡asegúrate de seleccionar ambas!",
+    "problem_explanation": "El argumento de Jayden es débil porque hace grandes afirmaciones (\"nunca gana en nada\") sin ninguna prueba. Eso se llama una afirmación sin apoyo. Veamos cómo responde Tee...",
+    "comp1": "✓ ¡Correcto! Lee dice que la parte del contraargumento se siente \"resbalosa\" y \"difícil de sostener\".",
+    "comp2": "✓ ¡Exacto! Tee notó que Jayden hizo afirmaciones pero dio \"cero hechos\"; ninguna prueba.",
+    "guided1": "✓ ¡Correcto! Tee está repitiendo lo que Jayden afirmó.",
+    "guided2": "✓ ¡Sí! Tee trae hechos y \"recibos\".",
+    "guided3": "✓ ¡Perfecto! Tee conecta su evidencia con por qué la afirmación de Jayden falla.",
+    "guided_complete": "🎉 ¡Genial! Ahora estás listo para ordenar las líneas del rap.",
+    "match_success": "✓ ¡Los igualaste todos! Astucia de calle = astucia de libros."
+  },
+  "rewards": {
+    "critical_thinking": "¡Pensamiento crítico!"
+  },
+  "banners": {
+    "heading": "Objetivos de Lenguaje y Contenido SIOP"
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés",
+    "ht": "Kreyòl Ayisyen"
+  },
+  "controls": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "finish": "Finalizar",
+    "close": "Cerrar"
+  },
+  "modes": {
+    "guided": "Guiado",
+    "explore": "Explorar"
+  },
+  "messages": {
+    "reset_episode_confirm": "¿Seguro que quieres restablecer todo el progreso? Esto borrará puntos y medallas.",
+    "reset_nav_confirm": "¿Seguro que quieres restablecer todo el progreso? Esto no se puede deshacer.",
+    "reset_global_progress": "¿Restablecer todo el progreso de este episodio?",
+    "drag_correct": "¡Perfecto! ¡Todos los pasos están en el orden correcto!",
+    "drag_incorrect": "Aún no está bien. ¡Inténtalo de nuevo!",
+    "writing_saved": "¡Escritura guardada! ¡Buen trabajo!",
+    "writing_too_short": "Necesitas al menos 50 palabras. Actual: {{count}}",
+    "episode_complete": "🎉 ¡Episodio completado! ¡Bien hecho!",
+    "word_count": "{{count}} palabras"
+  },
+  "progress_labels": {
+    "sel": "Registro",
+    "vocab": "Vocabulario",
+    "section1": "Sección 1",
+    "section2": "Sección 2",
+    "section3": "Sección 3",
+    "drag": "Arrastra y suelta",
+    "essay": "Ensayo modelo",
+    "reflect": "Reflexión"
+  },
+  "character_feedback": {
+    "lee_title": "¡Gran elección! ¡Elegiste a Lee!",
+    "lee_body": "Verás más marcos de oraciones, bancos de palabras y andamiajes paso a paso durante la lección.",
+    "tee_title": "¡Gran elección! ¡Elegiste a Tee!",
+    "tee_body": "Verás preguntas de pensamiento estratégico y indicaciones de resolución de problemas durante la lección."
+  },
+  "help": {
+    "cta": "¡Entendido!",
+    "vocab_lee": {
+      "title": "📝 Lee: Ayuda de palabras",
+      "bullets": [
+        "Una afirmación es lo que alguien cree",
+        "La evidencia es la prueba que respalda la afirmación",
+        "Prueba este marco: \"Afirmo que ___ porque ___\""
+      ],
+      "example": "Ejemplo: \"Afirmo que el recreo es importante porque los estudiantes necesitan ejercicio.\""
+    },
+    "vocab_tee": {
+      "title": "🤔 Tee: Revisión de estrategia",
+      "bullets": [
+        "¿Qué intenta probar el escritor?",
+        "¿Qué hechos o ejemplos apoyan su punto?",
+        "¿Alguien podría estar en desacuerdo? ¿Qué diría?"
+      ]
+    },
+    "sequence_tee": {
+      "title": "🤔 Tee: Cómo ordenar los pasos",
+      "bullets": [
+        "Primero, ¿qué hace Tee? (Repite la afirmación de Jayden)",
+        "¿Luego qué? (Señala la debilidad)",
+        "¿Después? (Da pruebas/evidencia)",
+        "¿Finalmente? (Cierra con impacto)"
+      ]
+    },
+    "sequence_lee": {
+      "title": "📝 Lee: Recordatorio de marcos",
+      "bullets": [
+        "Paso 1: \"Tú dijiste ___\"",
+        "Paso 2: \"Pero eso no funciona porque ___\"",
+        "Paso 3: \"Por ejemplo, ___\"",
+        "Paso 4: \"Así que en realidad, ___\""
+      ]
+    },
+    "writing_lee": {
+      "title": "📝 Lee: Marco de escritura",
+      "bullets": [
+        "Párrafo 1: Declara tu afirmación → \"Creo que ___\"",
+        "Párrafo 2: Da evidencia → \"Por ejemplo, ___\" → \"Esto demuestra que ___\"",
+        "Párrafo 3: Atiende el contraargumento → \"Algunos podrían decir ___, pero ___\"",
+        "Párrafo 4: Concluye → \"Por lo tanto, ___\""
+      ]
+    },
+    "writing_tee": {
+      "title": "🤔 Tee: Revisión de calidad",
+      "bullets": [
+        "☐ ¿Declaraste claramente lo que crees?",
+        "☐ ¿Diste al menos 2 piezas de evidencia?",
+        "☐ ¿Explicaste POR QUÉ tu evidencia importa?",
+        "☐ ¿Atendiste lo que alguien podría discutir?",
+        "☐ ¿Tu conclusión lo une todo?"
+      ]
+    }
+  },
+  "badge_modal": {
+    "earned_title": "¡Insignia obtenida!",
+    "earned_message": "¡Ganaste la insignia {{badge}}!",
+    "confirm": "¡Genial!"
+  },
+  "badge_names": {
+    "first_steps": "Primeros Pasos",
+    "vocab_master": "Maestro de Vocabulario",
+    "critical_thinker": "Pensador Crítico",
+    "response_writer": "Escritor de Respuestas",
+    "strategy_expert": "Experto en Estrategia",
+    "super_reader": "Súper Lector",
+    "episode_champion": "Campeón del Episodio",
+    "book_complete": "Libro 1 Completado"
+  },
+  "essay_hunt": {
+    "found_prefix": "✓ Encontrado",
+    "perfect": "🎉 ¡Perfecto! ¡Encontraste las cuatro partes!",
+    "continue": "✓ ¡Correcto! Haz clic en otro botón para continuar.",
+    "not_quite": "❌ No del todo. ¡Inténtalo de nuevo!"
+  },
+  "quiz": {
+    "correct_title": "✓ ¡Correcto!",
+    "correct_body": "¡Buen trabajo! Lo hiciste bien.",
+    "incorrect_title": "✗ No del todo",
+    "incorrect_body": "¡Inténtalo de nuevo! Revisa el texto y piensa en la evidencia."
+  },
+  "accessibility_menu": {
+    "title": "Accesibilidad",
+    "dyslexia": "Fuente amigable para dislexia",
+    "high_contrast": "Alto contraste",
+    "hints": "Mostrar pistas"
+  },
+  "header": {
+    "home": "Inicio",
+    "book_progress": "Progreso del libro",
+    "episode_progress": "Progreso del episodio",
+    "points": "Puntos",
+    "badges": "Insignias",
+    "learning_guide": "Guía de aprendizaje",
+    "lee_mode": "Lee",
+    "tee_mode": "Tee",
+    "accessibility": "Accesibilidad",
+    "dyslexia_font": "Fuente amigable para dislexia",
+    "high_contrast": "Modo de alto contraste",
+    "sections_complete": "Secciones completadas",
+    "book_label": "Libro",
+    "points_short": "puntos",
+    "points_badges": "Puntos e insignias",
+    "total_points": "Puntos totales",
+    "badges_earned": "Insignias obtenidas",
+    "close": "Cerrar",
+    "episode_label": "Episodio"
+  },
+  "global_badges": {
+    "first_episode": {
+      "title": "Primeros Pasos",
+      "description": "Episodio 1 completado"
+    },
+    "two_episodes": {
+      "title": "Explorador del Libro",
+      "description": "Completó 2 episodios"
+    },
+    "hundred_points": {
+      "title": "Super Aprendiz",
+      "description": "Ganó 100+ puntos"
+    },
+    "book_complete": {
+      "title": "Campeón del Libro",
+      "description": "Completó el Libro 1"
+    }
+  }
+}

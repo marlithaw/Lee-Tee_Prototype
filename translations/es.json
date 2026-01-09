@@ -1,0 +1,176 @@
+{
+  "nav": {
+    "start": "Inicio y Check-In",
+    "vocab": "Vocabulario",
+    "story": "La Historia",
+    "strategy": "Estrategia de 4 Pasos de Tee",
+    "model": "Ensayo Modelo de Lee",
+    "write": "Tu Turno de Escribir",
+    "reflect": "Reflexionar y Celebrar"
+  },
+  "vocab": {
+    "title": "Palabras Que Necesitarás",
+    "intro": "Aprendamos tres palabras importantes. ¿Puedes predecir qué palabra encaja en cada oración?",
+    "word_bank": "📖 Banco de Palabras:",
+    "tap_to_learn": "Toca para aprender",
+    "claim": "Afirmación",
+    "claim_subtitle": "Tu punto principal o argumento",
+    "claim_def": "Lo que intentas probar en tu argumento",
+    "claim_example": "En la historia: \"Tee nunca gana...\"",
+    "evidence": "Evidencia",
+    "evidence_subtitle": "Pruebas o hechos (\"recibos\")",
+    "evidence_def": "Prueba concreta que apoya tu afirmación",
+    "evidence_example": "En la historia: Registros de asistencia",
+    "counterclaim": "Contraargumento",
+    "counterclaim_subtitle": "Vista opuesta",
+    "counterclaim_def": "El argumento del otro lado que debes abordar",
+    "counterclaim_example": "En la historia: El desafío de Jayden",
+    "rebuttal": "Refutación",
+    "rebuttal_def": "Tu respuesta al contraargumento",
+    "reasoning": "Razonamiento",
+    "reasoning_def": "Explicar cómo tu evidencia apoya tu afirmación",
+    "ritual_marker": "🥄 Revuélvelo — Reúne los Ingredientes",
+    "siop_vocab": "📚 Pre-enseñanza de Vocabulario",
+    "siop_visual": "🖼️ Apoyos Visuales",
+    "siop_frames": "🗣️ Marcos de Oraciones"
+  },
+  "sel": {
+    "question": "¿Cómo te sientes hoy?",
+    "excited": "Emocionado/a",
+    "calm": "Tranquilo/a",
+    "nervous": "Nervioso/a",
+    "tired": "Cansado/a",
+    "happy": "Feliz",
+    "worried": "Preocupado/a",
+    "ready": "Listo/a",
+    "unsure": "Inseguro/a"
+  },
+  "character": {
+    "title": "Elige Tu Compañero de Aprendizaje",
+    "lee_name": "Lee",
+    "lee_desc": "Me gusta tomar notas y usar ayudas",
+    "tee_name": "Tee",
+    "tee_desc": "Prefiero pensar estratégicamente paso a paso",
+    "choose": "Elegir"
+  },
+  "helpers": {
+    "lee_writing": "¿Necesitas ayuda para empezar? Prueba estos iniciadores de oraciones:",
+    "tee_strategy": "No seas ruidoso. Sé correcto. Pregúntate:"
+  },
+  "story": {
+    "title": "Lee & Tee: La Batalla de Recreo",
+    "episode": "Episodio 1",
+    "characters": {
+      "lee": "Lee",
+      "tee": "Tee",
+      "jayden": "Jayden"
+    }
+  },
+  "buttons": {
+    "listen": "🔊 Escuchar",
+    "read_aloud": "🎙️ Leer en Voz Alta",
+    "stop": "⏹️ Parar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "check": "Verificar",
+    "check_answer": "Verificar Respuesta",
+    "continue": "Continuar",
+    "try_again": "Intentar Otra Vez",
+    "speak_answer": "🎤 Hablar Respuesta",
+    "clear": "🗑️ Borrar",
+    "show_vocab": "Ver Definición",
+    "close": "Cerrar"
+  },
+  "ui": {
+    "points": "Puntos",
+    "progress": "Progreso",
+    "complete": "Completo",
+    "lesson_complete": "¡Lección Completa!",
+    "great_work": "¡Buen trabajo!",
+    "correct": "✓ ¡Correcto!",
+    "incorrect": "❌ No del todo. Intenta otra vez!",
+    "loading": "Cargando...",
+    "saved": "Guardado",
+    "language": "Idioma"
+  },
+  "instructions": {
+    "select_emotion": "Selecciona cómo te sientes:",
+    "select_character": "Elige tu compañero de aprendizaje:",
+    "read_story": "Lee la historia:",
+    "answer_question": "Responde la pregunta:",
+    "fill_blank": "Llena el espacio en blanco:",
+    "click_to_reveal": "Haz clic para revelar"
+  },
+  "reflection": {
+    "title": "Reflexiona Sobre Tu Aprendizaje",
+    "question1": "¿Cuándo has tenido QUE abordar un contraargumento en la vida real?",
+    "question2": "¿Cuál es la diferencia entre argumentar con hechos vs. argumentar con volumen?",
+    "question3": "¿Cómo te sientes ahora después de esta lección?",
+    "placeholder1": "Tal vez con un amigo, familiar o maestro...",
+    "placeholder2": "Piensa en el enfoque calmado de Tee comparado con cómo empezó Jayden...",
+    "confident": "Confiado/a",
+    "curious": "Curioso/a",
+    "ready_emotion": "¡Listo/a!",
+    "still_unsure": "Aún Inseguro/a"
+  },
+  "celebration": {
+    "key_takeaway": "🔑 Punto Clave:",
+    "quote": "\"Fuerte no es lo mismo que verdadero.\"",
+    "from_notebook": "— Del cuaderno de Lee",
+    "your_points": "Tus Puntos de Aprendizaje:",
+    "next_episode": "➡️ Siguiente Episodio"
+  },
+  "section3": {
+    "title": "La Historia Comienza",
+    "ritual_marker": "🍳 Cocínalo — Sigue la Receta",
+    "listen_btn": "🔊 Escuchar",
+    "read_aloud_btn": "🎙️ Leer en Voz Alta",
+    "ms_rodriguez_intro": "La Sra. Rodriguez explicó que necesitamos una afirmación, evidencia y un contraargumento en nuestros ensayos.",
+    "lee_thinking": "Lee siempre escribe todo.",
+    "tee_thinking": "Tee prefiere hablar en lugar de escribir.",
+    "recess_scene": "En el recreo, algo pasó entre Tee y Jayden.",
+    "jayden_claim": "Jayden dijo: 'Tee nunca gana en baloncesto.'",
+    "crowd_reaction": "Todos se voltearon para mirar.",
+    "tee_strategy_intro": "Tee no gritó. Ella tenía un plan.",
+    "tee_response": "Tee respondió con calma usando hechos, no volumen.",
+    "lee_notes": "Lee lo escribió todo en su cuaderno.",
+    "lesson_learned": "Aprendieron que fuerte no es lo mismo que verdadero."
+  },
+  "section4": {
+    "title": "La Estrategia de 4 Pasos de Tee",
+    "ritual_marker": "🔬 Pruébalo — Experimenta con el Método",
+    "intro": "Tee no gritó. Ella usó un plan paso a paso. Aquí está su estrategia:",
+    "step1": "Paso 1: Repite su afirmación",
+    "step1_desc": "Muestra que escuchaste",
+    "step2": "Paso 2: Acepta lo que es verdad",
+    "step2_desc": "Encuentra terreno común",
+    "step3": "Paso 3: Introduce TU evidencia",
+    "step3_desc": "Datos, no volumen",
+    "step4": "Paso 4: Replantea TU afirmación",
+    "step4_desc": "Termina fuerte",
+    "guided_practice": "Práctica Guiada"
+  },
+  "section5": {
+    "title": "El Ensayo Modelo de Lee",
+    "ritual_marker": "🔎 Examínalo — Analiza el Modelo",
+    "intro": "Lee escribió todo. Veamos cómo su ensayo tiene TODAS las partes:",
+    "find_parts": "Encuentra las Partes del Ensayo",
+    "instruction": "Haz clic en un botón de abajo, luego haz clic en el párrafo que contiene esa parte.",
+    "find_claim": "Encontrar la AFIRMACIÓN",
+    "find_evidence": "Encontrar la EVIDENCIA",
+    "find_counterclaim": "Encontrar el CONTRAARGUMENTO",
+    "find_conclusion": "Encontrar la CONCLUSIÓN"
+  },
+  "section6": {
+    "title": "Tu Turno de Escribir",
+    "ritual_marker": "✨ Hazlo Tuyo — Crea Tu Versión",
+    "intro": "Ahora es tu turno. Escribe una respuesta breve usando la estrategia de Tee o el modelo de Lee.",
+    "prompt": "Escribe una respuesta corta (3-5 oraciones) donde abordes un contraargumento.",
+    "checklist_title": "Lista de Verificación de Escritura:",
+    "checklist_1": "□ Reconocí el contraargumento",
+    "checklist_2": "□ Proporcioné evidencia",
+    "checklist_3": "□ Replanteé mi afirmación",
+    "tip": "Consejo: Marca cada elemento a medida que lo incluyas en tu respuesta!"
+  }
+}

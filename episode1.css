@@ -1,0 +1,522 @@
+/**
+ * Episode 1: The Recess Battle - Styles
+ * Episode-specific styles and phase container styling
+ */
+
+/* ===== FIXED HEADER ===== */
+#lesson-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  border-bottom: 3px solid #7C3AED;
+}
+
+#lesson-header .header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#lesson-header .episode-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#lesson-header .home-link {
+  color: #7C3AED;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+#lesson-header .home-link:hover {
+  color: #6d28d9;
+}
+
+#lesson-header .phase-info {
+  border-left: 2px solid #e5e7eb;
+  padding-left: 1rem;
+}
+
+#lesson-header .episode-title {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+#lesson-header .phase-title {
+  font-weight: 700;
+  color: #7C3AED;
+  font-size: 1rem;
+}
+
+#lesson-header .progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#lesson-header .progress-bar {
+  width: 12rem;
+  height: 0.5rem;
+  background: #e5e7eb;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+#lesson-header .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7C3AED 0%, #a78bfa 100%);
+  transition: width 0.5s ease;
+  border-radius: 1rem;
+}
+
+#lesson-header .progress-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+#lesson-header .header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#lesson-header .points-badge,
+#lesson-header .badges-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+#lesson-header .points-badge {
+  background: #fef3c7;
+  color: #78350f;
+}
+
+#lesson-header .badges-badge {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+#lesson-header .mode-toggle {
+  padding: 0.5rem 1rem;
+  background: #dbeafe;
+  color: #1e40af;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#lesson-header .mode-toggle:hover {
+  background: #bfdbfe;
+  transform: translateY(-1px);
+}
+
+#lesson-header .accessibility-btn {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: background 0.2s;
+}
+
+#lesson-header .accessibility-btn:hover {
+  background: #f3f4f6;
+}
+
+/* ===== MAIN CONTENT CONTAINER ===== */
+.lesson-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ===== PHASE CONTAINERS ===== */
+.lesson-phase {
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.lesson-phase.is-active {
+  display: block;
+  opacity: 1;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.2);
+  border: 2px solid #7C3AED;
+}
+
+.lesson-phase.is-completed {
+  display: block;
+  opacity: 0.95;
+}
+
+.lesson-phase.is-completed .phase-content {
+  display: none;
+}
+
+.lesson-phase.is-completed .phase-header {
+  cursor: pointer;
+  background: #f9fafb;
+  padding: 1rem 1.5rem;
+}
+
+.lesson-phase.is-completed .phase-header:hover {
+  background: #f3f4f6;
+}
+
+.lesson-phase.is-completed .phase-header::after {
+  content: " ✓";
+  color: #10b981;
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+}
+
+.lesson-phase.is-completed.is-expanded .phase-content {
+  display: block;
+}
+
+.lesson-phase.is-locked {
+  display: none;
+}
+
+/* Explore mode - all phases visible */
+.mode-explore .lesson-phase {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.mode-explore .lesson-phase .phase-content {
+  display: block !important;
+}
+
+.mode-explore .lesson-phase.is-completed .phase-header {
+  cursor: default;
+  background: white;
+}
+
+/* ===== PHASE HEADER ===== */
+.phase-header {
+  padding: 1.5rem;
+  border-bottom: 2px solid #f3f4f6;
+}
+
+.phase-header h2 {
+  margin: 0;
+  color: #7C3AED;
+  font-size: 1.75rem;
+}
+
+.phase-number {
+  display: inline-block;
+  background: #ede9fe;
+  color: #7C3AED;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+/* ===== PHASE CONTENT ===== */
+.phase-content {
+  padding: 2rem 1.5rem;
+}
+
+/* ===== PHASE FOOTER (Navigation Buttons) ===== */
+.phase-footer {
+  padding: 1.5rem;
+  border-top: 2px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.phase-footer .btn-back {
+  background: transparent;
+  border: 2px solid #d1d5db;
+  color: #6b7280;
+}
+
+.phase-footer .btn-back:hover {
+  border-color: #9ca3af;
+  background: #f9fafb;
+  transform: none;
+}
+
+.phase-footer .btn-continue {
+  background: #7C3AED;
+  color: white;
+}
+
+.phase-footer .btn-continue:hover {
+  background: #6d28d9;
+}
+
+.phase-footer .btn-continue:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+/* ===== CONTEXTUAL HELP BUTTONS ===== */
+.help-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #fef3c7;
+  border-radius: 0.5rem;
+  border-left: 4px solid #f59e0b;
+}
+
+.help-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  text-align: left;
+}
+
+.help-btn:hover {
+  border-color: #7C3AED;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.help-btn.lee {
+  border-left: 4px solid #7C3AED;
+}
+
+.help-btn.tee {
+  border-left: 4px solid #f59e0b;
+}
+
+/* ===== HELP BOX MODAL ===== */
+.help-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.help-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.help-content.lee {
+  border-top: 4px solid #7C3AED;
+}
+
+.help-content.tee {
+  border-top: 4px solid #f59e0b;
+}
+
+.help-content h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.help-content ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.help-content li {
+  margin-bottom: 0.5rem;
+}
+
+.help-content .example {
+  background: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.help-content .close-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* ===== ACTIVITY STYLES ===== */
+.vocab-activity,
+.drag-drop-activity,
+.writing-activity {
+  background: #fef3c7;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.fill-in-blank {
+  background: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  border: 2px solid #e5e7eb;
+}
+
+.fill-in-blank.correct {
+  border-color: #10b981;
+  background: #d1fae5;
+}
+
+.fill-in-blank.incorrect {
+  border-color: #ef4444;
+  background: #fee2e2;
+}
+
+.word-choices {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.word-choice {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid #7C3AED;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+  color: #7C3AED;
+}
+
+.word-choice:hover {
+  background: #ede9fe;
+  transform: scale(1.05);
+}
+
+.word-choice.selected {
+  background: #7C3AED;
+  color: white;
+}
+
+/* ===== DRAG AND DROP ===== */
+.drag-container {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 0.5rem;
+  min-height: 200px;
+}
+
+.drag-item {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: #ede9fe;
+  border: 2px solid #7C3AED;
+  border-radius: 0.5rem;
+  cursor: move;
+  transition: all 0.2s;
+}
+
+.drag-item:hover {
+  background: #ddd6fe;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
+.drag-item.dragging {
+  opacity: 0.5;
+}
+
+/* ===== WRITING AREA ===== */
+.writing-textarea {
+  width: 100%;
+  min-height: 300px;
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-family: 'Lexend', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+.writing-textarea:focus {
+  outline: none;
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.word-count {
+  text-align: right;
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  #lesson-header .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #lesson-header .progress-bar-container {
+    display: none;
+  }
+
+  .lesson-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .phase-content {
+    padding: 1rem;
+  }
+
+  .phase-footer {
+    flex-direction: column;
+  }
+
+  .phase-footer button {
+    width: 100%;
+  }
+
+  .help-buttons {
+    flex-direction: column;
+  }
+
+  .word-choices {
+    flex-direction: column;
+  }
+
+  .word-choice {
+    width: 100%;
+  }
+}
