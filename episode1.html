@@ -233,10 +233,12 @@
     }
     
     /* Vocabulary - Predictive style */
+    /* Fix: Parent container must be position: relative for absolute children */
     .vocab-predict {
-      display: inline-block;
       position: relative;
+      display: inline-block;
     }
+
     .vocab-blank {
       display: inline-block;
       min-width: 100px;
@@ -252,14 +254,16 @@
     .vocab-choices {
       display: none;
       position: absolute;
-      top: 100%;
-      left: 0;
+      top: calc(100% + 4px); /* Add small gap below blank */
+      left: 50%;
+      transform: translateX(-50%); /* Center dropdown under blank */
       background: white;
       border-radius: 0.5rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       padding: 0.5rem;
-      z-index: 10;
-      min-width: 150px;
+      z-index: 1000; /* Higher z-index to ensure visibility */
+      min-width: 180px;
+      white-space: nowrap;
     }
     .vocab-choices.show {
       display: block;
@@ -606,13 +610,15 @@ p.active-sentence {
     }
     .video-caption {
       position: absolute;
-      bottom: 0;
+      bottom: 50px; /* Raised above controls (native controls ~40px) */
       left: 0;
       right: 0;
       background: linear-gradient(transparent, rgba(0,0,0,0.8));
       color: white;
-      padding: 2rem 1rem 1rem;
+      padding: 1.5rem 1rem 0.5rem;
       font-size: 0.875rem;
+      pointer-events: none; /* Allow clicks to pass through to controls */
+      z-index: 1; /* Keep below controls but above video */
     }
     
     /* Media containers */
@@ -2364,7 +2370,7 @@ p.active-sentence {
   
   <!-- Tee preparing video -->
    <div class="video-block max-w-md mx-auto">
-  <video controls poster="Gemini_Generated_Image_fk641wfk641wfk64.png">
+  <video controls playsinline preload="metadata" poster="Gemini_Generated_Image_fk641wfk641wfk64.png" style="position: relative; z-index: 0;">
   <source src="tee_battle_back.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
