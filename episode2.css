@@ -202,6 +202,69 @@
   background: rgba(254, 243, 199, 0.3);
 }
 
+/* ===== HELPER BUTTONS & MODALS ===== */
+.helper-btn {
+  position: fixed;
+  bottom: 20px;
+  z-index: 90;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.helper-btn:hover {
+  transform: scale(1.1);
+}
+
+.helper-btn img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.helper-btn .label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 4px;
+}
+
+#helper-lee {
+  left: 20px;
+}
+
+#helper-tee {
+  left: 100px;
+}
+
+.helper-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+  padding: 1rem;
+}
+
+.helper-modal.open {
+  display: flex;
+}
+
+.helper-content {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease;
+}
+
 /* ===== CONVERSION TABLE ===== */
 .conversion-table {
   background: white;

@@ -1157,6 +1157,77 @@
     </div>
   </div>
 
+  <!-- Character Helper Buttons -->
+  <div id="helper-lee" class="helper-btn" onclick="openHelper('lee')">
+    <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee with notebook">
+    <div class="label text-purple-600">ASK LEE</div>
+  </div>
+
+  <div id="helper-tee" class="helper-btn" onclick="openHelper('tee')">
+    <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee gesturing">
+    <div class="label text-amber-600">ASK TEE</div>
+  </div>
+
+  <!-- Lee Helper Modal -->
+  <div id="lee-modal" class="helper-modal" onclick="closeHelper(event, 'lee')">
+    <div class="helper-content border-l-8 border-purple-500" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee" class="w-12 h-12 rounded-full object-cover object-top">
+        <h3 class="font-display text-xl font-bold">Lee's Math Notes</h3>
+      </div>
+      <p class="mb-4 text-gray-600">Need a math checklist? Try these steps:</p>
+      <ul class="space-y-2 text-gray-700">
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>Write the recipe ratio as a fraction.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>Multiply each ingredient by the scale factor.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>Check units before you answer.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-purple-500">📝</span>
+          <span>Estimate to see if the number makes sense.</span>
+        </li>
+      </ul>
+      <p class="mt-4 text-xs text-gray-400 text-center">(Click outside to close)</p>
+    </div>
+  </div>
+
+  <!-- Tee Helper Modal -->
+  <div id="tee-modal" class="helper-modal" onclick="closeHelper(event, 'tee')">
+    <div class="helper-content border-l-8 border-amber-500" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee" class="w-12 h-12 rounded-full object-cover object-top">
+        <h3 class="font-display text-xl font-bold">Tee's Strategy Check</h3>
+      </div>
+      <p class="mb-4 text-gray-600">Stay sharp while you scale the recipe:</p>
+      <ol class="space-y-3 text-gray-700">
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+          <span>Did you find the correct scale factor?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+          <span>Are you multiplying every ingredient?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+          <span>Did you convert units before final answers?</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">4</span>
+          <span>Does the answer seem reasonable?</span>
+        </li>
+      </ol>
+      <p class="mt-4 text-xs text-gray-400 text-center">(Click outside to close)</p>
+    </div>
+  </div>
+
   <!-- Shared Components JavaScript -->
   <script src="shared/shared-components.js"></script>
 
@@ -1172,25 +1243,89 @@
       };
     }
 
+    const EPISODE_PROGRESS_KEY = 'leeTeeLessonProgress';
+
     // Load progress from localStorage
     function loadProgress() {
-      const saved = localStorage.getItem('episode2Progress');
+      const saved = localStorage.getItem(EPISODE_PROGRESS_KEY);
       if (saved) {
         try {
           learningState = JSON.parse(saved);
         } catch (e) {
           console.error('Failed to load progress:', e);
+          learningState = {
+            points: 0,
+            badges: [],
+            completedActivities: []
+          };
         }
+      } else {
+        learningState = {
+          points: 0,
+          badges: [],
+          completedActivities: []
+        };
       }
       updatePointsDisplay();
+      updateBadges();
+
+      learningState.completedActivities.forEach(activityId => {
+        const el = document.getElementById(activityId);
+        if (el) {
+          el.classList.add('completed');
+        }
+      });
+
+      updateProgressBar();
+      updateProgressChecklist();
     }
 
     // Save progress to localStorage
     function saveProgress() {
       try {
-        localStorage.setItem('episode2Progress', JSON.stringify(learningState));
+        localStorage.setItem(EPISODE_PROGRESS_KEY, JSON.stringify(learningState));
       } catch (e) {
         console.error('Failed to save progress:', e);
+      }
+    }
+
+    function updateBadges() {
+      const badgeCount = document.getElementById('final-badges');
+      if (badgeCount) {
+        badgeCount.textContent = learningState.badges.length;
+      }
+
+      const badgeContainer = document.getElementById('badgeContainer');
+      if (badgeContainer) {
+        badgeContainer.innerHTML = '';
+        learningState.badges.forEach(badge => {
+          const badgeEl = document.createElement('span');
+          badgeEl.textContent = badge;
+          badgeEl.className = 'text-2xl';
+          badgeContainer.appendChild(badgeEl);
+        });
+      }
+    }
+
+    function awardBadge(emoji) {
+      if (!learningState.badges.includes(emoji)) {
+        learningState.badges.push(emoji);
+        updateBadges();
+        saveProgress();
+      }
+    }
+
+    function checkBadgeUnlocks() {
+      if (learningState.completedActivities.length >= 1) {
+        awardBadge('🎯');
+      }
+
+      if (learningState.points >= 50) {
+        awardBadge('⭐');
+      }
+
+      if (learningState.points >= 100) {
+        awardBadge('🏆');
       }
     }
 
@@ -1198,12 +1333,16 @@
     function addPoints(amount, reason) {
       learningState.points += amount;
       updatePointsDisplay();
+      checkBadgeUnlocks();
       saveProgress();
 
       // Update global state if available
       if (typeof addGlobalPoints === 'function') {
         addGlobalPoints(2, amount, reason);
       }
+
+      showCelebration(reason, `+${amount} points!`, amount >= 25 ? '🎉' : '⭐');
+      setTimeout(closeCelebration, 2500);
     }
 
     // Update points display
@@ -1211,6 +1350,11 @@
       const pointsDisplay = document.getElementById('pointsDisplay');
       if (pointsDisplay) {
         pointsDisplay.textContent = learningState.points;
+      }
+
+      const finalPoints = document.getElementById('final-points');
+      if (finalPoints) {
+        finalPoints.textContent = learningState.points;
       }
     }
 
@@ -1227,6 +1371,7 @@
           learningState.completedActivities.push(progressId);
           addPoints(points, 'Section completed!');
         }
+        saveProgress();
         updateProgressBar();
         updateProgressChecklist();
       }
@@ -1395,33 +1540,25 @@
       markProgressComplete('progress-section10');
     }
 
-    // Mark Progress Complete
-    function markProgressComplete(progressId) {
-      const progressEl = document.getElementById(progressId);
-      if (!progressEl) return;
-
-      const points = parseInt(progressEl.getAttribute('data-points')) || 0;
-
-      if (!progressEl.classList.contains('completed')) {
-        progressEl.classList.add('completed');
-        updateProgressBar();
-      }
-    }
-
     // Update Progress Bar
     function updateProgressBar() {
-      const totalSections = 10;
+      const totalSections = document.querySelectorAll('.progress-check').length || 10;
       const completedSections = document.querySelectorAll('.progress-check.completed').length;
       const percentage = (completedSections / totalSections) * 100;
-
-      document.getElementById('progressBar').style.width = percentage + '%';
+      const progressBar = document.getElementById('progressBar');
+      if (progressBar) {
+        progressBar.style.width = percentage + '%';
+      }
 
       // Check if episode complete
       if (percentage >= 100) {
         setTimeout(() => {
-          document.getElementById('episode-complete').classList.remove('hidden');
-          document.getElementById('final-points').textContent = learningState.points;
-          document.getElementById('final-badges').textContent = learningState.badges.length;
+          const episodeCompleteEl = document.getElementById('episode-complete');
+          if (episodeCompleteEl) {
+            episodeCompleteEl.classList.remove('hidden');
+          }
+          updatePointsDisplay();
+          updateBadges();
         }, 1000);
       }
     }
@@ -1485,7 +1622,7 @@
 
     function resetEpisodeProgress() {
       if (confirm('Reset all progress for this episode?')) {
-        localStorage.removeItem('episode2Progress');
+        localStorage.removeItem(EPISODE_PROGRESS_KEY);
         localStorage.removeItem('episode2SkillState');
         location.reload();
       }
@@ -1496,14 +1633,16 @@
       if (!checklist) return;
 
       const items = [
-        { id: 'progress-section1', label: 'Introduction' },
-        { id: 'progress-section2', label: 'The Recipe' },
-        { id: 'progress-section3', label: 'The Problem' },
+        { id: 'progress-section1', label: 'The Smell' },
+        { id: 'progress-section2', label: 'Recipe Card' },
+        { id: 'progress-section3', label: 'Beef Calculation' },
         { id: 'progress-section4', label: 'Scale Factor' },
-        { id: 'progress-section5', label: 'The Math' },
-        { id: 'progress-section6', label: 'Calculator Activity' },
-        { id: 'progress-section7', label: 'Check Understanding' },
-        { id: 'progress-section8', label: 'Reflection' }
+        { id: 'progress-section5', label: 'Fractions' },
+        { id: 'progress-section6', label: 'Scaling' },
+        { id: 'progress-section7', label: 'Conversions' },
+        { id: 'progress-section8', label: 'Ginger & Garlic' },
+        { id: 'progress-section9', label: 'Wisdom' },
+        { id: 'progress-section10', label: 'Reflection' }
       ];
 
       checklist.innerHTML = items.map(item => {
@@ -1677,67 +1816,21 @@
       console.log('Translation UI loaded');
     }
 
-    // ===== ACCESSIBILITY FUNCTIONS =====
-    function toggleDyslexia() {
-      document.body.classList.toggle('dyslexia-mode');
-    }
-
-    function toggleHighContrast() {
-      document.body.classList.toggle('high-contrast');
-    }
-
-    // ===== NULL GUARDS FOR OPTIONAL UI ELEMENTS =====
-    function updateProgressBar() {
-      const progressBar = document.getElementById('progressBar');
-      if (progressBar) {
-        const totalSections = 10;
-        const completedSections = document.querySelectorAll('.progress-check.completed').length;
-        const percentage = (completedSections / totalSections) * 100;
-        progressBar.style.width = percentage + '%';
-
-        // Check if episode complete
-        if (percentage >= 100) {
-          setTimeout(() => {
-            const episodeCompleteEl = document.getElementById('episode-complete');
-            if (episodeCompleteEl) {
-              episodeCompleteEl.classList.remove('hidden');
-              const finalPoints = document.getElementById('final-points');
-              const finalBadges = document.getElementById('final-badges');
-              if (finalPoints) finalPoints.textContent = learningState.points;
-              if (finalBadges) finalBadges.textContent = learningState.badges.length;
-            }
-          }, 1000);
-        }
+    // ===== HELPER MODALS =====
+    function openHelper(character) {
+      const modal = document.getElementById(`${character}-modal`);
+      if (modal) {
+        modal.classList.add('open');
       }
     }
 
-    function updateProgressChecklist() {
-      const checklist = document.getElementById('progress-checklist');
-      if (!checklist) return;
-
-      const items = [
-        { id: 'progress-section1', label: 'The Smell' },
-        { id: 'progress-section2', label: 'Recipe Card' },
-        { id: 'progress-section3', label: 'Beef Calculation' },
-        { id: 'progress-section4', label: 'Scale Factor' },
-        { id: 'progress-section5', label: 'Fractions' },
-        { id: 'progress-section6', label: 'Scaling' },
-        { id: 'progress-section7', label: 'Conversions' },
-        { id: 'progress-section8', label: 'Ginger & Garlic' },
-        { id: 'progress-section9', label: 'Wisdom' },
-        { id: 'progress-section10', label: 'Reflection' }
-      ];
-
-      checklist.innerHTML = items.map(item => {
-        const el = document.getElementById(item.id);
-        const complete = el && el.classList.contains('completed');
-        return `
-          <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
-            <span class="text-lg">${complete ? '✅' : '⬜'}</span>
-            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
-          </div>
-        `;
-      }).join('');
+    function closeHelper(e, character) {
+      if (e.target.classList.contains('helper-modal')) {
+        const modal = document.getElementById(`${character}-modal`);
+        if (modal) {
+          modal.classList.remove('open');
+        }
+      }
     }
   </script>
 
