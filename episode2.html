@@ -1324,79 +1324,10 @@
     </div>
   </div>
 
-  <!-- Character Helper Buttons -->
-  <div id="helper-lee" class="helper-btn" onclick="openHelper('lee')">
-    <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee with notebook">
-    <div class="label text-purple-600">ASK LEE</div>
-  </div>
-
-  <div id="helper-tee" class="helper-btn" onclick="openHelper('tee')">
-    <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee gesturing">
-    <div class="label text-amber-600">ASK TEE</div>
-  </div>
-
-  <!-- Lee Helper Modal -->
-  <div id="lee-modal" class="helper-modal" onclick="closeHelper(event, 'lee')">
-    <div class="helper-content border-l-8 border-purple-500" onclick="event.stopPropagation()">
-      <div class="flex items-center gap-3 mb-4">
-        <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee" class="w-12 h-12 rounded-full object-cover object-top">
-        <h3 class="font-display text-xl font-bold">Lee's Math Notes</h3>
-      </div>
-      <p class="mb-4 text-gray-600">Need a math checklist? Try these steps:</p>
-      <ul class="space-y-2 text-gray-700">
-        <li class="flex items-start gap-2">
-          <span class="text-purple-500">📝</span>
-          <span>Write the recipe ratio as a fraction.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-purple-500">📝</span>
-          <span>Multiply each ingredient by the scale factor.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-purple-500">📝</span>
-          <span>Check units before you answer.</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-purple-500">📝</span>
-          <span>Estimate to see if the number makes sense.</span>
-        </li>
-      </ul>
-      <p class="mt-4 text-xs text-gray-400 text-center">(Click outside to close)</p>
-    </div>
-  </div>
-
-  <!-- Tee Helper Modal -->
-  <div id="tee-modal" class="helper-modal" onclick="closeHelper(event, 'tee')">
-    <div class="helper-content border-l-8 border-amber-500" onclick="event.stopPropagation()">
-      <div class="flex items-center gap-3 mb-4">
-        <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee" class="w-12 h-12 rounded-full object-cover object-top">
-        <h3 class="font-display text-xl font-bold">Tee's Strategy Check</h3>
-      </div>
-      <p class="mb-4 text-gray-600">Stay sharp while you scale the recipe:</p>
-      <ol class="space-y-3 text-gray-700">
-        <li class="flex items-start gap-3">
-          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">1</span>
-          <span>Did you find the correct scale factor?</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">2</span>
-          <span>Are you multiplying every ingredient?</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">3</span>
-          <span>Did you convert units before final answers?</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="bg-amber-100 text-amber-800 w-6 h-6 rounded-full flex items-center justify-center font-bold text-sm">4</span>
-          <span>Does the answer seem reasonable?</span>
-        </li>
-      </ol>
-      <p class="mt-4 text-xs text-gray-400 text-center">(Click outside to close)</p>
-    </div>
-  </div>
-
-  <!-- Shared Components JavaScript -->
-  <script src="shared/shared-components.js"></script>
+  <!-- NOTE: shared/shared-components.js is NOT loaded here to match Episode 1 architecture.
+       Episode 1 does not use shared-components.js. Each episode manages its own
+       loadProgress, saveProgress, and updateProgressChecklist functions inline.
+       This prevents function shadowing and initialization race conditions. -->
 
   <!-- Episode 2 Specific JavaScript -->
   <script>
