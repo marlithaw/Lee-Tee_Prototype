@@ -1324,8 +1324,10 @@
     </div>
   </div>
 
-  <!-- Shared Components JavaScript -->
-  <script src="shared/shared-components.js"></script>
+  <!-- NOTE: shared/shared-components.js is NOT loaded here to match Episode 1 architecture.
+       Episode 1 does not use shared-components.js. Each episode manages its own
+       loadProgress, saveProgress, and updateProgressChecklist functions inline.
+       This prevents function shadowing and initialization race conditions. -->
 
   <!-- Episode 2 Specific JavaScript -->
   <script>
