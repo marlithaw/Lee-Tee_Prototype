@@ -1341,25 +1341,89 @@
       };
     }
 
+    const EPISODE_PROGRESS_KEY = 'leeTeeLessonProgress';
+
     // Load progress from localStorage
     function loadProgress() {
-      const saved = localStorage.getItem('episode2Progress');
+      const saved = localStorage.getItem(EPISODE_PROGRESS_KEY);
       if (saved) {
         try {
           learningState = JSON.parse(saved);
         } catch (e) {
           console.error('Failed to load progress:', e);
+          learningState = {
+            points: 0,
+            badges: [],
+            completedActivities: []
+          };
         }
+      } else {
+        learningState = {
+          points: 0,
+          badges: [],
+          completedActivities: []
+        };
       }
       updatePointsDisplay();
+      updateBadges();
+
+      learningState.completedActivities.forEach(activityId => {
+        const el = document.getElementById(activityId);
+        if (el) {
+          el.classList.add('completed');
+        }
+      });
+
+      updateProgressBar();
+      updateProgressChecklist();
     }
 
     // Save progress to localStorage
     function saveProgress() {
       try {
-        localStorage.setItem('episode2Progress', JSON.stringify(learningState));
+        localStorage.setItem(EPISODE_PROGRESS_KEY, JSON.stringify(learningState));
       } catch (e) {
         console.error('Failed to save progress:', e);
+      }
+    }
+
+    function updateBadges() {
+      const badgeCount = document.getElementById('final-badges');
+      if (badgeCount) {
+        badgeCount.textContent = learningState.badges.length;
+      }
+
+      const badgeContainer = document.getElementById('badgeContainer');
+      if (badgeContainer) {
+        badgeContainer.innerHTML = '';
+        learningState.badges.forEach(badge => {
+          const badgeEl = document.createElement('span');
+          badgeEl.textContent = badge;
+          badgeEl.className = 'text-2xl';
+          badgeContainer.appendChild(badgeEl);
+        });
+      }
+    }
+
+    function awardBadge(emoji) {
+      if (!learningState.badges.includes(emoji)) {
+        learningState.badges.push(emoji);
+        updateBadges();
+        saveProgress();
+      }
+    }
+
+    function checkBadgeUnlocks() {
+      if (learningState.completedActivities.length >= 1) {
+        awardBadge('🎯');
+      }
+
+      if (learningState.points >= 50) {
+        awardBadge('⭐');
+      }
+
+      if (learningState.points >= 100) {
+        awardBadge('🏆');
       }
     }
 
@@ -1367,12 +1431,16 @@
     function addPoints(amount, reason) {
       learningState.points += amount;
       updatePointsDisplay();
+      checkBadgeUnlocks();
       saveProgress();
 
       // Update global state if available
       if (typeof addGlobalPoints === 'function') {
         addGlobalPoints(2, amount, reason);
       }
+
+      showCelebration(reason, `+${amount} points!`, amount >= 25 ? '🎉' : '⭐');
+      setTimeout(closeCelebration, 2500);
     }
 
     // Update points display
@@ -1380,6 +1448,11 @@
       const pointsDisplay = document.getElementById('pointsDisplay');
       if (pointsDisplay) {
         pointsDisplay.textContent = learningState.points;
+      }
+
+      const finalPoints = document.getElementById('final-points');
+      if (finalPoints) {
+        finalPoints.textContent = learningState.points;
       }
     }
 
@@ -1396,6 +1469,7 @@
           learningState.completedActivities.push(progressId);
           addPoints(points, 'Section completed!');
         }
+        saveProgress();
         updateProgressBar();
         updateProgressChecklist();
       }
@@ -1637,7 +1711,7 @@
 
     function resetEpisodeProgress() {
       if (confirm('Reset all progress for this episode?')) {
-        localStorage.removeItem('episode2Progress');
+        localStorage.removeItem(EPISODE_PROGRESS_KEY);
         localStorage.removeItem('episode2SkillState');
         location.reload();
       }
@@ -1815,13 +1889,12 @@
       console.log('Translation UI loaded');
     }
 
-    // ===== ACCESSIBILITY FUNCTIONS =====
-    function toggleDyslexia() {
-      document.body.classList.toggle('dyslexia-mode');
-    }
-
-    function toggleHighContrast() {
-      document.body.classList.toggle('high-contrast');
+    // ===== HELPER MODALS =====
+    function openHelper(character) {
+      const modal = document.getElementById(`${character}-modal`);
+      if (modal) {
+        modal.classList.add('open');
+      }
     }
 
     // ===== NULL GUARDS FOR OPTIONAL UI ELEMENTS =====
@@ -1848,35 +1921,6 @@
           }, 1000);
         }
       }
-    }
-
-    function updateProgressChecklist() {
-      const checklist = document.getElementById('progress-checklist');
-      if (!checklist) return;
-
-      const items = [
-        { id: 'progress-section1', label: 'The Smell' },
-        { id: 'progress-section2', label: 'Recipe Card' },
-        { id: 'progress-section3', label: 'Beef Calculation' },
-        { id: 'progress-section4', label: 'Scale Factor' },
-        { id: 'progress-section5', label: 'Fractions' },
-        { id: 'progress-section6', label: 'Scaling' },
-        { id: 'progress-section7', label: 'Conversions' },
-        { id: 'progress-section8', label: 'Ginger & Garlic' },
-        { id: 'progress-section9', label: 'Wisdom' },
-        { id: 'progress-section10', label: 'Reflection' }
-      ];
-
-      checklist.innerHTML = items.map(item => {
-        const el = document.getElementById(item.id);
-        const complete = el && el.classList.contains('completed');
-        return `
-          <div class="flex items-center gap-2 px-3 py-2 rounded-lg ${complete ? 'bg-green-50' : 'bg-gray-50'}">
-            <span class="text-lg">${complete ? '✅' : '⬜'}</span>
-            <span class="text-gray-700 ${complete ? 'font-semibold' : ''}">${item.label}</span>
-          </div>
-        `;
-      }).join('');
     }
   </script>
 
