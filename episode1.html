@@ -3407,55 +3407,46 @@ Finally, Step 4: Restate your position..."
       if (currentNarration) {
         speechSynthesis.cancel();
       }
-      
-      const pickVoice = () => {
-  const voices = speechSynthesis.getVoices();
-  return voices.find(v => v.name === 'Google US English')
-    || voices.find(v => v.lang === 'en-US')
-    || voices[0];
-};
 
-utterance.voice = pickVoice();
-utterance.lang = utterance.voice?.lang || 'en-US';
-
+      // Get the vocabulary word text from the modal
+      const word = document.getElementById('vocabWord').textContent;
+      const utterance = new SpeechSynthesisUtterance(word);
       utterance.rate = 0.9;
-      
+
       // Store the current narration
       currentNarration = utterance;
-      
+
       // Clear narration when done
       utterance.onend = () => {
         currentNarration = null;
         isPlaying = false;
       };
-      
+
       utterance.onerror = () => {
         currentNarration = null;
         isPlaying = false;
       };
-      
-     speechSynthesis.cancel(); // stop any previous voice
 
-  const speakNow = () => {
-  const voices = speechSynthesis.getVoices();
-  const v =
-  voices.find(x => x.name === "Google US English") ||
-  voices.find(x => x.lang === "en-US") || voices[0];
+      speechSynthesis.cancel(); // stop any previous voice
 
-  if (v) {
-    utterance.voice = v;
-    utterance.lang = 'en-US';
-  }
-  console.log('VOICE USED:', utterance.voice?.name, 'LANG:', utterance.lang);
-  speechSynthesis.speak(utterance);
-};
+      const speakNow = () => {
+        const voices = speechSynthesis.getVoices();
+        const v = voices.find(x => x.name === "Google US English") ||
+                  voices.find(x => x.lang === "en-US") ||
+                  voices[0];
 
-if (speechSynthesis.getVoices().length) {
-  speakNow();
-} else {
-  speechSynthesis.onvoiceschanged = () => speakNow();
-}
+        if (v) {
+          utterance.voice = v;
+          utterance.lang = 'en-US';
+        }
+        speechSynthesis.speak(utterance);
+      };
 
+      if (speechSynthesis.getVoices().length) {
+        speakNow();
+      } else {
+        speechSynthesis.onvoiceschanged = () => speakNow();
+      }
     }
 
     function showVocabChoices(blankId, correctWord) {
