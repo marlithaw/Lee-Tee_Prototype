@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Lee & Tee - Loading Episode...</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/learning-dashboard.css">
+  <link rel="stylesheet" href="shared/progressive-nav.css">
+  <style>
+    :root {
+      --bg-primary: #FFF8F0;
+      --bg-secondary: #FEF3E2;
+      --accent-purple: #7C3AED;
+      --accent-amber: #F59E0B;
+      --accent-teal: #0D9488;
+      --accent-blue: #3B82F6;
+      --accent-rose: #E11D48;
+      --text-primary: #1C1917;
+      --text-secondary: #57534E;
+      --success: #16A34A;
+      --border-light: #E7E5E4;
+    }
+
+    html {
+      width: 100%;
+      position: relative;
+    }
+
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      width: 100%;
+      max-width: 100vw;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      touch-action: pan-y pinch-zoom;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    section, div, main, article, header, footer, nav {
+      max-width: 100%;
+    }
+
+    img, video, iframe {
+      max-width: 100% !important;
+      height: auto;
+    }
+
+    body.dyslexia-mode {
+      letter-spacing: 0.05em;
+      word-spacing: 0.1em;
+      line-height: 2;
+    }
+
+    body.high-contrast {
+      --bg-primary: #000000;
+      --bg-secondary: #1a1a1a;
+      --text-primary: #FFFFFF;
+      --text-secondary: #E5E5E5;
+      --border-light: #404040;
+    }
+
+    .font-display { font-family: 'Fredoka', sans-serif; }
+
+    /* Hero Header */
+    .hero-gradient {
+      background: linear-gradient(135deg, #7C3AED 0%, #2563EB 50%, #0D9488 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 8s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--border-light);
+      z-index: 1000;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-teal));
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    /* Points Display */
+    .points-display {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border-radius: 2rem;
+      padding: 0.75rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .points-number {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent-purple);
+    }
+    .badge-earned {
+      animation: badgePop 0.5s ease;
+    }
+    @keyframes badgePop {
+      0% { transform: scale(0) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+
+    /* Celebration Overlay */
+    .celebration-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+    }
+    .celebration-overlay.show {
+      display: flex;
+      animation: fadeIn 0.3s;
+    }
+    .celebration-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      max-width: 400px;
+      animation: slideUp 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--accent-amber);
+      animation: confettiFall 3s linear;
+    }
+    @keyframes confettiFall {
+      to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Vocabulary Modal */
+    .vocab-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+    }
+    .vocab-modal.open {
+      display: flex;
+    }
+    .vocab-modal-content {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    /* Helper Modals */
+    .helper-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+    }
+    .helper-modal.open {
+      display: flex;
+    }
+    .helper-modal-content {
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      border: 3px solid;
+    }
+
+    /* Vocabulary Highlighting */
+    .vocab-word {
+      background: linear-gradient(to bottom, transparent 60%, #FDE68A 60%);
+      cursor: help;
+      font-weight: 500;
+    }
+    .vocab-word:hover {
+      background: linear-gradient(to bottom, transparent 40%, #FDE68A 40%);
+    }
+
+    /* Fill-in-blank */
+    .vocab-predict {
+      position: relative;
+      display: inline-block;
+    }
+    .vocab-blank {
+      display: inline-block;
+      min-width: 100px;
+      border-bottom: 2px solid var(--accent-purple);
+      padding: 0 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .vocab-blank:hover {
+      background: #F3E8FF;
+    }
+    .vocab-choices {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 0.5rem;
+      z-index: 1000;
+      min-width: 180px;
+    }
+    .vocab-choices.show {
+      display: block;
+    }
+    .vocab-choice-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .vocab-choice-btn:hover {
+      background: #F3E8FF;
+    }
+
+    /* Speech bubbles */
+    .speech-bubble {
+      position: relative;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    /* Quiz options */
+    .quiz-option.correct {
+      background: #DCFCE7 !important;
+      border-color: #16A34A !important;
+    }
+    .quiz-option.incorrect {
+      background: #FEE2E2 !important;
+      border-color: #E11D48 !important;
+    }
+
+    /* Drag and drop */
+    .rap-line {
+      transition: all 0.2s;
+    }
+    .rap-line.dragging {
+      opacity: 0.5;
+    }
+    .rap-line.correct {
+      background: #DCFCE7 !important;
+      border-color: #16A34A !important;
+    }
+    .rap-line.incorrect {
+      animation: shake 0.3s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    .drop-zone.drag-over {
+      background: #E9D5FF;
+      border-color: var(--accent-purple);
+    }
+    .drop-zone.filled {
+      background: #DCFCE7;
+      border-style: solid;
+      border-color: #16A34A;
+    }
+
+    /* Floating stop button */
+    .floating-stop-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #EF4444;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+    .floating-stop-btn.active {
+      display: block;
+    }
+
+    /* Active highlighting */
+    .word-highlight.active-word {
+      background-color: #FDE68A !important;
+      color: #000 !important;
+      font-weight: 600;
+      box-shadow: 0 0 0 1px #F59E0B;
+    }
+    .active-sentence {
+      background-color: rgba(253, 230, 138, 0.5) !important;
+      padding: 8px 12px;
+      border-radius: 4px;
+      border-left: 3px solid #7C3AED;
+      border-right: 3px solid #7C3AED;
+    }
+
+    /* Progress check */
+    .progress-check {
+      font-size: 16px;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .progress-check.completed {
+      animation: checkPop 0.3s ease;
+    }
+    @keyframes checkPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* Learning objectives */
+    .language-objective {
+      background: linear-gradient(135deg, #DCFCE7 0%, #BBF7D0 100%);
+      border-left: 4px solid #16A34A;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    .content-objective {
+      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+      border-left: 4px solid #D97706;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+
+    /* Section display */
+    .section-content {
+      display: none;
+    }
+    .section-content.active {
+      display: block;
+    }
+
+    /* Section navigation */
+    .section-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: white;
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 4px;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+    .section-nav-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: 2px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .section-nav-btn:hover {
+      background: #F3E8FF;
+    }
+    .section-nav-btn.active {
+      background: #7C3AED;
+      color: white;
+    }
+    .section-nav-btn.locked {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .nav-icon {
+      font-size: 1.5rem;
+    }
+    .nav-label {
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    /* Media containers */
+    .media-container {
+      max-width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    /* Loading state */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid var(--border-light);
+      border-top-color: var(--accent-purple);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+    }
+
+    /* Error state */
+    .error-container {
+      max-width: 400px;
+      text-align: center;
+      padding: 2rem;
+    }
+    .error-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .error-message {
+      color: var(--accent-rose);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading Episode...</div>
+  </div>
+
+  <!-- Mount Point -->
+  <div id="episode-root"></div>
+
+  <!-- Engine Scripts -->
+  <script src="engine/modules/settings.js"></script>
+  <script src="engine/modules/progress.js"></script>
+  <script src="engine/modules/navigation.js"></script>
+  <script src="engine/modules/activities.js"></script>
+  <script src="engine/renderer.js"></script>
+
+  <!-- Shared Dependencies -->
+  <script src="translations/translation-engine.js"></script>
+  <script src="shared/adaptive-helpers.js"></script>
+
+  <script>
+    // ========================================
+    // EPISODE SHELL - Query Param Loading
+    // ========================================
+
+    (async function() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const episodeRoot = document.getElementById('episode-root');
+
+      // Get episode number from query param
+      const params = new URLSearchParams(window.location.search);
+      const episodeNum = parseInt(params.get('ep'), 10) || 1;
+
+      // Update page title
+      document.title = `Lee & Tee Episode ${episodeNum}`;
+
+      // Episode config paths
+      const configPaths = {
+        1: 'episodes/episode1.config.js',
+        2: 'episodes/episode2.config.js',
+        3: 'episodes/episode3.config.js',
+        4: 'episodes/episode4.config.js'
+      };
+
+      const configPath = configPaths[episodeNum];
+
+      if (!configPath) {
+        showError(`Episode ${episodeNum} not found. Valid episodes: 1-4`);
+        return;
+      }
+
+      try {
+        // Load episode config dynamically
+        await loadScript(configPath);
+
+        // Get config based on episode number
+        const configVar = `episode${episodeNum}Config`;
+        const config = window[configVar];
+
+        if (!config) {
+          throw new Error(`Config ${configVar} not found in ${configPath}`);
+        }
+
+        // Update page title with episode title
+        document.title = config.title;
+
+        // Render episode
+        await renderEpisode(config);
+
+        // Initialize global functions for inline handlers
+        initGlobalHandlers();
+
+        // Hide loading overlay
+        loadingOverlay.style.display = 'none';
+
+        console.log(`✅ Episode ${episodeNum} loaded successfully`);
+
+      } catch (error) {
+        console.error('Failed to load episode:', error);
+        showError(`Failed to load Episode ${episodeNum}: ${error.message}`);
+      }
+    })();
+
+    /**
+     * Load a script dynamically
+     */
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Failed to load ${src}`));
+        document.head.appendChild(script);
+      });
+    }
+
+    /**
+     * Show error message
+     */
+    function showError(message) {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.innerHTML = `
+        <div class="error-container">
+          <div class="error-icon">❌</div>
+          <div class="error-message">${message}</div>
+          <a href="index.html" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+            Back to Home
+          </a>
+        </div>
+      `;
+    }
+
+    /**
+     * Initialize global handlers for inline onclick handlers
+     */
+    function initGlobalHandlers() {
+      // Make vocabulary data available globally
+      window.vocabData = window.episode1Config?.vocabulary || {};
+
+      // Global handlers that inline HTML uses
+      window.showVocab = function(word) {
+        if (window.engineActivities) {
+          window.engineActivities.showVocabModal(word, window.vocabData);
+        }
+      };
+
+      window.showVocabChoices = function(blankId, correctWord) {
+        document.querySelectorAll('.vocab-choices').forEach(menu => {
+          menu.classList.remove('show');
+        });
+        const choicesId = blankId.replace('blank', 'choices');
+        const el = document.getElementById(choicesId);
+        if (el) el.classList.add('show');
+      };
+
+      window.checkVocabChoice = function(blankId, choicesId, selectedWord, isCorrect) {
+        if (window.engineActivities) {
+          window.engineActivities.checkVocabChoice(blankId, choicesId, selectedWord, isCorrect);
+
+          // Check if all vocab done
+          const progress = window.engineProgress;
+          if (progress) {
+            const vocabComplete = ['blank1', 'blank2', 'blank3'].every(id =>
+              progress.isComplete(id)
+            );
+            if (vocabComplete && !progress.isComplete('vocab')) {
+              progress.completeActivity('vocab');
+              progress.awardBadge('🎯');
+            }
+          }
+        }
+      };
+
+      window.selectEmotion = function(element, emotion) {
+        document.querySelectorAll('.emotion-option').forEach(el => {
+          el.classList.remove('selected', 'bg-blue-100', 'border-blue-400');
+        });
+        element.classList.add('selected', 'bg-blue-100', 'border-blue-400');
+
+        if (window.engineProgress) {
+          window.engineProgress.setEmotion(emotion);
+          window.engineProgress.completeActivity('sel');
+        }
+
+        // Show feedback
+        const feedback = document.getElementById('selFeedback');
+        if (feedback) {
+          const messages = {
+            tired: '💙 Got it! Audio features are available to help you follow along.',
+            nervous: '💜 No worries! Extra help features are available in the settings menu.',
+            excited: "🎉 Love the energy! Let's dive in!",
+            calm: "🌟 Perfect mindset for learning. Let's get started!"
+          };
+          feedback.textContent = messages[emotion] || '';
+          feedback.classList.remove('hidden');
+        }
+      };
+
+      window.chooseCharacter = function(character) {
+        document.querySelectorAll('.choice-card').forEach(card => {
+          card.classList.remove('selected', 'border-purple-400', 'border-amber-400', 'ring-2');
+        });
+
+        const selectedCard = document.getElementById('choose' + character.charAt(0).toUpperCase() + character.slice(1));
+        if (selectedCard) {
+          selectedCard.classList.add('selected', 'ring-2', character === 'lee' ? 'ring-purple-400' : 'ring-amber-400');
+        }
+
+        if (window.engineProgress) {
+          window.engineProgress.setCharacterChoice(character);
+          window.engineProgress.addPoints(5, 'Great choice!');
+        }
+
+        const feedback = document.getElementById('characterFeedback');
+        if (feedback) feedback.classList.remove('hidden');
+      };
+
+      window.checkAnswer = function(btn, correct, id) {
+        if (window.engineActivities) {
+          const progressKey = id === 'comp1' ? 'section1' : id === 'comp2' ? 'section2' : null;
+          window.engineActivities.checkAnswer(btn, correct, id, progressKey, 0);
+        }
+      };
+
+      window.toggleSectionAudio = function(btn, sectionId) {
+        if (window.engineActivities) {
+          window.engineActivities.toggleSectionAudio(btn, sectionId);
+        }
+      };
+
+      window.readAloudWithWordHighlight = function(btn, sectionId) {
+        // Implement word-level highlighting (simplified)
+        if (window.engineActivities) {
+          window.engineActivities.toggleSectionAudio(btn, sectionId);
+        }
+      };
+
+      window.saveResponse = function() {
+        if (window.engineActivities) {
+          window.engineActivities.saveResponse('videoGames', 'studentResponse', 50, 'essay', 30, '✍️');
+        }
+      };
+
+      window.shareResponse = function() {
+        const response = document.getElementById('studentResponse')?.value;
+        if (!response || response.trim().length < 50) {
+          alert('Write your response first, then you can share with a partner!');
+          return;
+        }
+        alert('🤝 Great! Now share your screen or read your response to your partner.');
+      };
+
+      window.updateRubric = function() {
+        const text = document.getElementById('studentResponse')?.value?.toLowerCase() || '';
+        const checks = [
+          text.includes('they said') || text.includes('you claim'),
+          text.includes('evidence') || text.includes('proof') || text.includes('research'),
+          text.includes('wrong') || text.includes('however') || text.includes('but'),
+          text.includes('conclusion') || text.includes('therefore')
+        ];
+
+        ['rubric1', 'rubric2', 'rubric3', 'rubric4'].forEach((id, i) => {
+          const el = document.getElementById(id);
+          if (el) {
+            const checkbox = el.querySelector('input');
+            if (checkbox) checkbox.checked = checks[i];
+          }
+        });
+      };
+
+      window.startDictation = function(button) {
+        if (!('webkitSpeechRecognition' in window)) {
+          alert('Voice typing requires Chrome browser.');
+          return;
+        }
+
+        const textarea = button.parentElement.querySelector('textarea') ||
+                         button.parentElement.previousElementSibling;
+        if (!textarea) return;
+
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+
+        recognition.onstart = function() {
+          button.textContent = '🎤 Listening...';
+          button.classList.add('bg-red-100', 'text-red-700');
+        };
+
+        recognition.onresult = function(event) {
+          const transcript = event.results[0][0].transcript;
+          textarea.value += (textarea.value ? ' ' : '') + transcript;
+
+          if (textarea.value.trim().length > 10 && window.engineProgress) {
+            window.engineProgress.completeActivity('reflect');
+          }
+        };
+
+        recognition.onend = function() {
+          button.textContent = '🎤 Speak Answer';
+          button.classList.remove('bg-red-100', 'text-red-700');
+        };
+
+        recognition.onerror = function() {
+          button.textContent = '🎤 Speak Answer';
+          button.classList.remove('bg-red-100', 'text-red-700');
+        };
+
+        recognition.start();
+      };
+
+      // Drag and drop handlers
+      let draggedItem = null;
+      let correctPlacements = 0;
+
+      window.dragStart = function(e) {
+        draggedItem = e.target;
+        e.target.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', e.target.dataset.step);
+      };
+
+      window.dragEnd = function(e) {
+        e.target.classList.remove('dragging');
+      };
+
+      window.dragOver = function(e) {
+        e.preventDefault();
+        e.currentTarget.classList.add('drag-over');
+      };
+
+      window.dragLeave = function(e) {
+        e.currentTarget.classList.remove('drag-over');
+      };
+
+      window.drop = function(e) {
+        e.preventDefault();
+        const dropZone = e.currentTarget;
+        dropZone.classList.remove('drag-over');
+
+        const targetStep = dropZone.dataset.target;
+        const itemStep = draggedItem.dataset.step;
+
+        if (targetStep === itemStep) {
+          dropZone.innerHTML = '';
+          const clone = draggedItem.cloneNode(true);
+          clone.classList.add('correct');
+          clone.draggable = false;
+          dropZone.appendChild(clone);
+          dropZone.classList.add('filled');
+
+          draggedItem.style.display = 'none';
+          correctPlacements++;
+
+          if (correctPlacements >= 4) {
+            const feedback = document.getElementById('strategyFeedback');
+            if (feedback) feedback.classList.remove('hidden');
+
+            if (window.engineProgress && !window.engineProgress.isComplete('drag')) {
+              window.engineProgress.completeActivity('drag');
+              window.engineProgress.addPoints(25, 'Strategy mastered!');
+              window.engineProgress.awardBadge('🎤');
+            }
+          }
+        } else {
+          draggedItem.classList.add('incorrect');
+          setTimeout(() => draggedItem.classList.remove('incorrect'), 300);
+        }
+      };
+
+      // Initialize drag listeners after render
+      setTimeout(() => {
+        document.querySelectorAll('.rap-line').forEach(line => {
+          line.addEventListener('dragstart', window.dragStart);
+          line.addEventListener('dragend', window.dragEnd);
+        });
+      }, 100);
+    }
+  </script>
+</body>
+</html>
