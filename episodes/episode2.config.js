@@ -8,7 +8,7 @@
  * Wait for engine parity confirmation before adding content.
  */
 
-const episode2Config = {
+window.episode2Config = {
   id: 2,
   title: "Lee & Tee Episode 2: Grandpa's Kitchen",
   subtitle: 'Learning fractions through cooking',
