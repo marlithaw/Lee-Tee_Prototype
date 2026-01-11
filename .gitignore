@@ -1,6 +1,7 @@
-# Backup files
+# Backup files (except archived ones)
 *_backup_*.html
 episode1_backup_*.html
+!archive/**/*_backup_*.html
 
 # OS files
 .DS_Store
