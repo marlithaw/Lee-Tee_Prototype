@@ -5,7 +5,7 @@
  * Theme: Argumentative Writing / Counter-Arguments
  */
 
-const episode1Config = {
+window.episode1Config = {
   id: 1,
   title: 'Lee & Tee Episode 1: The Recess Battle',
   subtitle: 'Learning to counter arguments with evidence',
