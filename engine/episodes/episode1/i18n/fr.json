@@ -1,0 +1,146 @@
+{
+  "ui": {
+    "appTitle": "Moteur d'épisodes Lee & Tee",
+    "language": "Langue",
+    "resetProgress": "Réinitialiser la progression",
+    "stop": "ARRÊT",
+    "resume": "Reprendre",
+    "closeModal": "Fermer la fenêtre"
+  },
+  "episode": {
+    "title": "Épisode 1 : La grande idée"
+  },
+  "dashboard": {
+    "title": "Tableau de bord d'apprentissage",
+    "bookProgress": "Progression du livre : {percent}%",
+    "episodeProgress": "Progression de l'épisode : {completed}/{total} sections",
+    "badges": "Badges",
+    "noBadges": "Pas encore de badges",
+    "continue": "Continuer",
+    "points": "Points : {points}",
+    "finishBadge": "Finisseur de l'épisode",
+    "progressReset": "Progression réinitialisée.",
+    "stopped": "Épisode en pause.",
+    "resumed": "Épisode repris."
+  },
+  "nav": {
+    "quickJump": "Accès rapide",
+    "vocabulary": "Vocabulaire",
+    "story": "Histoire",
+    "practice": "Pratique",
+    "check": "Vérifier",
+    "reflect": "Réfléchir"
+  },
+  "settings": {
+    "title": "Paramètres de lecture",
+    "readAloud": "Lecture à voix haute",
+    "dyslexia": "Police dyslexie",
+    "highContrast": "Contraste élevé",
+    "showHints": "Afficher les indices"
+  },
+  "objectives": {
+    "title": "Stratégies SIOP et objectifs",
+    "siop": "Stratégies SIOP",
+    "content": "Objectifs de contenu",
+    "language": "Objectifs de langage",
+    "siopList": [
+      "Construire les connaissances antérieures",
+      "Utiliser des supports visuels"
+    ],
+    "contentList": [
+      "Identifier les étapes d'un plan"
+    ],
+    "languageList": [
+      "Expliquer un plan avec des mots de séquence"
+    ]
+  },
+  "sections": {
+    "count": "Section {index} sur {total}",
+    "simplified": "Vue simplifiée",
+    "fullView": "Vue complète",
+    "markComplete": "Marquer la section terminée",
+    "completed": "Terminé",
+    "vocabTitle": "Pouvoir du vocabulaire",
+    "storyTitle": "Histoire",
+    "checkTitle": "Vérifier",
+    "practiceTitle": "Pratique",
+    "writingTitle": "Aide à l'écriture",
+    "reflectTitle": "Réfléchir"
+  },
+  "helpers": {
+    "askLee": "DEMANDER À LEE",
+    "askTee": "DEMANDER À TEE",
+    "leeTip": "Cherche les mots qui montrent l'ordre du plan.",
+    "teeTip": "Fais une pause et résume chaque étape avec tes propres mots."
+  },
+  "vocab": {
+    "title": "Vocabulaire",
+    "modalLabel": "Détails du vocabulaire pour {word}",
+    "hearIt": "Écouter",
+    "words": {
+      "persist": {
+        "term": "Persévérer",
+        "shortDef": "Continuer",
+        "definition": "Continuer à essayer même quand c'est difficile.",
+        "spanish": "Espagnol : persistir",
+        "example": "Dans l'histoire, Jayden a persévéré jusqu'à ce que le plan soit prêt."
+      },
+      "outline": {
+        "term": "Plan",
+        "shortDef": "Planifier les étapes",
+        "definition": "Une liste des parties principales d'un plan.",
+        "spanish": "Espagnol : esquema",
+        "example": "Lee et Tee font un plan avant d'écrire."
+      }
+    }
+  },
+  "story": {
+    "listen": "Écouter",
+    "stop": "Arrêter",
+    "readAloud": "Lire à voix haute la section {index} sur {total}",
+    "full": "Lee et Tee aident Jayden à créer un plan. D'abord, ils listent la grande idée. Ensuite, ils ajoutent trois étapes. Enfin, ils révisent le plan ensemble.",
+    "simplified": "Lee et Tee aident Jayden à faire un plan en trois étapes."
+  },
+  "checks": {
+    "question1": "Que doit faire Jayden en premier ?",
+    "options1": {
+      "a": "Aller à la dernière étape",
+      "b": "Lister la grande idée",
+      "c": "Effacer le plan"
+    },
+    "correct": "Correct !",
+    "incorrect": "Pas encore. Réessaie !",
+    "checkAnswer": "Vérifier la réponse"
+  },
+  "practice": {
+    "prompt": "Associe chaque étape à la bonne partie du plan.",
+    "clickMode": "Mode cliquer pour placer",
+    "dragMode": "Mode glisser-déposer",
+    "items": {
+      "0": "Décider de la grande idée",
+      "1": "Ajouter les détails des étapes",
+      "2": "Réviser le plan"
+    },
+    "targets": {
+      "0": "Début",
+      "1": "Milieu",
+      "2": "Fin"
+    },
+    "correct": "Bien assorti !",
+    "incorrect": "Vérifie cette étape.",
+    "itemsTitle": "Éléments",
+    "targetsTitle": "Cibles"
+  },
+  "writing": {
+    "prompt": "Écris un petit plan pour un objectif que tu as cette semaine.",
+    "frames": "Cadres de phrase",
+    "framesList": [
+      "D'abord, je vais...",
+      "Ensuite, je vais..."
+    ],
+    "placeholder": "Écris ta réponse ici..."
+  },
+  "reflect": {
+    "prompt": "Comment le plan a-t-il aidé Jayden à se sentir en confiance ?"
+  }
+}
