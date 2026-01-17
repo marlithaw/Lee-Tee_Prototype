@@ -9,7 +9,10 @@
  * - Navigation
  */
 
-const tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+// Only define tr if not already defined
+if (typeof tr === 'undefined') {
+  var tr = (key, fallback) => (typeof translator !== 'undefined' ? translator.t(key, fallback) : fallback);
+}
 
 // ===== GLOBAL STATE MANAGEMENT =====
 

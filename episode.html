@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Lee & Tee - Loading Episode...</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #FFF8F0;
+      --accent-purple: #7C3AED;
+      --text-primary: #1C1917;
+      --text-secondary: #57534E;
+      --border-light: #E7E5E4;
+    }
+
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+    }
+
+    .font-display { font-family: 'Fredoka', sans-serif; }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid var(--border-light);
+      border-top-color: var(--accent-purple);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      margin-top: 1rem;
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+    }
+    .error-container {
+      max-width: 400px;
+      text-align: center;
+      padding: 2rem;
+    }
+    .error-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .error-message {
+      color: #E11D48;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading Episode...</div>
+  </div>
+
+  <script>
+    /**
+     * LIFT-AND-SHIFT Episode Loader
+     *
+     * This shell loads the ACTUAL episode HTML files to ensure 100% parity.
+     * For episode 1, it loads episode1.html's full content.
+     *
+     * Approach:
+     * 1. Fetch the episode HTML file
+     * 2. Parse and inject all styles, content, and scripts
+     * 3. Dispatch DOMContentLoaded to trigger initialization
+     *
+     * This guarantees feature parity because we're loading the exact same
+     * HTML, CSS, and JavaScript that the standalone episode files use.
+     */
+    (async function() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+
+      // Get episode number from query param
+      const params = new URLSearchParams(window.location.search);
+      const episodeNum = parseInt(params.get('ep'), 10) || 1;
+
+      // Map episode numbers to their HTML files
+      const episodeFiles = {
+        1: 'episode1.html',
+        2: 'episode2.html',
+        3: 'episode3.html',
+        4: 'episode4.html'
+      };
+
+      const episodeFile = episodeFiles[episodeNum];
+
+      if (!episodeFile) {
+        showError(`Episode ${episodeNum} not found. Valid episodes: 1-4`);
+        return;
+      }
+
+      try {
+        // Fetch the episode HTML file
+        const response = await fetch(episodeFile);
+        if (!response.ok) {
+          throw new Error(`Failed to load ${episodeFile} (${response.status})`);
+        }
+
+        const html = await response.text();
+
+        // Parse the HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        // Extract the title
+        const title = doc.querySelector('title')?.textContent || `Lee & Tee Episode ${episodeNum}`;
+        document.title = title;
+
+        // Extract all styles from head (both inline and linked)
+        const headStyles = doc.querySelectorAll('head style');
+        const headLinks = doc.querySelectorAll('head link[rel="stylesheet"]');
+
+        // Add linked stylesheets
+        headLinks.forEach(link => {
+          const newLink = document.createElement('link');
+          newLink.rel = 'stylesheet';
+          newLink.href = link.getAttribute('href');
+          document.head.appendChild(newLink);
+        });
+
+        // Add inline styles
+        headStyles.forEach(style => {
+          const newStyle = document.createElement('style');
+          newStyle.textContent = style.textContent;
+          document.head.appendChild(newStyle);
+        });
+
+        // Extract scripts from head (order matters!)
+        const headScripts = doc.querySelectorAll('head script');
+
+        // Replace body content
+        document.body.innerHTML = doc.body.innerHTML;
+
+        // Copy body attributes (like data-episode="1")
+        Array.from(doc.body.attributes).forEach(attr => {
+          document.body.setAttribute(attr.name, attr.value);
+        });
+
+        // Load head scripts first (these include shared-header.js, etc.)
+        for (const script of headScripts) {
+          await loadScript(script);
+        }
+
+        // Now load body scripts (external ones)
+        const bodyScripts = doc.body.querySelectorAll('script[src]');
+        for (const script of bodyScripts) {
+          await loadScript(script);
+        }
+
+        // Execute inline scripts by recreating them
+        const inlineScripts = document.querySelectorAll('body script:not([src])');
+        for (const script of inlineScripts) {
+          try {
+            const newScript = document.createElement('script');
+            newScript.textContent = script.textContent;
+            script.parentNode.replaceChild(newScript, script);
+          } catch (e) {
+            console.warn('Script execution error:', e);
+          }
+        }
+
+        // Manually trigger DOMContentLoaded for any listeners that missed it
+        // This is needed because the original episode's DOMContentLoaded handlers
+        // were registered after the event already fired in this shell
+        setTimeout(() => {
+          document.dispatchEvent(new Event('DOMContentLoaded', {
+            bubbles: true,
+            cancelable: true
+          }));
+          console.log('✓ DOMContentLoaded dispatched for episode initialization');
+        }, 100);
+
+        console.log(`✅ Episode ${episodeNum} loaded via lift-and-shift`);
+
+      } catch (error) {
+        console.error('Failed to load episode:', error);
+        showError(`Failed to load Episode ${episodeNum}: ${error.message}`);
+      }
+
+      /**
+       * Load a script element
+       */
+      async function loadScript(scriptEl) {
+        return new Promise((resolve) => {
+          if (scriptEl.src) {
+            // External script
+            const newScript = document.createElement('script');
+            newScript.src = scriptEl.src;
+            newScript.onload = resolve;
+            newScript.onerror = () => {
+              console.warn(`Failed to load: ${scriptEl.src}`);
+              resolve();
+            };
+            document.head.appendChild(newScript);
+          } else {
+            // Inline script - will be handled separately
+            resolve();
+          }
+        });
+      }
+
+      /**
+       * Show error message
+       */
+      function showError(message) {
+        document.body.innerHTML = `
+          <div class="loading-overlay">
+            <div class="error-container">
+              <div class="error-icon">❌</div>
+              <div class="error-message">${message}</div>
+              <p style="color: #57534E; margin-bottom: 1rem;">
+                You can access episodes directly:
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <a href="episode1.html" class="px-4 py-2 bg-purple-600 text-white rounded-lg text-center hover:bg-purple-700 no-underline">
+                  Episode 1: The Recess Battle
+                </a>
+                <a href="episode2.html" class="px-4 py-2 bg-amber-500 text-white rounded-lg text-center hover:bg-amber-600 no-underline">
+                  Episode 2: Grandpa's Kitchen
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    })();
+  </script>
+</body>
+</html>
