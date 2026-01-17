@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lee & Tee Episode Engine</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="app__header">
+      <div class="app__brand">
+        <h1 id="episode-title">Lee & Tee</h1>
+        <p id="episode-subtitle" class="muted"></p>
+      </div>
+      <div class="app__controls">
+        <label class="control" for="language-switch">
+          <span data-i18n="ui.language">Language</span>
+          <select id="language-switch" aria-label="Language"></select>
+        </label>
+        <button id="reset-progress" class="button button--ghost" data-i18n="ui.resetProgress"></button>
+        <button id="stop-episode" class="button button--ghost" data-i18n="ui.stop"></button>
+      </div>
+    </header>
+
+    <main class="app__main">
+      <aside class="sidebar">
+        <section id="dashboard" class="panel"></section>
+        <section id="settings" class="panel"></section>
+        <section id="objectives" class="panel"></section>
+        <section id="strategies" class="panel"></section>
+      </aside>
+
+      <section class="content">
+        <nav id="quick-jump" class="quick-jump" aria-label="Section navigation"></nav>
+        <div id="sections" class="sections"></div>
+      </section>
+    </main>
+
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
