@@ -1,0 +1,130 @@
+{
+  "ui": {
+    "appTitle": "Moteur d'épisodes Lee & Tee",
+    "appSubtitle": "Aventures d'apprentissage par épisode",
+    "language": "Langue",
+    "resetProgress": "Réinitialiser la progression",
+    "stop": "ARRÊTER",
+    "learningDashboard": "Tableau de bord d'apprentissage",
+    "episodeProgress": "Progression de l'épisode",
+    "sectionsComplete": "sections terminées",
+    "bookProgress": "Progression du livre",
+    "episodesComplete": "épisodes terminés",
+    "badges": "Badges",
+    "badgesEarned": "badges gagnés",
+    "noBadges": "Pas encore de badges",
+    "continue": "Continuer",
+    "resume": "Reprendre",
+    "points": "Points",
+    "navVocabulary": "Vocabulaire",
+    "navStory": "Histoire",
+    "navPractice": "Pratique",
+    "navCheck": "Vérifier",
+    "navReflect": "Réfléchir",
+    "readingSettings": "Paramètres de lecture",
+    "readAloud": "Lecture à voix haute",
+    "dyslexiaFont": "Police dyslexie",
+    "highContrast": "Contraste élevé",
+    "showHints": "Afficher les indices",
+    "objectives": "Objectifs et SIOP",
+    "languageObjectives": "Objectifs linguistiques",
+    "contentObjectives": "Objectifs de contenu",
+    "siopStrategies": "Stratégies SIOP",
+    "askLee": "DEMANDER À LEE",
+    "askTee": "DEMANDER À TEE",
+    "sectionProgress": "Progression des sections",
+    "section": "Section",
+    "of": "sur",
+    "simplifiedView": "Vue simplifiée",
+    "openCard": "Ouvrir la carte",
+    "exampleInStory": "Exemple dans l'histoire",
+    "hearIt": "Écouter",
+    "vocabDetails": "Détails du vocabulaire",
+    "close": "Fermer",
+    "markComplete": "Marquer la section terminée",
+    "checkAnswer": "Vérifier la réponse",
+    "sectionComplete": "Section terminée !",
+    "listen": "Écouter",
+    "readAloudSection": "Lecture à voix haute Section {current} sur {total}",
+    "enableClickMode": "Activer le clic pour placer",
+    "enableDragMode": "Activer le glisser",
+    "sentenceFrames": "Cadres de phrase",
+    "writeResponse": "Écris ta réponse",
+    "saveWriting": "Enregistrer l'écriture",
+    "progressReset": "Progression réinitialisée",
+    "stopped": "Épisode arrêté. Vous pouvez reprendre quand vous voulez.",
+    "resumed": "Content de te revoir !"
+  },
+  "episode": {
+    "title": "Épisode 1 : La bataille de la récréation",
+    "description": "Lee et Tee apprennent à planifier un défi respectueux."
+  },
+  "helpers": {
+    "lee": "Réfléchis à l'objectif avant d'agir. Planifier aide à gagner avec gentillesse.",
+    "tee": "N'oublie pas d'écouter ton équipe et de partager tes idées clairement."
+  },
+  "objectives": {
+    "language1": "Expliquer une stratégie avec des mots de séquence.",
+    "language2": "Demander un retour à un partenaire.",
+    "content1": "Identifier les étapes d'une compétition équitable.",
+    "content2": "Réfléchir à ce qui rend un défi respectueux."
+  },
+  "siop": {
+    "strategy1": "Penser-Partager en binôme",
+    "strategy2": "Supports visuels",
+    "strategy3": "Cadres de phrase"
+  },
+  "sections": {
+    "vocab": {
+      "title": "Puissance du vocabulaire",
+      "intro": "Touchez un mot pour explorer son sens, sa traduction et son exemple."
+    },
+    "story": {
+      "title": "Temps d'histoire",
+      "text": "Lee et Tee se sont entraînés dans la cour. Ils voulaient gagner la bataille de la récréation en travaillant ensemble et en faisant un plan.",
+      "simplified": "Lee et Tee se sont entraînés ensemble. Ils ont fait un plan pour gagner en équipe.",
+      "hint": "Indice : Cherche les étapes qu'ils prennent pour se préparer."
+    },
+    "practice": {
+      "title": "Pratique : Associe les étapes",
+      "prompt": "Glisse chaque action vers l'étape correcte. Tu peux aussi passer au mode clic.",
+      "step1": "Étape 1 : Préparer",
+      "step2": "Étape 2 : S'entraîner",
+      "step3": "Étape 3 : Réfléchir",
+      "answer1": "Rassemble ton équipe et liste ce dont tu as besoin.",
+      "answer2": "Essaie le plan et ajuste avec les retours.",
+      "answer3": "Parlez de ce qui a bien fonctionné et de ce qui peut être amélioré.",
+      "correct": "Bon travail !",
+      "incorrect": "Réessaie. Associe chaque action à la bonne étape."
+    },
+    "check": {
+      "title": "Vérifie ta compréhension",
+      "prompt": "Quel choix montre le travail d'équipe ?",
+      "option1": "Garder le plan secret pour l'équipe.",
+      "option2": "Demander des idées à ton partenaire avant de commencer.",
+      "option3": "Ignorer les retours après l'entraînement.",
+      "correct": "Correct ! Le travail d'équipe, c'est partager des idées.",
+      "incorrect": "Pas tout à fait. Cherche l'option sur le travail ensemble."
+    },
+    "reflect": {
+      "title": "Réfléchir et écrire",
+      "prompt": "Comment te préparerais-tu pour un défi amical ?",
+      "frame1": "D'abord, je...",
+      "frame2": "Ensuite, je..."
+    }
+  },
+  "vocab": {
+    "challenge": {
+      "word": "défi",
+      "definition": "Une tâche qui met tes compétences à l'épreuve.",
+      "spanish": "Espagnol : desafío",
+      "example": "Leur plus grand défi était de travailler ensemble."
+    },
+    "strategy": {
+      "word": "stratégie",
+      "definition": "Un plan pour atteindre un objectif.",
+      "spanish": "Espagnol : estrategia",
+      "example": "Ils ont créé une stratégie avant le jeu."
+    }
+  }
+}
