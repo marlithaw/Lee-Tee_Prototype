@@ -1,0 +1,146 @@
+{
+  "ui": {
+    "appTitle": "Lee & Tee Episode Engine",
+    "language": "Language",
+    "resetProgress": "Reset progress",
+    "stop": "STOP",
+    "resume": "Resume",
+    "closeModal": "Close modal"
+  },
+  "episode": {
+    "title": "Episode 1: The Big Idea"
+  },
+  "dashboard": {
+    "title": "Learning Dashboard",
+    "bookProgress": "Book progress: {percent}%",
+    "episodeProgress": "Episode progress: {completed}/{total} sections",
+    "badges": "Badges",
+    "noBadges": "No badges yet",
+    "continue": "Continue",
+    "points": "Points: {points}",
+    "finishBadge": "Episode Finisher",
+    "progressReset": "Progress reset.",
+    "stopped": "Episode paused.",
+    "resumed": "Episode resumed."
+  },
+  "nav": {
+    "quickJump": "Quick Jump",
+    "vocabulary": "Vocabulary",
+    "story": "Story",
+    "practice": "Practice",
+    "check": "Check",
+    "reflect": "Reflect"
+  },
+  "settings": {
+    "title": "Reading Settings",
+    "readAloud": "Read Aloud",
+    "dyslexia": "Dyslexia Font",
+    "highContrast": "High Contrast",
+    "showHints": "Show Hints"
+  },
+  "objectives": {
+    "title": "SIOP Strategies & Objectives",
+    "siop": "SIOP Strategies",
+    "content": "Content Objectives",
+    "language": "Language Objectives",
+    "siopList": [
+      "Build background knowledge",
+      "Use visual scaffolds"
+    ],
+    "contentList": [
+      "Identify steps in a plan"
+    ],
+    "languageList": [
+      "Explain a plan using sequence words"
+    ]
+  },
+  "sections": {
+    "count": "Section {index} of {total}",
+    "simplified": "Simplified View",
+    "fullView": "Full View",
+    "markComplete": "Mark section complete",
+    "completed": "Completed",
+    "vocabTitle": "Vocabulary Power",
+    "storyTitle": "Story",
+    "checkTitle": "Check",
+    "practiceTitle": "Practice",
+    "writingTitle": "Writing Support",
+    "reflectTitle": "Reflect"
+  },
+  "helpers": {
+    "askLee": "ASK LEE",
+    "askTee": "ASK TEE",
+    "leeTip": "Look for the clue words that show the order of the plan.",
+    "teeTip": "Pause and summarize each step in your own words."
+  },
+  "vocab": {
+    "title": "Vocabulary",
+    "modalLabel": "Vocabulary details for {word}",
+    "hearIt": "Hear it",
+    "words": {
+      "persist": {
+        "term": "Persist",
+        "shortDef": "Keep going",
+        "definition": "To keep trying even when things are hard.",
+        "spanish": "Español: persistir",
+        "example": "In the story, Jayden persisted until the plan was ready."
+      },
+      "outline": {
+        "term": "Outline",
+        "shortDef": "Plan the steps",
+        "definition": "A list of the main parts of a plan.",
+        "spanish": "Español: esquema",
+        "example": "Lee and Tee make an outline before they write."
+      }
+    }
+  },
+  "story": {
+    "listen": "Listen",
+    "stop": "Stop",
+    "readAloud": "Read Aloud Section {index} of {total}",
+    "full": "Lee and Tee help Jayden build an outline. First, they list the big idea. Next, they add three steps. Finally, they review the plan together.",
+    "simplified": "Lee and Tee help Jayden make a plan with three steps."
+  },
+  "checks": {
+    "question1": "What should Jayden do first?",
+    "options1": {
+      "a": "Jump to the last step",
+      "b": "List the big idea",
+      "c": "Erase the plan"
+    },
+    "correct": "Correct!",
+    "incorrect": "Not yet. Try again!",
+    "checkAnswer": "Check answer"
+  },
+  "practice": {
+    "prompt": "Match each step to the correct part of the plan.",
+    "clickMode": "Click-to-Place mode",
+    "dragMode": "Drag-and-Drop mode",
+    "items": {
+      "0": "Decide the big idea",
+      "1": "Add step details",
+      "2": "Review the plan"
+    },
+    "targets": {
+      "0": "Beginning",
+      "1": "Middle",
+      "2": "End"
+    },
+    "correct": "Nice match!",
+    "incorrect": "Check that step again.",
+    "itemsTitle": "Items",
+    "targetsTitle": "Targets"
+  },
+  "writing": {
+    "prompt": "Write a short plan for a goal you have this week.",
+    "frames": "Sentence Frames",
+    "framesList": [
+      "First, I will...",
+      "Next, I will..."
+    ],
+    "placeholder": "Type your response here..."
+  },
+  "reflect": {
+    "prompt": "How did the plan help Jayden feel confident?"
+  }
+}
