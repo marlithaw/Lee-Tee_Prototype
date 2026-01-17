@@ -7,10 +7,43 @@
 
 window.episode1Config = {
   id: 1,
+  episodeNumber: 1,
   title: 'Lee & Tee Episode 1: The Recess Battle',
   subtitle: 'Learning to counter arguments with evidence',
   subject: 'ELA',
   color: '#7C3AED',
+
+  // SIOP objectives (for the banner)
+  siop: {
+    languageObjective: 'I will use academic vocabulary (claim, evidence, counterclaim) to discuss and write about arguments.',
+    contentObjective: 'I will identify and address counterclaims using a 4-step strategy in both discussions and writing.'
+  },
+
+  // Hero section content
+  hero: {
+    title: 'The Recess Battle',
+    subtitle: 'How to win an argument without yelling—a story about <em>loudness</em> vs. <em>logic</em>',
+    badge: '📚 Episode 1 • ELA: Argumentative Writing',
+    introVideo: 'https://www.youtube.com/embed/jTLr3DcCN8E',
+    introVideoCaption: 'Meet Lee & Tee',
+    standardCode: 'CCSS.ELA.W.5.1',
+    standardLabel: 'Opinion Writing with Reasons',
+    goal: 'Learn the 4-step structure for addressing counterclaims by watching a rap battle'
+  },
+
+  // Asset paths
+  assets: {
+    headerImage: '../header.png',
+    leeImage: '../Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png',
+    teeImage: '../Gemini_Generated_Image_bvzywpbvzywpbvzy.png'
+  },
+
+  // Learning objectives (displayed below hero)
+  learningObjectives: [
+    { icon: '📖', label: 'Read: 15 min', colorClass: 'text-purple-600' },
+    { icon: '✍️', label: 'Practice: 15 min', colorClass: 'text-amber-600' },
+    { icon: '✅', label: 'Check: 5 min', colorClass: 'text-teal-600' }
+  ],
 
   // Standard alignment
   standard: {
@@ -18,7 +51,7 @@ window.episode1Config = {
     label: 'Write opinion pieces supporting a point of view'
   },
 
-  // Learning objectives
+  // Legacy objectives (for backward compatibility)
   objectives: {
     language: 'Students will use claim, evidence, and counterclaim in complete sentences.',
     content: 'Students will analyze how to construct and counter an argument using evidence.'
@@ -779,7 +812,38 @@ window.episode1Config = {
         }
       ]
     }
-  ]
+  ],
+
+  // Navigation for progressive nav
+  navigation: [
+    { label: 'Start', icon: '🏁' },
+    { label: 'Vocabulary', icon: '📚' },
+    { label: 'Story', icon: '📖' },
+    { label: 'Strategy', icon: '🧭' },
+    { label: 'Model', icon: '✍️' },
+    { label: 'Write', icon: '📝' },
+    { label: 'Reflect', icon: '💭' }
+  ],
+
+  // Helper tips (Lee and Tee contextual help)
+  helpers: {
+    lee: {
+      tips: [
+        '"Even though some people think..."',
+        '"The evidence actually shows..."',
+        '"They claimed X, but they forgot Y."',
+        '"This matters because..."'
+      ]
+    },
+    tee: {
+      tips: [
+        'Did you repeat their claim back?',
+        'Did you ask for the receipts?',
+        'Do you have YOUR own facts?',
+        'Did you land the punchline?'
+      ]
+    }
+  }
 };
 
 // Export for use in shell page
