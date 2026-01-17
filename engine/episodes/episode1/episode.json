@@ -1,0 +1,133 @@
+{
+  "id": "episode1",
+  "titleKey": "episode1.title",
+  "labelKey": "episode1.label",
+  "languages": ["en", "es", "fr", "ht"],
+  "nav": [
+    { "id": "vocab", "type": "vocabulary", "labelKey": "nav.vocabulary" },
+    { "id": "story", "type": "story", "labelKey": "nav.story" },
+    { "id": "practice", "type": "practice", "labelKey": "nav.practice" },
+    { "id": "check", "type": "check", "labelKey": "nav.check" },
+    { "id": "reflect", "type": "reflect", "labelKey": "nav.reflect" }
+  ],
+  "objectives": {
+    "language": ["objectives.language.1", "objectives.language.2"],
+    "content": ["objectives.content.1", "objectives.content.2"],
+    "strategies": ["objectives.strategy.1", "objectives.strategy.2"]
+  },
+  "helpers": {
+    "leeKey": "helpers.lee",
+    "teeKey": "helpers.tee"
+  },
+  "sections": [
+    {
+      "id": "vocab",
+      "type": "vocabulary",
+      "titleKey": "sections.vocab.title",
+      "labelKey": "nav.vocabulary",
+      "simplifiedKey": "sections.vocab.simplified",
+      "hintKey": "sections.vocab.hint",
+      "words": [
+        {
+          "termKey": "vocab.teamwork.term",
+          "definitionKey": "vocab.teamwork.definition",
+          "spanishKey": "vocab.teamwork.spanish",
+          "storyExampleKey": "vocab.teamwork.example"
+        },
+        {
+          "termKey": "vocab.challenge.term",
+          "definitionKey": "vocab.challenge.definition",
+          "spanishKey": "vocab.challenge.spanish",
+          "storyExampleKey": "vocab.challenge.example"
+        },
+        {
+          "termKey": "vocab.strategy.term",
+          "definitionKey": "vocab.strategy.definition",
+          "spanishKey": "vocab.strategy.spanish",
+          "storyExampleKey": "vocab.strategy.example"
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "type": "story",
+      "titleKey": "sections.story.title",
+      "labelKey": "nav.story",
+      "simplifiedKey": "sections.story.simplified",
+      "paragraphKeys": [
+        "story.p1",
+        "story.p2",
+        "story.p3"
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "practice",
+      "titleKey": "sections.practice.title",
+      "labelKey": "nav.practice",
+      "simplifiedKey": "sections.practice.simplified",
+      "items": [
+        { "id": "step1", "labelKey": "practice.items.1" },
+        { "id": "step2", "labelKey": "practice.items.2" },
+        { "id": "step3", "labelKey": "practice.items.3" }
+      ],
+      "targets": [
+        { "id": "target1", "labelKey": "practice.targets.1" },
+        { "id": "target2", "labelKey": "practice.targets.2" },
+        { "id": "target3", "labelKey": "practice.targets.3" }
+      ],
+      "correctMatches": {
+        "step1": "target1",
+        "step2": "target2",
+        "step3": "target3"
+      }
+    },
+    {
+      "id": "check",
+      "type": "check",
+      "titleKey": "sections.check.title",
+      "labelKey": "nav.check",
+      "simplifiedKey": "sections.check.simplified",
+      "promptKey": "check.prompt",
+      "options": [
+        { "id": "a", "labelKey": "check.options.a" },
+        { "id": "b", "labelKey": "check.options.b" },
+        { "id": "c", "labelKey": "check.options.c" }
+      ],
+      "correctOptionId": "b"
+    },
+    {
+      "id": "multi",
+      "type": "multiSelect",
+      "titleKey": "sections.multi.title",
+      "labelKey": "nav.check",
+      "promptKey": "multi.prompt",
+      "options": [
+        { "id": "o1", "labelKey": "multi.options.1" },
+        { "id": "o2", "labelKey": "multi.options.2" },
+        { "id": "o3", "labelKey": "multi.options.3" }
+      ],
+      "correctOptionIds": ["o1", "o3"]
+    },
+    {
+      "id": "writing",
+      "type": "writing",
+      "titleKey": "sections.writing.title",
+      "labelKey": "nav.reflect",
+      "simplifiedKey": "sections.writing.simplified",
+      "promptKey": "writing.prompt",
+      "frames": [
+        "writing.frame.1",
+        "writing.frame.2"
+      ]
+    },
+    {
+      "id": "reflect",
+      "type": "reflect",
+      "titleKey": "sections.reflect.title",
+      "labelKey": "nav.reflect",
+      "bodyKey": "reflect.body",
+      "simplifiedKey": "sections.reflect.simplified"
+    }
+  ]
+}
