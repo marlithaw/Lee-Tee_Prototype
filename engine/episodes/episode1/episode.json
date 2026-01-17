@@ -1,0 +1,127 @@
+{
+  "id": "episode1",
+  "titleKey": "episode.title",
+  "subtitleKey": "episode.subtitle",
+  "objectives": {
+    "languageKey": "objectives.languageDetail",
+    "contentKey": "objectives.contentDetail"
+  },
+  "strategies": [
+    "strategies.buildBackground",
+    "strategies.interaction",
+    "strategies.practiceApplication"
+  ],
+  "sections": [
+    {
+      "id": "section-vocab",
+      "type": "vocab",
+      "titleKey": "sections.vocab.title",
+      "subtitleKey": "sections.vocab.subtitle",
+      "navLabelKey": "nav.vocab",
+      "icon": "📘",
+      "simplifiedKey": "sections.vocab.simplified",
+      "items": [
+        {
+          "termKey": "vocab.ecosystem.term",
+          "shortDefKey": "vocab.ecosystem.shortDef",
+          "definitionKey": "vocab.ecosystem.definition",
+          "spanishKey": "vocab.ecosystem.spanish",
+          "exampleKey": "vocab.ecosystem.example"
+        },
+        {
+          "termKey": "vocab.observation.term",
+          "shortDefKey": "vocab.observation.shortDef",
+          "definitionKey": "vocab.observation.definition",
+          "spanishKey": "vocab.observation.spanish",
+          "exampleKey": "vocab.observation.example"
+        },
+        {
+          "termKey": "vocab.predator.term",
+          "shortDefKey": "vocab.predator.shortDef",
+          "definitionKey": "vocab.predator.definition",
+          "spanishKey": "vocab.predator.spanish",
+          "exampleKey": "vocab.predator.example"
+        }
+      ]
+    },
+    {
+      "id": "section-story",
+      "type": "story",
+      "titleKey": "sections.story.title",
+      "subtitleKey": "sections.story.subtitle",
+      "navLabelKey": "nav.story",
+      "icon": "📖",
+      "simplifiedKey": "sections.story.simplified",
+      "storyKey": "story.main",
+      "index": 1,
+      "total": 5,
+      "helperTips": {
+        "leeKey": "helpers.leeStory",
+        "teeKey": "helpers.teeStory"
+      }
+    },
+    {
+      "id": "section-practice",
+      "type": "practice",
+      "titleKey": "sections.practice.title",
+      "subtitleKey": "sections.practice.subtitle",
+      "navLabelKey": "nav.practice",
+      "icon": "🧩",
+      "simplifiedKey": "sections.practice.simplified",
+      "promptKey": "practice.matchPrompt",
+      "items": [
+        { "id": "step1", "labelKey": "practice.steps.observe", "targetId": "target1" },
+        { "id": "step2", "labelKey": "practice.steps.record", "targetId": "target2" },
+        { "id": "step3", "labelKey": "practice.steps.share", "targetId": "target3" }
+      ],
+      "targets": [
+        { "id": "target1", "labelKey": "practice.targets.first" },
+        { "id": "target2", "labelKey": "practice.targets.second" },
+        { "id": "target3", "labelKey": "practice.targets.third" }
+      ]
+    },
+    {
+      "id": "section-check",
+      "type": "check",
+      "titleKey": "sections.check.title",
+      "subtitleKey": "sections.check.subtitle",
+      "navLabelKey": "nav.check",
+      "icon": "✅",
+      "simplifiedKey": "sections.check.simplified",
+      "questionKey": "check.question",
+      "correctId": "answer2",
+      "options": [
+        { "id": "answer1", "labelKey": "check.options.one" },
+        { "id": "answer2", "labelKey": "check.options.two" },
+        { "id": "answer3", "labelKey": "check.options.three" }
+      ]
+    },
+    {
+      "id": "section-reflect",
+      "type": "reflect",
+      "titleKey": "sections.reflect.title",
+      "subtitleKey": "sections.reflect.subtitle",
+      "navLabelKey": "nav.reflect",
+      "icon": "💬",
+      "simplifiedKey": "sections.reflect.simplified",
+      "promptKey": "reflect.prompt",
+      "correctIds": ["reflect2", "reflect3"],
+      "options": [
+        { "id": "reflect1", "labelKey": "reflect.options.one" },
+        { "id": "reflect2", "labelKey": "reflect.options.two" },
+        { "id": "reflect3", "labelKey": "reflect.options.three" }
+      ]
+    },
+    {
+      "id": "section-writing",
+      "type": "writing",
+      "titleKey": "sections.writing.title",
+      "subtitleKey": "sections.writing.subtitle",
+      "navLabelKey": "nav.writing",
+      "icon": "✍️",
+      "simplifiedKey": "sections.writing.simplified",
+      "promptKey": "writing.prompt",
+      "framesKeys": ["writing.frames.one", "writing.frames.two"]
+    }
+  ]
+}
