@@ -1,0 +1,166 @@
+{
+  "id": "episode1",
+  "languages": ["en", "es", "fr", "ht"],
+  "titleKey": "episode1.title",
+  "subtitleKey": "episode1.subtitle",
+  "eyebrowKey": "episode1.eyebrow",
+  "bookProgress": {
+    "current": 1,
+    "total": 6
+  },
+  "siop": {
+    "strategies": [
+      "episode1.siop.strategy1",
+      "episode1.siop.strategy2",
+      "episode1.siop.strategy3"
+    ]
+  },
+  "objectives": {
+    "language": [
+      "episode1.objectives.language1",
+      "episode1.objectives.language2"
+    ],
+    "content": [
+      "episode1.objectives.content1",
+      "episode1.objectives.content2"
+    ]
+  },
+  "characters": {
+    "lee": {
+      "nameKey": "episode1.characters.lee.name",
+      "tips": [
+        "episode1.characters.lee.tip1",
+        "episode1.characters.lee.tip2"
+      ]
+    },
+    "tee": {
+      "nameKey": "episode1.characters.tee.name",
+      "tips": [
+        "episode1.characters.tee.tip1",
+        "episode1.characters.tee.tip2"
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "vocabulary",
+      "type": "vocabulary",
+      "icon": "📘",
+      "titleKey": "episode1.sections.vocab.title",
+      "summaryKey": "episode1.sections.vocab.summary",
+      "simplifiedKey": "episode1.sections.vocab.simplified",
+      "items": [
+        {
+          "id": "respect",
+          "termKey": "episode1.vocab.respect.term",
+          "definitionKey": "episode1.vocab.respect.definition",
+          "spanishKey": "episode1.vocab.respect.spanish",
+          "exampleKey": "episode1.vocab.respect.example"
+        },
+        {
+          "id": "conflict",
+          "termKey": "episode1.vocab.conflict.term",
+          "definitionKey": "episode1.vocab.conflict.definition",
+          "spanishKey": "episode1.vocab.conflict.spanish",
+          "exampleKey": "episode1.vocab.conflict.example"
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "type": "story",
+      "icon": "📖",
+      "titleKey": "episode1.sections.story.title",
+      "summaryKey": "episode1.sections.story.summary",
+      "simplifiedKey": "episode1.sections.story.simplified",
+      "paragraphs": [
+        {
+          "textKey": "episode1.story.p1",
+          "simplifiedKey": "episode1.story.p1.simple"
+        },
+        {
+          "textKey": "episode1.story.p2",
+          "simplifiedKey": "episode1.story.p2.simple"
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "dragMatch",
+      "icon": "🧩",
+      "titleKey": "episode1.sections.practice.title",
+      "summaryKey": "episode1.sections.practice.summary",
+      "simplifiedKey": "episode1.sections.practice.simplified",
+      "items": [
+        {
+          "id": "step1",
+          "labelKey": "episode1.practice.step1"
+        },
+        {
+          "id": "step2",
+          "labelKey": "episode1.practice.step2"
+        },
+        {
+          "id": "step3",
+          "labelKey": "episode1.practice.step3"
+        }
+      ],
+      "targets": [
+        {
+          "id": "target1",
+          "labelKey": "episode1.practice.target1",
+          "correctItemId": "step1"
+        },
+        {
+          "id": "target2",
+          "labelKey": "episode1.practice.target2",
+          "correctItemId": "step2"
+        },
+        {
+          "id": "target3",
+          "labelKey": "episode1.practice.target3",
+          "correctItemId": "step3"
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "mcq",
+      "icon": "✅",
+      "titleKey": "episode1.sections.check.title",
+      "summaryKey": "episode1.sections.check.summary",
+      "simplifiedKey": "episode1.sections.check.simplified",
+      "promptKey": "episode1.check.prompt",
+      "options": [
+        {
+          "id": "option1",
+          "labelKey": "episode1.check.option1",
+          "correct": false
+        },
+        {
+          "id": "option2",
+          "labelKey": "episode1.check.option2",
+          "correct": true
+        },
+        {
+          "id": "option3",
+          "labelKey": "episode1.check.option3",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "reflect",
+      "type": "writing",
+      "icon": "✍️",
+      "titleKey": "episode1.sections.reflect.title",
+      "summaryKey": "episode1.sections.reflect.summary",
+      "simplifiedKey": "episode1.sections.reflect.simplified",
+      "promptKey": "episode1.reflect.prompt",
+      "frames": [
+        "episode1.reflect.frame1",
+        "episode1.reflect.frame2"
+      ]
+    }
+  ]
+}

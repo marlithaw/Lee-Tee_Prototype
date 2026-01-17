@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lee & Tee Episode Engine</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fredoka:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="progress-bar" aria-hidden="true">
+      <div class="progress-bar__fill" id="progressFill"></div>
+    </div>
+
+    <header class="hero" role="banner">
+      <div class="hero__content">
+        <div>
+          <p class="hero__eyebrow" id="episodeEyebrow"></p>
+          <h1 class="hero__title" id="episodeTitle"></h1>
+          <p class="hero__subtitle" id="episodeSubtitle"></p>
+        </div>
+        <div class="hero__controls">
+          <label class="field">
+            <span class="field__label" id="languageLabel"></span>
+            <select id="languageSelect" aria-label="Language"></select>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout" id="app" tabindex="-1">
+      <aside class="sidebar" aria-label="Sidebar">
+        <section id="dashboard"></section>
+        <section id="settings"></section>
+        <section id="objectives"></section>
+        <section id="helpers"></section>
+      </aside>
+
+      <section class="content" aria-live="polite">
+        <section id="quickJump"></section>
+        <div id="sections"></div>
+      </section>
+    </main>
+
+    <div id="modalRoot"></div>
+    <div id="toastRoot" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

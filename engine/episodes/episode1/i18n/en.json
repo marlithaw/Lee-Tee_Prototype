@@ -1,0 +1,147 @@
+{
+  "ui.language.label": "Language",
+  "ui.language.en": "English",
+  "ui.language.es": "Spanish",
+  "ui.language.fr": "French",
+  "ui.language.ht": "Haitian Creole",
+  "ui.page_title": "{title} | Lee & Tee Episode Engine",
+
+  "ui.dashboard.title": "Learning Dashboard",
+  "ui.dashboard.section_progress": "Section progress: {completed}/{total}",
+  "ui.dashboard.points_badges": "Points: {points} • Badges: {badges}",
+  "ui.dashboard.book_progress": "Book progress: {current}/{total}",
+  "ui.dashboard.continue": "Continue",
+  "ui.dashboard.stop": "STOP",
+  "ui.dashboard.resume": "Resume",
+  "ui.dashboard.reset": "Reset progress",
+
+  "ui.nav.title": "Quick Jump",
+  "ui.nav.section_progress": "Sections: {completed}/{total}",
+  "ui.nav.jump_to": "Jump to {title}",
+
+  "ui.settings.title": "Reading Settings",
+  "ui.settings.read_aloud": "Read Aloud",
+  "ui.settings.dyslexia_font": "Dyslexia Font",
+  "ui.settings.high_contrast": "High Contrast",
+  "ui.settings.show_hints": "Show Hints",
+
+  "ui.objectives.title": "Objectives & Strategies",
+  "ui.objectives.language": "Language Objectives",
+  "ui.objectives.content": "Content Objectives",
+  "ui.siop.title": "SIOP Strategies",
+
+  "ui.helpers.title": "Character Helpers",
+  "ui.helpers.ask_lee": "ASK LEE",
+  "ui.helpers.ask_tee": "ASK TEE",
+  "ui.helpers.tips_intro": "Tips to keep you on track:",
+
+  "ui.modal.close": "Close",
+
+  "ui.section.complete": "Completed",
+  "ui.section.incomplete": "Not yet completed",
+  "ui.section.mark_complete": "Mark section complete",
+  "ui.section.completed_toast": "Section completed!",
+  "ui.section.paused": "Progress paused. Hit Resume to keep learning.",
+
+  "ui.simplified.toggle": "Simplified View",
+  "ui.simplified.on": "On",
+  "ui.simplified.off": "Off",
+
+  "ui.story.listen": "Listen",
+  "ui.story.read_aloud": "Read aloud section {current} of {total}",
+
+  "ui.vocab.open": "See details",
+  "ui.vocab.hear": "Hear it",
+
+  "ui.mcq.correct": "Nice work! That is correct.",
+  "ui.mcq.incorrect": "Not quite. Try again!",
+
+  "ui.dragMatch.mode_label": "Practice mode",
+  "ui.dragMatch.mode_drag": "Drag & Drop",
+  "ui.dragMatch.mode_click": "Click-to-Place",
+  "ui.dragMatch.instructions": "Match each step to the correct stage.",
+  "ui.dragMatch.select_item": "Select a step first.",
+  "ui.dragMatch.empty": "Drop a step here",
+  "ui.dragMatch.correct": "All steps are matched correctly!",
+  "ui.dragMatch.incorrect": "Some matches are off. Try again.",
+
+  "ui.writing.frames": "Sentence frames:",
+  "ui.writing.save": "Save response",
+  "ui.writing.saved": "Writing saved!",
+  "ui.writing.response_label": "Write your response",
+
+  "ui.multiselect.check": "Check answers",
+  "ui.multiselect.correct": "Correct selections!",
+  "ui.multiselect.incorrect": "That selection needs another try.",
+
+  "messages.reset_confirm": "Reset all progress for this episode?",
+  "messages.reset_done": "Progress reset.",
+  "messages.stopped": "Progress paused. You can resume anytime.",
+  "messages.resumed": "Welcome back!",
+
+  "episode1.eyebrow": "Episode 1",
+  "episode1.title": "The Recess Battle",
+  "episode1.subtitle": "A reusable episode engine demo",
+
+  "episode1.siop.strategy1": "Build background with visuals and friendly language.",
+  "episode1.siop.strategy2": "Encourage student talk with partner prompts.",
+  "episode1.siop.strategy3": "Provide sentence frames to support writing.",
+
+  "episode1.objectives.language1": "Use sequence words to explain a strategy.",
+  "episode1.objectives.language2": "Describe feelings using respectful language.",
+  "episode1.objectives.content1": "Identify the four-step recess strategy.",
+  "episode1.objectives.content2": "Reflect on how to handle conflicts peacefully.",
+
+  "episode1.characters.lee.name": "Lee",
+  "episode1.characters.lee.tip1": "Remember the four-step strategy.",
+  "episode1.characters.lee.tip2": "Use kind words when you respond.",
+  "episode1.characters.tee.name": "Tee",
+  "episode1.characters.tee.tip1": "Stop and breathe before you act.",
+  "episode1.characters.tee.tip2": "Ask a friend or adult for help if needed.",
+
+  "episode1.sections.vocab.title": "Vocabulary",
+  "episode1.sections.vocab.summary": "Explore key words before the story.",
+  "episode1.sections.vocab.simplified": "Learn two words to help with the story.",
+  "episode1.sections.story.title": "Story",
+  "episode1.sections.story.summary": "Read how Lee & Tee handle a recess conflict.",
+  "episode1.sections.story.simplified": "A shorter version of the story.",
+  "episode1.sections.practice.title": "Practice",
+  "episode1.sections.practice.summary": "Match the steps to build the strategy.",
+  "episode1.sections.practice.simplified": "Put the steps in order.",
+  "episode1.sections.check.title": "Check",
+  "episode1.sections.check.summary": "Show what you know with a quick check.",
+  "episode1.sections.check.simplified": "Answer a quick question.",
+  "episode1.sections.reflect.title": "Reflect",
+  "episode1.sections.reflect.summary": "Share your thinking in writing.",
+  "episode1.sections.reflect.simplified": "Write one sentence about the strategy.",
+
+  "episode1.vocab.respect.term": "Respect",
+  "episode1.vocab.respect.definition": "Showing care for someone with your words and actions.",
+  "episode1.vocab.respect.spanish": "En español: respeto.",
+  "episode1.vocab.respect.example": "In the story, Lee shows respect by listening.",
+  "episode1.vocab.conflict.term": "Conflict",
+  "episode1.vocab.conflict.definition": "A disagreement between people.",
+  "episode1.vocab.conflict.spanish": "En español: conflicto.",
+  "episode1.vocab.conflict.example": "The recess conflict starts during the game.",
+
+  "episode1.story.p1": "The playground is buzzing. Lee and Tee want to play the same game.",
+  "episode1.story.p1.simple": "Lee and Tee both want to play.",
+  "episode1.story.p2": "They pause, take a breath, and use a four-step strategy to solve the conflict.",
+  "episode1.story.p2.simple": "They breathe and use their strategy.",
+
+  "episode1.practice.step1": "Stop and breathe",
+  "episode1.practice.step2": "Explain how you feel",
+  "episode1.practice.step3": "Find a fair solution",
+  "episode1.practice.target1": "Step 1",
+  "episode1.practice.target2": "Step 2",
+  "episode1.practice.target3": "Step 3",
+
+  "episode1.check.prompt": "Which step comes after you stop and breathe?",
+  "episode1.check.option1": "Run away",
+  "episode1.check.option2": "Explain how you feel",
+  "episode1.check.option3": "Ignore the problem",
+
+  "episode1.reflect.prompt": "Write about a time you solved a problem with respect.",
+  "episode1.reflect.frame1": "First, I...",
+  "episode1.reflect.frame2": "Then, I..."
+}

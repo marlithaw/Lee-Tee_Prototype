@@ -1,0 +1,147 @@
+{
+  "ui.language.label": "Lang",
+  "ui.language.en": "Angle",
+  "ui.language.es": "Panyòl",
+  "ui.language.fr": "Franse",
+  "ui.language.ht": "Kreyòl Ayisyen",
+  "ui.page_title": "{title} | Motè epizòd Lee & Tee",
+
+  "ui.dashboard.title": "Tablo aprantisaj",
+  "ui.dashboard.section_progress": "Pwogrè seksyon: {completed}/{total}",
+  "ui.dashboard.points_badges": "Pwen: {points} • Badj: {badges}",
+  "ui.dashboard.book_progress": "Pwogrè liv: {current}/{total}",
+  "ui.dashboard.continue": "Kontinye",
+  "ui.dashboard.stop": "SISPANN",
+  "ui.dashboard.resume": "Rekòmanse",
+  "ui.dashboard.reset": "Reyajiste pwogrè",
+
+  "ui.nav.title": "Sote rapid",
+  "ui.nav.section_progress": "Seksyon: {completed}/{total}",
+  "ui.nav.jump_to": "Ale nan {title}",
+
+  "ui.settings.title": "Anviwònman lekti",
+  "ui.settings.read_aloud": "Li anwo",
+  "ui.settings.dyslexia_font": "Polis pou disleksi",
+  "ui.settings.high_contrast": "Kontras wo",
+  "ui.settings.show_hints": "Montre endis",
+
+  "ui.objectives.title": "Objektif ak estrateji",
+  "ui.objectives.language": "Objektif lang",
+  "ui.objectives.content": "Objektif kontni",
+  "ui.siop.title": "Estrateji SIOP",
+
+  "ui.helpers.title": "Èd pèsonaj",
+  "ui.helpers.ask_lee": "MANDE LEE",
+  "ui.helpers.ask_tee": "MANDE TEE",
+  "ui.helpers.tips_intro": "Konsèy pou rete sou wout:",
+
+  "ui.modal.close": "Fèmen",
+
+  "ui.section.complete": "Fini",
+  "ui.section.incomplete": "Pa fini",
+  "ui.section.mark_complete": "Make seksyon fini",
+  "ui.section.completed_toast": "Seksayon fini!",
+  "ui.section.paused": "Pwogrè kanpe. Peze Rekòmanse pou kontinye.",
+
+  "ui.simplified.toggle": "Vèsyon fasil",
+  "ui.simplified.on": "Sou",
+  "ui.simplified.off": "Off",
+
+  "ui.story.listen": "Koute",
+  "ui.story.read_aloud": "Li anwo seksyon {current} sou {total}",
+
+  "ui.vocab.open": "Gade detay",
+  "ui.vocab.hear": "Tande li",
+
+  "ui.mcq.correct": "Bon travay! Se sa ki kòrèk.",
+  "ui.mcq.incorrect": "Pa byen. Eseye ankò!",
+
+  "ui.dragMatch.mode_label": "Mòd pratik",
+  "ui.dragMatch.mode_drag": "Rale lage",
+  "ui.dragMatch.mode_click": "Klike pou mete",
+  "ui.dragMatch.instructions": "Mete chak etap nan plas li.",
+  "ui.dragMatch.select_item": "Chwazi yon etap anvan.",
+  "ui.dragMatch.empty": "Mete yon etap isit",
+  "ui.dragMatch.correct": "Tout etap yo byen matche!",
+  "ui.dragMatch.incorrect": "Gen kèk ki pa bon. Eseye ankò.",
+
+  "ui.writing.frames": "Kad fraz:",
+  "ui.writing.save": "Sove repons",
+  "ui.writing.saved": "Ekriti anrejistre!",
+  "ui.writing.response_label": "Ekri repons ou",
+
+  "ui.multiselect.check": "Verifye repons",
+  "ui.multiselect.correct": "Bon chwa!",
+  "ui.multiselect.incorrect": "Sa bezwen yon lòt tantativ.",
+
+  "messages.reset_confirm": "Reyajiste tout pwogrè epizòd la?",
+  "messages.reset_done": "Pwogrè reyajiste.",
+  "messages.stopped": "Pwogrè kanpe. Ou ka rekòmanse nenpòt lè.",
+  "messages.resumed": "Byenveni ankò!",
+
+  "episode1.eyebrow": "Epizòd 1",
+  "episode1.title": "Batay Rekreyasyon",
+  "episode1.subtitle": "Demonstrasyon motè epizòd",
+
+  "episode1.siop.strategy1": "Kreye baz ak vizyèl ak langaj amikal.",
+  "episode1.siop.strategy2": "Ankouraje pale ak kesyon an pè.",
+  "episode1.siop.strategy3": "Bay kad fraz pou ede ekriti.",
+
+  "episode1.objectives.language1": "Sèvi ak mo lòd pou eksplike yon estrateji.",
+  "episode1.objectives.language2": "Dekri santiman ak langaj respè.",
+  "episode1.objectives.content1": "Idantifye estrateji kat etap la.",
+  "episode1.objectives.content2": "Reflechi sou rezoud konfli anpè.",
+
+  "episode1.characters.lee.name": "Lee",
+  "episode1.characters.lee.tip1": "Sonje estrateji kat etap la.",
+  "episode1.characters.lee.tip2": "Sèvi ak pawòl dous lè w reponn.",
+  "episode1.characters.tee.name": "Tee",
+  "episode1.characters.tee.tip1": "Kanpe epi respire anvan ou aji.",
+  "episode1.characters.tee.tip2": "Mande yon zanmi oswa yon granmoun si w bezwen.",
+
+  "episode1.sections.vocab.title": "Vokabilè",
+  "episode1.sections.vocab.summary": "Aprann mo kle yo avan istwa a.",
+  "episode1.sections.vocab.simplified": "Aprann de mo pou istwa a.",
+  "episode1.sections.story.title": "Istwa",
+  "episode1.sections.story.summary": "Li kijan Lee ak Tee rezoud yon konfli.",
+  "episode1.sections.story.simplified": "Yon vèsyon pi kout nan istwa a.",
+  "episode1.sections.practice.title": "Pratik",
+  "episode1.sections.practice.summary": "Mete etap yo pou bati estrateji a.",
+  "episode1.sections.practice.simplified": "Mete etap yo nan lòd.",
+  "episode1.sections.check.title": "Tcheke",
+  "episode1.sections.check.summary": "Montre sa ou konnen ak yon kestyon rapid.",
+  "episode1.sections.check.simplified": "Reponn yon kestyon rapid.",
+  "episode1.sections.reflect.title": "Reflechi",
+  "episode1.sections.reflect.summary": "Pataje panse ou nan ekriti.",
+  "episode1.sections.reflect.simplified": "Ekri yon fraz sou estrateji a.",
+
+  "episode1.vocab.respect.term": "Respè",
+  "episode1.vocab.respect.definition": "Montre swen ak pawòl ou ak aksyon ou.",
+  "episode1.vocab.respect.spanish": "An panyòl: respeto.",
+  "episode1.vocab.respect.example": "Nan istwa a, Lee montre respè lè li koute.",
+  "episode1.vocab.conflict.term": "Konfli",
+  "episode1.vocab.conflict.definition": "Yon dezakò ant moun.",
+  "episode1.vocab.conflict.spanish": "An panyòl: conflicto.",
+  "episode1.vocab.conflict.example": "Konfli rekreyasyon an kòmanse pandan jwèt la.",
+
+  "episode1.story.p1": "Lakou a gen anpil bri. Lee ak Tee vle jwe menm jwèt la.",
+  "episode1.story.p1.simple": "Lee ak Tee vle jwe.",
+  "episode1.story.p2": "Yo kanpe, respire, epi sèvi ak estrateji kat etap la pou rezoud konfli a.",
+  "episode1.story.p2.simple": "Yo respire epi sèvi ak estrateji a.",
+
+  "episode1.practice.step1": "Kanpe epi respire",
+  "episode1.practice.step2": "Eksplike kijan ou santi w",
+  "episode1.practice.step3": "Chèche yon solisyon jis",
+  "episode1.practice.target1": "Etap 1",
+  "episode1.practice.target2": "Etap 2",
+  "episode1.practice.target3": "Etap 3",
+
+  "episode1.check.prompt": "Ki etap ki vini apre ou kanpe epi respire?",
+  "episode1.check.option1": "Kouri ale",
+  "episode1.check.option2": "Eksplike kijan ou santi w",
+  "episode1.check.option3": "Inyore pwoblèm nan",
+
+  "episode1.reflect.prompt": "Ekri sou yon fwa ou te rezoud yon pwoblèm ak respè.",
+  "episode1.reflect.frame1": "Premye, mwen...",
+  "episode1.reflect.frame2": "Apre sa, mwen..."
+}

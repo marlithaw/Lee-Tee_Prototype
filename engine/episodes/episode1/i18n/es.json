@@ -1,0 +1,147 @@
+{
+  "ui.language.label": "Idioma",
+  "ui.language.en": "Inglés",
+  "ui.language.es": "Español",
+  "ui.language.fr": "Francés",
+  "ui.language.ht": "Criollo haitiano",
+  "ui.page_title": "{title} | Motor de episodios Lee & Tee",
+
+  "ui.dashboard.title": "Panel de aprendizaje",
+  "ui.dashboard.section_progress": "Progreso de secciones: {completed}/{total}",
+  "ui.dashboard.points_badges": "Puntos: {points} • Insignias: {badges}",
+  "ui.dashboard.book_progress": "Progreso del libro: {current}/{total}",
+  "ui.dashboard.continue": "Continuar",
+  "ui.dashboard.stop": "DETENER",
+  "ui.dashboard.resume": "Reanudar",
+  "ui.dashboard.reset": "Restablecer progreso",
+
+  "ui.nav.title": "Salto rápido",
+  "ui.nav.section_progress": "Secciones: {completed}/{total}",
+  "ui.nav.jump_to": "Ir a {title}",
+
+  "ui.settings.title": "Configuración de lectura",
+  "ui.settings.read_aloud": "Leer en voz alta",
+  "ui.settings.dyslexia_font": "Fuente para dislexia",
+  "ui.settings.high_contrast": "Alto contraste",
+  "ui.settings.show_hints": "Mostrar pistas",
+
+  "ui.objectives.title": "Objetivos y estrategias",
+  "ui.objectives.language": "Objetivos de lenguaje",
+  "ui.objectives.content": "Objetivos de contenido",
+  "ui.siop.title": "Estrategias SIOP",
+
+  "ui.helpers.title": "Ayudantes de personajes",
+  "ui.helpers.ask_lee": "PREGUNTA A LEE",
+  "ui.helpers.ask_tee": "PREGUNTA A TEE",
+  "ui.helpers.tips_intro": "Consejos para seguir el camino:",
+
+  "ui.modal.close": "Cerrar",
+
+  "ui.section.complete": "Completado",
+  "ui.section.incomplete": "Aún no completado",
+  "ui.section.mark_complete": "Marcar sección completa",
+  "ui.section.completed_toast": "¡Sección completada!",
+  "ui.section.paused": "Progreso en pausa. Pulsa Reanudar para continuar.",
+
+  "ui.simplified.toggle": "Vista simplificada",
+  "ui.simplified.on": "Activado",
+  "ui.simplified.off": "Desactivado",
+
+  "ui.story.listen": "Escuchar",
+  "ui.story.read_aloud": "Leer en voz alta sección {current} de {total}",
+
+  "ui.vocab.open": "Ver detalles",
+  "ui.vocab.hear": "Escúchalo",
+
+  "ui.mcq.correct": "¡Bien hecho! Es correcto.",
+  "ui.mcq.incorrect": "No del todo. ¡Inténtalo de nuevo!",
+
+  "ui.dragMatch.mode_label": "Modo de práctica",
+  "ui.dragMatch.mode_drag": "Arrastrar y soltar",
+  "ui.dragMatch.mode_click": "Clic para colocar",
+  "ui.dragMatch.instructions": "Relaciona cada paso con la etapa correcta.",
+  "ui.dragMatch.select_item": "Selecciona un paso primero.",
+  "ui.dragMatch.empty": "Suelta un paso aquí",
+  "ui.dragMatch.correct": "¡Todos los pasos están correctos!",
+  "ui.dragMatch.incorrect": "Algunas coincidencias están mal. Intenta otra vez.",
+
+  "ui.writing.frames": "Marcos de oración:",
+  "ui.writing.save": "Guardar respuesta",
+  "ui.writing.saved": "¡Escritura guardada!",
+  "ui.writing.response_label": "Escribe tu respuesta",
+
+  "ui.multiselect.check": "Comprobar respuestas",
+  "ui.multiselect.correct": "¡Selecciones correctas!",
+  "ui.multiselect.incorrect": "Esa selección necesita otro intento.",
+
+  "messages.reset_confirm": "¿Restablecer todo el progreso de este episodio?",
+  "messages.reset_done": "Progreso restablecido.",
+  "messages.stopped": "Progreso en pausa. Puedes reanudar cuando quieras.",
+  "messages.resumed": "¡Bienvenido de nuevo!",
+
+  "episode1.eyebrow": "Episodio 1",
+  "episode1.title": "La batalla del recreo",
+  "episode1.subtitle": "Demostración del motor de episodios",
+
+  "episode1.siop.strategy1": "Construye conocimientos previos con imágenes y lenguaje amigable.",
+  "episode1.siop.strategy2": "Fomenta el diálogo con preguntas en pareja.",
+  "episode1.siop.strategy3": "Ofrece marcos de oración para apoyar la escritura.",
+
+  "episode1.objectives.language1": "Usar palabras de secuencia para explicar una estrategia.",
+  "episode1.objectives.language2": "Describir sentimientos con lenguaje respetuoso.",
+  "episode1.objectives.content1": "Identificar la estrategia de cuatro pasos.",
+  "episode1.objectives.content2": "Reflexionar sobre resolver conflictos en paz.",
+
+  "episode1.characters.lee.name": "Lee",
+  "episode1.characters.lee.tip1": "Recuerda la estrategia de cuatro pasos.",
+  "episode1.characters.lee.tip2": "Usa palabras amables al responder.",
+  "episode1.characters.tee.name": "Tee",
+  "episode1.characters.tee.tip1": "Detente y respira antes de actuar.",
+  "episode1.characters.tee.tip2": "Pide ayuda a un amigo o adulto si la necesitas.",
+
+  "episode1.sections.vocab.title": "Vocabulario",
+  "episode1.sections.vocab.summary": "Explora palabras clave antes de la historia.",
+  "episode1.sections.vocab.simplified": "Aprende dos palabras para la historia.",
+  "episode1.sections.story.title": "Historia",
+  "episode1.sections.story.summary": "Lee cómo Lee y Tee resuelven un conflicto.",
+  "episode1.sections.story.simplified": "Una versión más corta de la historia.",
+  "episode1.sections.practice.title": "Práctica",
+  "episode1.sections.practice.summary": "Relaciona los pasos para construir la estrategia.",
+  "episode1.sections.practice.simplified": "Pon los pasos en orden.",
+  "episode1.sections.check.title": "Comprobación",
+  "episode1.sections.check.summary": "Demuestra lo que sabes con una pregunta.",
+  "episode1.sections.check.simplified": "Responde una pregunta rápida.",
+  "episode1.sections.reflect.title": "Reflexión",
+  "episode1.sections.reflect.summary": "Comparte tu pensamiento por escrito.",
+  "episode1.sections.reflect.simplified": "Escribe una frase sobre la estrategia.",
+
+  "episode1.vocab.respect.term": "Respeto",
+  "episode1.vocab.respect.definition": "Mostrar cuidado con tus palabras y acciones.",
+  "episode1.vocab.respect.spanish": "En español: respeto.",
+  "episode1.vocab.respect.example": "En la historia, Lee muestra respeto al escuchar.",
+  "episode1.vocab.conflict.term": "Conflicto",
+  "episode1.vocab.conflict.definition": "Un desacuerdo entre personas.",
+  "episode1.vocab.conflict.spanish": "En español: conflicto.",
+  "episode1.vocab.conflict.example": "El conflicto del recreo comienza durante el juego.",
+
+  "episode1.story.p1": "El patio está lleno de energía. Lee y Tee quieren jugar el mismo juego.",
+  "episode1.story.p1.simple": "Lee y Tee quieren jugar.",
+  "episode1.story.p2": "Se detienen, respiran y usan una estrategia de cuatro pasos para resolver el conflicto.",
+  "episode1.story.p2.simple": "Respiran y usan su estrategia.",
+
+  "episode1.practice.step1": "Detente y respira",
+  "episode1.practice.step2": "Explica cómo te sientes",
+  "episode1.practice.step3": "Encuentra una solución justa",
+  "episode1.practice.target1": "Paso 1",
+  "episode1.practice.target2": "Paso 2",
+  "episode1.practice.target3": "Paso 3",
+
+  "episode1.check.prompt": "¿Qué paso sigue después de detenerte y respirar?",
+  "episode1.check.option1": "Salir corriendo",
+  "episode1.check.option2": "Explica cómo te sientes",
+  "episode1.check.option3": "Ignorar el problema",
+
+  "episode1.reflect.prompt": "Escribe sobre una vez que resolviste un problema con respeto.",
+  "episode1.reflect.frame1": "Primero, yo...",
+  "episode1.reflect.frame2": "Luego, yo..."
+}
