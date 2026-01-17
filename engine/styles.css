@@ -1,0 +1,400 @@
+:root {
+  --bg-primary: #fff8f0;
+  --bg-secondary: #fef3e2;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --accent-purple: #7c3aed;
+  --accent-amber: #f59e0b;
+  --accent-teal: #0d9488;
+  --accent-rose: #e11d48;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --border-light: #e7e5e4;
+  --focus: #2563eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Lexend", system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+body.dyslexia-mode {
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 2;
+}
+
+body.high-contrast {
+  --bg-primary: #000;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #fff;
+  --text-secondary: #e5e5e5;
+  --border-light: #404040;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  left: 12px;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+header.hero {
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #0d9488 100%);
+  color: #fff;
+  padding: 32px 16px 48px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.hero p {
+  margin: 0;
+  max-width: 60ch;
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px 16px 64px;
+}
+
+@media (min-width: 900px) {
+  main {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+}
+
+.panel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+body.high-contrast .panel {
+  background: #0b0b0b;
+}
+
+.panel h2,
+.panel h3 {
+  margin-top: 0;
+}
+
+.dashboard {
+  display: grid;
+  gap: 12px;
+}
+
+.progress-summary {
+  display: grid;
+  gap: 8px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--border-light);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-teal));
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badge {
+  background: var(--bg-secondary);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border: 1px solid var(--border-light);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: var(--accent-purple);
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: var(--accent-teal);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+.btn.danger {
+  background: var(--danger);
+}
+
+.btn:focus,
+select:focus,
+input:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: flex-start;
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.nav-tabs button.active {
+  background: var(--accent-purple);
+  color: #fff;
+}
+
+.section {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid var(--border-light);
+  margin-bottom: 24px;
+}
+
+.section header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section header .section-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.section .status {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--bg-secondary);
+}
+
+.section .simplified-toggle {
+  margin-left: auto;
+}
+
+.helper-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.vocab-card {
+  background: var(--bg-secondary);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+}
+
+.story-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.story-text {
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
+
+.check-options {
+  display: grid;
+  gap: 8px;
+}
+
+.option {
+  border: 1px solid var(--border-light);
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.option.selected {
+  border-color: var(--accent-purple);
+}
+
+.feedback {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+}
+
+.drag-area {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.draggable-item,
+.drop-target {
+  border: 2px dashed var(--border-light);
+  padding: 12px;
+  border-radius: 12px;
+  background: #fff;
+  min-height: 60px;
+}
+
+.drop-target.filled {
+  border-style: solid;
+  background: var(--bg-secondary);
+}
+
+.drag-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.writing-area {
+  display: grid;
+  gap: 12px;
+}
+
+textarea {
+  min-height: 120px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  font-family: inherit;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-backdrop.active {
+  display: flex;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  width: min(480px, 90vw);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 2500;
+  display: none;
+}
+
+.toast.show {
+  display: block;
+}
+
+.settings-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
