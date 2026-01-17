@@ -1,0 +1,90 @@
+{
+  "id": "episode1",
+  "languages": ["en", "es", "fr", "ht"],
+  "titleKey": "episode.title",
+  "descriptionKey": "episode.description",
+  "bookProgress": {
+    "completedEpisodes": 1,
+    "totalEpisodes": 6
+  },
+  "navItems": [
+    { "labelKey": "ui.navVocabulary", "target": "vocab-section", "icon": "📘" },
+    { "labelKey": "ui.navStory", "target": "story-section", "icon": "📖" },
+    { "labelKey": "ui.navPractice", "target": "practice-section", "icon": "🧩" },
+    { "labelKey": "ui.navCheck", "target": "check-section", "icon": "✅" },
+    { "labelKey": "ui.navReflect", "target": "reflect-section", "icon": "📝" }
+  ],
+  "helpers": {
+    "leeKey": "helpers.lee",
+    "teeKey": "helpers.tee"
+  },
+  "objectives": {
+    "language": ["objectives.language1", "objectives.language2"],
+    "content": ["objectives.content1", "objectives.content2"]
+  },
+  "siopStrategies": ["siop.strategy1", "siop.strategy2", "siop.strategy3"],
+  "sections": [
+    {
+      "id": "vocab-section",
+      "type": "vocab",
+      "titleKey": "sections.vocab.title",
+      "introKey": "sections.vocab.intro",
+      "words": [
+        {
+          "wordKey": "vocab.challenge.word",
+          "definitionKey": "vocab.challenge.definition",
+          "spanishKey": "vocab.challenge.spanish",
+          "exampleKey": "vocab.challenge.example"
+        },
+        {
+          "wordKey": "vocab.strategy.word",
+          "definitionKey": "vocab.strategy.definition",
+          "spanishKey": "vocab.strategy.spanish",
+          "exampleKey": "vocab.strategy.example"
+        }
+      ]
+    },
+    {
+      "id": "story-section",
+      "type": "story",
+      "titleKey": "sections.story.title",
+      "storyKey": "sections.story.text",
+      "simplifiedKey": "sections.story.simplified",
+      "hintKey": "sections.story.hint"
+    },
+    {
+      "id": "practice-section",
+      "type": "drag",
+      "titleKey": "sections.practice.title",
+      "promptKey": "sections.practice.prompt",
+      "pairs": [
+        { "id": "step1", "promptKey": "sections.practice.step1", "answerKey": "sections.practice.answer1" },
+        { "id": "step2", "promptKey": "sections.practice.step2", "answerKey": "sections.practice.answer2" },
+        { "id": "step3", "promptKey": "sections.practice.step3", "answerKey": "sections.practice.answer3" }
+      ],
+      "correctFeedbackKey": "sections.practice.correct",
+      "incorrectFeedbackKey": "sections.practice.incorrect"
+    },
+    {
+      "id": "check-section",
+      "type": "check",
+      "titleKey": "sections.check.title",
+      "promptKey": "sections.check.prompt",
+      "options": [
+        { "id": "a", "labelKey": "sections.check.option1" },
+        { "id": "b", "labelKey": "sections.check.option2" },
+        { "id": "c", "labelKey": "sections.check.option3" }
+      ],
+      "correct": ["b"],
+      "correctFeedbackKey": "sections.check.correct",
+      "incorrectFeedbackKey": "sections.check.incorrect"
+    },
+    {
+      "id": "reflect-section",
+      "type": "writing",
+      "titleKey": "sections.reflect.title",
+      "promptKey": "sections.reflect.prompt",
+      "frames": ["sections.reflect.frame1", "sections.reflect.frame2"]
+    }
+  ]
+}
