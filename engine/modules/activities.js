@@ -1,502 +1,594 @@
 /**
  * Activities Module
- * Handles activity initialization, interaction, and state
+ * Handles SEL, character choice, quizzes, drag-drop, essay hunt, and writing
+ * Function-based to match Episode 1's original style
  */
 
-class ActivitiesManager {
-  constructor(progressManager) {
-    this.progress = progressManager;
-    this.activities = new Map();
-    this.currentNarration = null;
-    this.isPlaying = false;
-  }
+// Activity state
+let guidedStepsCompleted = 0;
+let currentFinding = null;
+let essayPartsFound = 0;
+let draggedItem = null;
+let correctPlacements = 0;
+let matchCount = 0;
 
-  /**
-   * Initialize all activities
-   */
-  init() {
-    this.initVocabulary();
-    this.initDragDrop();
-    this.initSpeechSynthesis();
-    return this;
-  }
+// ==================== SEL CHECK-IN ====================
 
-  /**
-   * Register an activity
-   * @param {string} id - Activity identifier
-   * @param {Object} config - Activity configuration
-   */
-  register(id, config) {
-    this.activities.set(id, {
-      ...config,
-      complete: false
-    });
-  }
+/**
+ * Select emotion in SEL check-in
+ */
+function selectEmotion(element, emotion) {
+  document.querySelectorAll('.emotion-option').forEach(el => {
+    el.classList.remove('selected');
+  });
+  element.classList.add('selected');
+  learningState.emotion = emotion;
+  saveProgress();
 
-  // ========================================
-  // VOCABULARY ACTIVITIES
-  // ========================================
+  // Mark progress
+  markActivityComplete('sel');
 
-  /**
-   * Initialize vocabulary activities
-   */
-  initVocabulary() {
-    // Vocabulary modal handlers are set up by the renderer
-  }
-
-  /**
-   * Show vocabulary modal
-   * @param {string} word - Word key
-   * @param {Object} vocabData - Vocabulary definitions
-   */
-  showVocabModal(word, vocabData) {
-    // Stop any current narration
-    this.stopNarration();
-
-    const data = vocabData[word];
-    if (!data) return;
-
-    const modal = document.getElementById('vocabModal');
-    if (!modal) return;
-
-    document.getElementById('vocabWord').textContent = data.word;
-    document.getElementById('vocabDef').textContent = data.def;
-    document.getElementById('vocabExample').textContent = data.example;
-    document.getElementById('vocabSpanish').textContent = data.spanish || '';
-    document.getElementById('vocabImage').textContent = data.image || '';
-
-    modal.classList.add('open');
-  }
-
-  /**
-   * Close vocabulary modal
-   * @param {Event} e - Click event
-   */
-  closeVocabModal(e) {
-    if (e.target.classList.contains('vocab-modal')) {
-      document.getElementById('vocabModal').classList.remove('open');
-      this.stopNarration();
-    }
-  }
-
-  /**
-   * Check vocabulary choice
-   * @param {string} blankId - Blank element ID
-   * @param {string} choicesId - Choices element ID
-   * @param {string} selectedWord - Selected word
-   * @param {boolean} isCorrect - Whether selection is correct
-   */
-  checkVocabChoice(blankId, choicesId, selectedWord, isCorrect) {
-    const choices = document.getElementById(choicesId);
-    const blank = document.getElementById(blankId);
-    const feedbackId = blankId.replace('blank', 'feedback');
-
-    // Hide choices
-    if (choices) choices.classList.remove('show');
-
-    if (isCorrect) {
-      blank.textContent = selectedWord;
-      blank.classList.add('text-green-700', 'font-bold');
-
-      const feedback = document.getElementById(feedbackId);
-      if (feedback) feedback.classList.remove('hidden');
-
-      // Complete activity
-      if (!this.progress.isComplete(blankId)) {
-        this.progress.completeActivity(blankId);
-        this.progress.addPoints(10, 'Vocab correct!');
-      }
-    } else {
-      // Incorrect feedback
-      blank.style.background = '#FEE2E2';
-      setTimeout(() => {
-        blank.style.background = '';
-      }, 500);
-    }
-  }
-
-  // ========================================
-  // DRAG AND DROP
-  // ========================================
-
-  /**
-   * Initialize drag and drop activities
-   */
-  initDragDrop() {
-    this.draggedItem = null;
-    this.correctPlacements = 0;
-  }
-
-  /**
-   * Handle drag start
-   * @param {DragEvent} e
-   */
-  dragStart(e) {
-    this.draggedItem = e.target;
-    e.target.classList.add('dragging');
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', e.target.dataset.step);
-  }
-
-  /**
-   * Handle drag end
-   * @param {DragEvent} e
-   */
-  dragEnd(e) {
-    e.target.classList.remove('dragging');
-  }
-
-  /**
-   * Handle drag over
-   * @param {DragEvent} e
-   */
-  dragOver(e) {
-    e.preventDefault();
-    e.currentTarget.classList.add('drag-over');
-  }
-
-  /**
-   * Handle drag leave
-   * @param {DragEvent} e
-   */
-  dragLeave(e) {
-    e.currentTarget.classList.remove('drag-over');
-  }
-
-  /**
-   * Handle drop
-   * @param {DragEvent} e
-   * @param {number} totalSteps - Total steps for completion
-   * @param {string} activityId - Activity identifier
-   * @param {number} points - Points to award
-   * @param {string} badge - Badge to award
-   */
-  drop(e, totalSteps = 4, activityId = 'dragDrop', points = 25, badge = '🎤') {
-    e.preventDefault();
-    const dropZone = e.currentTarget;
-    dropZone.classList.remove('drag-over');
-
-    const targetStep = dropZone.dataset.target;
-    const itemStep = this.draggedItem.dataset.step;
-
-    if (targetStep === itemStep) {
-      // Correct!
-      dropZone.innerHTML = '';
-      const clone = this.draggedItem.cloneNode(true);
-      clone.classList.add('correct');
-      clone.draggable = false;
-      dropZone.appendChild(clone);
-      dropZone.classList.add('filled');
-
-      this.draggedItem.style.display = 'none';
-      this.correctPlacements++;
-
-      if (this.correctPlacements >= totalSteps) {
-        const feedback = document.getElementById('strategyFeedback');
-        if (feedback) feedback.classList.remove('hidden');
-
-        if (!this.progress.isComplete(activityId)) {
-          this.progress.completeActivity(activityId);
-          this.progress.addPoints(points, 'Strategy mastered!');
-          this.progress.awardBadge(badge);
-        }
-      }
-    } else {
-      // Incorrect - shake animation
-      this.draggedItem.classList.add('incorrect');
-      setTimeout(() => this.draggedItem.classList.remove('incorrect'), 300);
-    }
-  }
-
-  // ========================================
-  // SPEECH SYNTHESIS
-  // ========================================
-
-  /**
-   * Initialize speech synthesis
-   */
-  initSpeechSynthesis() {
-    // Pre-load voices
-    if ('speechSynthesis' in window) {
-      speechSynthesis.getVoices();
-    }
-  }
-
-  /**
-   * Speak a word
-   * @param {string} text - Text to speak
-   */
-  speakWord(text) {
-    this.stopNarration();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-
-    this.currentNarration = utterance;
-
-    utterance.onend = () => {
-      this.currentNarration = null;
-      this.isPlaying = false;
-    };
-
-    utterance.onerror = () => {
-      this.currentNarration = null;
-      this.isPlaying = false;
-    };
-
-    const speakNow = () => {
-      const voices = speechSynthesis.getVoices();
-      const voice = voices.find(v => v.name === 'Google US English') ||
-                    voices.find(v => v.lang === 'en-US') ||
-                    voices[0];
-
-      if (voice) {
-        utterance.voice = voice;
-        utterance.lang = 'en-US';
-      }
-      speechSynthesis.speak(utterance);
-    };
-
-    if (speechSynthesis.getVoices().length) {
-      speakNow();
-    } else {
-      speechSynthesis.onvoiceschanged = () => speakNow();
-    }
-  }
-
-  /**
-   * Toggle section audio (sentence highlighting)
-   * @param {HTMLElement} btn - Button element
-   * @param {string} sectionId - Section ID
-   */
-  toggleSectionAudio(btn, sectionId) {
-    const floatingBtn = document.getElementById('floatingStopBtn');
-
-    if (btn.classList.contains('playing')) {
-      // Stop playback
-      speechSynthesis.cancel();
-      btn.classList.remove('playing');
-      btn.textContent = '🔊 Listen';
-      this.removeAllHighlights();
-
-      if (floatingBtn) floatingBtn.classList.remove('active');
-    } else {
-      // Stop any existing playback
-      speechSynthesis.cancel();
-      document.querySelectorAll('.playing').forEach(b => {
-        b.classList.remove('playing');
-        b.textContent = '🔊 Listen';
-      });
-
-      // Start playback
-      btn.classList.add('playing');
-      btn.textContent = '⏹️ Stop';
-
-      if (floatingBtn) floatingBtn.classList.add('active');
-
-      this.startSentencePlayback(sectionId, btn);
-    }
-  }
-
-  /**
-   * Start sentence-level playback
-   * @param {string} sectionId - Section ID
-   * @param {HTMLElement} btn - Button element
-   */
-  startSentencePlayback(sectionId, btn) {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-
-    const storyText = section.querySelector('.story-text');
-    if (!storyText) return;
-
-    // Save original state
-    if (!storyText.dataset.original) {
-      storyText.dataset.original = storyText.innerHTML;
+  // Show feedback message
+  const feedback = document.getElementById('selFeedback');
+  if (feedback) {
+    let message = '';
+    if (emotion === 'tired') {
+      message = '💙 Got it! Audio features are available to help you follow along.';
+    } else if (emotion === 'nervous') {
+      message = '💜 No worries! Extra help features are available in the settings menu.';
+    } else if (emotion === 'excited') {
+      message = '🎉 Love the energy! Let\'s dive in!';
+    } else if (emotion === 'calm') {
+      message = '🌟 Perfect mindset for learning. Let\'s get started!';
     }
 
-    // Get paragraphs
-    const paragraphs = storyText.querySelectorAll('p');
-    let allSentences = [];
-    paragraphs.forEach(p => {
-      if (!p.parentElement.classList.contains('speech-bubble') ||
-          (p.parentElement.classList.contains('speech-bubble') && !p.previousElementSibling)) {
-        allSentences.push(p);
-      }
-    });
-
-    // Create combined text
-    let fullText = '';
-    allSentences.forEach((p, i) => {
-      p.dataset.sentenceIndex = i;
-      fullText += p.textContent + ' ';
-    });
-
-    // Create utterance
-    const utterance = new SpeechSynthesisUtterance(fullText);
-    utterance.rate = 0.85;
-
-    utterance.onboundary = (event) => {
-      if (event.name === 'sentence' || event.name === 'word') {
-        let charCount = 0;
-        let currentSentence = null;
-
-        for (let i = 0; i < allSentences.length; i++) {
-          const sentence = allSentences[i];
-          const textLength = sentence.textContent.length;
-
-          if (event.charIndex >= charCount && event.charIndex < charCount + textLength) {
-            currentSentence = sentence;
-            break;
-          }
-          charCount += textLength + 1;
-        }
-
-        if (currentSentence) {
-          allSentences.forEach(s => {
-            s.classList.remove('active-sentence');
-            s.style.backgroundColor = '';
-          });
-
-          currentSentence.classList.add('active-sentence');
-          currentSentence.style.backgroundColor = 'rgba(253, 230, 138, 0.5)';
-
-          const rect = currentSentence.getBoundingClientRect();
-          if (rect.bottom < 0 || rect.top > window.innerHeight) {
-            currentSentence.scrollIntoView({ behavior: 'auto', block: 'nearest' });
-          }
-        }
-      }
-    };
-
-    utterance.onend = () => {
-      btn.classList.remove('playing');
-      btn.textContent = '🔊 Listen';
-      this.removeAllHighlights();
-      if (storyText.dataset.original) {
-        storyText.innerHTML = storyText.dataset.original;
-        delete storyText.dataset.original;
-      }
-    };
-
-    utterance.onerror = () => {
-      btn.classList.remove('playing');
-      btn.textContent = '🔊 Listen';
-      this.removeAllHighlights();
-    };
-
-    speechSynthesis.speak(utterance);
-  }
-
-  /**
-   * Stop all narration
-   */
-  stopNarration() {
-    speechSynthesis.cancel();
-    this.currentNarration = null;
-    this.isPlaying = false;
-
-    document.querySelectorAll('.btn-playing').forEach(b => {
-      b.classList.remove('btn-playing');
-      b.innerHTML = '<span>🎙️</span><span>Read Aloud</span>';
-    });
-
-    document.querySelectorAll('.playing').forEach(b => {
-      b.classList.remove('playing');
-      b.textContent = '🔊 Listen';
-    });
-
-    this.removeAllHighlights();
-
-    const floatingBtn = document.getElementById('floatingStopBtn');
-    if (floatingBtn) floatingBtn.classList.remove('active');
-  }
-
-  /**
-   * Remove all highlighting
-   */
-  removeAllHighlights() {
-    document.querySelectorAll('.active-sentence, .active-word').forEach(el => {
-      el.classList.remove('active-sentence', 'active-word');
-      el.style.backgroundColor = '';
-      el.style.padding = '';
-      el.style.margin = '';
-      el.style.borderRadius = '';
-      el.style.borderLeft = '';
-      el.style.borderRight = '';
-    });
-  }
-
-  // ========================================
-  // COMPREHENSION CHECKS
-  // ========================================
-
-  /**
-   * Check answer for comprehension quiz
-   * @param {HTMLElement} btn - Answer button
-   * @param {boolean} correct - Whether answer is correct
-   * @param {string} id - Question ID
-   * @param {string} progressKey - Progress key
-   * @param {number} points - Points to award
-   */
-  checkAnswer(btn, correct, id, progressKey = null, points = 0) {
-    const container = btn.parentElement;
-    container.querySelectorAll('.quiz-option').forEach(b => {
-      b.classList.remove('selected', 'correct', 'incorrect');
-    });
-
-    if (correct) {
-      btn.classList.add('correct');
-      const feedback = document.getElementById(id + '-feedback');
-      if (feedback) feedback.classList.remove('hidden');
-
-      if (progressKey && !this.progress.isComplete(progressKey)) {
-        this.progress.completeActivity(progressKey);
-        if (points > 0) {
-          this.progress.addPoints(points, 'Correct answer!');
-        }
-      }
-    } else {
-      btn.classList.add('incorrect');
-    }
-  }
-
-  // ========================================
-  // OPEN RESPONSE
-  // ========================================
-
-  /**
-   * Save open response
-   * @param {string} responseKey - Response key
-   * @param {string} textareaId - Textarea element ID
-   * @param {number} minLength - Minimum length required
-   * @param {string} progressKey - Progress key
-   * @param {number} points - Points to award
-   * @param {string} badge - Badge to award
-   */
-  saveResponse(responseKey, textareaId, minLength = 50, progressKey = null, points = 30, badge = '✍️') {
-    const textarea = document.getElementById(textareaId);
-    if (!textarea) return;
-
-    const response = textarea.value;
-    if (response.trim().length < minLength) {
-      alert(`Try writing a bit more! Aim for at least ${minLength} characters.`);
-      return;
-    }
-
-    this.progress.saveResponse(responseKey, response);
-
-    if (progressKey && !this.progress.isComplete(progressKey)) {
-      this.progress.completeActivity(progressKey);
-      this.progress.addPoints(points, 'Response written!');
-      if (badge) this.progress.awardBadge(badge);
-    }
-
-    alert('💾 Your response has been saved!');
+    feedback.textContent = message;
+    feedback.classList.remove('hidden');
   }
 }
 
-// Export
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { ActivitiesManager };
+/**
+ * Select final emotion (end of lesson)
+ */
+function selectFinalEmotion(element, emotion) {
+  document.querySelectorAll('.emotion-option').forEach(el => {
+    el.classList.remove('selected');
+  });
+  element.classList.add('selected');
 }
+
+// ==================== CHARACTER CHOICE ====================
+
+/**
+ * Choose character (Lee or Tee)
+ */
+function chooseCharacter(character) {
+  document.querySelectorAll('.choice-card').forEach(card => {
+    card.classList.remove('selected');
+  });
+
+  const selectedCard = document.getElementById('choose' + character.charAt(0).toUpperCase() + character.slice(1));
+  if (selectedCard) selectedCard.classList.add('selected');
+
+  learningState.characterChoice = character;
+  learningState.completedActivities.push('character');
+  saveProgress();
+
+  const feedback = document.getElementById('characterFeedback');
+  if (feedback) feedback.classList.remove('hidden');
+
+  addPoints(5, 'Great choice!');
+
+  // Set character choice in adaptive helpers if available
+  if (typeof adaptiveHelpers !== 'undefined' && adaptiveHelpers.setCharacterChoice) {
+    adaptiveHelpers.setCharacterChoice(character);
+  }
+}
+
+// ==================== COMPREHENSION QUIZZES ====================
+
+/**
+ * Check quiz answer
+ */
+function checkAnswer(btn, correct, id) {
+  const container = btn.parentElement;
+  container.querySelectorAll('.quiz-option').forEach(b => {
+    b.classList.remove('selected', 'correct', 'incorrect');
+  });
+
+  if (correct) {
+    btn.classList.add('correct');
+    const feedback = document.getElementById(id + '-feedback');
+    if (feedback) feedback.classList.remove('hidden');
+
+    // Mark section progress based on which quiz
+    if (id === 'comp1') {
+      markActivityComplete('section1');
+    } else if (id === 'comp2') {
+      markActivityComplete('section2');
+    }
+  } else {
+    btn.classList.add('incorrect');
+  }
+}
+
+/**
+ * Check comprehension answer (alias)
+ */
+function checkComprehension(button, isCorrect, feedbackId) {
+  checkAnswer(button, isCorrect, feedbackId);
+}
+
+// ==================== GUIDED PRACTICE ====================
+
+/**
+ * Check guided practice step
+ */
+function checkGuidedStep(button, isCorrect, feedbackId) {
+  const container = button.parentElement;
+  const feedback = document.getElementById(feedbackId + '-feedback');
+
+  container.querySelectorAll('button').forEach(btn => {
+    btn.classList.remove('bg-green-100', 'bg-red-100', 'border-2', 'border-green-600');
+  });
+
+  if (isCorrect) {
+    button.classList.add('bg-green-100', 'border-2', 'border-green-600');
+    if (feedback) feedback.classList.remove('hidden');
+
+    guidedStepsCompleted++;
+
+    if (guidedStepsCompleted >= 3) {
+      const complete = document.getElementById('guidedComplete');
+      if (complete) complete.classList.remove('hidden');
+    }
+  } else {
+    button.classList.add('bg-red-100');
+    setTimeout(() => button.classList.remove('bg-red-100'), 500);
+  }
+}
+
+// ==================== ESSAY HUNT ====================
+
+/**
+ * Highlight essay part button
+ */
+function highlightEssayPart(part) {
+  currentFinding = part;
+
+  // Reset all paragraphs
+  const allParagraphs = ['paragraph-intro', 'paragraph-body', 'paragraph-counterclaim', 'paragraph-conclusion'];
+  allParagraphs.forEach(id => {
+    const para = document.getElementById(id);
+    if (para) {
+      para.classList.remove('border-purple-600', 'border-teal-600', 'border-rose-600', 'border-green-600',
+                            'bg-purple-50', 'bg-teal-50', 'bg-rose-50', 'bg-green-50');
+      para.classList.add('border-transparent');
+    }
+  });
+
+  // Update button states
+  const allButtons = ['btn-claim', 'btn-evidence', 'btn-counterclaim', 'btn-conclusion'];
+  allButtons.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.classList.remove('opacity-50', 'ring-4', 'ring-purple-300');
+  });
+
+  // Highlight active button
+  const activeButton = document.getElementById('btn-' + part);
+  if (activeButton) activeButton.classList.add('ring-4', 'ring-purple-300');
+
+  // Update instruction
+  const instruction = document.getElementById('essay-instruction');
+  const partNames = {
+    'claim': 'the CLAIM',
+    'evidence': 'the EVIDENCE',
+    'counterclaim': 'the COUNTERCLAIM',
+    'conclusion': 'the CONCLUSION'
+  };
+  if (instruction) {
+    instruction.textContent = '👇 Now click the paragraph that contains ' + partNames[part] + '!';
+  }
+}
+
+/**
+ * Check essay part selection
+ */
+function checkEssayPart(paragraphId, correctPart) {
+  if (!currentFinding) return;
+
+  const paragraph = document.getElementById('paragraph-' + paragraphId);
+  const button = document.getElementById('btn-' + currentFinding);
+  const instruction = document.getElementById('essay-instruction');
+
+  if (currentFinding === correctPart) {
+    // CORRECT!
+    const colors = {
+      'claim': { border: 'border-purple-600', bg: 'bg-purple-50' },
+      'evidence': { border: 'border-teal-600', bg: 'bg-teal-50' },
+      'counterclaim': { border: 'border-rose-600', bg: 'bg-rose-50' },
+      'conclusion': { border: 'border-green-600', bg: 'bg-green-50' }
+    };
+
+    if (paragraph) {
+      paragraph.classList.remove('border-transparent');
+      paragraph.classList.add(colors[correctPart].border, colors[correctPart].bg);
+    }
+
+    // Mark button as completed
+    if (button) {
+      button.disabled = true;
+      button.classList.add('opacity-50');
+      button.classList.remove('ring-4', 'ring-purple-300');
+
+      const foundPrefix = typeof translator !== 'undefined'
+        ? translator.t('essay_hunt.found_prefix', '✓ Found')
+        : '✓ Found';
+      const partName = button.dataset.partName || button.textContent.trim();
+      button.textContent = `${foundPrefix} ${partName}`;
+    }
+
+    essayPartsFound++;
+
+    if (essayPartsFound >= 4) {
+      if (instruction) {
+        instruction.textContent = typeof translator !== 'undefined'
+          ? translator.t('essay_hunt.perfect', '🎉 Perfect! You found all four parts!')
+          : '🎉 Perfect! You found all four parts!';
+      }
+      const complete = document.getElementById('essayComplete');
+      if (complete) complete.classList.remove('hidden');
+      updatePoints(20, 'Identified all essay parts!');
+    } else {
+      if (instruction) {
+        instruction.textContent = typeof translator !== 'undefined'
+          ? translator.t('essay_hunt.continue', '✓ Correct! Click another button to continue.')
+          : '✓ Correct! Click another button to continue.';
+      }
+    }
+
+    currentFinding = null;
+  } else {
+    // WRONG - shake animation
+    if (paragraph) {
+      paragraph.style.animation = 'shake 0.3s';
+      setTimeout(() => { paragraph.style.animation = ''; }, 300);
+    }
+    if (instruction) {
+      instruction.textContent = typeof translator !== 'undefined'
+        ? translator.t('essay_hunt.not_quite', '❌ Not quite. Try again!')
+        : '❌ Not quite. Try again!';
+    }
+  }
+}
+
+// ==================== DRAG AND DROP ====================
+
+/**
+ * Initialize drag and drop listeners
+ */
+function initDragAndDrop() {
+  const rapLines = document.querySelectorAll('.rap-line');
+  rapLines.forEach(line => {
+    line.addEventListener('dragstart', dragStart);
+    line.addEventListener('dragend', dragEnd);
+  });
+}
+
+function dragStart(e) {
+  draggedItem = e.target;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', e.target.dataset.step);
+}
+
+function dragEnd(e) {
+  e.target.classList.remove('dragging');
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+
+function drop(e) {
+  e.preventDefault();
+  const dropZone = e.currentTarget;
+  dropZone.classList.remove('drag-over');
+
+  const targetStep = dropZone.dataset.target;
+  const itemStep = draggedItem.dataset.step;
+
+  if (targetStep === itemStep) {
+    // Correct!
+    dropZone.innerHTML = '';
+    const clone = draggedItem.cloneNode(true);
+    clone.classList.add('correct');
+    clone.draggable = false;
+    dropZone.appendChild(clone);
+    dropZone.classList.add('filled');
+
+    draggedItem.style.display = 'none';
+    correctPlacements++;
+
+    if (correctPlacements >= 4) {
+      const feedback = document.getElementById('strategyFeedback');
+      if (feedback) feedback.classList.remove('hidden');
+
+      if (!learningState.completedActivities.includes('dragDrop')) {
+        learningState.completedActivities.push('dragDrop');
+        addPoints(25, 'Strategy mastered!');
+        awardBadge('🎤');
+        markActivityComplete('drag');
+      }
+    }
+  } else {
+    // Incorrect - shake animation
+    draggedItem.classList.add('incorrect');
+    setTimeout(() => draggedItem.classList.remove('incorrect'), 300);
+  }
+
+  saveProgress();
+}
+
+// ==================== PROBLEM ANALYSIS ====================
+
+/**
+ * Check problem analysis answers
+ */
+function checkProblemAnswers() {
+  const checkboxes = document.querySelectorAll('.problem-check');
+  let allCorrect = true;
+  let correctCount = 0;
+  let incorrectCount = 0;
+
+  checkboxes.forEach(checkbox => {
+    const isCorrect = checkbox.dataset.correct === 'true';
+    const isChecked = checkbox.checked;
+
+    if (isCorrect && isChecked) correctCount++;
+    if (!isCorrect && isChecked) incorrectCount++;
+    if ((isCorrect && !isChecked) || (!isCorrect && isChecked)) allCorrect = false;
+  });
+
+  if (allCorrect) {
+    const feedback = document.getElementById('problemFeedback');
+    if (feedback) feedback.classList.remove('hidden');
+
+    if (!learningState.completedActivities.includes('problemAnalysis')) {
+      learningState.completedActivities.push('problemAnalysis');
+      const reason = typeof translator !== 'undefined'
+        ? translator.t('rewards.critical_thinking', 'Critical thinking!')
+        : 'Critical thinking!';
+      addPoints(15, reason);
+      awardBadge('🧠');
+    }
+  } else {
+    let message = typeof translator !== 'undefined'
+      ? translator.t('feedback.problem_not_quite', 'Not quite! ')
+      : 'Not quite! ';
+
+    if (incorrectCount > 0) {
+      message += typeof translator !== 'undefined'
+        ? translator.t('feedback.problem_behavior', "Remember: we're looking for what makes the ARGUMENT weak, not just behavior issues. ")
+        : "Remember: we're looking for what makes the ARGUMENT weak, not just behavior issues. ";
+    }
+
+    if (correctCount < 2) {
+      message += typeof translator !== 'undefined'
+        ? translator.t('feedback.problem_two_answers', 'There are TWO correct answers - make sure you select both!')
+        : 'There are TWO correct answers - make sure you select both!';
+    }
+
+    alert(message);
+  }
+
+  saveProgress();
+}
+
+// ==================== WRITING RESPONSE ====================
+
+/**
+ * Toggle rubric item
+ */
+function toggleRubricItem(itemId) {
+  const item = document.getElementById(itemId);
+  if (!item) return;
+
+  const checkbox = item.querySelector('input');
+  if (checkbox && checkbox.checked) {
+    item.classList.add('checked');
+  } else {
+    item.classList.remove('checked');
+  }
+}
+
+/**
+ * Auto-update rubric based on text content
+ */
+function updateRubric() {
+  const textarea = document.getElementById('studentResponse');
+  if (!textarea) return;
+
+  const text = textarea.value.toLowerCase();
+  const rubricItems = document.querySelectorAll('.rubric-item');
+
+  rubricItems.forEach((item, index) => {
+    const checkbox = item.querySelector('input');
+    let isIncluded = false;
+
+    if (index === 0 && (text.includes('they said') || text.includes('you claim') || text.includes('argument is'))) {
+      isIncluded = true;
+    } else if (index === 1 && (text.includes('evidence') || text.includes('proof') || text.includes('facts') || text.includes('research') || text.includes('study'))) {
+      isIncluded = true;
+    } else if (index === 2 && (text.includes('wrong') || text.includes('incorrect') || text.includes('mistaken') || text.includes('however') || text.includes('but'))) {
+      isIncluded = true;
+    } else if (index === 3 && (text.includes('conclusion') || text.includes('therefore') || text.includes('position') || text.includes('believe') || text.includes('think'))) {
+      isIncluded = true;
+    }
+
+    if (checkbox) checkbox.checked = isIncluded;
+    toggleRubricItem(item.id);
+  });
+}
+
+/**
+ * Save student response
+ */
+function saveResponse() {
+  const textarea = document.getElementById('studentResponse');
+  if (!textarea) return;
+
+  const response = textarea.value;
+  if (response.trim().length < 50) {
+    alert('Try writing a bit more! Use all 4 steps of Tee\'s strategy.');
+    return;
+  }
+
+  learningState.savedResponses.videoGames = response;
+  saveProgress();
+
+  if (!learningState.completedActivities.includes('openResponse')) {
+    learningState.completedActivities.push('openResponse');
+    addPoints(30, 'Response written!');
+    awardBadge('✍️');
+    markActivityComplete('essay');
+  }
+
+  alert('💾 Your response has been saved!');
+}
+
+/**
+ * Share response prompt
+ */
+function shareResponse() {
+  const textarea = document.getElementById('studentResponse');
+  if (!textarea || textarea.value.trim().length < 50) {
+    alert('Write your response first, then you can share with a partner!');
+    return;
+  }
+
+  alert('🤝 Great! Now share your screen or read your response to your partner. Ask them:\n\n1. Did I use all 4 steps?\n2. Was my evidence strong?\n3. What could make it better?');
+}
+
+// ==================== MATCHING ACTIVITY ====================
+
+/**
+ * Check match answer
+ */
+function checkMatch(select, correctValue) {
+  if (select.value === correctValue) {
+    select.style.background = '#DCFCE7';
+    select.style.borderColor = '#16A34A';
+    matchCount++;
+
+    if (matchCount >= 4) {
+      const feedback = document.getElementById('matchFeedback');
+      if (feedback) feedback.classList.remove('hidden');
+
+      if (!learningState.completedActivities.includes('matching')) {
+        learningState.completedActivities.push('matching');
+        addPoints(15, 'Perfect match!');
+      }
+    }
+  } else if (select.value !== '') {
+    select.style.background = '#FEE2E2';
+    select.style.borderColor = '#E11D48';
+  }
+  saveProgress();
+}
+
+// ==================== VOICE DICTATION ====================
+
+/**
+ * Start voice dictation
+ */
+function startDictation(button) {
+  if (!('webkitSpeechRecognition' in window)) {
+    alert('Voice typing requires Chrome browser. Please use Chrome for this feature.');
+    return;
+  }
+
+  const textarea = button.parentElement.previousElementSibling;
+  const recognition = new webkitSpeechRecognition();
+
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.lang = 'en-US';
+
+  recognition.onstart = function() {
+    button.textContent = '🎤 Listening...';
+    button.classList.add('bg-red-100', 'text-red-700');
+  };
+
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    textarea.value += (textarea.value ? ' ' : '') + transcript;
+
+    if (textarea.value.trim().length > 10) {
+      markActivityComplete('reflect');
+    }
+  };
+
+  recognition.onend = function() {
+    button.textContent = '🎤 Speak Answer';
+    button.classList.remove('bg-red-100', 'text-red-700');
+  };
+
+  recognition.onerror = function(event) {
+    console.error('Speech recognition error', event.error);
+    button.textContent = '🎤 Speak Answer';
+    button.classList.remove('bg-red-100', 'text-red-700');
+  };
+
+  recognition.start();
+}
+
+// ==================== HELPER MODALS ====================
+
+/**
+ * Open helper modal
+ */
+function openHelper(character) {
+  const modal = document.getElementById(character + '-modal');
+  if (modal) modal.classList.add('open');
+}
+
+/**
+ * Close helper modal
+ */
+function closeHelper(e, character) {
+  if (e.target.classList.contains('helper-modal')) {
+    const modal = document.getElementById(character + '-modal');
+    if (modal) modal.classList.remove('open');
+  }
+}
+
+// Export functions
+window.selectEmotion = selectEmotion;
+window.selectFinalEmotion = selectFinalEmotion;
+window.chooseCharacter = chooseCharacter;
+window.checkAnswer = checkAnswer;
+window.checkComprehension = checkComprehension;
+window.checkGuidedStep = checkGuidedStep;
+window.highlightEssayPart = highlightEssayPart;
+window.checkEssayPart = checkEssayPart;
+window.initDragAndDrop = initDragAndDrop;
+window.dragStart = dragStart;
+window.dragEnd = dragEnd;
+window.dragOver = dragOver;
+window.dragLeave = dragLeave;
+window.drop = drop;
+window.checkProblemAnswers = checkProblemAnswers;
+window.toggleRubricItem = toggleRubricItem;
+window.updateRubric = updateRubric;
+window.saveResponse = saveResponse;
+window.shareResponse = shareResponse;
+window.checkMatch = checkMatch;
+window.startDictation = startDictation;
+window.openHelper = openHelper;
+window.closeHelper = closeHelper;
