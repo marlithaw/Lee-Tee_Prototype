@@ -164,7 +164,7 @@ window.episode1Config = {
                   <button id="chooseLee" class="choice-card p-6 rounded-xl border-3 border-purple-200 hover:border-purple-400 transition text-left bg-white"
                           onclick="chooseCharacter('lee')">
                     <div class="flex items-center gap-4 mb-4">
-                      <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee" class="w-16 h-16 rounded-full object-cover">
+                      <img src="../Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee" class="w-16 h-16 rounded-full object-cover">
                       <div>
                         <h3 class="font-bold text-xl text-purple-700" data-translate="character_choice.lee_name">Lee</h3>
                         <p class="text-purple-600" data-translate="character_choice.lee_subtitle">The Writer</p>
@@ -177,7 +177,7 @@ window.episode1Config = {
                   <button id="chooseTee" class="choice-card p-6 rounded-xl border-3 border-amber-200 hover:border-amber-400 transition text-left bg-white"
                           onclick="chooseCharacter('tee')">
                     <div class="flex items-center gap-4 mb-4">
-                      <img src="Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee" class="w-16 h-16 rounded-full object-cover">
+                      <img src="../Gemini_Generated_Image_bvzywpbvzywpbvzy.png" alt="Tee" class="w-16 h-16 rounded-full object-cover">
                       <div>
                         <h3 class="font-bold text-xl text-amber-700" data-translate="character_choice.tee_name">Tee</h3>
                         <p class="text-amber-600" data-translate="character_choice.tee_subtitle">The Strategist</p>
@@ -350,7 +350,7 @@ window.episode1Config = {
                 </div>
 
                 <!-- Story Image -->
-                <img src="Gemini_Generated_Image_cuhlvucuhlvucuhl.png" alt="Playground setting" class="media-container rounded-lg mt-6 w-full">
+                <img src="../Gemini_Generated_Image_cuhlvucuhlvucuhl.png" alt="Playground setting" class="media-container rounded-lg mt-6 w-full">
               </div>
             </section>
 
@@ -384,8 +384,8 @@ window.episode1Config = {
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4 mt-6">
-                  <img src="Gemini_Generated_Image_ktkt54ktkt54ktkt.png" alt="Jayden challenging" class="media-container rounded-lg">
-                  <img src="Gemini_Generated_Image_k7tn0nk7tn0nk7tn.png" alt="Battle circle" class="media-container rounded-lg">
+                  <img src="../Gemini_Generated_Image_ktkt54ktkt54ktkt.png" alt="Jayden challenging" class="media-container rounded-lg">
+                  <img src="../Gemini_Generated_Image_k7tn0nk7tn0nk7tn.png" alt="Battle circle" class="media-container rounded-lg">
                 </div>
               </div>
             </section>
@@ -431,7 +431,7 @@ window.episode1Config = {
                   <p>Jayden's face changed. The confidence was cracking.</p>
                 </div>
 
-                <img src="Gemini_Generated_Image_v6x547v6x547v6x5.png" alt="Tee and Lee talking" class="media-container rounded-lg mt-6 w-full">
+                <img src="../Gemini_Generated_Image_v6x547v6x547v6x5.png" alt="Tee and Lee talking" class="media-container rounded-lg mt-6 w-full">
               </div>
             </section>
           `
@@ -441,7 +441,7 @@ window.episode1Config = {
             <!-- Video: Jayden's Rap -->
             <div class="bg-gray-900 rounded-lg overflow-hidden mt-6">
               <video controls playsinline preload="metadata" class="w-full">
-                <source src="jayden's_rap.mp4" type="video/mp4">
+                <source src="../jayden's_rap.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -607,7 +607,7 @@ window.episode1Config = {
                 <!-- Lee's Notebook -->
                 <div class="bg-yellow-50 border-2 border-yellow-300 p-6 rounded-xl shadow-md transform -rotate-1">
                   <div class="flex items-center gap-3 mb-4">
-                    <img src="Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee's notebook" class="w-12 h-12 rounded-full">
+                    <img src="../Gemini_Generated_Image_8qgtlc8qgtlc8qgt.png" alt="Lee's notebook" class="w-12 h-12 rounded-full">
                     <h3 class="font-display text-xl font-bold text-purple-700">📓 Lee's Notebook</h3>
                   </div>
 

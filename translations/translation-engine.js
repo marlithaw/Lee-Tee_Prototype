@@ -5,13 +5,15 @@
  */
 
 class TranslationEngine {
-  constructor() {
+  constructor(options = {}) {
     this.currentLang = 'en';
     this.availableLangs = ['en', 'es', 'fr', 'ht'];
     this.uiTranslations = {};
     this.storyTranslations = {};
     this.fallbackLang = 'en';
     this.loading = false;
+    // Base path for locale files - auto-detect based on current path
+    this.basePath = options.basePath || this.detectBasePath();
     this.mixConfig = {
       // Alternate every other sentence for bilingual display (50% mix)
       ratio: 0.5,
@@ -30,6 +32,20 @@ class TranslationEngine {
     ];
   }
 
+  /**
+   * Detect the base path for locale files based on current URL
+   * Handles both root-level and subdirectory pages (like /engine/)
+   */
+  detectBasePath() {
+    const path = window.location.pathname;
+    // If we're in a subdirectory like /engine/, go up one level
+    if (path.includes('/engine/')) {
+      return '../';
+    }
+    // Default to current directory
+    return '';
+  }
+
   async loadLanguage(lang) {
     if (!this.availableLangs.includes(lang)) {
       console.warn(`Language '${lang}' not supported. Using ${this.fallbackLang}`);
@@ -37,11 +53,11 @@ class TranslationEngine {
     }
 
     if (!this.uiTranslations[lang]) {
-      this.uiTranslations[lang] = await this.fetchJson(`locales/${lang}.json`);
+      this.uiTranslations[lang] = await this.fetchJson(`${this.basePath}locales/${lang}.json`);
     }
 
     if (!this.storyTranslations[lang]) {
-      this.storyTranslations[lang] = await this.fetchJson(`locales/story.${lang}.json`);
+      this.storyTranslations[lang] = await this.fetchJson(`${this.basePath}locales/story.${lang}.json`);
     }
 
     return this.uiTranslations[lang];
