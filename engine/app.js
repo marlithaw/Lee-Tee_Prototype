@@ -1,13 +1,14 @@
 import { getEpisodeId } from "./router.js";
 import { store } from "./store.js";
 import {
-  coverageReport,
-  getCriticalMissingKeys,
-  getLanguageMeta,
+  ensurePseudoLocale,
+  getLanguageLabel,
+  getMissingCriticalKeys,
   loadLanguage,
   missingKeysReport,
   setAvailableLanguages,
   t,
+  coverageReport,
 } from "./i18n.js";
 import { renderDashboard } from "./ui/dashboard.js";
 import { renderNav } from "./ui/nav.js";
@@ -19,19 +20,33 @@ import { showToast } from "./ui/toast.js";
 
 const episodeId = getEpisodeId();
 const languages = ["en", "es", "fr", "ht", "ps"];
+const strictMode = new URLSearchParams(window.location.search).get("i18n") === "strict";
 
 const applySettingsToBody = (settings) => {
   document.body.classList.toggle("contrast", settings.contrast);
   document.body.classList.toggle("dyslexia", settings.dyslexia);
-  document.body.classList.toggle("hide-hints", !settings.showHints);
-  document.body.classList.toggle("read-aloud", settings.readAloud);
+  document.body.classList.toggle("show-hints", settings.showHints);
+};
+
+const initHeroObserver = () => {
+  const hero = qs("#hero");
+  if (!hero) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        document.body.classList.toggle("hero-collapsed", !entry.isIntersecting);
+      });
+    },
+    { threshold: 0.05 },
+  );
+  observer.observe(hero);
 };
 
 const applyStoppedState = (stopped) => {
   document.body.classList.toggle("stopped", stopped);
   const stopButton = qs("#stop-episode");
   stopButton.textContent = stopped ? t("ui.resume") : t("ui.stop");
-  qs("#sections").querySelectorAll("button, textarea, select").forEach((node) => {
+  qs("#sections").querySelectorAll("button, textarea, select, input, audio, video").forEach((node) => {
     if (node.id === "stop-episode" || node.id === "reset-progress" || node.id === "language-switch") return;
     node.disabled = stopped;
   });
@@ -68,6 +83,7 @@ const init = async () => {
   const episode = await loadEpisode();
   setAvailableLanguages(languages);
   await Promise.all(languages.map((lang) => loadLanguage(episodeId, lang)));
+  ensurePseudoLocale();
 
   const state = store.getState();
   const strictMode = new URLSearchParams(window.location.search).get("i18n") === "strict";
@@ -80,14 +96,16 @@ const init = async () => {
   }
   const titleNode = qs("#episode-title");
   const subtitleNode = qs("#episode-subtitle");
+  const heroTitle = qs("#hero-title");
+  const heroSubtitle = qs("#hero-subtitle");
+  const heroImage = qs("#hero-image");
 
   const languageSwitch = qs("#language-switch");
   clear(languageSwitch);
   languages.forEach((lang) => {
     const option = document.createElement("option");
     option.value = lang;
-    const meta = getLanguageMeta(lang);
-    option.textContent = meta?.languageName || lang.toUpperCase();
+    option.textContent = getLanguageLabel(lang);
     languageSwitch.appendChild(option);
   });
   languageSwitch.value = state.language;
@@ -106,17 +124,35 @@ const init = async () => {
 
   const renderAll = (currentState) => {
     if (strictMode) {
-      const missingCritical = getCriticalMissingKeys(currentState.language);
+      const missingCritical = getMissingCriticalKeys(currentState.language);
       if (missingCritical.length) {
-        renderI18nBlockingError(missingCritical);
+        document.body.innerHTML = `
+          <main class="i18n-error">
+            <h1>${t("i18n.strictTitle")}</h1>
+            <p>${t("i18n.strictMessage")}</p>
+            <pre>${missingCritical.join("\n")}</pre>
+            <p class="muted">${t("i18n.strictHint")}</p>
+          </main>
+        `;
+        console.error("Critical i18n keys missing:", missingCritical);
         return;
       }
     }
+
     applySettingsToBody(currentState.settings);
     updateStaticLabels();
     document.documentElement.lang = currentState.language;
     titleNode.textContent = t(episode.titleKey);
     subtitleNode.textContent = t(episode.subtitleKey);
+    heroTitle.textContent = t(episode.titleKey);
+    heroSubtitle.textContent = t(episode.subtitleKey);
+    if (episode.hero && heroImage) {
+      heroImage.src = episode.hero.src;
+      heroImage.alt = t(episode.hero.altKey);
+      qs("#hero")?.classList.remove("is-hidden");
+    } else {
+      qs("#hero")?.classList.add("is-hidden");
+    }
 
     renderDashboard({
       container: qs("#dashboard"),
@@ -143,12 +179,17 @@ const init = async () => {
         section: { ...section, index: index + 1, total: episode.sections.length },
         state: currentState,
         language: currentState.language,
+        onInteractionComplete: (interactionId) => {
+          const completed = new Set(currentState.progress.completedInteractions || []);
+          completed.add(interactionId);
+          store.setProgress({ completedInteractions: Array.from(completed) });
+        },
         onComplete: (sectionId) => {
           const completed = new Set(currentState.progress.completedSections);
           completed.add(sectionId);
           const updatedBadges = currentState.progress.badges.length
             ? currentState.progress.badges
-            : [episode.badges?.[0]?.id].filter(Boolean);
+            : ["badges.firstExplorer"];
           store.setProgress({
             completedSections: Array.from(completed),
             badges: updatedBadges,
@@ -164,11 +205,8 @@ const init = async () => {
 
   renderAll(state);
   store.subscribe(renderAll);
-
-  window.i18nQA = {
-    coverageReport,
-    missingKeysReport,
-  };
+  window.i18nDebug = { coverageReport, missingKeysReport };
+  initHeroObserver();
 };
 
 init().catch((error) => {

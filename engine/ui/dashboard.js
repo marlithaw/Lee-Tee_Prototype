@@ -22,22 +22,16 @@ export const renderDashboard = ({ container, episode, progress, sectionCount }) 
   const badgeCard = el("div", { className: "card" });
   badgeCard.appendChild(el("h3", { text: t("dashboard.badges") }));
   const badges = el("div", { className: "badges" });
-  const badgeMap = new Map((episode.badges || []).map((badge) => [badge.id, badge]));
-  if (!progress.badges.length) {
-    badges.appendChild(el("span", { className: "badge", text: t("dashboard.noBadges") }));
-  } else {
-    progress.badges.forEach((badgeId) => {
-      const badge = badgeMap.get(badgeId);
-      if (!badge) return;
-      const badgeNode = el("div", { className: "badge-card" });
-      badgeNode.appendChild(el("span", { className: "badge", text: t(badge.nameKey) }));
-      badgeNode.appendChild(el("p", { className: "muted", text: t(badge.descriptionKey) }));
-      badges.appendChild(badgeNode);
-    });
-  }
+  const badgeList = progress.badges.length ? progress.badges : ["dashboard.noBadges"];
+  badgeList.forEach((badgeKey) => {
+    const descKey = `${badgeKey}Desc`;
+    const desc = t(descKey);
+    const attrs = desc === descKey ? {} : { title: desc };
+    badges.appendChild(el("span", { className: "badge", text: t(badgeKey), attrs }));
+  });
   badgeCard.appendChild(badges);
 
-  const continueButton = el("button", { className: "button", text: t("dashboard.continue") });
+  const continueButton = el("button", { className: "button", text: t("dashboard.continue"), attrs: { type: "button" } });
   continueButton.addEventListener("click", () => {
     const firstIncomplete = episode.sections.find((section) => !progress.completedSections.includes(section.id));
     if (firstIncomplete) {

@@ -8,13 +8,12 @@ export const renderDragMatch = ({ promptKey, items, targets, hintKey, showHints,
     wrapper.appendChild(el("p", { className: `hint muted${showHints ? "" : " hint--hidden"}`, text: t(hintKey) }));
   }
 
-  const instructions = el("p", { className: "muted", text: t("practice.instructions") });
   const modeToggle = el("button", {
     className: "button button--ghost",
     text: t("practice.clickMode"),
-    attrs: { "aria-pressed": "false", "aria-label": t("practice.clickModeAria") },
+    attrs: { type: "button", "aria-pressed": "false" },
   });
-  const board = el("div", { className: "match-board", attrs: { "aria-label": t("practice.matchBoardAria") } });
+  const board = el("div", { className: "match-board" });
   const itemColumn = el("div", { className: "list" });
   const targetColumn = el("div", { className: "list" });
   const feedback = el("div", { className: "feedback", attrs: { role: "status", "aria-live": "polite" } });
@@ -35,6 +34,7 @@ export const renderDragMatch = ({ promptKey, items, targets, hintKey, showHints,
     clickMode = !clickMode;
     modeToggle.textContent = clickMode ? t("practice.dragMode") : t("practice.clickMode");
     modeToggle.setAttribute("aria-pressed", String(clickMode));
+    modeToggle.setAttribute("aria-label", clickMode ? t("practice.dragMode") : t("practice.clickMode"));
     itemColumn.querySelectorAll(".match-item").forEach((item) => {
       item.setAttribute("draggable", String(!clickMode));
       item.setAttribute("aria-selected", "false");
@@ -47,14 +47,7 @@ export const renderDragMatch = ({ promptKey, items, targets, hintKey, showHints,
     const itemEl = el("div", {
       className: "match-item",
       text: t(item.labelKey),
-      attrs: {
-        draggable: "true",
-        tabindex: "0",
-        "data-id": item.id,
-        role: "button",
-        "aria-label": t(item.labelKey),
-        "aria-selected": "false",
-      },
+      attrs: { draggable: "true", tabindex: "0", "data-id": item.id, role: "button", "aria-label": t(item.labelKey) },
     });
     itemEl.addEventListener("dragstart", (event) => {
       if (clickMode) return;

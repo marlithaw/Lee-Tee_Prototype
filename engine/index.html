@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="app" id="app">
-    <header class="app__header">
+    <header class="app__header" id="sticky-header">
       <div class="app__brand">
         <h1 id="episode-title">Lee & Tee</h1>
         <p id="episode-subtitle" class="muted"></p>
@@ -23,6 +23,14 @@
       </div>
     </header>
 
+    <section class="hero" id="hero">
+      <img class="hero__image" id="hero-image" alt="" />
+      <div class="hero__content">
+        <h2 id="hero-title"></h2>
+        <p id="hero-subtitle" class="muted"></p>
+      </div>
+    </section>
+
     <main class="app__main">
       <aside class="sidebar">
         <section id="dashboard" class="panel"></section>
@@ -32,7 +40,7 @@
       </aside>
 
       <section class="content">
-        <nav id="quick-jump" class="quick-jump" aria-label="Section navigation" data-i18n-aria="nav.sectionNavigation"></nav>
+        <nav id="quick-jump" class="quick-jump" data-i18n-aria="ui.sectionNav" aria-label="Section navigation"></nav>
         <div id="sections" class="sections"></div>
       </section>
     </main>

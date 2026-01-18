@@ -11,7 +11,7 @@ export const renderWriting = ({ promptKey, framesKeys = [], hintKey, showHints }
   const frameToggle = el("button", {
     className: "button button--ghost",
     text: t("writing.showFrames"),
-    attrs: { "aria-expanded": "false" },
+    attrs: { type: "button", "aria-label": t("writing.showFrames") },
   });
   const frames = el("ul", { className: "section__checklist" });
   framesKeys.forEach((frameKey) => frames.appendChild(el("li", { text: t(frameKey) })));
@@ -22,6 +22,7 @@ export const renderWriting = ({ promptKey, framesKeys = [], hintKey, showHints }
     frames.style.display = show ? "block" : "none";
     frameToggle.setAttribute("aria-expanded", String(show));
     frameToggle.textContent = show ? t("writing.hideFrames") : t("writing.showFrames");
+    frameToggle.setAttribute("aria-label", show ? t("writing.hideFrames") : t("writing.showFrames"));
   });
 
   wrapper.append(frameToggle, frames, textarea);
