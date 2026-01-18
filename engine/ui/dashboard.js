@@ -6,13 +6,16 @@ export const renderDashboard = ({ container, episode, progress, sectionCount }) 
   const title = el("h2", { text: t("dashboard.title") });
   const book = el("div", { className: "card" });
   const bookTitle = el("h3", { text: t("dashboard.bookProgress") });
-  const bookProgress = el("p", { className: "muted", text: t("dashboard.bookProgressDetail") });
+  const bookProgress = el("p", { className: "muted hint", text: t("dashboard.bookProgressDetail") });
   book.append(bookTitle, bookProgress);
 
   const episodeCard = el("div", { className: "card" });
   const episodeTitle = el("h3", { text: t("dashboard.episodeProgress") });
   const completedCount = progress.completedSections.length;
-  const progressLabel = el("p", { className: "muted", text: t("dashboard.sectionCount").replace("{completed}", completedCount).replace("{total}", sectionCount) });
+  const progressLabel = el("p", {
+    className: "muted hint",
+    text: t("dashboard.sectionCount").replace("{completed}", completedCount).replace("{total}", sectionCount),
+  });
   const progressBar = el("div", { className: "progress" });
   const bar = el("div", { className: "progress__bar" });
   bar.style.width = `${sectionCount ? (completedCount / sectionCount) * 100 : 0}%`;

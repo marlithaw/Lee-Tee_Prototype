@@ -15,6 +15,7 @@ const languages = ["en", "es", "fr", "ht"];
 const applySettingsToBody = (settings) => {
   document.body.classList.toggle("contrast", settings.contrast);
   document.body.classList.toggle("dyslexia", settings.dyslexia);
+  document.body.classList.toggle("hide-hints", !settings.showHints);
 };
 
 const applyStoppedState = (stopped) => {
@@ -30,6 +31,9 @@ const applyStoppedState = (stopped) => {
 const updateStaticLabels = () => {
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     node.textContent = t(node.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((node) => {
+    node.setAttribute("aria-label", t(node.dataset.i18nAria));
   });
 };
 
@@ -127,5 +131,7 @@ const init = async () => {
 
 init().catch((error) => {
   console.error(error);
-  showToast("Failed to load episode.");
+  const fallback = "Failed to load episode.";
+  const message = t("errors.loadEpisode");
+  showToast(message === "errors.loadEpisode" ? fallback : message);
 });
