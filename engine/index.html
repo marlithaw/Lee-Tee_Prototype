@@ -8,7 +8,16 @@
 </head>
 <body>
   <div class="app" id="app">
-    <header class="app__header">
+    <header class="hero" id="hero">
+      <div class="hero__media">
+        <img id="hero-image" alt="" />
+      </div>
+      <div class="hero__content">
+        <h1 id="hero-title"></h1>
+        <p id="hero-subtitle" class="muted"></p>
+      </div>
+    </header>
+    <header class="app__header" id="app-header">
       <div class="app__brand">
         <h1 id="episode-title">Lee & Tee</h1>
         <p id="episode-subtitle" class="muted"></p>
@@ -32,7 +41,7 @@
       </aside>
 
       <section class="content">
-        <nav id="quick-jump" class="quick-jump" aria-label="Section navigation"></nav>
+        <nav id="quick-jump" class="quick-jump" data-i18n-aria="ui.sectionNav" aria-label="Section navigation"></nav>
         <div id="sections" class="sections"></div>
       </section>
     </main>

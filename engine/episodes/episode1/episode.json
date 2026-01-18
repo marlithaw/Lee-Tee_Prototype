@@ -2,6 +2,10 @@
   "id": "episode1",
   "titleKey": "episode.title",
   "subtitleKey": "episode.subtitle",
+  "hero": {
+    "src": "../header.png",
+    "altKey": "hero.imageAlt"
+  },
   "objectives": {
     "languageKey": "objectives.languageDetail",
     "contentKey": "objectives.contentDetail"
@@ -20,6 +24,7 @@
       "navLabelKey": "nav.vocab",
       "icon": "📘",
       "simplifiedKey": "sections.vocab.simplified",
+      "media": [],
       "items": [
         {
           "termKey": "vocab.ecosystem.term",
@@ -52,12 +57,129 @@
       "navLabelKey": "nav.story",
       "icon": "📖",
       "simplifiedKey": "sections.story.simplified",
-      "storyKey": "story.main",
-      "index": 1,
-      "total": 5,
+      "story": {
+        "titleKey": "story.title",
+        "introKey": "story.intro",
+        "segments": [
+          {
+            "id": "segment-1",
+            "textKey": "story.segment1",
+            "purposeTag": "observe",
+            "supports": { "hintsKey": "story.segment1.hint" },
+            "interactionId": "interaction-evidence"
+          },
+          {
+            "id": "segment-2",
+            "textKey": "story.segment2",
+            "purposeTag": "collect",
+            "supports": { "hintsKey": "story.segment2.hint" },
+            "interactionId": "interaction-cloze"
+          },
+          {
+            "id": "segment-3",
+            "textKey": "story.segment3",
+            "purposeTag": "connect",
+            "supports": { "hintsKey": "story.segment3.hint" }
+          },
+          {
+            "id": "segment-4",
+            "textKey": "story.segment4",
+            "purposeTag": "share",
+            "supports": { "hintsKey": "story.segment4.hint" },
+            "interactionId": "interaction-sequence"
+          }
+        ]
+      },
+      "media": [
+        {
+          "id": "story-hero",
+          "type": "image",
+          "src": "../header.png",
+          "alt": "media.storyHero.alt",
+          "caption": "media.storyHero.caption",
+          "credit": "media.storyHero.credit",
+          "poster": "",
+          "captionsVtt": "",
+          "transcriptText": "",
+          "preload": "metadata",
+          "controls": false
+        }
+      ],
       "helperTips": {
         "leeKey": "helpers.leeStory",
         "teeKey": "helpers.teeStory"
+      },
+      "interactions": [
+        {
+          "id": "interaction-evidence",
+          "type": "evidence_highlight",
+          "promptKey": "story.interactions.evidencePrompt",
+          "correctId": "evidence2",
+          "feedbackKeys": {
+            "correctKey": "story.interactions.evidenceCorrect",
+            "incorrectKey": "story.interactions.evidenceIncorrect"
+          },
+          "options": [
+            { "id": "evidence1", "textKey": "story.interactions.evidenceOption1" },
+            { "id": "evidence2", "textKey": "story.interactions.evidenceOption2" },
+            { "id": "evidence3", "textKey": "story.interactions.evidenceOption3" }
+          ]
+        },
+        {
+          "id": "interaction-cloze",
+          "type": "cloze_context",
+          "promptKey": "story.interactions.clozePrompt",
+          "sentenceKey": "story.interactions.clozeSentence",
+          "correctId": "cloze2",
+          "feedbackKeys": {
+            "correctKey": "story.interactions.clozeCorrect",
+            "incorrectKey": "story.interactions.clozeIncorrect"
+          },
+          "choices": [
+            { "id": "cloze1", "textKey": "story.interactions.clozeChoice1" },
+            { "id": "cloze2", "textKey": "story.interactions.clozeChoice2" },
+            { "id": "cloze3", "textKey": "story.interactions.clozeChoice3" }
+          ]
+        },
+        {
+          "id": "interaction-sequence",
+          "type": "sequence_events",
+          "promptKey": "story.interactions.sequencePrompt",
+          "feedbackKeys": {
+            "correctKey": "story.interactions.sequenceCorrect",
+            "incorrectKey": "story.interactions.sequenceIncorrect"
+          },
+          "items": [
+            { "id": "sequence1", "textKey": "story.interactions.sequenceStep1" },
+            { "id": "sequence2", "textKey": "story.interactions.sequenceStep2" },
+            { "id": "sequence3", "textKey": "story.interactions.sequenceStep3" }
+          ],
+          "correctOrder": ["sequence1", "sequence2", "sequence3"]
+        }
+      ]
+    },
+    {
+      "id": "section-video",
+      "type": "video",
+      "group": "Launch",
+      "titleKey": "sections.video.title",
+      "subtitleKey": "sections.video.subtitle",
+      "navLabelKey": "nav.video",
+      "icon": "🎬",
+      "simplifiedKey": "sections.video.simplified",
+      "media": [],
+      "promptKey": "video.prompt",
+      "src": "../tee_battle_back.mp4",
+      "transcriptKey": "video.transcript",
+      "quickCheck": {
+        "type": "mcq",
+        "questionKey": "video.check.question",
+        "choicesKeys": ["video.check.choice1", "video.check.choice2", "video.check.choice3"],
+        "correctIndex": 1,
+        "feedbackKeys": {
+          "correctKey": "video.check.correct",
+          "incorrectKey": "video.check.incorrect"
+        }
       }
     },
     {
@@ -68,6 +190,7 @@
       "navLabelKey": "nav.practice",
       "icon": "🧩",
       "simplifiedKey": "sections.practice.simplified",
+      "media": [],
       "promptKey": "practice.matchPrompt",
       "items": [
         { "id": "step1", "labelKey": "practice.steps.observe", "targetId": "target1" },
@@ -88,6 +211,7 @@
       "navLabelKey": "nav.check",
       "icon": "✅",
       "simplifiedKey": "sections.check.simplified",
+      "media": [],
       "questionKey": "check.question",
       "correctId": "answer2",
       "options": [
@@ -104,6 +228,7 @@
       "navLabelKey": "nav.reflect",
       "icon": "💬",
       "simplifiedKey": "sections.reflect.simplified",
+      "media": [],
       "promptKey": "reflect.prompt",
       "correctIds": ["reflect2", "reflect3"],
       "options": [
@@ -120,6 +245,7 @@
       "navLabelKey": "nav.writing",
       "icon": "✍️",
       "simplifiedKey": "sections.writing.simplified",
+      "media": [],
       "promptKey": "writing.prompt",
       "framesKeys": ["writing.frames.one", "writing.frames.two"]
     }

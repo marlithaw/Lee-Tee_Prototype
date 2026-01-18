@@ -51,7 +51,7 @@ body.dyslexia {
   gap: 1rem;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
 }
@@ -68,14 +68,17 @@ body.dyslexia {
   grid-template-columns: 320px 1fr;
   gap: 1.5rem;
   padding: 1.5rem 2rem 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: min(1100px, 100%);
 }
 
 .panel {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  padding: 1.1rem;
+  margin-bottom: 1.25rem;
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
 }
 
@@ -107,15 +110,19 @@ body.dyslexia {
 .sections {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .section {
   background: var(--panel);
   border-radius: 18px;
   border: 1px solid var(--border);
-  padding: 1.5rem;
+  padding: 1.35rem;
   position: relative;
+}
+
+.section--compact {
+  padding: 1rem;
 }
 
 .section__header {
@@ -123,7 +130,7 @@ body.dyslexia {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .section__meta {
@@ -145,6 +152,52 @@ body.dyslexia {
   padding: 0.75rem;
   margin-top: 0.75rem;
   display: none;
+}
+
+.hero {
+  position: relative;
+  max-height: min(240px, 25vh);
+  height: min(240px, 25vh);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(0deg, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.1));
+  color: white;
+}
+
+.hero.hero--empty {
+  max-height: 0;
+  height: 0;
+  border-bottom: none;
+}
+
+body.hero-collapsed .hero {
+  max-height: 0;
+  height: 0;
+  border-bottom: none;
+}
+
+body.hero-collapsed .app__header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
 }
 
 .section.simplified .section__full {
@@ -341,8 +394,149 @@ body.dyslexia {
   margin-left: 1.25rem;
 }
 
+.story {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.story__intro {
+  font-size: 1rem;
+}
+
+.story-segment {
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.story-segment__meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.story-interaction {
+  border-top: 1px dashed var(--border);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.story-interaction__options {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.story-order {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.story-order__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.story-order__chip {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #eef2ff;
+  font-size: 0.85rem;
+}
+
+.story-cloze {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.video-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.media-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 0.75rem;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.media {
+  width: 100%;
+  border-radius: 12px;
+  background: #f1f5f9;
+}
+
+.media-caption {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.media-error {
+  border: 1px dashed var(--danger);
+  border-radius: 12px;
+  padding: 0.75rem;
+  background: #fff5f5;
+}
+
+.media-transcript summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.i18n-error {
+  max-width: 720px;
+  margin: 6rem auto;
+  background: var(--panel);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.i18n-error pre {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow: auto;
+}
+
 @media (max-width: 980px) {
   .app__main {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    max-height: min(160px, 25vh);
+    height: min(160px, 25vh);
+  }
+
+  .hero__content {
+    padding: 1rem 1.25rem;
   }
 }
