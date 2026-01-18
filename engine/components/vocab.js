@@ -20,11 +20,7 @@ export const renderVocab = ({ vocabItems, language }) => {
       body.appendChild(el("p", { text: t(item.definitionKey) }));
       body.appendChild(el("p", { className: "muted", text: t(item.spanishKey) }));
       body.appendChild(el("p", { text: t(item.exampleKey) }));
-      const hearButton = el("button", {
-        className: "button button--outline",
-        text: t("vocab.hearIt"),
-        attrs: { "aria-label": t("vocab.hearItAria") },
-      });
+      const hearButton = el("button", { className: "button button--outline", text: t("vocab.hearIt") });
       hearButton.addEventListener("click", () => speakText(t(item.termKey), language));
       body.appendChild(hearButton);
       openModal({ title: t(item.termKey), body, ariaLabel: t("vocab.modalLabel") });

@@ -25,11 +25,6 @@ body {
   min-height: 100vh;
 }
 
-body.hide-hints .hint,
-.hint--hidden {
-  display: none;
-}
-
 body.contrast {
   --bg: #0f172a;
   --panel: #111827;
@@ -160,10 +155,6 @@ body.dyslexia {
   display: block;
 }
 
-.stopped .section {
-  opacity: 0.65;
-}
-
 .button {
   background: var(--primary);
   color: white;
@@ -212,11 +203,6 @@ body.dyslexia {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-}
-
-.badge-card {
-  display: grid;
-  gap: 0.25rem;
 }
 
 .badge {
@@ -345,68 +331,6 @@ body.dyslexia {
 .feedback--error {
   background: #fef2f2;
   color: var(--danger);
-}
-
-.hint {
-  font-size: 0.9rem;
-}
-
-.media-group {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.media {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 0.75rem;
-  background: #f8fafc;
-}
-
-.media__asset {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.media__hidden {
-  display: none;
-}
-
-.media__caption {
-  margin-top: 0.5rem;
-  font-weight: 600;
-}
-
-.media__credit {
-  margin-top: 0.25rem;
-}
-
-.media__fallback {
-  border: 1px dashed var(--border);
-  padding: 1rem;
-  border-radius: 12px;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.media__transcript {
-  margin-top: 0.5rem;
-}
-
-.i18n-error {
-  max-width: 720px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background: var(--panel);
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
-}
-
-.i18n-error ul {
-  margin-top: 1rem;
-  padding-left: 1.5rem;
 }
 
 .section__checklist {

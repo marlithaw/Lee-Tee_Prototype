@@ -5,7 +5,7 @@ import { renderMcq } from "./mcq.js";
 import { renderMultiSelect } from "./multiSelect.js";
 import { renderDragMatch } from "./dragMatch.js";
 import { renderWriting } from "./writing.js";
-import { observeMedia, renderListenButton, renderMediaGroup } from "./media.js";
+import { renderListenButton } from "./media.js";
 import { openModal } from "../ui/modal.js";
 
 export const renderSection = ({ section, state, onComplete, language }) => {
@@ -17,19 +17,11 @@ export const renderSection = ({ section, state, onComplete, language }) => {
 
   const meta = el("div", { className: "section__meta" });
   if (section.helperTips) {
-    const askLee = el("button", {
-      className: "button button--ghost hint",
-      text: t("helpers.askLee"),
-      attrs: { "aria-label": t("helpers.askLee") },
-    });
+    const askLee = el("button", { className: "button button--ghost", text: t("helpers.askLee") });
     askLee.addEventListener("click", () => {
       openModal({ title: t("helpers.askLee"), body: `<p>${t(section.helperTips.leeKey)}</p>` });
     });
-    const askTee = el("button", {
-      className: "button button--ghost hint",
-      text: t("helpers.askTee"),
-      attrs: { "aria-label": t("helpers.askTee") },
-    });
+    const askTee = el("button", { className: "button button--ghost", text: t("helpers.askTee") });
     askTee.addEventListener("click", () => {
       openModal({ title: t("helpers.askTee"), body: `<p>${t(section.helperTips.teeKey)}</p>` });
     });
@@ -37,15 +29,9 @@ export const renderSection = ({ section, state, onComplete, language }) => {
   }
 
   const actions = el("div", { className: "section__actions" });
-  const simplifiedButton = el("button", {
-    className: "button button--ghost",
-    text: t("section.simplified"),
-    attrs: { "aria-pressed": "false" },
-  });
+  const simplifiedButton = el("button", { className: "button button--ghost", text: t("section.simplified") });
   simplifiedButton.addEventListener("click", () => {
-    const isSimplified = wrapper.classList.toggle("simplified");
-    simplifiedButton.setAttribute("aria-pressed", String(isSimplified));
-    simplifiedButton.textContent = isSimplified ? t("section.full") : t("section.simplified");
+    wrapper.classList.toggle("simplified");
   });
   actions.appendChild(simplifiedButton);
 
@@ -80,8 +66,6 @@ export const renderSection = ({ section, state, onComplete, language }) => {
       questionKey: section.questionKey,
       options: section.options,
       correctId: section.correctId,
-      hintKey: section.hintKey,
-      showHints: state.settings.showHints,
       onComplete: completeSection,
     }));
   }
@@ -90,8 +74,6 @@ export const renderSection = ({ section, state, onComplete, language }) => {
       promptKey: section.promptKey,
       items: section.items,
       targets: section.targets,
-      hintKey: section.hintKey,
-      showHints: state.settings.showHints,
       onComplete: completeSection,
     }));
   }
@@ -100,8 +82,6 @@ export const renderSection = ({ section, state, onComplete, language }) => {
       promptKey: section.promptKey,
       options: section.options,
       correctIds: section.correctIds,
-      hintKey: section.hintKey,
-      showHints: state.settings.showHints,
       onComplete: completeSection,
     }));
   }
@@ -109,14 +89,7 @@ export const renderSection = ({ section, state, onComplete, language }) => {
     body.appendChild(renderWriting({
       promptKey: section.promptKey,
       framesKeys: section.framesKeys,
-      hintKey: section.hintKey,
-      showHints: state.settings.showHints,
     }));
-  }
-
-  const mediaGroup = renderMediaGroup(section.media || []);
-  if (mediaGroup) {
-    body.appendChild(mediaGroup);
   }
 
   const completionButton = el("button", { className: "button button--accent", text: t("section.complete") });
@@ -128,6 +101,5 @@ export const renderSection = ({ section, state, onComplete, language }) => {
   body.appendChild(completionButton);
 
   wrapper.append(header, body, simplified);
-  observeMedia(wrapper);
   return wrapper;
 };
