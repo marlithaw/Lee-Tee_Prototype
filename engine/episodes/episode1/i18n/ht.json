@@ -1,0 +1,179 @@
+{
+  "ui": {
+    "languageName": "Kreyòl Ayisyen",
+    "languageLabel": "Lang",
+    "readingSettings": "Anviwònman lekti",
+    "readAloud": "Li anwo vwa",
+    "readAloudDescription": "Li tèks la otomatikman lè li parèt.",
+    "dyslexiaFont": "Polis disleksi",
+    "dyslexiaFontDescription": "Chanje pou yon polis ki pi fasil pou li.",
+    "highContrast": "Kontras wo",
+    "highContrastDescription": "Ogmante kontras pou pi byen wè.",
+    "showHints": "Montre endis",
+    "showHintsDescription": "Montre endis ak ankadreman fraz.",
+    "dashboardTitle": "Panèl aprantisaj",
+    "bookProgress": "Pwogrè liv",
+    "episodeProgress": "Pwogrè epizòd",
+    "badges": "Badj",
+    "continueTitle": "Kontinye",
+    "continueDescription": "Retounen nan pwochen seksyon an.",
+    "continue": "Kontinye",
+    "resetProgress": "Reyajiste pwogrè",
+    "progressReset": "Pwogrè reyalize ankò.",
+    "stop": "SISPANN",
+    "resume": "Rekòmanse",
+    "resumeToContinue": "Rekòmanse pou kontinye.",
+    "sections": "seksyon",
+    "complete": "konplè",
+    "quickJump": "Sote rapid",
+    "objectivesTitle": "Objektif ak estrateji SIOP",
+    "languageObjectives": "Objektif lang",
+    "contentObjectives": "Objektif kontni",
+    "siopStrategies": "Estrateji SIOP",
+    "simplifiedView": "Vèsyon senplifye",
+    "sectionCompleted": "Seksiyon fini.",
+    "markComplete": "Make fini",
+    "markedComplete": "Fini",
+    "completed": "Fini",
+    "sectionCount": "Seksiyon {current} sou {total}",
+    "definition": "Definisyon",
+    "spanishLine": "Liy panyòl",
+    "example": "Egzanp nan istwa",
+    "hearIt": "Tande li",
+    "listen": "Koute",
+    "readAloudSection": "Li anwo vwa seksyon {current} sou {total}",
+    "checkAnswer": "Verifye repons",
+    "selectAnswer": "Chwazi yon repons anvan.",
+    "correct": "Bon!",
+    "incorrect": "Pa ankò. Eseye ankò.",
+    "dragMode": "Trennen & lage",
+    "clickMode": "Klike pou mete",
+    "dragModeEnabled": "Mòd trennen aktive.",
+    "clickModeEnabled": "Mòd klike aktive.",
+    "items": "Atik",
+    "targets": "Sib",
+    "selectItemFirst": "Chwazi yon atik anvan.",
+    "completeMatching": "Mete tout atik yo anvan verifye.",
+    "writingResponse": "Repons ekri",
+    "saveWriting": "Sove repons"
+  },
+  "episode": {
+    "title": "Demonstrasyon motè Epizòd 1",
+    "subtitle": "Bati yon eksperyans ki reutilizab",
+    "description": "Swiv pwogrè, anviwònman, ak aktivite entèaktif."
+  },
+  "badges": {
+    "focus": "Badj konsantrasyon",
+    "reader": "Badj lektè",
+    "helper": "Badj èd"
+  },
+  "nav": {
+    "vocab": "Vokabilè",
+    "story": "Istwa",
+    "practice": "Pratik",
+    "check": "Tcheke",
+    "reflect": "Reflechi"
+  },
+  "objectives": {
+    "language": {
+      "1": "Sèvi ak nouvo mo yo nan fraz konplè.",
+      "2": "Eksplike kijan ekip la te kolabore."
+    },
+    "content": {
+      "1": "Idantifye etap nan pwosesis konsepsyon an.",
+      "2": "Dekri kijan pwototip yo amelyore."
+    },
+    "siop": {
+      "1": "Bati konesans ak vizyèl.",
+      "2": "Tcheke konpreyansyon souvan.",
+      "3": "Bay plizyè fason pou reponn."
+    }
+  },
+  "helpers": {
+    "lee": {
+      "label": "MANDE LEE",
+      "title": "Konsèy Lee",
+      "tip": "Divize istwa a epi chèche mo kle yo."
+    },
+    "tee": {
+      "label": "MANDE TEE",
+      "title": "Konsèy Tee",
+      "tip": "Li anwo vwa oswa itilize vèsyon senplifye si ou bezwen."
+    }
+  },
+  "sections": {
+    "vocab": {
+      "title": "Chofaj vokabilè",
+      "subtitle": "Gade mo kle yo.",
+      "body": "Klike sou chak kat pou w tande mo a.",
+      "simplified": "Aprann mo yo anvan ou li."
+    },
+    "story": {
+      "title": "Istwa",
+      "subtitle": "Li premye sèn nan.",
+      "body": "Lee ak Tee rasanble ekip yo. Yo fè lide ansanm epi yo trase yon pwototip fò.",
+      "simplified": "Lee ak Tee planifye yon pwojè ak ekip yo."
+    },
+    "practice": {
+      "title": "Pratik",
+      "subtitle": "Mete etap yo nan bon plas.",
+      "prompt": "Trennen oswa klike chak etap nan bon faz la.",
+      "simplified": "Mete etap yo nan bon faz la."
+    },
+    "check": {
+      "title": "Tcheke konpreyansyon",
+      "subtitle": "Reponn kestyon an.",
+      "prompt": "Poukisa Lee ak Tee bati yon pwototip?",
+      "simplified": "Chwazi pi bon rezon an.",
+      "options": {
+        "a": "Pou sote planifikasyon",
+        "b": "Pou teste ak amelyore lide yo",
+        "c": "Pou fini pwojè a touswit"
+      }
+    },
+    "reflect": {
+      "title": "Reflechi & ekri",
+      "subtitle": "Pataje refleksyon ou.",
+      "prompt": "Kijan ou ta kolabore sou yon nouvo lide?",
+      "simplified": "Ekri sou travay an ekip.",
+      "frame1": "Mwen ta kolabore lè mwen ____.",
+      "frame2": "Yon ekipè ta ka ede m lè li ____.",
+      "tip": "Sèvi ak omwen yon mo vokabilè."
+    }
+  },
+  "vocab": {
+    "innovation": {
+      "word": "Inovasyon",
+      "short": "Yon nouvo lide",
+      "definition": "Kreye yon bagay nouvo oswa amelyore sa ki deja la.",
+      "spanish": "Innovación: yon lide nouvo.",
+      "example": "Inovasyon yo se te yon sak solè."
+    },
+    "collaborate": {
+      "word": "Kolabore",
+      "short": "Travay ansanm",
+      "definition": "Travay ak lòt moun pou rive nan yon objektif.",
+      "spanish": "Colaborar: travay ansanm.",
+      "example": "Yo kolabore lè yo pataje travay."
+    },
+    "prototype": {
+      "word": "Pwototip",
+      "short": "Premye modèl",
+      "definition": "Yon premye vèsyon pou teste.",
+      "spanish": "Prototipo: premye modèl.",
+      "example": "Pwototip la ede yo amelyore vit."
+    }
+  },
+  "practice": {
+    "items": {
+      "step1": "Fè lide ansanm",
+      "step2": "Bati yon bouyon",
+      "step3": "Pataje epi revize"
+    },
+    "targets": {
+      "brainstorm": "Lide",
+      "build": "Bati",
+      "share": "Pataje"
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "ui": {
+    "languageName": "Español",
+    "languageLabel": "Idioma",
+    "readingSettings": "Ajustes de lectura",
+    "readAloud": "Leer en voz alta",
+    "readAloudDescription": "Lee automáticamente el texto cuando aparece.",
+    "dyslexiaFont": "Fuente para dislexia",
+    "dyslexiaFontDescription": "Cambia a una tipografía amigable.",
+    "highContrast": "Alto contraste",
+    "highContrastDescription": "Aumenta el contraste para ver mejor.",
+    "showHints": "Mostrar pistas",
+    "showHintsDescription": "Muestra pistas y marcos de oración.",
+    "dashboardTitle": "Panel de aprendizaje",
+    "bookProgress": "Progreso del libro",
+    "episodeProgress": "Progreso del episodio",
+    "badges": "Insignias",
+    "continueTitle": "Continuar",
+    "continueDescription": "Regresa a la siguiente sección.",
+    "continue": "Continuar",
+    "resetProgress": "Restablecer progreso",
+    "progressReset": "Progreso restablecido.",
+    "stop": "DETENER",
+    "resume": "Reanudar",
+    "resumeToContinue": "Reanuda para continuar.",
+    "sections": "secciones",
+    "complete": "completo",
+    "quickJump": "Ir rápido",
+    "objectivesTitle": "Objetivos y estrategias SIOP",
+    "languageObjectives": "Objetivos de lenguaje",
+    "contentObjectives": "Objetivos de contenido",
+    "siopStrategies": "Estrategias SIOP",
+    "simplifiedView": "Vista simplificada",
+    "sectionCompleted": "Sección completada.",
+    "markComplete": "Marcar completo",
+    "markedComplete": "Completado",
+    "completed": "Completado",
+    "sectionCount": "Sección {current} de {total}",
+    "definition": "Definición",
+    "spanishLine": "Línea en español",
+    "example": "Ejemplo en la historia",
+    "hearIt": "Escuchar",
+    "listen": "Escuchar",
+    "readAloudSection": "Leer en voz alta sección {current} de {total}",
+    "checkAnswer": "Comprobar respuesta",
+    "selectAnswer": "Selecciona una respuesta primero.",
+    "correct": "¡Correcto!",
+    "incorrect": "Aún no. Inténtalo de nuevo.",
+    "dragMode": "Arrastrar y soltar",
+    "clickMode": "Clic para colocar",
+    "dragModeEnabled": "Modo arrastrar activado.",
+    "clickModeEnabled": "Modo clic activado.",
+    "items": "Elementos",
+    "targets": "Objetivos",
+    "selectItemFirst": "Selecciona un elemento primero.",
+    "completeMatching": "Coloca todos los elementos antes de comprobar.",
+    "writingResponse": "Respuesta escrita",
+    "saveWriting": "Guardar respuesta"
+  },
+  "episode": {
+    "title": "Demostración del motor Episodio 1",
+    "subtitle": "Construyendo una experiencia reutilizable",
+    "description": "Sigue el progreso, ajustes e interacciones en un solo lugar."
+  },
+  "badges": {
+    "focus": "Insignia de enfoque",
+    "reader": "Insignia de lector",
+    "helper": "Insignia de ayuda"
+  },
+  "nav": {
+    "vocab": "Vocabulario",
+    "story": "Historia",
+    "practice": "Práctica",
+    "check": "Comprobar",
+    "reflect": "Reflexionar"
+  },
+  "objectives": {
+    "language": {
+      "1": "Usar vocabulario nuevo en oraciones completas.",
+      "2": "Explicar cómo colaboró el equipo."
+    },
+    "content": {
+      "1": "Identificar los pasos del proceso de diseño.",
+      "2": "Describir cómo se mejoran los prototipos."
+    },
+    "siop": {
+      "1": "Construir conocimiento previo con imágenes.",
+      "2": "Hacer comprobaciones frecuentes.",
+      "3": "Ofrecer múltiples formas de responder."
+    }
+  },
+  "helpers": {
+    "lee": {
+      "label": "PREGUNTA A LEE",
+      "title": "Consejo de Lee",
+      "tip": "Divide la historia y busca palabras clave."
+    },
+    "tee": {
+      "label": "PREGUNTA A TEE",
+      "title": "Consejo de Tee",
+      "tip": "Lee en voz alta o usa la vista simplificada si te atoras."
+    }
+  },
+  "sections": {
+    "vocab": {
+      "title": "Calentamiento de vocabulario",
+      "subtitle": "Revisa las palabras clave.",
+      "body": "Toca cada tarjeta para explorar la palabra y escucharla.",
+      "simplified": "Aprende las palabras antes de leer."
+    },
+    "story": {
+      "title": "Historia",
+      "subtitle": "Lee la escena inicial.",
+      "body": "Lee y Tee reúnen a su equipo. Hacen lluvia de ideas y crean un prototipo audaz juntos.",
+      "simplified": "Lee y Tee planean un proyecto con su equipo."
+    },
+    "practice": {
+      "title": "Práctica",
+      "subtitle": "Relaciona los pasos del proceso.",
+      "prompt": "Arrastra o haz clic en cada paso en la fase correcta.",
+      "simplified": "Relaciona los pasos con la fase correcta."
+    },
+    "check": {
+      "title": "Comprobación",
+      "subtitle": "Responde la pregunta.",
+      "prompt": "¿Por qué Lee y Tee construyen un prototipo?",
+      "simplified": "Elige la mejor razón.",
+      "options": {
+        "a": "Para saltarse la planeación",
+        "b": "Para probar y mejorar su idea",
+        "c": "Para terminar el proyecto de inmediato"
+      }
+    },
+    "reflect": {
+      "title": "Reflexiona y escribe",
+      "subtitle": "Comparte tu pensamiento.",
+      "prompt": "¿Cómo colaborarías en una nueva idea?",
+      "simplified": "Escribe sobre trabajar con otros.",
+      "frame1": "Colaboraría al ____.",
+      "frame2": "Un compañero podría ayudarme al ____.",
+      "tip": "Usa al menos una palabra de vocabulario."
+    }
+  },
+  "vocab": {
+    "innovation": {
+      "word": "Innovación",
+      "short": "Una idea nueva",
+      "definition": "Crear algo nuevo o mejorar lo existente.",
+      "spanish": "Innovación: una idea nueva.",
+      "example": "Su innovación fue una mochila solar."
+    },
+    "collaborate": {
+      "word": "Colaborar",
+      "short": "Trabajar juntos",
+      "definition": "Trabajar con otros hacia una meta.",
+      "spanish": "Colaborar: trabajar juntos.",
+      "example": "Colaboran al compartir tareas."
+    },
+    "prototype": {
+      "word": "Prototipo",
+      "short": "Primer modelo",
+      "definition": "Versión inicial para probar.",
+      "spanish": "Prototipo: primer modelo.",
+      "example": "El prototipo les ayudó a mejorar rápido."
+    }
+  },
+  "practice": {
+    "items": {
+      "step1": "Lluvia de ideas",
+      "step2": "Construir un borrador",
+      "step3": "Compartir y revisar"
+    },
+    "targets": {
+      "brainstorm": "Idear",
+      "build": "Construir",
+      "share": "Compartir"
+    }
+  }
+}

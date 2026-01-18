@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lee & Tee Episode Engine</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="app-header">
+      <div>
+        <h1 id="app-title">Lee &amp; Tee Episode Engine</h1>
+        <p id="app-subtitle"></p>
+      </div>
+      <div class="header-controls">
+        <label class="language-switcher">
+          <span id="language-label"></span>
+          <select id="language-select" aria-label="Language"></select>
+        </label>
+        <button id="open-settings" class="primary" type="button"></button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="dashboard" class="panel"></section>
+      <nav id="quick-jump" class="panel" aria-label="Quick Jump"></nav>
+      <section id="objectives" class="panel"></section>
+      <section id="sections" class="sections"></section>
+    </main>
+
+    <div id="modal-root"></div>
+    <div id="toast-root" aria-live="polite"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

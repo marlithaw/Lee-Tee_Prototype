@@ -1,0 +1,179 @@
+{
+  "ui": {
+    "languageName": "Français",
+    "languageLabel": "Langue",
+    "readingSettings": "Paramètres de lecture",
+    "readAloud": "Lecture à voix haute",
+    "readAloudDescription": "Lire automatiquement le texte affiché.",
+    "dyslexiaFont": "Police dyslexie",
+    "dyslexiaFontDescription": "Utiliser une police adaptée.",
+    "highContrast": "Contraste élevé",
+    "highContrastDescription": "Augmenter le contraste pour mieux voir.",
+    "showHints": "Afficher les indices",
+    "showHintsDescription": "Afficher les indices et cadres de phrases.",
+    "dashboardTitle": "Tableau de bord",
+    "bookProgress": "Progression du livre",
+    "episodeProgress": "Progression de l'épisode",
+    "badges": "Badges",
+    "continueTitle": "Continuer",
+    "continueDescription": "Reprends la prochaine section.",
+    "continue": "Continuer",
+    "resetProgress": "Réinitialiser la progression",
+    "progressReset": "Progression réinitialisée.",
+    "stop": "STOP",
+    "resume": "Reprendre",
+    "resumeToContinue": "Reprends pour continuer.",
+    "sections": "sections",
+    "complete": "terminé",
+    "quickJump": "Accès rapide",
+    "objectivesTitle": "Objectifs et stratégies SIOP",
+    "languageObjectives": "Objectifs linguistiques",
+    "contentObjectives": "Objectifs de contenu",
+    "siopStrategies": "Stratégies SIOP",
+    "simplifiedView": "Vue simplifiée",
+    "sectionCompleted": "Section terminée.",
+    "markComplete": "Marquer terminé",
+    "markedComplete": "Terminé",
+    "completed": "Terminé",
+    "sectionCount": "Section {current} sur {total}",
+    "definition": "Définition",
+    "spanishLine": "Ligne en espagnol",
+    "example": "Exemple dans l'histoire",
+    "hearIt": "Écouter",
+    "listen": "Écouter",
+    "readAloudSection": "Lecture à voix haute section {current} sur {total}",
+    "checkAnswer": "Vérifier",
+    "selectAnswer": "Choisis une réponse d'abord.",
+    "correct": "Correct !",
+    "incorrect": "Pas encore. Réessaie.",
+    "dragMode": "Glisser-déposer",
+    "clickMode": "Cliquer pour placer",
+    "dragModeEnabled": "Mode glisser activé.",
+    "clickModeEnabled": "Mode clic activé.",
+    "items": "Éléments",
+    "targets": "Cibles",
+    "selectItemFirst": "Sélectionne un élément d'abord.",
+    "completeMatching": "Place tous les éléments avant de vérifier.",
+    "writingResponse": "Réponse écrite",
+    "saveWriting": "Enregistrer"
+  },
+  "episode": {
+    "title": "Démo du moteur épisode 1",
+    "subtitle": "Créer une expérience réutilisable",
+    "description": "Suivez la progression, les réglages et les activités interactives."
+  },
+  "badges": {
+    "focus": "Badge de concentration",
+    "reader": "Badge de lecteur",
+    "helper": "Badge d'aide"
+  },
+  "nav": {
+    "vocab": "Vocabulaire",
+    "story": "Histoire",
+    "practice": "Pratique",
+    "check": "Vérifier",
+    "reflect": "Réfléchir"
+  },
+  "objectives": {
+    "language": {
+      "1": "Utiliser le nouveau vocabulaire dans des phrases complètes.",
+      "2": "Expliquer comment l'équipe a collaboré."
+    },
+    "content": {
+      "1": "Identifier les étapes du processus de conception.",
+      "2": "Décrire comment les prototypes s'améliorent."
+    },
+    "siop": {
+      "1": "Construire les connaissances de base avec des visuels.",
+      "2": "Vérifier souvent la compréhension.",
+      "3": "Offrir plusieurs façons de répondre."
+    }
+  },
+  "helpers": {
+    "lee": {
+      "label": "DEMANDER À LEE",
+      "title": "Conseil de Lee",
+      "tip": "Découpe l'histoire et cherche les mots clés."
+    },
+    "tee": {
+      "label": "DEMANDER À TEE",
+      "title": "Conseil de Tee",
+      "tip": "Lis à voix haute ou utilise la vue simplifiée si besoin."
+    }
+  },
+  "sections": {
+    "vocab": {
+      "title": "Échauffement vocabulaire",
+      "subtitle": "Découvre les mots clés.",
+      "body": "Appuie sur chaque carte pour explorer le mot et l'écouter.",
+      "simplified": "Apprends les mots avant de lire."
+    },
+    "story": {
+      "title": "Histoire",
+      "subtitle": "Lis la scène d'ouverture.",
+      "body": "Lee et Tee rassemblent leur équipe. Ils imaginent des idées et esquissent un prototype audacieux.",
+      "simplified": "Lee et Tee planifient un projet avec leur équipe."
+    },
+    "practice": {
+      "title": "Pratique",
+      "subtitle": "Associe les étapes au processus.",
+      "prompt": "Glisse ou clique chaque étape dans la bonne phase.",
+      "simplified": "Associe les étapes à la bonne phase."
+    },
+    "check": {
+      "title": "Vérification",
+      "subtitle": "Réponds à la question.",
+      "prompt": "Pourquoi Lee et Tee construisent-ils un prototype ?",
+      "simplified": "Choisis la meilleure raison.",
+      "options": {
+        "a": "Pour éviter la planification",
+        "b": "Pour tester et améliorer leur idée",
+        "c": "Pour terminer immédiatement"
+      }
+    },
+    "reflect": {
+      "title": "Réfléchir et écrire",
+      "subtitle": "Partage ta réflexion.",
+      "prompt": "Comment collaborerais-tu sur une nouvelle idée ?",
+      "simplified": "Écris sur le travail en équipe.",
+      "frame1": "Je collaborerais en ____.",
+      "frame2": "Un coéquipier pourrait m'aider en ____.",
+      "tip": "Utilise au moins un mot de vocabulaire."
+    }
+  },
+  "vocab": {
+    "innovation": {
+      "word": "Innovation",
+      "short": "Une nouvelle idée",
+      "definition": "Créer quelque chose de nouveau ou améliorer l'existant.",
+      "spanish": "Innovación : une idée nouvelle.",
+      "example": "Leur innovation était un sac solaire."
+    },
+    "collaborate": {
+      "word": "Collaborer",
+      "short": "Travailler ensemble",
+      "definition": "Travailler avec d'autres vers un objectif.",
+      "spanish": "Colaborar : travailler ensemble.",
+      "example": "Ils collaborent en partageant les tâches."
+    },
+    "prototype": {
+      "word": "Prototype",
+      "short": "Premier modèle",
+      "definition": "Version initiale pour tester.",
+      "spanish": "Prototipo : premier modèle.",
+      "example": "Le prototype les aide à s'améliorer rapidement."
+    }
+  },
+  "practice": {
+    "items": {
+      "step1": "Imaginer des idées",
+      "step2": "Construire un brouillon",
+      "step3": "Partager et réviser"
+    },
+    "targets": {
+      "brainstorm": "Imaginer",
+      "build": "Construire",
+      "share": "Partager"
+    }
+  }
+}

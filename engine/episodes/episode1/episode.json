@@ -1,0 +1,123 @@
+{
+  "id": "episode1",
+  "languages": ["en", "es", "fr", "ht"],
+  "meta": {
+    "titleKey": "episode.title",
+    "subtitleKey": "episode.subtitle",
+    "descriptionKey": "episode.description"
+  },
+  "badges": [
+    { "id": "focus", "labelKey": "badges.focus" },
+    { "id": "reader", "labelKey": "badges.reader" },
+    { "id": "helper", "labelKey": "badges.helper" }
+  ],
+  "nav": [
+    { "id": "nav-vocab", "labelKey": "nav.vocab", "icon": "📘", "target": "section-vocab" },
+    { "id": "nav-story", "labelKey": "nav.story", "icon": "📖", "target": "section-story" },
+    { "id": "nav-practice", "labelKey": "nav.practice", "icon": "🧩", "target": "section-practice" },
+    { "id": "nav-check", "labelKey": "nav.check", "icon": "✅", "target": "section-check" },
+    { "id": "nav-reflect", "labelKey": "nav.reflect", "icon": "💡", "target": "section-reflect" }
+  ],
+  "objectives": {
+    "language": ["objectives.language.1", "objectives.language.2"],
+    "content": ["objectives.content.1", "objectives.content.2"],
+    "siopStrategies": ["objectives.siop.1", "objectives.siop.2", "objectives.siop.3"]
+  },
+  "helpers": [
+    { "id": "lee", "labelKey": "helpers.lee.label", "titleKey": "helpers.lee.title", "contentKey": "helpers.lee.tip" },
+    { "id": "tee", "labelKey": "helpers.tee.label", "titleKey": "helpers.tee.title", "contentKey": "helpers.tee.tip" }
+  ],
+  "sections": [
+    {
+      "id": "vocab",
+      "type": "vocab",
+      "titleKey": "sections.vocab.title",
+      "subtitleKey": "sections.vocab.subtitle",
+      "bodyKey": "sections.vocab.body",
+      "simplifiedKey": "sections.vocab.simplified",
+      "words": [
+        {
+          "id": "innovation",
+          "wordKey": "vocab.innovation.word",
+          "shortKey": "vocab.innovation.short",
+          "definitionKey": "vocab.innovation.definition",
+          "spanishKey": "vocab.innovation.spanish",
+          "exampleKey": "vocab.innovation.example"
+        },
+        {
+          "id": "collaborate",
+          "wordKey": "vocab.collaborate.word",
+          "shortKey": "vocab.collaborate.short",
+          "definitionKey": "vocab.collaborate.definition",
+          "spanishKey": "vocab.collaborate.spanish",
+          "exampleKey": "vocab.collaborate.example"
+        },
+        {
+          "id": "prototype",
+          "wordKey": "vocab.prototype.word",
+          "shortKey": "vocab.prototype.short",
+          "definitionKey": "vocab.prototype.definition",
+          "spanishKey": "vocab.prototype.spanish",
+          "exampleKey": "vocab.prototype.example"
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "type": "media",
+      "titleKey": "sections.story.title",
+      "subtitleKey": "sections.story.subtitle",
+      "bodyKey": "sections.story.body",
+      "simplifiedKey": "sections.story.simplified",
+      "order": 1,
+      "total": 3
+    },
+    {
+      "id": "practice",
+      "type": "dragMatch",
+      "titleKey": "sections.practice.title",
+      "subtitleKey": "sections.practice.subtitle",
+      "promptKey": "sections.practice.prompt",
+      "simplifiedKey": "sections.practice.simplified",
+      "items": [
+        { "id": "step1", "labelKey": "practice.items.step1" },
+        { "id": "step2", "labelKey": "practice.items.step2" },
+        { "id": "step3", "labelKey": "practice.items.step3" }
+      ],
+      "targets": [
+        { "id": "brainstorm", "labelKey": "practice.targets.brainstorm" },
+        { "id": "build", "labelKey": "practice.targets.build" },
+        { "id": "share", "labelKey": "practice.targets.share" }
+      ],
+      "matches": [
+        { "itemId": "step1", "targetId": "brainstorm" },
+        { "itemId": "step2", "targetId": "build" },
+        { "itemId": "step3", "targetId": "share" }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "mcq",
+      "titleKey": "sections.check.title",
+      "subtitleKey": "sections.check.subtitle",
+      "promptKey": "sections.check.prompt",
+      "simplifiedKey": "sections.check.simplified",
+      "options": [
+        { "id": "a", "labelKey": "sections.check.options.a" },
+        { "id": "b", "labelKey": "sections.check.options.b" },
+        { "id": "c", "labelKey": "sections.check.options.c" }
+      ],
+      "correct": "b"
+    },
+    {
+      "id": "reflect",
+      "type": "writing",
+      "titleKey": "sections.reflect.title",
+      "subtitleKey": "sections.reflect.subtitle",
+      "promptKey": "sections.reflect.prompt",
+      "simplifiedKey": "sections.reflect.simplified",
+      "frames": ["sections.reflect.frame1", "sections.reflect.frame2"],
+      "tipKey": "sections.reflect.tip"
+    }
+  ]
+}
