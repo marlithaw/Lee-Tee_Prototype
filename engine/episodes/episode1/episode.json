@@ -2,6 +2,10 @@
   "id": "episode1",
   "titleKey": "episode.title",
   "subtitleKey": "episode.subtitle",
+  "hero": {
+    "src": "../header.png",
+    "altKey": "hero.alt"
+  },
   "objectives": {
     "languageKey": "objectives.languageDetail",
     "contentKey": "objectives.contentDetail"
@@ -20,6 +24,7 @@
       "navLabelKey": "nav.vocab",
       "icon": "📘",
       "simplifiedKey": "sections.vocab.simplified",
+      "media": [],
       "items": [
         {
           "termKey": "vocab.ecosystem.term",
@@ -52,12 +57,114 @@
       "navLabelKey": "nav.story",
       "icon": "📖",
       "simplifiedKey": "sections.story.simplified",
-      "storyKey": "story.main",
-      "index": 1,
-      "total": 5,
+      "media": [
+        {
+          "id": "story-hero",
+          "type": "image",
+          "src": "../header.png",
+          "alt": "media.storyHero.alt",
+          "caption": "media.storyHero.caption",
+          "credit": "media.storyHero.credit",
+          "poster": "",
+          "captionsVtt": "",
+          "transcriptText": "",
+          "preload": "metadata",
+          "controls": false
+        }
+      ],
+      "story": {
+        "titleKey": "story.title",
+        "introKey": "story.intro",
+        "segments": [
+          {
+            "id": "story-seg-1",
+            "textKey": "story.segment.one",
+            "purposeTag": "story.tag.observe",
+            "supports": { "hintsKey": "story.hint.one" },
+            "interactionId": "interaction-evidence"
+          },
+          {
+            "id": "story-seg-2",
+            "textKey": "story.segment.two",
+            "purposeTag": "story.tag.record",
+            "supports": { "hintsKey": "story.hint.two" },
+            "interactionId": "interaction-cloze"
+          },
+          {
+            "id": "story-seg-3",
+            "textKey": "story.segment.three",
+            "purposeTag": "story.tag.share",
+            "supports": { "hintsKey": "story.hint.three" },
+            "interactionId": "interaction-sequence"
+          },
+          {
+            "id": "story-seg-4",
+            "textKey": "story.segment.four",
+            "purposeTag": "story.tag.reflect",
+            "supports": { "hintsKey": "story.hint.four", "framesKey": "story.frame.one" }
+          }
+        ],
+        "interactions": [
+          {
+            "id": "interaction-evidence",
+            "type": "evidence_highlight",
+            "promptKey": "story.interaction.evidencePrompt",
+            "choices": [
+              { "id": "evidence-a", "textKey": "story.evidence.one", "correct": true },
+              { "id": "evidence-b", "textKey": "story.evidence.two", "correct": false },
+              { "id": "evidence-c", "textKey": "story.evidence.three", "correct": false }
+            ]
+          },
+          {
+            "id": "interaction-cloze",
+            "type": "cloze_context",
+            "promptKey": "story.interaction.clozePrompt",
+            "sentenceKey": "story.cloze.sentence",
+            "options": [
+              { "id": "cloze-a", "textKey": "story.cloze.option.one" },
+              { "id": "cloze-b", "textKey": "story.cloze.option.two" },
+              { "id": "cloze-c", "textKey": "story.cloze.option.three" }
+            ],
+            "correctIndex": 1
+          },
+          {
+            "id": "interaction-sequence",
+            "type": "sequence_events",
+            "promptKey": "story.interaction.sequencePrompt",
+            "steps": [
+              { "id": "sequence-one", "textKey": "story.sequence.one" },
+              { "id": "sequence-two", "textKey": "story.sequence.two" },
+              { "id": "sequence-three", "textKey": "story.sequence.three" }
+            ],
+            "correctOrder": ["sequence-two", "sequence-one", "sequence-three"]
+          }
+        ]
+      },
       "helperTips": {
         "leeKey": "helpers.leeStory",
         "teeKey": "helpers.teeStory"
+      }
+    },
+    {
+      "id": "section-video",
+      "type": "video",
+      "group": "Launch",
+      "titleKey": "sections.video.title",
+      "subtitleKey": "sections.video.subtitle",
+      "navLabelKey": "nav.video",
+      "icon": "🎥",
+      "promptKey": "video.prompt",
+      "src": "../tee_battle_back.mp4",
+      "transcriptKey": "video.transcript",
+      "quickCheck": {
+        "type": "mcq",
+        "questionKey": "video.check.question",
+        "choicesKeys": ["video.check.option.one", "video.check.option.two", "video.check.option.three"],
+        "correctIndex": 0,
+        "feedbackKeys": {
+          "correct": "video.check.correct",
+          "incorrect": "video.check.incorrect"
+        }
       }
     },
     {
@@ -68,6 +175,7 @@
       "navLabelKey": "nav.practice",
       "icon": "🧩",
       "simplifiedKey": "sections.practice.simplified",
+      "media": [],
       "promptKey": "practice.matchPrompt",
       "items": [
         { "id": "step1", "labelKey": "practice.steps.observe", "targetId": "target1" },
@@ -88,6 +196,7 @@
       "navLabelKey": "nav.check",
       "icon": "✅",
       "simplifiedKey": "sections.check.simplified",
+      "media": [],
       "questionKey": "check.question",
       "correctId": "answer2",
       "options": [
@@ -104,6 +213,7 @@
       "navLabelKey": "nav.reflect",
       "icon": "💬",
       "simplifiedKey": "sections.reflect.simplified",
+      "media": [],
       "promptKey": "reflect.prompt",
       "correctIds": ["reflect2", "reflect3"],
       "options": [
@@ -120,6 +230,7 @@
       "navLabelKey": "nav.writing",
       "icon": "✍️",
       "simplifiedKey": "sections.writing.simplified",
+      "media": [],
       "promptKey": "writing.prompt",
       "framesKeys": ["writing.frames.one", "writing.frames.two"]
     }
