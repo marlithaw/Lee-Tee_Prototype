@@ -13,7 +13,7 @@ export const renderSection = ({ section, state, onComplete, language }) => {
   const header = el("div", { className: "section__header" });
   const title = el("div");
   title.appendChild(el("h2", { text: t(section.titleKey) }));
-  title.appendChild(el("p", { className: "muted hint", text: t(section.subtitleKey) }));
+  title.appendChild(el("p", { className: "muted", text: t(section.subtitleKey) }));
 
   const meta = el("div", { className: "section__meta" });
   if (section.helperTips) {
@@ -40,9 +40,9 @@ export const renderSection = ({ section, state, onComplete, language }) => {
   const body = el("div", { className: "section__full" });
   const simplified = el("div", { className: "section__simplified" });
   if (section.simplifiedKey) {
-    simplified.appendChild(el("p", { className: "hint", text: t(section.simplifiedKey) }));
+    simplified.appendChild(el("p", { text: t(section.simplifiedKey) }));
   } else {
-    simplified.appendChild(el("p", { className: "hint", text: t("section.noSimplified") }));
+    simplified.appendChild(el("p", { text: t("section.noSimplified") }));
   }
 
   const completeSection = () => onComplete(section.id);
@@ -59,10 +59,7 @@ export const renderSection = ({ section, state, onComplete, language }) => {
       labelKey: "story.listen",
     });
     body.appendChild(listenButton);
-    body.appendChild(el("p", {
-      className: "muted hint",
-      text: t("story.readAloud").replace("{index}", section.index).replace("{total}", section.total),
-    }));
+    body.appendChild(el("p", { className: "muted", text: t("story.readAloud").replace("{index}", section.index).replace("{total}", section.total) }));
   }
   if (section.type === "check") {
     body.appendChild(renderMcq({

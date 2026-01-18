@@ -1,15 +1,10 @@
 import { el, qs } from "../utils/dom.js";
-import { t } from "../i18n.js";
 
 export const openModal = ({ title, body, ariaLabel }) => {
   const root = qs("#modal-root");
   const modal = el("div", { className: "modal", attrs: { role: "dialog", "aria-modal": "true", "aria-label": ariaLabel || title } });
   const content = el("div", { className: "modal__content" });
-  const closeButton = el("button", {
-    className: "button button--ghost modal__close",
-    text: "×",
-    attrs: { "aria-label": t("ui.close") },
-  });
+  const closeButton = el("button", { className: "button button--ghost modal__close", text: "×", attrs: { "aria-label": "Close" } });
   closeButton.addEventListener("click", () => modal.remove());
   const heading = el("h2", { text: title });
   const bodyWrapper = el("div");
