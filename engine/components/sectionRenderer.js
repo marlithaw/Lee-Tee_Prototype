@@ -45,7 +45,9 @@ export const renderSection = ({ section, state, onComplete, language, onInteract
     attrs: { type: "button", "aria-label": t("section.simplified") },
   });
   simplifiedButton.addEventListener("click", () => {
-    wrapper.classList.toggle("simplified");
+    const isSimplified = wrapper.classList.toggle("simplified");
+    simplifiedButton.setAttribute("aria-pressed", String(isSimplified));
+    simplifiedButton.textContent = isSimplified ? t("section.full") : t("section.simplified");
   });
   actions.appendChild(simplifiedButton);
 
@@ -108,6 +110,8 @@ export const renderSection = ({ section, state, onComplete, language, onInteract
       questionKey: section.questionKey,
       options: section.options,
       correctId: section.correctId,
+      hintKey: section.hintKey,
+      showHints: state.settings.showHints,
       onComplete: completeSection,
     }));
   }
@@ -116,6 +120,8 @@ export const renderSection = ({ section, state, onComplete, language, onInteract
       promptKey: section.promptKey,
       items: section.items,
       targets: section.targets,
+      hintKey: section.hintKey,
+      showHints: state.settings.showHints,
       onComplete: completeSection,
     }));
   }
@@ -124,6 +130,8 @@ export const renderSection = ({ section, state, onComplete, language, onInteract
       promptKey: section.promptKey,
       options: section.options,
       correctIds: section.correctIds,
+      hintKey: section.hintKey,
+      showHints: state.settings.showHints,
       onComplete: completeSection,
     }));
   }
@@ -131,6 +139,8 @@ export const renderSection = ({ section, state, onComplete, language, onInteract
     body.appendChild(renderWriting({
       promptKey: section.promptKey,
       framesKeys: section.framesKeys,
+      hintKey: section.hintKey,
+      showHints: state.settings.showHints,
     }));
   }
 
@@ -154,5 +164,6 @@ export const renderSection = ({ section, state, onComplete, language, onInteract
   }
 
   wrapper.append(header, body, simplified);
+  observeMedia(wrapper);
   return wrapper;
 };

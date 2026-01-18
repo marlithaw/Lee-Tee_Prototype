@@ -10,6 +10,13 @@
     "languageKey": "objectives.languageDetail",
     "contentKey": "objectives.contentDetail"
   },
+  "badges": [
+    {
+      "id": "firstExplorer",
+      "nameKey": "badges.firstExplorer.name",
+      "descriptionKey": "badges.firstExplorer.description"
+    }
+  ],
   "strategies": [
     "strategies.buildBackground",
     "strategies.interaction",
@@ -177,6 +184,8 @@
       "simplifiedKey": "sections.practice.simplified",
       "media": [],
       "promptKey": "practice.matchPrompt",
+      "hintKey": "practice.hint",
+      "media": [],
       "items": [
         { "id": "step1", "labelKey": "practice.steps.observe", "targetId": "target1" },
         { "id": "step2", "labelKey": "practice.steps.record", "targetId": "target2" },
@@ -199,6 +208,8 @@
       "media": [],
       "questionKey": "check.question",
       "correctId": "answer2",
+      "hintKey": "check.hint",
+      "media": [],
       "options": [
         { "id": "answer1", "labelKey": "check.options.one" },
         { "id": "answer2", "labelKey": "check.options.two" },
@@ -216,6 +227,8 @@
       "media": [],
       "promptKey": "reflect.prompt",
       "correctIds": ["reflect2", "reflect3"],
+      "hintKey": "reflect.hint",
+      "media": [],
       "options": [
         { "id": "reflect1", "labelKey": "reflect.options.one" },
         { "id": "reflect2", "labelKey": "reflect.options.two" },
@@ -232,6 +245,8 @@
       "simplifiedKey": "sections.writing.simplified",
       "media": [],
       "promptKey": "writing.prompt",
+      "hintKey": "writing.hint",
+      "media": [],
       "framesKeys": ["writing.frames.one", "writing.frames.two"]
     }
   ]

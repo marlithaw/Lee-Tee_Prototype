@@ -118,6 +118,63 @@ const recordMissingKey = (language, key) => {
   }
 };
 
+const UI_PREFIXES = new Set([
+  "ui",
+  "dashboard",
+  "settings",
+  "nav",
+  "section",
+  "media",
+  "toast",
+]);
+const CONTENT_PREFIXES = new Set([
+  "episode",
+  "objectives",
+  "strategies",
+  "helpers",
+  "sections",
+  "story",
+  "vocab",
+  "practice",
+  "check",
+  "reflect",
+  "writing",
+  "badges",
+]);
+
+const CRITICAL_UI_KEYS = [
+  "ui.language",
+  "ui.resetProgress",
+  "ui.stop",
+  "ui.resume",
+  "ui.close",
+  "ui.loadFailed",
+  "dashboard.title",
+  "dashboard.bookProgress",
+  "dashboard.episodeProgress",
+  "dashboard.sectionCount",
+  "dashboard.badges",
+  "dashboard.continue",
+  "settings.title",
+  "settings.readAloud",
+  "settings.dyslexia",
+  "settings.contrast",
+  "settings.showHints",
+  "nav.sectionNavigation",
+  "nav.vocab",
+  "nav.story",
+  "nav.practice",
+  "nav.check",
+  "nav.reflect",
+  "section.complete",
+  "section.completed",
+];
+
+const stripMeta = (dictionary = {}) => {
+  const { meta, ...strings } = dictionary;
+  return strings;
+};
+
 export const loadLanguage = async (episodeId, language) => {
   const response = await fetch(`./episodes/${episodeId}/i18n/${language}.json`);
   if (!response.ok) {

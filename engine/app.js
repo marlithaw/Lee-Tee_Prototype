@@ -61,6 +61,18 @@ const updateStaticLabels = () => {
   });
 };
 
+const renderI18nBlockingError = (missingKeys) => {
+  document.body.innerHTML = `
+    <main class="i18n-error">
+      <h1>Missing critical translations</h1>
+      <p>Strict i18n mode is enabled. Add the following keys before continuing:</p>
+      <ul>
+        ${missingKeys.map((key) => `<li>${key}</li>`).join("")}
+      </ul>
+    </main>
+  `;
+};
+
 const loadEpisode = async () => {
   const response = await fetch(`./episodes/${episodeId}/episode.json`);
   if (!response.ok) throw new Error("Episode not found");
@@ -74,6 +86,14 @@ const init = async () => {
   ensurePseudoLocale();
 
   const state = store.getState();
+  const strictMode = new URLSearchParams(window.location.search).get("i18n") === "strict";
+  if (strictMode) {
+    const missingCritical = getCriticalMissingKeys(state.language);
+    if (missingCritical.length) {
+      renderI18nBlockingError(missingCritical);
+      return;
+    }
+  }
   const titleNode = qs("#episode-title");
   const subtitleNode = qs("#episode-subtitle");
   const heroTitle = qs("#hero-title");
