@@ -6,6 +6,13 @@
     "languageKey": "objectives.languageDetail",
     "contentKey": "objectives.contentDetail"
   },
+  "badges": [
+    {
+      "id": "firstExplorer",
+      "nameKey": "badges.firstExplorer.name",
+      "descriptionKey": "badges.firstExplorer.description"
+    }
+  ],
   "strategies": [
     "strategies.buildBackground",
     "strategies.interaction",
@@ -20,6 +27,7 @@
       "navLabelKey": "nav.vocab",
       "icon": "📘",
       "simplifiedKey": "sections.vocab.simplified",
+      "media": [],
       "items": [
         {
           "termKey": "vocab.ecosystem.term",
@@ -53,6 +61,7 @@
       "icon": "📖",
       "simplifiedKey": "sections.story.simplified",
       "storyKey": "story.main",
+      "media": [],
       "index": 1,
       "total": 5,
       "helperTips": {
@@ -69,6 +78,8 @@
       "icon": "🧩",
       "simplifiedKey": "sections.practice.simplified",
       "promptKey": "practice.matchPrompt",
+      "hintKey": "practice.hint",
+      "media": [],
       "items": [
         { "id": "step1", "labelKey": "practice.steps.observe", "targetId": "target1" },
         { "id": "step2", "labelKey": "practice.steps.record", "targetId": "target2" },
@@ -90,6 +101,8 @@
       "simplifiedKey": "sections.check.simplified",
       "questionKey": "check.question",
       "correctId": "answer2",
+      "hintKey": "check.hint",
+      "media": [],
       "options": [
         { "id": "answer1", "labelKey": "check.options.one" },
         { "id": "answer2", "labelKey": "check.options.two" },
@@ -106,6 +119,8 @@
       "simplifiedKey": "sections.reflect.simplified",
       "promptKey": "reflect.prompt",
       "correctIds": ["reflect2", "reflect3"],
+      "hintKey": "reflect.hint",
+      "media": [],
       "options": [
         { "id": "reflect1", "labelKey": "reflect.options.one" },
         { "id": "reflect2", "labelKey": "reflect.options.two" },
@@ -121,6 +136,8 @@
       "icon": "✍️",
       "simplifiedKey": "sections.writing.simplified",
       "promptKey": "writing.prompt",
+      "hintKey": "writing.hint",
+      "media": [],
       "framesKeys": ["writing.frames.one", "writing.frames.two"]
     }
   ]
