@@ -1,6 +1,15 @@
 import { getEpisodeId } from "./router.js";
 import { store } from "./store.js";
-import { loadLanguage, setAvailableLanguages, t } from "./i18n.js";
+import {
+  coverageReport,
+  getBaseString,
+  getLanguageMeta,
+  getMissingCriticalKeys,
+  loadLanguage,
+  missingKeysReport,
+  setAvailableLanguages,
+  t,
+} from "./i18n.js";
 import { renderDashboard } from "./ui/dashboard.js";
 import { renderNav } from "./ui/nav.js";
 import { renderSettings } from "./ui/settings.js";
@@ -10,7 +19,8 @@ import { clear, qs } from "./utils/dom.js";
 import { showToast } from "./ui/toast.js";
 
 const episodeId = getEpisodeId();
-const languages = ["en", "es", "fr", "ht"];
+const languages = ["en", "es", "fr", "ht", "ps"];
+const strictMode = new URLSearchParams(window.location.search).get("i18n") === "strict";
 
 const applySettingsToBody = (settings) => {
   document.body.classList.toggle("contrast", settings.contrast);
@@ -36,6 +46,27 @@ const updateStaticLabels = () => {
   });
 };
 
+const renderI18nErrorScreen = (missingKeys) => {
+  const root = qs("#app");
+  root.innerHTML = "";
+  const container = document.createElement("div");
+  container.className = "i18n-error";
+  const title = document.createElement("h1");
+  title.textContent = getBaseString("ui.i18nErrorTitle");
+  const message = document.createElement("p");
+  message.textContent = getBaseString("ui.i18nErrorMessage");
+  const listTitle = document.createElement("h2");
+  listTitle.textContent = getBaseString("ui.i18nErrorMissing");
+  const list = document.createElement("ul");
+  missingKeys.forEach((key) => {
+    const item = document.createElement("li");
+    item.textContent = key;
+    list.appendChild(item);
+  });
+  container.append(title, message, listTitle, list);
+  root.appendChild(container);
+};
+
 const loadEpisode = async () => {
   const response = await fetch(`./episodes/${episodeId}/episode.json`);
   if (!response.ok) throw new Error("Episode not found");
@@ -56,11 +87,20 @@ const init = async () => {
   languages.forEach((lang) => {
     const option = document.createElement("option");
     option.value = lang;
-    option.textContent = lang.toUpperCase();
+    const meta = getLanguageMeta(lang);
+    option.textContent = meta.languageName || lang.toUpperCase();
     languageSwitch.appendChild(option);
   });
   languageSwitch.value = state.language;
   languageSwitch.addEventListener("change", () => store.setLanguage(languageSwitch.value));
+
+  if (strictMode) {
+    const missingCritical = getMissingCriticalKeys(state.language);
+    if (missingCritical.length > 0) {
+      renderI18nErrorScreen(missingCritical);
+      return;
+    }
+  }
 
   const resetButton = qs("#reset-progress");
   resetButton.addEventListener("click", () => {
@@ -74,6 +114,13 @@ const init = async () => {
   });
 
   const renderAll = (currentState) => {
+    if (strictMode) {
+      const missingCritical = getMissingCriticalKeys(currentState.language);
+      if (missingCritical.length > 0) {
+        renderI18nErrorScreen(missingCritical);
+        return;
+      }
+    }
     applySettingsToBody(currentState.settings);
     updateStaticLabels();
     document.documentElement.lang = currentState.language;
@@ -124,6 +171,7 @@ const init = async () => {
     applyStoppedState(currentState.stopped);
   };
 
+  window.i18nQA = { coverageReport, missingKeysReport };
   renderAll(state);
   store.subscribe(renderAll);
 };

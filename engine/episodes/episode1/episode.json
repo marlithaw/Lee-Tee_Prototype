@@ -20,6 +20,7 @@
       "navLabelKey": "nav.vocab",
       "icon": "📘",
       "simplifiedKey": "sections.vocab.simplified",
+      "media": [],
       "items": [
         {
           "termKey": "vocab.ecosystem.term",
@@ -55,6 +56,7 @@
       "storyKey": "story.main",
       "index": 1,
       "total": 5,
+      "media": [],
       "helperTips": {
         "leeKey": "helpers.leeStory",
         "teeKey": "helpers.teeStory"
@@ -68,6 +70,7 @@
       "navLabelKey": "nav.practice",
       "icon": "🧩",
       "simplifiedKey": "sections.practice.simplified",
+      "media": [],
       "promptKey": "practice.matchPrompt",
       "items": [
         { "id": "step1", "labelKey": "practice.steps.observe", "targetId": "target1" },
@@ -88,6 +91,7 @@
       "navLabelKey": "nav.check",
       "icon": "✅",
       "simplifiedKey": "sections.check.simplified",
+      "media": [],
       "questionKey": "check.question",
       "correctId": "answer2",
       "options": [
@@ -104,6 +108,7 @@
       "navLabelKey": "nav.reflect",
       "icon": "💬",
       "simplifiedKey": "sections.reflect.simplified",
+      "media": [],
       "promptKey": "reflect.prompt",
       "correctIds": ["reflect2", "reflect3"],
       "options": [
@@ -120,6 +125,7 @@
       "navLabelKey": "nav.writing",
       "icon": "✍️",
       "simplifiedKey": "sections.writing.simplified",
+      "media": [],
       "promptKey": "writing.prompt",
       "framesKeys": ["writing.frames.one", "writing.frames.two"]
     }
