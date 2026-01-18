@@ -1,15 +1,23 @@
 import { el } from "../utils/dom.js";
 import { t } from "../i18n.js";
 
-export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
+export const renderDragMatch = ({ promptKey, items, targets, hintKey, showHints, onComplete }) => {
   const wrapper = el("div");
   wrapper.appendChild(el("p", { text: t(promptKey) }));
+  if (hintKey) {
+    wrapper.appendChild(el("p", { className: `hint muted${showHints ? "" : " hint--hidden"}`, text: t(hintKey) }));
+  }
 
-  const modeToggle = el("button", { className: "button button--ghost", text: t("practice.clickMode") });
-  const board = el("div", { className: "match-board" });
+  const instructions = el("p", { className: "muted", text: t("practice.instructions") });
+  const modeToggle = el("button", {
+    className: "button button--ghost",
+    text: t("practice.clickMode"),
+    attrs: { "aria-pressed": "false", "aria-label": t("practice.clickModeAria") },
+  });
+  const board = el("div", { className: "match-board", attrs: { "aria-label": t("practice.matchBoardAria") } });
   const itemColumn = el("div", { className: "list" });
   const targetColumn = el("div", { className: "list" });
-  const feedback = el("div", { className: "feedback", attrs: { role: "status" } });
+  const feedback = el("div", { className: "feedback", attrs: { role: "status", "aria-live": "polite" } });
 
   let clickMode = false;
   let selectedItemId = null;
@@ -26,16 +34,27 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
   modeToggle.addEventListener("click", () => {
     clickMode = !clickMode;
     modeToggle.textContent = clickMode ? t("practice.dragMode") : t("practice.clickMode");
+    modeToggle.setAttribute("aria-pressed", String(clickMode));
     itemColumn.querySelectorAll(".match-item").forEach((item) => {
       item.setAttribute("draggable", String(!clickMode));
+      item.setAttribute("aria-selected", "false");
+      item.classList.remove("active");
     });
+    selectedItemId = null;
   });
 
   items.forEach((item) => {
     const itemEl = el("div", {
       className: "match-item",
       text: t(item.labelKey),
-      attrs: { draggable: "true", tabindex: "0", "data-id": item.id, role: "button" },
+      attrs: {
+        draggable: "true",
+        tabindex: "0",
+        "data-id": item.id,
+        role: "button",
+        "aria-label": t(item.labelKey),
+        "aria-selected": "false",
+      },
     });
     itemEl.addEventListener("dragstart", (event) => {
       if (clickMode) return;
@@ -44,8 +63,12 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
     itemEl.addEventListener("click", () => {
       if (!clickMode) return;
       selectedItemId = item.id;
-      itemColumn.querySelectorAll(".match-item").forEach((node) => node.classList.remove("active"));
+      itemColumn.querySelectorAll(".match-item").forEach((node) => {
+        node.classList.remove("active");
+        node.setAttribute("aria-selected", "false");
+      });
       itemEl.classList.add("active");
+      itemEl.setAttribute("aria-selected", "true");
     });
     itemColumn.appendChild(itemEl);
   });
@@ -54,7 +77,7 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
     const targetEl = el("div", {
       className: "match-target",
       text: t(target.labelKey),
-      attrs: { "data-id": target.id, tabindex: "0", role: "button" },
+      attrs: { "data-id": target.id, tabindex: "0", role: "button", "aria-label": t(target.labelKey) },
     });
     targetEl.addEventListener("dragover", (event) => {
       if (clickMode) return;
@@ -66,6 +89,7 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
       if (clickMode) return;
       event.preventDefault();
       const itemId = event.dataTransfer.getData("text/plain");
+      if (!itemId) return;
       placements.set(itemId, target.id);
       targetEl.classList.add("filled");
       targetEl.textContent = `${t(target.labelKey)}: ${t(items.find((item) => item.id === itemId).labelKey)}`;
@@ -77,13 +101,16 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
       targetEl.classList.add("filled");
       targetEl.textContent = `${t(target.labelKey)}: ${t(items.find((item) => item.id === selectedItemId).labelKey)}`;
       selectedItemId = null;
-      itemColumn.querySelectorAll(".match-item").forEach((node) => node.classList.remove("active"));
+      itemColumn.querySelectorAll(".match-item").forEach((node) => {
+        node.classList.remove("active");
+        node.setAttribute("aria-selected", "false");
+      });
       updateCompletion();
     });
     targetColumn.appendChild(targetEl);
   });
 
   board.append(itemColumn, targetColumn);
-  wrapper.append(modeToggle, board, feedback);
+  wrapper.append(instructions, modeToggle, board, feedback);
   return wrapper;
 };

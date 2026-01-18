@@ -1,6 +1,14 @@
 import { getEpisodeId } from "./router.js";
 import { store } from "./store.js";
-import { loadLanguage, setAvailableLanguages, t } from "./i18n.js";
+import {
+  coverageReport,
+  getCriticalMissingKeys,
+  getLanguageMeta,
+  loadLanguage,
+  missingKeysReport,
+  setAvailableLanguages,
+  t,
+} from "./i18n.js";
 import { renderDashboard } from "./ui/dashboard.js";
 import { renderNav } from "./ui/nav.js";
 import { renderSettings } from "./ui/settings.js";
@@ -10,11 +18,13 @@ import { clear, qs } from "./utils/dom.js";
 import { showToast } from "./ui/toast.js";
 
 const episodeId = getEpisodeId();
-const languages = ["en", "es", "fr", "ht"];
+const languages = ["en", "es", "fr", "ht", "ps"];
 
 const applySettingsToBody = (settings) => {
   document.body.classList.toggle("contrast", settings.contrast);
   document.body.classList.toggle("dyslexia", settings.dyslexia);
+  document.body.classList.toggle("hide-hints", !settings.showHints);
+  document.body.classList.toggle("read-aloud", settings.readAloud);
 };
 
 const applyStoppedState = (stopped) => {
@@ -36,6 +46,18 @@ const updateStaticLabels = () => {
   });
 };
 
+const renderI18nBlockingError = (missingKeys) => {
+  document.body.innerHTML = `
+    <main class="i18n-error">
+      <h1>Missing critical translations</h1>
+      <p>Strict i18n mode is enabled. Add the following keys before continuing:</p>
+      <ul>
+        ${missingKeys.map((key) => `<li>${key}</li>`).join("")}
+      </ul>
+    </main>
+  `;
+};
+
 const loadEpisode = async () => {
   const response = await fetch(`./episodes/${episodeId}/episode.json`);
   if (!response.ok) throw new Error("Episode not found");
@@ -48,6 +70,14 @@ const init = async () => {
   await Promise.all(languages.map((lang) => loadLanguage(episodeId, lang)));
 
   const state = store.getState();
+  const strictMode = new URLSearchParams(window.location.search).get("i18n") === "strict";
+  if (strictMode) {
+    const missingCritical = getCriticalMissingKeys(state.language);
+    if (missingCritical.length) {
+      renderI18nBlockingError(missingCritical);
+      return;
+    }
+  }
   const titleNode = qs("#episode-title");
   const subtitleNode = qs("#episode-subtitle");
 
@@ -56,7 +86,8 @@ const init = async () => {
   languages.forEach((lang) => {
     const option = document.createElement("option");
     option.value = lang;
-    option.textContent = lang.toUpperCase();
+    const meta = getLanguageMeta(lang);
+    option.textContent = meta?.languageName || lang.toUpperCase();
     languageSwitch.appendChild(option);
   });
   languageSwitch.value = state.language;
@@ -74,6 +105,13 @@ const init = async () => {
   });
 
   const renderAll = (currentState) => {
+    if (strictMode) {
+      const missingCritical = getCriticalMissingKeys(currentState.language);
+      if (missingCritical.length) {
+        renderI18nBlockingError(missingCritical);
+        return;
+      }
+    }
     applySettingsToBody(currentState.settings);
     updateStaticLabels();
     document.documentElement.lang = currentState.language;
@@ -110,7 +148,7 @@ const init = async () => {
           completed.add(sectionId);
           const updatedBadges = currentState.progress.badges.length
             ? currentState.progress.badges
-            : [t("dashboard.noBadges")];
+            : [episode.badges?.[0]?.id].filter(Boolean);
           store.setProgress({
             completedSections: Array.from(completed),
             badges: updatedBadges,
@@ -126,6 +164,11 @@ const init = async () => {
 
   renderAll(state);
   store.subscribe(renderAll);
+
+  window.i18nQA = {
+    coverageReport,
+    missingKeysReport,
+  };
 };
 
 init().catch((error) => {

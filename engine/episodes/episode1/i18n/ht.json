@@ -1,4 +1,10 @@
 {
+  "meta": {
+    "locale": "ht",
+    "languageName": "Kreyòl Ayisyen",
+    "version": "1.0",
+    "translator": "Lee & Tee Team"
+  },
   "episode.title": "Epizòd 1: Detektif Lanati",
   "episode.subtitle": "Lee ak Tee ap eksplore ekosistèm ak obsèvasyon.",
   "ui.language": "Lang",
@@ -106,5 +112,25 @@
   "writing.showFrames": "Montre fraz gid",
   "writing.hideFrames": "Kache fraz gid",
   "writing.frames.one": "Lee te ede Tee lè li...",
-  "writing.frames.two": "Ansanm yo remake..."
+  "writing.frames.two": "Ansanm yo remake...",
+  "nav.sectionNavigation": "Section navigation",
+  "section.full": "Full View",
+  "vocab.hearItAria": "Hear the vocabulary word",
+  "story.listenAria": "Listen to the story",
+  "practice.instructions": "Drag steps to the correct order or switch to click-to-place mode.",
+  "practice.clickModeAria": "Toggle click-to-place mode",
+  "practice.matchBoardAria": "Matching activity",
+  "practice.hint": "Start with the step you do first when investigating.",
+  "check.hint": "Think about what scientists use to learn new details.",
+  "reflect.hint": "Choose the options that show teamwork.",
+  "writing.hint": "Use the sentence frames if you want extra support.",
+  "media.retry": "Retry",
+  "media.error": "Media failed to load.",
+  "media.captions": "Captions",
+  "media.transcript": "Transcript",
+  "badges.firstExplorer.name": "First Explorer",
+  "badges.firstExplorer.description": "Completed your first section.",
+  "media.altFallback": "Episode media",
+  "media.videoAria": "Episode video",
+  "media.audioAria": "Episode audio"
 }
