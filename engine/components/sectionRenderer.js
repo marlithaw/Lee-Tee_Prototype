@@ -5,7 +5,7 @@ import { renderMcq } from "./mcq.js";
 import { renderMultiSelect } from "./multiSelect.js";
 import { renderDragMatch } from "./dragMatch.js";
 import { renderWriting } from "./writing.js";
-import { renderListenButton } from "./media.js";
+import { renderListenButton, renderMediaGroup } from "./media.js";
 import { openModal } from "../ui/modal.js";
 
 export const renderSection = ({ section, state, onComplete, language }) => {
@@ -90,6 +90,9 @@ export const renderSection = ({ section, state, onComplete, language }) => {
       promptKey: section.promptKey,
       framesKeys: section.framesKeys,
     }));
+  }
+  if (section.media && section.media.length) {
+    body.appendChild(renderMediaGroup({ mediaItems: section.media, language }));
   }
 
   const completionButton = el("button", { className: "button button--accent", text: t("section.complete") });
