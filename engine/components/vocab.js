@@ -23,7 +23,7 @@ export const renderVocab = ({ vocabItems, language }) => {
       const hearButton = el("button", {
         className: "button button--outline",
         text: t("vocab.hearIt"),
-        attrs: { type: "button", "aria-label": t("vocab.hearIt") },
+        attrs: { "aria-label": t("vocab.hearItAria") },
       });
       hearButton.addEventListener("click", () => speakText(t(item.termKey), language));
       body.appendChild(hearButton);
