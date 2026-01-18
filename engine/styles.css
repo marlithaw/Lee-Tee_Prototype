@@ -192,49 +192,6 @@ body.dyslexia {
   gap: 1rem;
 }
 
-.media-group {
-  display: grid;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.media {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0.75rem;
-}
-
-.media img,
-.media video {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.media__error {
-  border: 1px dashed var(--danger);
-  border-radius: 10px;
-  padding: 0.75rem;
-  margin-top: 0.75rem;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.media__transcript {
-  margin-top: 0.5rem;
-}
-
-.i18n-error {
-  max-width: 720px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background: var(--panel);
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  display: grid;
-  gap: 1rem;
-}
-
 .card {
   border: 1px solid var(--border);
   padding: 1rem;
