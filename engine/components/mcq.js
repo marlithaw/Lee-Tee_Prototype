@@ -11,7 +11,7 @@ export const renderMcq = ({ questionKey, options, correctId, onComplete }) => {
     const button = el("button", {
       className: "button button--ghost",
       text: t(option.labelKey),
-      attrs: { type: "button" },
+      attrs: { type: "button", "aria-label": t(option.labelKey) },
     });
     button.addEventListener("click", () => {
       const isCorrect = option.id === correctId;

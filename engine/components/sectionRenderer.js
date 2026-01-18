@@ -5,10 +5,13 @@ import { renderMcq } from "./mcq.js";
 import { renderMultiSelect } from "./multiSelect.js";
 import { renderDragMatch } from "./dragMatch.js";
 import { renderWriting } from "./writing.js";
-import { renderListenButton } from "./media.js";
+import { renderListenButton, renderSectionMedia } from "./media.js";
 import { openModal } from "../ui/modal.js";
+import { renderStory } from "./story.js";
+import { renderVideoSection } from "./video.js";
 
-export const renderSection = ({ section, state, onComplete, language }) => {
+export const renderSection = ({ section, state, onComplete, language, onInteractionComplete }) => {
+  const handleInteractionComplete = onInteractionComplete || (() => {});
   const wrapper = el("article", { className: "section", attrs: { id: section.id } });
   const header = el("div", { className: "section__header" });
   const title = el("div");
@@ -16,12 +19,20 @@ export const renderSection = ({ section, state, onComplete, language }) => {
   title.appendChild(el("p", { className: "muted", text: t(section.subtitleKey) }));
 
   const meta = el("div", { className: "section__meta" });
-  if (section.helperTips) {
-    const askLee = el("button", { className: "button button--ghost", text: t("helpers.askLee") });
+  if (section.helperTips && state.settings.showHints) {
+    const askLee = el("button", {
+      className: "button button--ghost",
+      text: t("helpers.askLee"),
+      attrs: { type: "button", "aria-label": t("helpers.askLee") },
+    });
     askLee.addEventListener("click", () => {
       openModal({ title: t("helpers.askLee"), body: `<p>${t(section.helperTips.leeKey)}</p>` });
     });
-    const askTee = el("button", { className: "button button--ghost", text: t("helpers.askTee") });
+    const askTee = el("button", {
+      className: "button button--ghost",
+      text: t("helpers.askTee"),
+      attrs: { type: "button", "aria-label": t("helpers.askTee") },
+    });
     askTee.addEventListener("click", () => {
       openModal({ title: t("helpers.askTee"), body: `<p>${t(section.helperTips.teeKey)}</p>` });
     });
@@ -29,7 +40,11 @@ export const renderSection = ({ section, state, onComplete, language }) => {
   }
 
   const actions = el("div", { className: "section__actions" });
-  const simplifiedButton = el("button", { className: "button button--ghost", text: t("section.simplified") });
+  const simplifiedButton = el("button", {
+    className: "button button--ghost",
+    text: t("section.simplified"),
+    attrs: { type: "button", "aria-label": t("section.simplified") },
+  });
   simplifiedButton.addEventListener("click", () => {
     wrapper.classList.toggle("simplified");
   });
@@ -46,19 +61,35 @@ export const renderSection = ({ section, state, onComplete, language }) => {
   }
 
   const completeSection = () => onComplete(section.id);
+  const mediaGallery = renderSectionMedia({ items: section.media || [] });
+  if (mediaGallery) {
+    body.appendChild(mediaGallery);
+  }
 
   if (section.type === "vocab") {
     body.appendChild(renderVocab({ vocabItems: section.items, language }));
   }
-  if (section.type === "story") {
+  if (section.type === "story" && section.story) {
+    const storyNode = renderStory({
+      story: section.story,
+      settings: state.settings,
+      progress: state.progress,
+      onInteractionComplete: handleInteractionComplete,
+      language,
+    });
+    body.appendChild(storyNode);
+  }
+  if (section.type === "story" && section.storyKey) {
     const storyText = t(section.storyKey);
     body.appendChild(el("p", { text: storyText }));
-    const listenButton = renderListenButton({
-      text: storyText,
-      language,
-      labelKey: "story.listen",
-    });
-    body.appendChild(listenButton);
+    if (state.settings.readAloud) {
+      const listenButton = renderListenButton({
+        text: storyText,
+        language,
+        labelKey: "story.listen",
+      });
+      body.appendChild(listenButton);
+    }
     body.appendChild(el("p", { className: "muted", text: t("story.readAloud").replace("{index}", section.index).replace("{total}", section.total) }));
   }
   if (section.type === "check") {
@@ -91,14 +122,34 @@ export const renderSection = ({ section, state, onComplete, language }) => {
       framesKeys: section.framesKeys,
     }));
   }
-
-  const completionButton = el("button", { className: "button button--accent", text: t("section.complete") });
+  const completionButton = el("button", {
+    className: "button button--accent",
+    text: t("section.complete"),
+    attrs: { type: "button", "aria-label": t("section.complete") },
+  });
   if (state.progress.completedSections.includes(section.id)) {
     completionButton.textContent = t("section.completed");
     completionButton.disabled = true;
   }
+  if (section.type === "video" && !state.progress.completedSections.includes(section.id)) {
+    completionButton.disabled = true;
+  }
   completionButton.addEventListener("click", () => completeSection());
   body.appendChild(completionButton);
+
+  if (section.type === "video") {
+    const videoNode = renderVideoSection({
+      section,
+      onUnlock: () => {
+        completionButton.disabled = false;
+      },
+    });
+    body.insertBefore(videoNode, completionButton);
+  }
+
+  if (body.textContent.trim().length < 120) {
+    wrapper.classList.add("section--compact");
+  }
 
   wrapper.append(header, body, simplified);
   return wrapper;

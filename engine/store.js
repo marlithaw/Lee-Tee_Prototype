@@ -1,5 +1,5 @@
 const STORAGE_KEY = "lee-tee-engine";
-const VERSION = "v1";
+const VERSION = "v3";
 
 const defaultState = {
   version: VERSION,
@@ -14,6 +14,7 @@ const defaultState = {
     completedSections: [],
     badges: [],
     points: 0,
+    completedInteractions: [],
   },
   stopped: false,
 };

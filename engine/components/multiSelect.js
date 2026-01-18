@@ -9,7 +9,11 @@ export const renderMultiSelect = ({ promptKey, options, correctIds, onComplete }
   const selected = new Set();
 
   options.forEach((option) => {
-    const button = el("button", { className: "button button--ghost", text: t(option.labelKey) });
+    const button = el("button", {
+      className: "button button--ghost",
+      text: t(option.labelKey),
+      attrs: { type: "button", "aria-label": t(option.labelKey) },
+    });
     button.addEventListener("click", () => {
       if (selected.has(option.id)) {
         selected.delete(option.id);
@@ -22,7 +26,7 @@ export const renderMultiSelect = ({ promptKey, options, correctIds, onComplete }
     list.appendChild(button);
   });
 
-  const checkButton = el("button", { className: "button", text: t("check.submit") });
+  const checkButton = el("button", { className: "button", text: t("check.submit"), attrs: { type: "button" } });
   checkButton.addEventListener("click", () => {
     const isCorrect = correctIds.every((id) => selected.has(id)) && selected.size === correctIds.length;
     feedback.textContent = isCorrect ? t("check.correct") : t("check.incorrect");

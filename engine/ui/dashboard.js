@@ -22,11 +22,16 @@ export const renderDashboard = ({ container, episode, progress, sectionCount }) 
   const badgeCard = el("div", { className: "card" });
   badgeCard.appendChild(el("h3", { text: t("dashboard.badges") }));
   const badges = el("div", { className: "badges" });
-  const badgeList = progress.badges.length ? progress.badges : t("dashboard.noBadges").split(",");
-  badgeList.forEach((badge) => badges.appendChild(el("span", { className: "badge", text: badge.trim() })));
+  const badgeList = progress.badges.length ? progress.badges : ["dashboard.noBadges"];
+  badgeList.forEach((badgeKey) => {
+    const descKey = `${badgeKey}Desc`;
+    const desc = t(descKey);
+    const attrs = desc === descKey ? {} : { title: desc };
+    badges.appendChild(el("span", { className: "badge", text: t(badgeKey), attrs }));
+  });
   badgeCard.appendChild(badges);
 
-  const continueButton = el("button", { className: "button", text: t("dashboard.continue") });
+  const continueButton = el("button", { className: "button", text: t("dashboard.continue"), attrs: { type: "button" } });
   continueButton.addEventListener("click", () => {
     const firstIncomplete = episode.sections.find((section) => !progress.completedSections.includes(section.id));
     if (firstIncomplete) {
