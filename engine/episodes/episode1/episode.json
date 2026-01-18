@@ -1,0 +1,188 @@
+{
+  "id": "episode1",
+  "titleKey": "episode1.title",
+  "subtitleKey": "episode1.subtitle",
+  "dashboard": {
+    "bookProgress": { "current": 1, "total": 10 },
+    "episodeProgress": { "current": 1, "total": 1 },
+    "badges": ["badges.focused", "badges.teamwork", "badges.storyteller"]
+  },
+  "nav": [
+    { "id": "nav-vocab", "icon": "📚", "labelKey": "nav.vocab", "target": "vocab" },
+    { "id": "nav-story", "icon": "📖", "labelKey": "nav.story", "target": "story" },
+    { "id": "nav-practice", "icon": "✍️", "labelKey": "nav.practice", "target": "practice" },
+    { "id": "nav-check", "icon": "✅", "labelKey": "nav.check", "target": "check" },
+    { "id": "nav-reflect", "icon": "💭", "labelKey": "nav.reflect", "target": "reflect" }
+  ],
+  "characterTips": {
+    "lee": ["helpers.lee.1", "helpers.lee.2"],
+    "tee": ["helpers.tee.1", "helpers.tee.2"]
+  },
+  "sections": [
+    {
+      "id": "objectives",
+      "type": "objectives",
+      "titleKey": "sections.objectives.title",
+      "siopStrategies": ["siop.vocab", "siop.oral", "siop.check"],
+      "objectives": {
+        "language": ["objectives.language.1", "objectives.language.2"],
+        "content": ["objectives.content.1", "objectives.content.2"]
+      }
+    },
+    {
+      "id": "vocab",
+      "type": "vocab",
+      "titleKey": "sections.vocab.title",
+      "items": [
+        {
+          "id": "steady",
+          "word": { "en": "steady", "es": "estable", "fr": "stable", "ht": "estab" },
+          "definition": { "en": "not moving or changing", "es": "que no cambia", "fr": "qui ne change pas", "ht": "ki pa chanje" },
+          "spanish": { "en": "Spanish: estable", "es": "Español: estable", "fr": "Espagnol : estable", "ht": "Panyòl: estable" },
+          "example": { "en": "Lee kept his breathing steady.", "es": "Lee mantuvo su respiración estable.", "fr": "Lee a gardé sa respiration stable.", "ht": "Lee te kenbe respirasyon li estab." }
+        },
+        {
+          "id": "strategy",
+          "word": { "en": "strategy", "es": "estrategia", "fr": "stratégie", "ht": "estrateji" },
+          "definition": { "en": "a plan to solve a problem", "es": "un plan para resolver", "fr": "un plan pour résoudre", "ht": "yon plan pou rezoud" },
+          "spanish": { "en": "Spanish: estrategia", "es": "Español: estrategia", "fr": "Espagnol : estrategia", "ht": "Panyòl: estrategia" },
+          "example": { "en": "Tee shared a strategy to help the team.", "es": "Tee compartió una estrategia para ayudar al equipo.", "fr": "Tee a partagé une stratégie pour aider l'équipe.", "ht": "Tee te pataje yon estrateji pou ede ekip la." }
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "type": "story",
+      "titleKey": "sections.story.title",
+      "sections": [
+        {
+          "titleKey": "story.section1.title",
+          "content": {
+            "en": "Lee and Tee stood in the gym, ready for their first team practice.",
+            "es": "Lee y Tee estaban en el gimnasio, listos para su primera práctica en equipo.",
+            "fr": "Lee et Tee se tenaient dans le gymnase, prêts pour leur première pratique d'équipe.",
+            "ht": "Lee ak Tee te kanpe nan jimnaz la, pare pou premye pratik ekip yo."
+          },
+          "simplified": {
+            "en": "Lee and Tee were ready to practice together.",
+            "es": "Lee y Tee estaban listos para practicar juntos.",
+            "fr": "Lee et Tee étaient prêts à pratiquer ensemble.",
+            "ht": "Lee ak Tee te pare pou pratike ansanm."
+          }
+        },
+        {
+          "titleKey": "story.section2.title",
+          "content": {
+            "en": "They used a steady strategy: breathe, plan, and move.",
+            "es": "Usaron una estrategia estable: respirar, planear y moverse.",
+            "fr": "Ils ont utilisé une stratégie stable : respirer, planifier et bouger.",
+            "ht": "Yo te itilize yon estrateji estab: respire, planifye, epi bouje."
+          },
+          "simplified": {
+            "en": "They followed three steps to stay calm.",
+            "es": "Siguieron tres pasos para mantener la calma.",
+            "fr": "Ils ont suivi trois étapes pour rester calmes.",
+            "ht": "Yo te swiv twa etap pou rete kalm."
+          }
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "type": "practice",
+      "titleKey": "sections.practice.title",
+      "activities": [
+        {
+          "id": "match-steps",
+          "type": "dragMatch",
+          "title": { "en": "Match the Steps", "es": "Relaciona los pasos", "fr": "Associe les étapes", "ht": "Mache etap yo" },
+          "prompt": {
+            "en": "Drag or click-to-place each action with the right step.",
+            "es": "Arrastra o haz clic para colocar cada acción en el paso correcto.",
+            "fr": "Faites glisser ou cliquez pour placer chaque action au bon endroit.",
+            "ht": "Glise oswa klike pou mete chak aksyon nan bon etap la."
+          },
+          "items": [
+            { "id": "breathe", "label": { "en": "Take a deep breath", "es": "Respira profundamente", "fr": "Respire profondément", "ht": "Respire pwofondman" } },
+            { "id": "plan", "label": { "en": "Name the plan", "es": "Nombra el plan", "fr": "Nomme le plan", "ht": "Nonmen plan an" } },
+            { "id": "move", "label": { "en": "Move to action", "es": "Pasa a la acción", "fr": "Passe à l'action", "ht": "Pase a aksyon" } }
+          ],
+          "targets": [
+            { "id": "step1", "label": { "en": "Step 1", "es": "Paso 1", "fr": "Étape 1", "ht": "Etap 1" } },
+            { "id": "step2", "label": { "en": "Step 2", "es": "Paso 2", "fr": "Étape 2", "ht": "Etap 2" } },
+            { "id": "step3", "label": { "en": "Step 3", "es": "Paso 3", "fr": "Étape 3", "ht": "Etap 3" } }
+          ],
+          "expected": [
+            { "itemId": "breathe", "targetId": "step1" },
+            { "itemId": "plan", "targetId": "step2" },
+            { "itemId": "move", "targetId": "step3" }
+          ]
+        },
+        {
+          "id": "multi-goals",
+          "type": "multiSelect",
+          "title": { "en": "Choose the Team Goals", "es": "Elige las metas del equipo", "fr": "Choisis les objectifs de l'équipe", "ht": "Chwazi objektif ekip la" },
+          "prompt": {
+            "en": "Select all goals that match Lee & Tee's strategy.",
+            "es": "Selecciona todas las metas que coinciden con la estrategia de Lee y Tee.",
+            "fr": "Sélectionne tous les objectifs qui correspondent à la stratégie de Lee et Tee.",
+            "ht": "Chwazi tout objektif ki mache ak estrateji Lee ak Tee."
+          },
+          "options": [
+            { "id": "stay-calm", "label": { "en": "Stay calm", "es": "Mantener la calma", "fr": "Rester calme", "ht": "Rete kalm" } },
+            { "id": "give-up", "label": { "en": "Give up", "es": "Rendirse", "fr": "Abandonner", "ht": "Bay vag" } },
+            { "id": "work-together", "label": { "en": "Work together", "es": "Trabajar juntos", "fr": "Travailler ensemble", "ht": "Travay ansanm" } }
+          ],
+          "correctIds": ["stay-calm", "work-together"]
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "check",
+      "titleKey": "sections.check.title",
+      "questions": [
+        {
+          "prompt": {
+            "en": "Why did Lee breathe steadily?",
+            "es": "¿Por qué Lee respiró de manera estable?",
+            "fr": "Pourquoi Lee a-t-il respiré calmement ?",
+            "ht": "Poukisa Lee te respire estab?"
+          },
+          "options": [
+            { "id": "focus", "label": { "en": "To stay focused", "es": "Para mantenerse enfocado", "fr": "Pour rester concentré", "ht": "Pou rete konsantre" } },
+            { "id": "sleep", "label": { "en": "To fall asleep", "es": "Para dormirse", "fr": "Pour s'endormir", "ht": "Pou dòmi" } }
+          ],
+          "correctId": "focus"
+        }
+      ]
+    },
+    {
+      "id": "writing",
+      "type": "writing",
+      "titleKey": "sections.writing.title",
+      "title": { "en": "Writing Lab", "es": "Laboratorio de escritura", "fr": "Atelier d'écriture", "ht": "Laboratwa ekri" },
+      "prompt": {
+        "en": "Describe a time you used a strategy to stay calm.",
+        "es": "Describe una vez que usaste una estrategia para mantener la calma.",
+        "fr": "Décris un moment où tu as utilisé une stratégie pour rester calme.",
+        "ht": "Dekri yon lè ou te itilize yon estrateji pou rete kalm."
+      },
+      "frames": [
+        { "en": "First, I...", "es": "Primero, yo...", "fr": "D'abord, je...", "ht": "Premyeman, mwen..." },
+        { "en": "Then, I...", "es": "Luego, yo...", "fr": "Ensuite, je...", "ht": "Apre sa, mwen..." }
+      ]
+    },
+    {
+      "id": "reflect",
+      "type": "reflect",
+      "titleKey": "sections.reflect.title",
+      "prompt": {
+        "en": "Reflect on how teamwork helped Lee & Tee today.",
+        "es": "Reflexiona sobre cómo el trabajo en equipo ayudó a Lee y Tee hoy.",
+        "fr": "Réfléchis à la façon dont le travail d'équipe a aidé Lee et Tee aujourd'hui.",
+        "ht": "Reflechi sou kijan travay an ekip te ede Lee ak Tee jodi a."
+      }
+    }
+  ]
+}

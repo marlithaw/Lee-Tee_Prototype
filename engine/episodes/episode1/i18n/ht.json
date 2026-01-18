@@ -1,0 +1,104 @@
+{
+  "ui": {
+    "engineLabel": "Motè epizòd",
+    "languageLabel": "Lang",
+    "learningDashboard": "Tablo aprantisaj",
+    "bookProgress": "Pwogrè liv",
+    "episodeProgress": "Pwogrè epizòd",
+    "sectionsComplete": "seksyon fini",
+    "badges": "Badj",
+    "controls": "Kontwòl",
+    "continue": "Kontinye",
+    "resetProgress": "Rekòmanse pwogrè",
+    "progressReset": "Pwogrè rekòmanse!",
+    "stop": "KANPE",
+    "resume": "Kontinye",
+    "paused": "Pwogrè an poz.",
+    "resumed": "Pwogrè rekòmanse.",
+    "sectionProgress": "Pwogrè seksyon",
+    "sectionProgressCount": "Fini:",
+    "readingSettings": "Paramèt lekti",
+    "readAloud": "Li anwo",
+    "dyslexiaFont": "Polis disleksi",
+    "highContrast": "Kontras wo",
+    "showHints": "Montre endis",
+    "listen": "Koute",
+    "readAloudSection": "Li seksyon an",
+    "of": "sou",
+    "checkAnswer": "Verifye repons mwen",
+    "correct": "Kòrèk!",
+    "tryAgain": "Eseye ankò",
+    "more": "Plis",
+    "hearIt": "Tande li",
+    "vocabModal": "Detay vokabilè",
+    "markComplete": "Make fini",
+    "completed": "Fini",
+    "simplifiedView": "Vèsyon senplifye",
+    "clickToPlace": "Mòd klike pou mete: chwazi yon atik, epi chwazi yon kote.",
+    "writingResponse": "Repons ekri",
+    "sentenceFrames": "Modèl fraz",
+    "hintsHidden": "Endis yo kache. Aktive Montre endis.",
+    "missingSection": "Seksiyon ap vini.",
+    "characterHelp": "Èd karaktè",
+    "askLee": "MANDE LEE",
+    "askTee": "MANDE TEE",
+    "siopStrategies": "Estrateji SIOP",
+    "objectives": "Objektif",
+    "languageObjectives": "Objektif lang",
+    "contentObjectives": "Objektif kontni"
+  },
+  "episode1": {
+    "title": "Lee & Tee: Epizòd 1",
+    "subtitle": "Travay ann ekip ak estrateji kalm"
+  },
+  "nav": {
+    "vocab": "Vokabilè",
+    "story": "Istwa",
+    "practice": "Pratik",
+    "check": "Verifye",
+    "reflect": "Reflechi"
+  },
+  "badges": {
+    "focused": "Konsantre",
+    "teamwork": "Travay ann ekip",
+    "storyteller": "Kontè"
+  },
+  "helpers": {
+    "lee": {
+      "1": "Pran yon poz epi respire anvan ou reponn.",
+      "2": "Souliye mo ki bay endis."
+    },
+    "tee": {
+      "1": "Eseye yon nouvo estrateji si premye a difisil.",
+      "2": "Mande yon kamarad eksplike panse li."
+    }
+  },
+  "sections": {
+    "objectives": { "title": "Tcheke ak objektif" },
+    "vocab": { "title": "Vokabilè" },
+    "story": { "title": "Istwa" },
+    "practice": { "title": "Pratik" },
+    "check": { "title": "Verifye" },
+    "writing": { "title": "Sipò ekriti" },
+    "reflect": { "title": "Reflechi" }
+  },
+  "siop": {
+    "vocab": "Vokabilè anvan",
+    "oral": "Pratik lang oral",
+    "check": "Tcheke"
+  },
+  "objectives": {
+    "language": {
+      "1": "Sèvi ak mo vokabilè nan yon fraz.",
+      "2": "Eksplike yon estrateji anwo."
+    },
+    "content": {
+      "1": "Idantifye etap plan kalm lan.",
+      "2": "Dekri kijan travay ann ekip ede pwogrè."
+    }
+  },
+  "story": {
+    "section1": { "title": "Chofaj" },
+    "section2": { "title": "Plan an" }
+  }
+}

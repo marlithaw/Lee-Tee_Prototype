@@ -1,0 +1,104 @@
+{
+  "ui": {
+    "engineLabel": "Moteur d'épisodes",
+    "languageLabel": "Langue",
+    "learningDashboard": "Tableau d'apprentissage",
+    "bookProgress": "Progrès du livre",
+    "episodeProgress": "Progrès de l'épisode",
+    "sectionsComplete": "sections terminées",
+    "badges": "Badges",
+    "controls": "Commandes",
+    "continue": "Continuer",
+    "resetProgress": "Réinitialiser la progression",
+    "progressReset": "Progression réinitialisée !",
+    "stop": "STOP",
+    "resume": "Reprendre",
+    "paused": "Progression en pause.",
+    "resumed": "Progression reprise.",
+    "sectionProgress": "Progression par section",
+    "sectionProgressCount": "Terminées :",
+    "readingSettings": "Paramètres de lecture",
+    "readAloud": "Lire à voix haute",
+    "dyslexiaFont": "Police dyslexie",
+    "highContrast": "Contraste élevé",
+    "showHints": "Afficher les indices",
+    "listen": "Écouter",
+    "readAloudSection": "Lire la section",
+    "of": "sur",
+    "checkAnswer": "Vérifier ma réponse",
+    "correct": "Correct !",
+    "tryAgain": "Réessaie",
+    "more": "Plus",
+    "hearIt": "Écouter",
+    "vocabModal": "Détails du vocabulaire",
+    "markComplete": "Marquer terminé",
+    "completed": "Terminé",
+    "simplifiedView": "Vue simplifiée",
+    "clickToPlace": "Mode cliquer pour placer : choisissez un élément puis une cible.",
+    "writingResponse": "Réponse écrite",
+    "sentenceFrames": "Cadres de phrase",
+    "hintsHidden": "Les indices sont masqués. Activez Afficher les indices.",
+    "missingSection": "Section à venir.",
+    "characterHelp": "Aide des personnages",
+    "askLee": "DEMANDER À LEE",
+    "askTee": "DEMANDER À TEE",
+    "siopStrategies": "Stratégies SIOP",
+    "objectives": "Objectifs",
+    "languageObjectives": "Objectifs de langue",
+    "contentObjectives": "Objectifs de contenu"
+  },
+  "episode1": {
+    "title": "Lee & Tee : Épisode 1",
+    "subtitle": "Travail d'équipe et stratégies de calme"
+  },
+  "nav": {
+    "vocab": "Vocabulaire",
+    "story": "Histoire",
+    "practice": "Pratique",
+    "check": "Vérifier",
+    "reflect": "Réfléchir"
+  },
+  "badges": {
+    "focused": "Concentré",
+    "teamwork": "Travail d'équipe",
+    "storyteller": "Conteuse"
+  },
+  "helpers": {
+    "lee": {
+      "1": "Fais une pause et respire avant de répondre.",
+      "2": "Souligne les mots indices."
+    },
+    "tee": {
+      "1": "Essaie une nouvelle stratégie si la première est difficile.",
+      "2": "Demande à un camarade d'expliquer sa pensée."
+    }
+  },
+  "sections": {
+    "objectives": { "title": "Check-in et objectifs" },
+    "vocab": { "title": "Vocabulaire" },
+    "story": { "title": "L'histoire" },
+    "practice": { "title": "Pratique" },
+    "check": { "title": "Vérifier" },
+    "writing": { "title": "Soutien à l'écriture" },
+    "reflect": { "title": "Réfléchir" }
+  },
+  "siop": {
+    "vocab": "Pré-enseignement du vocabulaire",
+    "oral": "Pratique orale de la langue",
+    "check": "Check-in"
+  },
+  "objectives": {
+    "language": {
+      "1": "Utiliser le vocabulaire dans une phrase.",
+      "2": "Expliquer une stratégie à voix haute."
+    },
+    "content": {
+      "1": "Identifier les étapes d'un plan de calme.",
+      "2": "Décrire comment le travail d'équipe soutient les progrès."
+    }
+  },
+  "story": {
+    "section1": { "title": "Échauffement" },
+    "section2": { "title": "Le plan" }
+  }
+}

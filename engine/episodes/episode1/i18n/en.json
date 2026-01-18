@@ -1,0 +1,104 @@
+{
+  "ui": {
+    "engineLabel": "Episode Engine",
+    "languageLabel": "Language",
+    "learningDashboard": "Learning Dashboard",
+    "bookProgress": "Book Progress",
+    "episodeProgress": "Episode Progress",
+    "sectionsComplete": "sections complete",
+    "badges": "Badges",
+    "controls": "Controls",
+    "continue": "Continue",
+    "resetProgress": "Reset progress",
+    "progressReset": "Progress reset!",
+    "stop": "STOP",
+    "resume": "Resume",
+    "paused": "Progress paused.",
+    "resumed": "Progress resumed.",
+    "sectionProgress": "Section Progress",
+    "sectionProgressCount": "Completed:",
+    "readingSettings": "Reading Settings",
+    "readAloud": "Read Aloud",
+    "dyslexiaFont": "Dyslexia Font",
+    "highContrast": "High Contrast",
+    "showHints": "Show Hints",
+    "listen": "Listen",
+    "readAloudSection": "Read Aloud Section",
+    "of": "of",
+    "checkAnswer": "Check My Thinking",
+    "correct": "Correct!",
+    "tryAgain": "Try again",
+    "more": "More",
+    "hearIt": "Hear It",
+    "vocabModal": "Vocabulary details",
+    "markComplete": "Mark complete",
+    "completed": "Completed",
+    "simplifiedView": "Simplified View",
+    "clickToPlace": "Click-to-Place mode: select an item, then select a target.",
+    "writingResponse": "Writing response",
+    "sentenceFrames": "Sentence Frames",
+    "hintsHidden": "Hints are hidden. Toggle Show Hints to view scaffolds.",
+    "missingSection": "Section coming soon.",
+    "characterHelp": "Character Helper",
+    "askLee": "ASK LEE",
+    "askTee": "ASK TEE",
+    "siopStrategies": "SIOP Strategies",
+    "objectives": "Objectives",
+    "languageObjectives": "Language Objectives",
+    "contentObjectives": "Content Objectives"
+  },
+  "episode1": {
+    "title": "Lee & Tee: Episode 1",
+    "subtitle": "Teamwork & Calm Strategies"
+  },
+  "nav": {
+    "vocab": "Vocabulary",
+    "story": "Story",
+    "practice": "Practice",
+    "check": "Check",
+    "reflect": "Reflect"
+  },
+  "badges": {
+    "focused": "Focused",
+    "teamwork": "Teamwork",
+    "storyteller": "Storyteller"
+  },
+  "helpers": {
+    "lee": {
+      "1": "Pause and breathe before you answer.",
+      "2": "Underline the clue words that help you." 
+    },
+    "tee": {
+      "1": "Try a new strategy if the first one feels hard.",
+      "2": "Ask a teammate to explain their thinking." 
+    }
+  },
+  "sections": {
+    "objectives": { "title": "Check-In & Objectives" },
+    "vocab": { "title": "Vocabulary" },
+    "story": { "title": "The Story" },
+    "practice": { "title": "Practice" },
+    "check": { "title": "Check" },
+    "writing": { "title": "Writing Support" },
+    "reflect": { "title": "Reflect" }
+  },
+  "siop": {
+    "vocab": "Vocabulary Pre-teaching",
+    "oral": "Oral Language Practice",
+    "check": "Check-In"
+  },
+  "objectives": {
+    "language": {
+      "1": "Use vocabulary words in a sentence.",
+      "2": "Explain a strategy aloud."
+    },
+    "content": {
+      "1": "Identify steps of a calm-down plan.",
+      "2": "Describe how teamwork supports progress."
+    }
+  },
+  "story": {
+    "section1": { "title": "Warm-Up" },
+    "section2": { "title": "The Plan" }
+  }
+}

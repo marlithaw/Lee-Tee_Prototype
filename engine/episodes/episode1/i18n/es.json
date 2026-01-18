@@ -1,0 +1,104 @@
+{
+  "ui": {
+    "engineLabel": "Motor de episodios",
+    "languageLabel": "Idioma",
+    "learningDashboard": "Panel de aprendizaje",
+    "bookProgress": "Progreso del libro",
+    "episodeProgress": "Progreso del episodio",
+    "sectionsComplete": "secciones completadas",
+    "badges": "Insignias",
+    "controls": "Controles",
+    "continue": "Continuar",
+    "resetProgress": "Restablecer progreso",
+    "progressReset": "¡Progreso restablecido!",
+    "stop": "DETENER",
+    "resume": "Reanudar",
+    "paused": "Progreso en pausa.",
+    "resumed": "Progreso reanudado.",
+    "sectionProgress": "Progreso por sección",
+    "sectionProgressCount": "Completado:",
+    "readingSettings": "Configuración de lectura",
+    "readAloud": "Leer en voz alta",
+    "dyslexiaFont": "Fuente para dislexia",
+    "highContrast": "Alto contraste",
+    "showHints": "Mostrar pistas",
+    "listen": "Escuchar",
+    "readAloudSection": "Leer en voz alta la sección",
+    "of": "de",
+    "checkAnswer": "Revisar mi pensamiento",
+    "correct": "¡Correcto!",
+    "tryAgain": "Intenta de nuevo",
+    "more": "Más",
+    "hearIt": "Escúchalo",
+    "vocabModal": "Detalles de vocabulario",
+    "markComplete": "Marcar completo",
+    "completed": "Completado",
+    "simplifiedView": "Vista simplificada",
+    "clickToPlace": "Modo hacer clic para colocar: selecciona un elemento y luego un objetivo.",
+    "writingResponse": "Respuesta escrita",
+    "sentenceFrames": "Marcos de oración",
+    "hintsHidden": "Las pistas están ocultas. Activa Mostrar pistas.",
+    "missingSection": "Sección próximamente.",
+    "characterHelp": "Ayuda de personajes",
+    "askLee": "PREGUNTA A LEE",
+    "askTee": "PREGUNTA A TEE",
+    "siopStrategies": "Estrategias SIOP",
+    "objectives": "Objetivos",
+    "languageObjectives": "Objetivos de lenguaje",
+    "contentObjectives": "Objetivos de contenido"
+  },
+  "episode1": {
+    "title": "Lee y Tee: Episodio 1",
+    "subtitle": "Trabajo en equipo y estrategias de calma"
+  },
+  "nav": {
+    "vocab": "Vocabulario",
+    "story": "Historia",
+    "practice": "Práctica",
+    "check": "Comprobar",
+    "reflect": "Reflexionar"
+  },
+  "badges": {
+    "focused": "Enfocado",
+    "teamwork": "Trabajo en equipo",
+    "storyteller": "Narrador"
+  },
+  "helpers": {
+    "lee": {
+      "1": "Pausa y respira antes de responder.",
+      "2": "Subraya las pistas importantes."
+    },
+    "tee": {
+      "1": "Prueba una nueva estrategia si la primera es difícil.",
+      "2": "Pide a un compañero que explique su pensamiento."
+    }
+  },
+  "sections": {
+    "objectives": { "title": "Chequeo y objetivos" },
+    "vocab": { "title": "Vocabulario" },
+    "story": { "title": "La historia" },
+    "practice": { "title": "Práctica" },
+    "check": { "title": "Comprobar" },
+    "writing": { "title": "Apoyo de escritura" },
+    "reflect": { "title": "Reflexionar" }
+  },
+  "siop": {
+    "vocab": "Pre-enseñanza de vocabulario",
+    "oral": "Práctica oral del lenguaje",
+    "check": "Chequeo"
+  },
+  "objectives": {
+    "language": {
+      "1": "Usar vocabulario en una oración.",
+      "2": "Explicar una estrategia en voz alta."
+    },
+    "content": {
+      "1": "Identificar pasos de un plan de calma.",
+      "2": "Describir cómo el trabajo en equipo apoya el progreso."
+    }
+  },
+  "story": {
+    "section1": { "title": "Calentamiento" },
+    "section2": { "title": "El plan" }
+  }
+}
