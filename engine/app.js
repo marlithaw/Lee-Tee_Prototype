@@ -1,15 +1,6 @@
 import { getEpisodeId } from "./router.js";
 import { store } from "./store.js";
-import {
-  ensurePseudoLocale,
-  getLanguageLabel,
-  getMissingCriticalKeys,
-  loadLanguage,
-  missingKeysReport,
-  setAvailableLanguages,
-  t,
-  coverageReport,
-} from "./i18n.js";
+import { loadLanguage, setAvailableLanguages, t } from "./i18n.js";
 import { renderDashboard } from "./ui/dashboard.js";
 import { renderNav } from "./ui/nav.js";
 import { renderSettings } from "./ui/settings.js";
@@ -19,20 +10,18 @@ import { clear, qs } from "./utils/dom.js";
 import { showToast } from "./ui/toast.js";
 
 const episodeId = getEpisodeId();
-const languages = ["en", "es", "fr", "ht", "ps"];
-const strictMode = new URLSearchParams(window.location.search).get("i18n") === "strict";
+const languages = ["en", "es", "fr", "ht"];
 
 const applySettingsToBody = (settings) => {
   document.body.classList.toggle("contrast", settings.contrast);
   document.body.classList.toggle("dyslexia", settings.dyslexia);
-  document.body.classList.toggle("show-hints", settings.showHints);
 };
 
 const applyStoppedState = (stopped) => {
   document.body.classList.toggle("stopped", stopped);
   const stopButton = qs("#stop-episode");
   stopButton.textContent = stopped ? t("ui.resume") : t("ui.stop");
-  qs("#sections").querySelectorAll("button, textarea, select, input, audio, video").forEach((node) => {
+  qs("#sections").querySelectorAll("button, textarea, select").forEach((node) => {
     if (node.id === "stop-episode" || node.id === "reset-progress" || node.id === "language-switch") return;
     node.disabled = stopped;
   });
@@ -57,7 +46,6 @@ const init = async () => {
   const episode = await loadEpisode();
   setAvailableLanguages(languages);
   await Promise.all(languages.map((lang) => loadLanguage(episodeId, lang)));
-  ensurePseudoLocale();
 
   const state = store.getState();
   const titleNode = qs("#episode-title");
@@ -68,7 +56,7 @@ const init = async () => {
   languages.forEach((lang) => {
     const option = document.createElement("option");
     option.value = lang;
-    option.textContent = getLanguageLabel(lang);
+    option.textContent = lang.toUpperCase();
     languageSwitch.appendChild(option);
   });
   languageSwitch.value = state.language;
@@ -86,22 +74,6 @@ const init = async () => {
   });
 
   const renderAll = (currentState) => {
-    if (strictMode) {
-      const missingCritical = getMissingCriticalKeys(currentState.language);
-      if (missingCritical.length) {
-        document.body.innerHTML = `
-          <main class="i18n-error">
-            <h1>${t("i18n.strictTitle")}</h1>
-            <p>${t("i18n.strictMessage")}</p>
-            <pre>${missingCritical.join("\n")}</pre>
-            <p class="muted">${t("i18n.strictHint")}</p>
-          </main>
-        `;
-        console.error("Critical i18n keys missing:", missingCritical);
-        return;
-      }
-    }
-
     applySettingsToBody(currentState.settings);
     updateStaticLabels();
     document.documentElement.lang = currentState.language;
@@ -138,7 +110,7 @@ const init = async () => {
           completed.add(sectionId);
           const updatedBadges = currentState.progress.badges.length
             ? currentState.progress.badges
-            : ["badges.firstExplorer"];
+            : [t("dashboard.noBadges")];
           store.setProgress({
             completedSections: Array.from(completed),
             badges: updatedBadges,
@@ -154,7 +126,6 @@ const init = async () => {
 
   renderAll(state);
   store.subscribe(renderAll);
-  window.i18nDebug = { coverageReport, missingKeysReport };
 };
 
 init().catch((error) => {

@@ -5,11 +5,7 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
   const wrapper = el("div");
   wrapper.appendChild(el("p", { text: t(promptKey) }));
 
-  const modeToggle = el("button", {
-    className: "button button--ghost",
-    text: t("practice.clickMode"),
-    attrs: { type: "button", "aria-pressed": "false" },
-  });
+  const modeToggle = el("button", { className: "button button--ghost", text: t("practice.clickMode") });
   const board = el("div", { className: "match-board" });
   const itemColumn = el("div", { className: "list" });
   const targetColumn = el("div", { className: "list" });
@@ -30,8 +26,6 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
   modeToggle.addEventListener("click", () => {
     clickMode = !clickMode;
     modeToggle.textContent = clickMode ? t("practice.dragMode") : t("practice.clickMode");
-    modeToggle.setAttribute("aria-pressed", String(clickMode));
-    modeToggle.setAttribute("aria-label", clickMode ? t("practice.dragMode") : t("practice.clickMode"));
     itemColumn.querySelectorAll(".match-item").forEach((item) => {
       item.setAttribute("draggable", String(!clickMode));
     });
@@ -41,7 +35,7 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
     const itemEl = el("div", {
       className: "match-item",
       text: t(item.labelKey),
-      attrs: { draggable: "true", tabindex: "0", "data-id": item.id, role: "button", "aria-label": t(item.labelKey) },
+      attrs: { draggable: "true", tabindex: "0", "data-id": item.id, role: "button" },
     });
     itemEl.addEventListener("dragstart", (event) => {
       if (clickMode) return;
@@ -60,7 +54,7 @@ export const renderDragMatch = ({ promptKey, items, targets, onComplete }) => {
     const targetEl = el("div", {
       className: "match-target",
       text: t(target.labelKey),
-      attrs: { "data-id": target.id, tabindex: "0", role: "button", "aria-label": t(target.labelKey) },
+      attrs: { "data-id": target.id, tabindex: "0", role: "button" },
     });
     targetEl.addEventListener("dragover", (event) => {
       if (clickMode) return;
