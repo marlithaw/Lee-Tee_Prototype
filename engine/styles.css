@@ -39,10 +39,6 @@ body.dyslexia {
   font-family: "OpenDyslexic", "Comic Sans MS", sans-serif;
 }
 
-body.hide-hints .hint {
-  display: none;
-}
-
 .app {
   display: flex;
   flex-direction: column;
