@@ -29,13 +29,14 @@ export const t = (key) => {
   if (!(key in enDict)) {
     if (!missingKeys.has(key)) {
       missingKeys.add(key);
-      console.warn(`Missing i18n key: ${key}`);
+      console.warn("Missing i18n keys:", Array.from(missingKeys).sort());
     }
     return key;
   }
-  if (!missingKeys.has(`${language}:${key}`)) {
-    missingKeys.add(`${language}:${key}`);
-    console.warn(`Missing i18n key "${key}" for language "${language}"`);
+  const missingTag = `${language}:${key}`;
+  if (!missingKeys.has(missingTag)) {
+    missingKeys.add(missingTag);
+    console.warn("Missing i18n keys:", Array.from(missingKeys).sort());
   }
   return enDict[key];
 };

@@ -5,6 +5,8 @@
   "ui.resetProgress": "Restablecer progreso",
   "ui.stop": "DETENER",
   "ui.resume": "Reanudar",
+  "ui.close": "Cerrar",
+  "ui.loadFailed": "No se pudo cargar el episodio.",
   "dashboard.title": "Panel de aprendizaje",
   "dashboard.bookProgress": "Progreso del libro",
   "dashboard.bookProgressDetail": "Unidad 1 • Capítulo 2",

@@ -31,6 +31,9 @@ const updateStaticLabels = () => {
   document.querySelectorAll("[data-i18n]").forEach((node) => {
     node.textContent = t(node.dataset.i18n);
   });
+  document.querySelectorAll("[data-i18n-aria]").forEach((node) => {
+    node.setAttribute("aria-label", t(node.dataset.i18nAria));
+  });
 };
 
 const loadEpisode = async () => {
@@ -127,5 +130,5 @@ const init = async () => {
 
 init().catch((error) => {
   console.error(error);
-  showToast("Failed to load episode.");
+  showToast(t("ui.loadFailed"));
 });
