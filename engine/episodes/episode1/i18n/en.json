@@ -5,6 +5,8 @@
   "ui.resetProgress": "Reset progress",
   "ui.stop": "STOP",
   "ui.resume": "Resume",
+  "ui.close": "Close",
+  "ui.loadFailed": "Failed to load episode.",
   "dashboard.title": "Learning Dashboard",
   "dashboard.bookProgress": "Book progress",
   "dashboard.bookProgressDetail": "Unit 1 • Chapter 2",

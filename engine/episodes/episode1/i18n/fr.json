@@ -5,6 +5,8 @@
   "ui.resetProgress": "Réinitialiser la progression",
   "ui.stop": "ARRÊTER",
   "ui.resume": "Reprendre",
+  "ui.close": "Fermer",
+  "ui.loadFailed": "Impossible de charger l'épisode.",
   "dashboard.title": "Tableau de bord",
   "dashboard.bookProgress": "Progression du livre",
   "dashboard.bookProgressDetail": "Unité 1 • Chapitre 2",

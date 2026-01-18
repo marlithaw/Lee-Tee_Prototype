@@ -5,6 +5,8 @@
   "ui.resetProgress": "Reyinisyalize pwogrè",
   "ui.stop": "KITE",
   "ui.resume": "Reprann",
+  "ui.close": "Fèmen",
+  "ui.loadFailed": "Pa t ka chaje epizòd la.",
   "dashboard.title": "Panèl Aprantisaj",
   "dashboard.bookProgress": "Pwogrè liv la",
   "dashboard.bookProgressDetail": "Inite 1 • Chapit 2",
