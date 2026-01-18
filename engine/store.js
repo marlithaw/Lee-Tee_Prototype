@@ -1,5 +1,5 @@
 const STORAGE_KEY = "lee-tee-engine";
-const VERSION = "v2";
+const VERSION = "v1";
 
 const defaultState = {
   version: VERSION,

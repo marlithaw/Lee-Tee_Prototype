@@ -1,31 +1,22 @@
 import { el } from "../utils/dom.js";
 import { t } from "../i18n.js";
 
-export const renderMultiSelect = ({ promptKey, options, correctIds, hintKey, showHints, onComplete }) => {
+export const renderMultiSelect = ({ promptKey, options, correctIds, onComplete }) => {
   const wrapper = el("div");
   wrapper.appendChild(el("p", { text: t(promptKey) }));
-  if (hintKey) {
-    wrapper.appendChild(el("p", { className: `hint muted${showHints ? "" : " hint--hidden"}`, text: t(hintKey) }));
-  }
   const list = el("div", { className: "list" });
-  const feedback = el("div", { className: "feedback", attrs: { role: "status", "aria-live": "polite" } });
+  const feedback = el("div", { className: "feedback", attrs: { role: "status" } });
   const selected = new Set();
 
   options.forEach((option) => {
-    const button = el("button", {
-      className: "button button--ghost",
-      text: t(option.labelKey),
-      attrs: { "aria-pressed": "false" },
-    });
+    const button = el("button", { className: "button button--ghost", text: t(option.labelKey) });
     button.addEventListener("click", () => {
       if (selected.has(option.id)) {
         selected.delete(option.id);
         button.classList.remove("button--accent");
-        button.setAttribute("aria-pressed", "false");
       } else {
         selected.add(option.id);
         button.classList.add("button--accent");
-        button.setAttribute("aria-pressed", "true");
       }
     });
     list.appendChild(button);
