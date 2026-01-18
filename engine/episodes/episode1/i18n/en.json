@@ -1,0 +1,179 @@
+{
+  "ui": {
+    "languageName": "English",
+    "languageLabel": "Language",
+    "readingSettings": "Reading Settings",
+    "readAloud": "Read Aloud",
+    "readAloudDescription": "Automatically read story text when it appears.",
+    "dyslexiaFont": "Dyslexia Font",
+    "dyslexiaFontDescription": "Switch to a dyslexia-friendly typeface.",
+    "highContrast": "High Contrast",
+    "highContrastDescription": "Increase contrast for easier viewing.",
+    "showHints": "Show Hints",
+    "showHintsDescription": "Display learning hints and sentence frames.",
+    "dashboardTitle": "Learning Dashboard",
+    "bookProgress": "Book Progress",
+    "episodeProgress": "Episode Progress",
+    "badges": "Badges",
+    "continueTitle": "Continue",
+    "continueDescription": "Jump back into the next section.",
+    "continue": "Continue",
+    "resetProgress": "Reset progress",
+    "progressReset": "Progress reset.",
+    "stop": "STOP",
+    "resume": "Resume",
+    "resumeToContinue": "Resume to continue.",
+    "sections": "sections",
+    "complete": "complete",
+    "quickJump": "Quick Jump",
+    "objectivesTitle": "Objectives & SIOP Strategies",
+    "languageObjectives": "Language Objectives",
+    "contentObjectives": "Content Objectives",
+    "siopStrategies": "SIOP Strategies",
+    "simplifiedView": "Simplified View",
+    "sectionCompleted": "Section marked complete.",
+    "markComplete": "Mark complete",
+    "markedComplete": "Completed",
+    "completed": "Completed",
+    "sectionCount": "Section {current} of {total}",
+    "definition": "Definition",
+    "spanishLine": "Spanish line",
+    "example": "Example in story",
+    "hearIt": "Hear it",
+    "listen": "Listen",
+    "readAloudSection": "Read Aloud Section {current} of {total}",
+    "checkAnswer": "Check answer",
+    "selectAnswer": "Select an answer first.",
+    "correct": "Correct!",
+    "incorrect": "Not yet. Try again.",
+    "dragMode": "Drag & Drop",
+    "clickMode": "Click-to-Place",
+    "dragModeEnabled": "Drag mode enabled.",
+    "clickModeEnabled": "Click-to-place mode enabled.",
+    "items": "Items",
+    "targets": "Targets",
+    "selectItemFirst": "Select an item first.",
+    "completeMatching": "Place every item before checking.",
+    "writingResponse": "Writing response",
+    "saveWriting": "Save response"
+  },
+  "episode": {
+    "title": "Episode 1 Engine Demo",
+    "subtitle": "Building a reusable learning experience",
+    "description": "Track progress, settings, and interactive learning in one place."
+  },
+  "badges": {
+    "focus": "Focus Badge",
+    "reader": "Reader Badge",
+    "helper": "Helper Badge"
+  },
+  "nav": {
+    "vocab": "Vocabulary",
+    "story": "Story",
+    "practice": "Practice",
+    "check": "Check",
+    "reflect": "Reflect"
+  },
+  "objectives": {
+    "language": {
+      "1": "Use new vocabulary in complete sentences.",
+      "2": "Explain how the team collaborated."
+    },
+    "content": {
+      "1": "Identify the steps of the design process.",
+      "2": "Describe how prototypes are improved."
+    },
+    "siop": {
+      "1": "Build background knowledge with visuals.",
+      "2": "Provide frequent checks for understanding.",
+      "3": "Offer multiple ways to respond."
+    }
+  },
+  "helpers": {
+    "lee": {
+      "label": "ASK LEE",
+      "title": "Lee's Tip",
+      "tip": "Break the story into parts and look for key words."
+    },
+    "tee": {
+      "label": "ASK TEE",
+      "title": "Tee's Tip",
+      "tip": "Try reading aloud or use the simplified view if you get stuck."
+    }
+  },
+  "sections": {
+    "vocab": {
+      "title": "Vocabulary Warm-Up",
+      "subtitle": "Preview key words from the episode.",
+      "body": "Tap each card to explore the word and hear it aloud.",
+      "simplified": "Learn the new words before you read."
+    },
+    "story": {
+      "title": "Story",
+      "subtitle": "Read the opening scene.",
+      "body": "Lee and Tee gather their team. They brainstorm big ideas and sketch a bold prototype together.",
+      "simplified": "Lee and Tee plan a project with their team."
+    },
+    "practice": {
+      "title": "Practice",
+      "subtitle": "Match the steps to the design process.",
+      "prompt": "Drag or click each step into the correct phase.",
+      "simplified": "Match the steps to the right phase."
+    },
+    "check": {
+      "title": "Check for Understanding",
+      "subtitle": "Answer the question.",
+      "prompt": "Why do Lee and Tee build a prototype?",
+      "simplified": "Pick the best reason for a prototype.",
+      "options": {
+        "a": "To skip the planning",
+        "b": "To test and improve their idea",
+        "c": "To finish the project immediately"
+      }
+    },
+    "reflect": {
+      "title": "Reflect & Write",
+      "subtitle": "Share your thinking.",
+      "prompt": "How would you collaborate on a new idea?",
+      "simplified": "Write about working with others.",
+      "frame1": "I would collaborate by ____.",
+      "frame2": "A teammate could help me by ____.",
+      "tip": "Use at least one vocabulary word."
+    }
+  },
+  "vocab": {
+    "innovation": {
+      "word": "Innovation",
+      "short": "A new idea",
+      "definition": "Creating something new or improving what exists.",
+      "spanish": "Innovación: una idea nueva.",
+      "example": "Their innovation was a solar backpack."
+    },
+    "collaborate": {
+      "word": "Collaborate",
+      "short": "Work together",
+      "definition": "To work with others toward a goal.",
+      "spanish": "Colaborar: trabajar juntos.",
+      "example": "They collaborate by sharing tasks."
+    },
+    "prototype": {
+      "word": "Prototype",
+      "short": "First model",
+      "definition": "An early version used for testing.",
+      "spanish": "Prototipo: primer modelo.",
+      "example": "The prototype helped them improve quickly."
+    }
+  },
+  "practice": {
+    "items": {
+      "step1": "Brainstorm ideas",
+      "step2": "Build a draft",
+      "step3": "Share and revise"
+    },
+    "targets": {
+      "brainstorm": "Brainstorm",
+      "build": "Build",
+      "share": "Share"
+    }
+  }
+}
